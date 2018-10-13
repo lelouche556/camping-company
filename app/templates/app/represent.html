@@ -1,0 +1,14 @@
+{% extends "snippets/base.html" %}
+{% load staticfiles %}
+    {% block css %}
+        <link rel="stylesheet" href="{% static 'css/rest.css' %}">
+    {% endblock %}
+
+    {% block content_block %}
+    <div class="fix">
+        <h1>Hey!! {{user.username}} What would you like to do??</h1>
+        <a href="{% url 'app:find_user' %}" class="btn btn-default btn-lg">Find User</a>
+        <a href="{% url 'app:calender' %}" class="btn btn-default btn-lg">Calender</a>
+        <a href="{% url 'app:find_user' %}" class="btn btn-default btn-lg">Find All User</a>
+    </div>
+    {% endblock %}

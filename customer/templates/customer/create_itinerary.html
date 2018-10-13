@@ -1,0 +1,41 @@
+{% extends "snippets/base.html" %}
+{% load staticfiles %}
+    {% block css %}<link rel="stylesheet" href="{% static 'css/customer/create_itinerary.css' %}">{% endblock %}
+
+    {% block content_block %}
+  <div class="container">
+      {% if itinerary is None %}
+        <div class="row">
+        {% for item in items %}
+          <div class="col-md-4 col-sm-6">
+            <div class="ca">
+          <div class="co">
+            <img src="{{ item.images.url }}">
+          </div>
+          <div class="mo">
+            <div class="info-bundle">
+              <p class="title">{{item.place}}</p>
+              <a target="_blank" href="{% url 'customer:itinerary_detail_page' pk=item.pk %}">See more</a>
+              <input hidden readonly="readonly" type="number" value="{{item.id}}">
+              <br>
+              <br>
+              <button type="button">Add To Itinerary</button>
+            </div>
+          </div>
+          </div>
+        </div>
+        {% endfor %}
+        </div>
+      <div class="text-center">
+          <form id="test" action="{% url 'customer:custom_itinerary' %}" method="POST">{% csrf_token %}
+            <input class="stretch btn btn-lg" type="submit" value="Submit Choices">
+          </form>
+          <a class="stretch test btn btn-lg" id="tests" href="{% url 'customer:custom_itinerary' %}">Next</a>
+     </div>
+      {% else %}
+        <h1>You Already have One delete Existing To create New One</h1>
+        <a href= "{% url 'customer:delete_itinerary' %}" class="btn btn-danger">Delete Now??</a>
+        <a href="{% url 'customer:custom_itinerary' %}" class="btn btn-primary">Check The Created One?</a>
+      {% endif %}
+  </div>
+{% endblock %}

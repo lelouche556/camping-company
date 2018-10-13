@@ -1,0 +1,47 @@
+{% extends "snippets/base.html" %}
+    {% load staticfiles %}
+    {% block css %}
+        <link rel="stylesheet" href="{% static 'css/register/welcome.css' %}">
+    {% endblock %}
+
+
+{% block content_block %}
+<h1 style="text-align:center; color:white;">Welcome {{request.user}}</h1>
+<h3 style="text-align:center; color:white;">You are almost Done</h3>
+        <form method="POST" action="{% url 'register:welcome' %}">{% csrf_token %}
+  <div id="msform">
+
+    <ul id="progressbar">
+      <li class="active">Account Details</li>
+      <li>Personal Details</li>
+      <li>Registered</li>
+    </ul>
+
+    <fieldset>
+      <h2 class="fs-title">Account Details</h2>
+      <h3 class="fs-subtitle">For More Awesome Adventure</h3>
+      <input id="email" type="email" name="email" placeholder="Email" />
+      <input id="city" type="text" name="city" placeholder="City" />
+      <input id="nickname" type="text" name="nickname" placeholder="NICKNAME" />
+      <textarea id="about" name="about" placeholder="ABOUT YOURSELF" ></textarea>
+      <input type="button" name="next" class="next action-button" value="Next" />
+    </fieldset>
+    <fieldset>
+      <h2 class="fs-title">Personal Detail</h2>
+      <h3 class="fs-subtitle">We will never sell it</h3>
+      <input id="fname" type="text" name="fname" placeholder="First Name" />
+      <input id="lname" type="text" name="lname" placeholder="Last Name" />
+      <input id="number" type="text" name="number" placeholder="Phone" />
+      <textarea id="address" name="address" placeholder="Address"></textarea>
+      <input type="button" name="previous" class="previous action-button" value="Previous" />
+      <input type="button" name="next" class="next action-button" value="Next" />
+    </fieldset>
+    <fieldset>
+      <h2 class="fs-title">Success</h2>
+      <h3 class="fs-subtitle">Thank you for registering with us.</h3>
+      <input type="submit" name="submit" class="submit action-button" value="Submit" />
+    </fieldset>
+  </div>
+</form>
+
+{% endblock %}

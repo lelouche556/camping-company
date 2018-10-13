@@ -1,0 +1,39 @@
+{% extends "snippets/base.html" %}
+{% load staticfiles %}
+    {% block css %}
+        <link rel="stylesheet" href="{% static 'css/rest.css' %}">
+        <link href="{% static 'css/calender/jquery.datetimepicker.css' %}" rel="stylesheet">
+    {% endblock %}
+
+    {% block content_block %}
+    <div class="container">
+        <div class="row">
+        <div class="col-md-6">
+            <input hidden type="date" name="thar">
+            <button id="datetimepicker1" class="btn btn-default" type="button">Thar</button>
+        </div>
+        <div class="col-md-6">
+            <input hidden type="date" name="thar">
+            <button id="datetimepicker2" class="btn btn-default" type="button">Xenon</button>
+        </div>
+        </div>
+    </div>
+<script src="{% static 'js/jquery.datetimepicker.full.js' %}"></script>
+    <script>
+    let result1 = "{{thar.check_in_date|date:"Y-m-d"}}" + "," + "{{thar.check_out_date|date:"Y-m-d"}}" + "," + "booked" + "," + "xdsoft_highlighted_mint"
+    let result2 = "{{xenon.check_in_date|date:"Y-m-d"}}" + "," + "{{xenon.check_out_date|date:"Y-m-d"}}" + "," + "booked" + "," + "xdsoft_highlighted_mint"
+
+        $("#datetimepicker1").datetimepicker({
+             timepicker:false,
+             highlightedPeriods: [result1],
+             formatDate:'Y.m.d'
+         });
+
+         $("#datetimepicker2").datetimepicker({
+             timepicker:false,
+             highlightedPeriods: [result2],
+             formatDate:'Y.m.d'
+         });
+
+    </script>
+    {% endblock %}

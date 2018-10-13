@@ -1,0 +1,71 @@
+{% extends "snippets/base.html" %}
+{% load staticfiles %}
+    {% block css %}
+        <link rel="stylesheet" href="{% static 'css/register/register.css' %}">
+    {% endblock %}
+
+    {% block content_block %}
+          <div class="c">
+    <div class="backbox">
+      <div class="loginMsg">
+        <div class="textcontent">
+          <p class="title">Don't have an account?</p>
+            <p>Signup to join the overlander community</p><p> and unlock access to destination </p>
+          <button id="switch1">Sign Up</button>
+        </div>
+      </div>
+      <div class="signupMsg visibility">
+        <div class="textcontent">
+          <p class="title">Have an account?</p>
+          <p> <p>Login to build your profile and itinerary.</p>
+          <button id="switch2">LOG IN</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="frontbox">
+        <form method="POST" action="{% url 'register:signin' %}">{% csrf_token %}
+            <div class="login">
+                <h2>LOG IN</h2>
+                <div class="inputbox">
+                  <input type="text" name="username" placeholder="  USERNAME">
+                  <input type="password" name="password" placeholder="  PASSWORD">
+                </div>
+                <p>FORGET PASSWORD?</p>
+                <a style="color: #404040; letter-spacing: 2px; text-decoration:none;" href="{% url 'app:terms_condition' %}">Terms and Condition</a>
+                <button>LOG IN</button>
+            </div>
+        </form>
+
+    <form method="POST" action="{% url 'register:signup' %}">{% csrf_token %}
+      <div class="signup hide">
+        <h2>SIGN UP</h2>
+        <div class="inputbox">
+          <input type="text" name="username" placeholder="  USERNAME" required>
+          <input id="password1" type="password" name="password1" placeholder="  PASSWORD" value="password" required>
+          <input id="password2" type="password" name="password2" placeholder="  CONFIRM PASSWORD" value="password" required>
+        </div>
+        <button>SIGN UP</button>
+      </div>
+    </form>
+
+    </div>
+  </div>
+<script>
+$(function(){
+    var password = document.getElementById("password1")
+  , confirm_password = document.getElementById("password2");
+
+function validatePassword(){
+  if(password.value != confirm_password.value) {
+    confirm_password.setCustomValidity("Passwords Don't Match");
+  } else {
+    confirm_password.setCustomValidity('');
+  }
+}
+
+password.onchange = validatePassword;
+confirm_password.onkeyup = validatePassword;
+});
+</script>
+    {% endblock %}

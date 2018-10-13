@@ -1,0 +1,48 @@
+{% extends "snippets/base.html" %}
+{% load staticfiles %}
+{% block css %}<link rel="stylesheet" href="{% static 'css/rest.css' %}">{% endblock %}
+
+{% block content_block %}
+    <div class="fix">
+    <form class="stl" action="{% url 'register:signup' %}" method="POST">
+      {% csrf_token %}
+      <div class="form-group">
+        <label for="Fname">First Name:</label>
+        <input type="text" class="form-control" id="Fname" name="firstname">
+      </div>
+
+      <div class="form-group">
+        <label for="Lname">Last Name:</label>
+        <input type="text" class="form-control" id="Lname" name="lastname">
+      </div>
+
+      <div class="form-group">
+        <label for="Number">Phone number:</label>
+        <input type="Number" class="form-control" id="Number" name="number">
+      </div>
+
+        <div class="form-group">
+          <label for="email">Email address:</label>
+          <input type="email" class="form-control" id="email" name="email">
+        </div>
+
+        <div class="form-group">
+          <label for="username">Username:</label>
+          <input type="text" class="form-control" id="username" name="username">
+        </div>
+
+
+        <div class="form-group">
+          <label for="pwd">Password:</label>
+          <input type="password" class="form-control" id="pwd" name="password1">
+        </div>
+
+        <div class="form-group">
+          <label for="pwd">Re enter Password:</label>
+          <input type="password" class="form-control" id="pwd" name="password2">
+        </div>
+
+    <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+  </div>
+  {% endblock %}

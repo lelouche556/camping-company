@@ -1,0 +1,115 @@
+{% extends "snippets/base.html" %} {% load staticfiles %} {% block css %}
+<link rel="stylesheet" href="{% static 'css/vehicles/vehicle_info.css' %}">
+{% endblock %}
+{% block content_block %}
+<div class="container">
+   <div class="car">
+      <div class="row">
+         <div class="col-md-4 col-sm-12">
+            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+               <!-- Indicators -->
+               <ul class="carousel-indicators">
+                  <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                  <li data-target="#myCarousel" data-slide-to="1"></li>
+                  <li data-target="#myCarousel" data-slide-to="2"></li>
+               </ul>
+               <!-- The slideshow -->
+               <div class="carousel-inner">
+                  <div class="carousel-item active">
+                     <img src="{% static 'images/IMG_1229.jpg' %}">
+                  </div>
+                  <div class="carousel-item">
+                     <img src="{% static 'images/IMG_2753.jpg' %}" >
+                  </div>
+                  <div class="carousel-item">
+                     <img src="{% static 'images/Meghalaya-tourism-the-camping-company.png' %}">
+                  </div>
+               </div>
+               <!-- Left and right controls -->
+               <a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
+               <span class="carousel-control-prev-icon"></span>
+               </a>
+               <a class="carousel-control-next" href="#myCarousel" data-slide="next">
+               <span class="carousel-control-next-icon"></span>
+               </a>
+            </div>
+         </div>
+         <div class="col-md-8 col-sm-12">
+            <div class="info1" style="float:left;">
+               <h3>Tata Xenon 4x2</h3>
+               <br>
+               <p>Xenon is a great vehicle for families or groups who need space for lots of gears. While a smooth ride on paved roads Xenon is also burly enough to get you out into the forests where you can truly get away from it all. The roof top tent takes just minutes to set up and take down and is very roomy for two adults. The tent walls hold up to high winds and heavy rain keeping you warm and dry. </p>
+               <ul>
+                  <li>Manual transmission</li>
+                  <li>  All-terrain tires</li>
+                  <li> Ironman 4x4 roof top tent</li>
+                  <li> Seats 5</li>
+                  <li> Camping kit (BBQ, utensils, mugs & shovel)</li>
+                  <li> All weather sleeping bags </li>
+               </ul>
+            </div>
+         </div>
+      </div>
+   </div>
+   <div class="car">
+      <div class="row">
+         <div class="col-md-7 col-sm-12">
+            <div class="info2">
+               <h3>Mahindra Thar 4x4</h3>
+               <br>
+               <p>Thar is the perfect vehicle for couples and groups who want to do a little of everything. Thar is the smoothest ride for road trips and can handle rough gravel roads with finesse. The roof top tent takes just minutes to setup and will keep you warm and dry in inclement weather.</p>
+               <ul>
+                  <li>Four wheel drive</li>
+                  <li>All-terrain tires</li>
+                  <li>Manual transmission</li>
+                  <li>Roof top tent</li>
+                  <li>Seats 6</li>
+                  <li>Roof racks</li>
+                  <li>Camping kit (BBQ, utensils, mugs & shovel)</li>
+                  <li>All weather sleeping bags</li>
+               </ul>
+            </div>
+         </div>
+         <div class="col-md-4 col-sm-12">
+            <div id="myCarousel2" class="carousel slide" data-ride="carousel">
+               <!-- Indicators -->
+               <ul class="carousel-indicators">
+                  <li data-target="#myCarousel2" data-slide-to="0" class="active"></li>
+                  <li data-target="#myCarousel2" data-slide-to="1"></li>
+                  <li data-target="#myCarousel2" data-slide-to="2"></li>
+               </ul>
+               <!-- The slideshow -->
+               <div class="carousel-inner">
+                  <div class="carousel-item active">
+                     <img src="{% static 'images/19.jpeg' %}">
+                  </div>
+                  <div class="carousel-item">
+                     <img src="{% static 'images/Meghalaya-Tourism-best-way-to-reach-shillong.png' %}" >
+                  </div>
+                  <div class="carousel-item">
+                     <img src="{% static 'images/Meghalaya-umiam-lake.png' %}">
+                  </div>
+               </div>
+               <!-- Left and right controls -->
+               <a class="carousel-control-prev" href="#myCarousel2" data-slide="prev">
+               <span class="carousel-control-prev-icon"></span>
+               </a>
+               <a class="carousel-control-next" href="#myCarousel2" data-slide="next">
+               <span class="carousel-control-next-icon"></span>
+               </a>
+            </div>
+         </div>
+      </div>
+   </div>
+   <div class="desc">
+      <h3>WE RENT FULLY-OUTFITTED OVERLAND VEHICLES FOR UNBOUNDED ADVENTURE</h3>
+      <br>
+      <p>On the hunt for the perfect camp-ready rental? Whether you're hoping to visit picturesque valleys or explore the interiors of Northeast India, our vehicles are perfectly equipped to provide the ideal platform for adventurous travelers.</p>
+      <p>WE USE ONLY THE HIGHEST QUALITY VEHICLES AND EQUIPMENT TO ENSURE COMFORT AND SAFETY.</p>
+      <p>Our rentals come fully-equipped with all the needed camping gear and complimentary itinerary planning, so you can focus on enjoying your trip and not get overwhelmed by logistics. Aside from our list of included items below, we are able to provide a range of add-ons, from ground tents and sleeping bags, to cooking and cutlery so please feel free to ask.</p>
+   </div>
+   <br>
+   <br>
+   <br>
+</div>
+{% endblock %}

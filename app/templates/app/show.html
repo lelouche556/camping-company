@@ -1,0 +1,101 @@
+{% extends "snippets/base.html" %}
+{% load staticfiles %}
+    {% block css %}
+        <link rel="stylesheet" href="{% static 'css/rest.css' %}">
+    {% endblock %}
+    {% block content_block %}
+    <div class="fix">
+        {% if users is None %}
+            <h1>No Current Data</h1>
+        {% else %}
+        <h1>Summary of the user:</h1> {% if active %}<span>(Currently Active Status)</span> {% else %} <span>(Currently Not Active)</span>{% endif %}
+        <p>username: {{users.username}}</p>
+        <p>email: {{users.email}}</p>
+        <p>first_name: {{users.first_name}}</p>
+        <p>last_name: {{users.last_name}}</p>
+        <p>phone_number: {{users.customer_check.phone}}</p>
+        <p>
+            <a href="/status/delete" class="btn btn-danger btn-sm">Delete Status</a>
+            <a href="/status/update" class="btn btn-warning btn-sm">Update status</a>
+        </p>
+        <h1>Trip status</h1>
+        {% for x in users.trip_check.all %}
+            {% if x.active %}
+            <p>check_in_date: {{ x.check_in_date }}</p>
+            <p>check_out_date: {{x.check_out_date}}</p>
+            <p>check_in_time: {{ x.check_in_time }}</p>
+            <p>check_out_time: {{x.check_out_time}}</p>
+            <p>duration_of_trip: {{x.duration_of_trip}}</p>
+            <p>amount_paid: {{x.amount_paid}}</p>
+            <p>destination: {{x.destination}}</p>
+            <p>residence_address: {{x.residence_address}}</p>
+            <p>trip_status: {{x.trip_status}}</p>
+            <p>car_type: {{x.car_type}}</p>
+            <p>
+                <a href="/status/delete" class="btn btn-danger btn-sm">Delete Status</a>
+                <a href="{% url 'trip:update_trip' pk=x.pk%}" class="btn btn-warning btn-sm">Update status</a>
+            </p>
+        {% endif %}
+        {% endfor %}
+
+                <h1>Vehicle status</h1>
+        {% for x in users.vehicle_check.all %}
+        {% if x.active %}
+            <p>engine_oil_level: {{ x.engine_oil_level }}</p>
+            <p>brake_fluid_level: {{x.brake_fluid_level}}</p>
+            <p>water_level: {{x.water_level}}</p>
+            <p>windscreen_washer: {{x.windscreen_washer}}</p>
+            <p>seatbelts_check: {{x.seatbelts_check}}</p>
+            <p>parking_brake: {{x.parking_brake}}</p>
+            <p>clutch_gearshift: {{x.clutch_gearshift}}</p>
+            <p>burning_smell: {{x.burning_smell}}</p>
+            <p>steering_alignment: {{x.steering_alignment}}</p>
+            <p>dashboard: {{x.dashboard}}</p>
+            <p>check_lights: {{x.check_lights}}</p>
+            <p>horn: {{x.horn}}</p>
+            <p>tyres: {{x.tyres}}</p>
+            <p>leakage: {{x.leakage}}</p>
+            <p>
+                <a href="/status/delete" class="btn btn-danger btn-sm">Delete Status</a>
+                <a href="{% url 'vehicle:vehicle_update_check' pk=x.pk%}" class="btn btn-warning btn-sm">Update status</a>
+            </p>
+            {% endif %}
+        {% endfor %}
+        <h1>Tent status</h1>
+
+        {% for x in users.tent_check.all %}
+            {% if x.active %}
+            <p>rod: {{ x.rod }}</p>
+            <p>mattress: {{x.mattress}}</p>
+            <p>zip: {{x.zip}}</p>
+            <p>rain_cover: {{x.rain_cover}}</p>
+            <p>ladder: {{x.ladder}}</p>
+            <p>straps: {{x.straps}}</p>
+            <p>
+                <a href="/status/delete" class="btn btn-danger btn-sm">Delete Status</a>
+                <a href="{% url 'tent:tent_update_check' pk=x.pk %}" class="btn btn-warning btn-sm">Update status</a>
+            </p>
+        {% endif %}
+        {% endfor %}
+
+        <h1>Equipment Status</h1>
+
+        {% for x in users.equipment_check.all %}
+        {% if x.active %}
+            <p>yellow_box: {{ x.yellow_box }}</p>
+            <p>kettel: {{x.kettel}}</p>
+            <p>utensils: {{x.utensils}}</p>
+            <p>stove: {{x.stove}}</p>
+            <p>bbq_grill: {{x.bbq_grill}}</p>
+            <p>spare_tyre: {{x.spare_tyre}}</p>
+            <p>shovel: {{x.shovel}}</p>
+            <p>mug_bucket: {{x.mug_bucket}}</p>
+            <p>
+                <a href="/status/delete" class="btn btn-danger btn-sm">Delete Status</a>
+                <a href="{% url 'equipment:equipment_update_check' pk=x.pk %}" class="btn btn-warning btn-sm">Update status</a>
+            </p>
+        {% endif %}
+        {% endfor %}
+    </div>
+{% endif %}
+    {% endblock %}

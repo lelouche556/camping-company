@@ -1,0 +1,25 @@
+{% extends "snippets/base.html" %}
+{% load staticfiles %}
+    {% block css %}<link rel="stylesheet" href="{% static 'css/home/about.css' %}">{% endblock %}
+
+    {% block content_block %}
+    <div class="centered">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="co">
+                    <img src="{{item.images.url}}">
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="co">
+                    <h2>{{item.place}}</h2>
+                    <p>{{item.description}}</p>
+                    <p>Activities: {{item.activities}}</p>
+                    <p>Distance from Guwahti: {{item.distance}} Km</p>
+                    <p>Stay-Hours: {{item.hours}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock %}

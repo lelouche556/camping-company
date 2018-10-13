@@ -1,0 +1,123 @@
+{% extends "snippets/base.html" %}
+{% load staticfiles %}
+    {% block css %}
+        <link rel="stylesheet" href="{% static 'css/rest.css' %}">
+    {% endblock %}
+
+{% block content_block %}
+    <div class="row">
+       <form method="POST" autocomplete="off">
+          {% csrf_token %}
+          <div class="col-md-3">
+             <div class="form-inline">
+                <label for="engine_oil_level">engine_oil:</label>
+                <input id="engine_oil_level" class="form-control" type="number" name="engine_oil">
+             </div>
+          </div>
+          <div class="col-md-3">
+             <div class="form-inline">
+                <label for="brake_fluid">brake_fluid:</label>
+                <input id="brake_fluid" class="form-control" type="number" name="brake_fluid">
+             </div>
+          </div>
+          <div class="col-md-3">
+             <div class="form-inline">
+                <label for="water_level">water_level:</label>
+                <input id="water_level" class="form-control" type="number" name="water_level">
+             </div>
+          </div>
+          <div class="col-md-3">
+             <div class="form-inline">
+                <label for="windscreen">windscreen_washer:</label>
+                <input type="hidden" name="windscreen" value="False">
+                <input id="windscreen" class="form-control bool" type="checkbox" name="windscreen" value="False">
+             </div>
+          </div>
+          <p><br>
+             <br>
+          </p>
+          <div class="col-md-3">
+             <div class="form-inline">
+                <label for="seatbelts">Seatbelts:</label>
+                <input type="hidden" name="seatbelts" value="False">
+                <input id="seatbelts" class="form-control bool" type="checkbox" name="seatbelts" value="False">
+             </div>
+          </div>
+          <div class="col-md-3">
+             <div class="form-inline">
+                <label for="parking">Parking_brake:</label>
+                <input type="hidden" name="parking" value="False">
+                <input id="parking" class="form-control bool" type="checkbox" name="parking" value="False">
+             </div>
+          </div>
+          <div class="col-md-3">
+             <div class="form-inline">
+                <label for="clutch">clutch_gearshift:</label>
+                <input type="hidden" name="clutch" value="False">
+                <input id="clutch" class="form-control bool" type="checkbox" name="clutch" value="False">
+             </div>
+          </div>
+          <div class="col-md-3">
+             <div class="form-inline">
+                <label for="burning">burning_smell:</label>
+                <input type="hidden" name="burning" value="False">
+                <input id="burning" class="form-control bool" type="checkbox" name="burning" value="False">
+             </div>
+          </div>
+          <p><br>
+             <br>
+          </p>
+          <div class="col-md-3">
+             <div class="form-inline">
+                <label for="steering_alignment">steering_alignment:</label>
+                <input type="hidden" name="steering" value="False">
+                <input class="form-control bool" type="checkbox" name="steering" id="steering_alignment" value="False">
+             </div>
+          </div>
+          <div class="col-md-3">
+             <div class="form-inline">
+                <label for="dashboard">dashboard:</label>
+                <input type="hidden" name="dashboard" value="False">
+                <input id="dashboard" class="form-control bool" type="checkbox" name="dashboard" value="False">
+             </div>
+          </div>
+          <div class="col-md-3">
+             <div class="form-inline">
+                <label for="check_lights">check_lights:</label>
+                <input type="hidden" name="check_lights" value="False">
+                <input id="check_lights" class="form-control bool" type="checkbox" name="check_lights" value="False">
+             </div>
+          </div>
+          <div class="col-md-3">
+             <div class="form-inline">
+                <label for="horn">horn:</label>
+                <input type="hidden" name="horn" value="False">
+                <input id="horn" class="form-control bool" type="checkbox" name="horn" value="False">
+             </div>
+          </div>
+          <p>
+             <br>
+             <br>
+          </p>
+          <div class="col-md-3">
+             <div class="form-inline">
+                <label for="tyres">tyres:</label>
+                <input type="hidden" name="tyres" value="False">
+                <input id="tyres" class="form-control bool" type="checkbox" name="tyres" value="False"">
+             </div>
+          </div>
+          <div class="col-md-3">
+             <div class="form-inline">
+                <label for="leakage">leakage:</label>
+                <input type="hidden" name="leakage" value="False">
+                <input id="leakage" class="form-control bool" type="checkbox" name="leakage" value="False">
+             </div>
+          </div>
+          <div class="col-md-3">
+             <div class="form-inline">
+                <button class="btn btn-primary btn-block">Submit!</button>
+             </div>
+          </div>
+       </form>
+    </div>
+{% endblock %}

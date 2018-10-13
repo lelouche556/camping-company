@@ -1,0 +1,27 @@
+{% extends "snippets/base.html" %}
+{% load staticfiles %}
+    {% block css %}
+        <link rel="stylesheet" href="{% static 'css/rest.css' %}">
+    {% endblock %}
+
+    {% block content_block %}
+    {% if users is not None %}
+    <div class="fix">
+        <a href="{% url 'app:show_status' pk=users.pk %}" class="btn btn-default btn-lg">Show Status</a>
+        <a href="{% url 'app:create_status' pk=users.pk %}" class="btn btn-default btn-lg">Create Status</a>
+    </div>
+    {% else %}
+        <div class="fix">
+            <h1>Please provide an email to begin</h1>
+            <p>If user not in Database please sign up first</p>
+            <form class="stl" action="{% url 'app:find_user' %}" method="POST">
+                {% csrf_token %}
+            <div class="form-group">
+                <label for="email">Email address</label>
+                <input type="email" class="form-control" id="email" placeholder="Provide user email" name="email">
+            </div>
+                <button type="submit" class="btn btn-default">Submit</button>
+            </form>
+        </div>
+        {% endif %}
+    {% endblock %}

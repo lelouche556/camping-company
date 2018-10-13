@@ -1,0 +1,15 @@
+{% extends "snippets/base.html" %}
+{% load staticfiles %}
+    {% block css %}
+        <link rel="stylesheet" href="{% static 'css/rest.css' %}">
+    {% endblock %}
+
+    {% block content_block %}
+    <div class="fix">
+        <h1>Each button send you to a form, where you can create Status of specific trip</h1>
+        <a href="{% url 'trip:create_trip' pk=users.pk %}" class="btn btn-primary btn-lg">Trip</a>
+        <a href="{% url 'vehicle:vehicle_create_check' pk=users.pk %}" class="btn btn-primary btn-lg">Vehicle Check</a>
+        <a href="{% url 'tent:tent_create_check' pk=users.pk %}" class="btn btn-primary btn-lg">Tent Check</a>
+        <a href="{% url 'equipment:equipment_create_check' pk=users.pk %}" class="btn btn-primary btn-lg">Equipment Check</a>
+    </div>
+    {% endblock %}
