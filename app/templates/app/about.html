@@ -38,38 +38,72 @@
         </div>
         </div>
         <div class="col-md-6">
-        <div class="co">
-            <iframe width="100%" height="100%" src="" data-src="https://www.youtube.com/embed/tx-xbsfhdxM" frameborder="0" allowfullscreen></iframe>
-        </div>
-        <div class="co">
-            <iframe width="100%" height="100%" src="" data-src="https://www.youtube.com/embed/zwZ1vMuSvTo" frameborder="0" allowfullscreen></iframe>
-        </div>
-
-        <div class="co">
-            <iframe width="100%" height="100%" src="" data-src="https://www.youtube.com/embed/OiZFBOo63Jg" frameborder="0" allowfullscreen></iframe>
-        </div>
             <div class="co">
-        <iframe width="100%" height="100%" src="" data-src="https://www.youtube.com/embed/4kH63qOLINo" frameborder="0" allowfullscreen></iframe>
+                <div class='contentWrapper'>
+                  <article>
+                    <div class='theatre'>
+                      <div class="videoWrapper">
+                    <iframe width="100%" height="100%" src="" data-src="https://www.youtube.com/embed/zwZ1vMuSvTo" frameborder="0" allowfullscreen></iframe>
+                      </div>
+                    </div>
+                  </article>
+                </div>
             </div>
-        <div class="co">
-            <iframe width="100%" height="100%" src="" data-src="https://www.youtube.com/embed/pxKlen_COPg" frameborder="0" allowfullscreen></iframe>
-        </div>
+            <div class="co">
+                <div class='contentWrapper'>
+                  <article>
+                    <div class='theatre'>
+                      <div class="videoWrapper">
+                    <iframe width="100%" height="100%" src="" data-src="https://www.youtube.com/embed/OiZFBOo63Jg" frameborder="0" allowfullscreen></iframe>
+                      </div>
+                    </div>
+                  </article>
+                </div>
             </div>
+
+            <div class="co">
+                <div class='contentWrapper'>
+                  <article>
+                    <div class='theatre'>
+                      <div class="videoWrapper">
+                    <iframe width="100%" height="100%" src="" data-src="https://www.youtube.com/embed/4kH63qOLINo" frameborder="0" allowfullscreen></iframe>
+                      </div>
+                    </div>
+                  </article>
+                </div>
+            </div>
+
+            <div class="co">
+                <div class='contentWrapper'>
+                  <article>
+                    <div class='theatre'>
+                      <div class="videoWrapper">
+                        <iframe width="100%" height="100%" src="" data-src="https://www.youtube.com/embed/pxKlen_COPg" frameborder="0" allowfullscreen></iframe>
+                      </div>
+                    </div>
+                  </article>
+                </div>
+            </div>
+
+        <div id='tapame' />
+
     </div>
     </div>
+    </div>
+</div>
     <script>
             var myIndex = 0;
             carousel();
-            
+
             function carousel() {
                 var i;
                 var x = document.getElementsByClassName("mySlides");
                 for (i = 0; i < x.length; i++) {
-                   x[i].style.display = "none";  
+                   x[i].style.display = "none";
                 }
                 myIndex++;
-                if (myIndex > x.length) {myIndex = 1}    
-                x[myIndex-1].style.display = "block";  
+                if (myIndex > x.length) {myIndex = 1}
+                x[myIndex-1].style.display = "block";
                 setTimeout(carousel, 2000); // Change image every 2 seconds
             }
             </script>
@@ -82,4 +116,42 @@
     } } }
     window.onload = init;
    </script>
+    <script>
+        function metele() {
+      $(".theatre").each(function() {
+        var x = $(this).offset().left - $(window).scrollLeft();
+        var y = $(this).offset().top - $(window).scrollTop();
+          var ancho = $(this).width();
+        var alto = $(this).height();
+        $(this).click(function() {
+          $(this).addClass("grande").css({
+            'left': x,
+            'top': y,
+            'max-width' : ancho
+          });      $(this).next(".placeholder").addClass('activ').css({
+          'width': ancho,
+          'height': alto
+        });
+          $("#tapame").addClass("abierto");
+        });
+      });
+    }
+
+    $(window).on("load", function(e) {
+      $(".theatre").each(function() {
+        $(this).after("<div class='placeholder'/>");
+      });
+      $("#tapame").click(function() {
+        $(".theatre").removeClass("grande").css({'max-width':'100%'});
+        $(".placeholder").removeClass('activ');
+        $(this).removeClass("abierto");
+        metele();
+      });
+      metele();
+    });
+
+    $(window).on("scroll resize", function(e) {
+      metele();
+    });
+    </script>
     {% endblock %}

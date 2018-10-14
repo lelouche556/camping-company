@@ -8,36 +8,7 @@
 {% if thar.car_type != "thar" %}
 <div class="car">
       <div class="row">
-         <div class="col-md-7 col-sm-12">
-            <div class="info2">
-               <h3>Mahindra Thar 4x4</h3>
-               <br>
-               <p>Thar is the perfect vehicle for couples and groups who want to do a little of everything. Thar is the smoothest ride for road trips and can handle rough gravel roads with finesse. The roof top tent takes just minutes to setup and will keep you warm and dry in inclement weather.</p>
-               <ul>
-                  <li>Four wheel drive</li>
-                  <li>All-terrain tires</li>
-                  <li>Manual transmission</li>
-                  <li>Roof top tent</li>
-                  <li>Seats 6</li>
-                  <li>Roof racks</li>
-                  <li>Camping kit (BBQ, utensils, mugs & shovel)</li>
-                  <li>All weather sleeping bags</li>
-               </ul>
-                <div class="price">
-                    <h3>From</h3>
-                    <p><strong>INR 2999</strong></p>
-                    <p>For 2 Adventurers</p>
-                    <p> (INR 350 extra beyond 2)</p>
-                    <button onclick= "location.href = '{% url 'vehicle:vehicle_info' %}';" class="btn">More Info</button>
-                    {% if user.is_authenticated %}
-                        <button onclick="location.href = '{% url 'customer:user_page' %}';" class="btn">Book Now</button>
-                    {% else %}
-                        <button onclick="location.href = '{% url 'register:signin' %}';" class="btn">Book Now</button>
-                    {% endif %}
-                </div>
-            </div>
-         </div>
-         <div class="col-md-4 col-sm-12">
+         <div class="col-md-6 col-sm-12">
             <div id="myCarousel2" class="carousel slide" data-ride="carousel">
                <!-- Indicators -->
                <ul class="carousel-indicators">
@@ -66,6 +37,35 @@
                </a>
             </div>
          </div>
+          <div class="col-md-6 col-sm-12">
+            <div class="info2">
+               <h3>Mahindra Thar 4x4</h3>
+               <br>
+               <p>Thar is the perfect vehicle for couples and groups who want to do a little of everything. Thar is the smoothest ride for road trips and can handle rough gravel roads with finesse. The roof top tent takes just minutes to setup and will keep you warm and dry in inclement weather.</p>
+               <ul>
+                  <li>Four wheel drive</li>
+                  <li>All-terrain tires</li>
+                  <li>Manual transmission</li>
+                  <li>Roof top tent</li>
+                  <li>Seats 6</li>
+                  <li>Roof racks</li>
+                  <li>Camping kit (BBQ, utensils, mugs & shovel)</li>
+                  <li>All weather sleeping bags</li>
+               </ul>
+                <div class="price">
+                    <h3>From</h3>
+                    <p><strong>INR 2999</strong></p>
+                    <p>For 2 Adventurers</p>
+                    <p> (INR 350 extra beyond 2)</p>
+                    <button onclick= "location.href = '{% url 'vehicle:vehicle_info' %}';" class="btn">More Info</button>
+                    {% if user.is_authenticated %}
+                        <button onclick="location.href = '{% url 'customer:user_page' %}';" class="btn">Book Now</button>
+                    {% else %}
+                        <button onclick="location.href = '{% url 'register:signin' %}';" class="btn">Book Now</button>
+                    {% endif %}
+                </div>
+            </div>
+         </div>
       </div>
    </div>
         {% endif %}
@@ -73,7 +73,7 @@
         {% if xenon.car_type != "xenon" %}
 <div class="car">
       <div class="row">
-         <div class="col-md-4 col-sm-12">
+         <div class="col-md-6 col-sm-12">
             <div id="myCarousel" class="carousel slide" data-ride="carousel">
                <!-- Indicators -->
                <ul class="carousel-indicators">
@@ -102,7 +102,7 @@
                </a>
             </div>
          </div>
-         <div class="col-md-8 col-sm-12">
+         <div class="col-md-6 col-sm-12">
             <div class="info1" style="float:left;">
                <h3>Tata Xenon 4x2</h3>
                <br>

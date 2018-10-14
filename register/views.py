@@ -11,12 +11,13 @@ from django.http import Http404
 def signup(request):
     if request.method == "POST":
         username = request.POST.get("username")
+        email = request.POST.get("email")
         user = User.objects.filter(username=username)
         password1 = request.POST.get("password1")
         if user.count() == 1:
             raise Http404("Username already taken")
 
-        user = User.objects.create_user(username=username)
+        user = User.objects.create_user(username=username, email=email)
         user.set_password(password1)
 
         user.save()
@@ -55,7 +56,7 @@ def sign_out(request):
 def welcome(request):
     if request.method == "POST":
         user = User.objects.get(username=request.user.username)
-        email = request.POST.get("email")
+        license_number = request.POST.get("license_number")
         fname = request.POST.get("fname")
         lname = request.POST.get("lname")
         number = request.POST.get("number")
@@ -63,14 +64,13 @@ def welcome(request):
         nickname = request.POST.get("nickname")
         about = request.POST.get("about")
         address = request.POST.get("address")
-        user.email = email
         user.first_name = fname
         user.last_name = lname
         user.number = number
         user.save()
         Customer.objects.get_or_create(phone=number, user=user, city=city,
                                        address=address,nickname=nickname,
-                                       about=about)
+                                       license_number=license_number,about=about)
 
         return redirect("customer:user_page")
     return render(request, "register/welcome.html")
