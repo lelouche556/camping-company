@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate, logout, login
 from django.contrib.auth.models import User
 from customer.models import Customer
 from django.http import Http404
-
+from django.contrib import messages
 # Create your views here.
 
 
@@ -15,7 +15,8 @@ def signup(request):
         user = User.objects.filter(username=username)
         password1 = request.POST.get("password1")
         if user.count() == 1:
-            raise Http404("Username already taken")
+            messages.error(request, "Username/email already taken")
+            return redirect("register:signin")
 
         user = User.objects.create_user(username=username, email=email)
         user.set_password(password1)
@@ -40,9 +41,11 @@ def signin(request):
                 return redirect("app:represent")
             else:
                 login(request, user)
+                messages.success(request, "Logged in")
                 return redirect("customer:user_page")
         else:
-            raise Http404("Password/Username is wrong")
+            messages.error(request, "Password/Username is wrong")
+            return redirect("register:signin")
     return render(request, "register/signin.html")
 
 
