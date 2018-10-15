@@ -1,352 +1,35 @@
-{% extends "snippets/base.html" %} {% load staticfiles %} {% block css %}
-<link rel="stylesheet" href="//cdn.nautal.com/css/vip.min.22504a03.css">
-<link rel="stylesheet" href="{% static 'css/home/home.css' %}">
-{% endblock %} {% block content_block %}
-
-<script src="//cdn.nautal.com/js/vip.min.62ad1075.js"></script>
-<section>
-   <video preload="metadata" autoPlay loop muted oncanplay="this.muted=true" id="video" style="margin: auto; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); visibility: visible; min-width: 100%; min-height: 100%; width:auto; height: auto;">
-      <source src="{% static 'video/1.mp4' %}" type="video/MP4">
-   </video>
-</section>
-<div class="row search-bar">
-   <div id="filter-zones-gr" class="nopadding col-md-4 col-xs-12 frm_search">
-      <input type="text" class="form-control" value="" name="Szone" id="filter-zones" placeholder="Where would you like to go?">
-      <span class="iconform fa fa-globe hidden-xs"></span>
-   </div>
-   <div id="search-calendar" class="nopadding col-md-3 col-xs-6 frm_dates search-calendar">
-      <input type="text" class="form-control form-search-date picker__input" name="SstartDate" id="form-search-date" placeholder="Start date" value="" readonly="" aria-haspopup="true" aria-expanded="false" aria-readonly="false" aria-owns="form-search-date_root">
-      <span class="iconform fa fa-calendar hidden-xs"></span>
-      <div class="picker" id="form-search-date_root" aria-hidden="true">
-         <div class="picker__holder" tabindex="-1">
-            <div class="picker__frame">
-               <div class="picker__wrap">
-                  <div class="picker__box">
-                     <div class="picker__header">
-                        <div class="picker__month">October</div>
-                        <div class="picker__year">2018</div>
-                        <div class="picker__nav--prev picker__nav--disabled" data-nav="-1" role="button" aria-controls="form-search-date_table" title="Previous month"> </div>
-                        <div class="picker__nav--next" data-nav="1" role="button" aria-controls="form-search-date_table" title="Next month"> </div>
-                     </div>
-                     <table class="picker__table" id="form-search-date_table" role="grid" aria-controls="form-search-date" aria-readonly="true">
-                        <thead>
-                           <tr>
-                              <th class="picker__weekday" scope="col" title="Sunday">Sun</th>
-                              <th class="picker__weekday" scope="col" title="Monday">Mon</th>
-                              <th class="picker__weekday" scope="col" title="Tuesday">Tue</th>
-                              <th class="picker__weekday" scope="col" title="Wednesday">Wed</th>
-                              <th class="picker__weekday" scope="col" title="Thursday">Thu</th>
-                              <th class="picker__weekday" scope="col" title="Friday">Fri</th>
-                              <th class="picker__weekday" scope="col" title="Saturday">Sat</th>
-                           </tr>
-                        </thead>
-                        <tbody>
-                           <tr>
-                              <td role="presentation">
-                                 <div class="picker__day picker__day--outfocus picker__day--disabled" data-pick="1538245800000" role="gridcell" aria-label="09/30/2018" aria-disabled="true">30</div>
-                              </td>
-                              <td role="presentation">
-                                 <div class="picker__day picker__day--infocus  picker__day--disabled" data-pick="1538332200000" role="gridcell" aria-label="10/01/2018" aria-disabled="true">1</div>
-                              </td>
-                              <td role="presentation">
-
-                                 <div class="picker__day picker__day--infocus picker__day--highlighted" data-pick="1538418600000" role="gridcell" aria-label="10/02/2018" aria-activedescendant="true">2</div>
-                              </td>
-                              <td role="presentation">
-                                 <div class="picker__day picker__day--infocus" data-pick="1538505000000" role="gridcell" aria-label="10/03/2018">3</div>
-                              </td>
-                              <td role="presentation">
-                                 <div class="picker__day picker__day--infocus" data-pick="1538591400000" role="gridcell" aria-label="10/04/2018">4</div>
-                              </td>
-                              <td role="presentation">
-                                 <div class="picker__day picker__day--infocus" data-pick="1538677800000" role="gridcell" aria-label="10/05/2018">5</div>
-                              </td>
-                              <td role="presentation">
-                                 <div class="picker__day picker__day--infocus" data-pick="1538764200000" role="gridcell" aria-label="10/06/2018">6</div>
-                              </td>
-                           </tr>
-                           <tr>
-                              <td role="presentation">
-                                 <div class="picker__day picker__day--infocus" data-pick="1538850600000" role="gridcell" aria-label="10/07/2018">7</div>
-                              </td>
-                              <td role="presentation">
-                                 <div class="picker__day picker__day--infocus" data-pick="1538937000000" role="gridcell" aria-label="10/08/2018">8</div>
-                              </td>
-                              <td role="presentation">
-                                 <div class="picker__day picker__day--infocus" data-pick="1539023400000" role="gridcell" aria-label="10/09/2018">9</div>
-                              </td>
-                              <td role="presentation">
-                                 <div class="picker__day picker__day--infocus" data-pick="1539109800000" role="gridcell" aria-label="10/10/2018">10</div>
-                              </td>
-                              <td role="presentation">
-                                 <div class="picker__day picker__day--infocus" data-pick="1539196200000" role="gridcell" aria-label="10/11/2018">11</div>
-                              </td>
-                              <td role="presentation">
-                                 <div class="picker__day picker__day--infocus" data-pick="1539282600000" role="gridcell" aria-label="10/12/2018">12</div>
-                              </td>
-                              <td role="presentation">
-                                 <div class="picker__day picker__day--infocus" data-pick="1539369000000" role="gridcell" aria-label="10/13/2018">13</div>
-                              </td>
-                           </tr>
-                           <tr>
-                              <td role="presentation">
-                                 <div class="picker__day picker__day--infocus" data-pick="1539455400000" role="gridcell" aria-label="10/14/2018">14</div>
-                              </td>
-                              <td role="presentation">
-                                 <div class="picker__day picker__day--infocus" data-pick="1539541800000" role="gridcell" aria-label="10/15/2018">15</div>
-                              </td>
-                              <td role="presentation">
-                                 <div class="picker__day picker__day--infocus" data-pick="1539628200000" role="gridcell" aria-label="10/16/2018">16</div>
-                              </td>
-                              <td role="presentation">
-                                 <div class="picker__day picker__day--infocus" data-pick="1539714600000" role="gridcell" aria-label="10/17/2018">17</div>
-                              </td>
-                              <td role="presentation">
-                                 <div class="picker__day picker__day--infocus" data-pick="1539801000000" role="gridcell" aria-label="10/18/2018">18</div>
-                              </td>
-                              <td role="presentation">
-                                 <div class="picker__day picker__day--infocus" data-pick="1539887400000" role="gridcell" aria-label="10/19/2018">19</div>
-                              </td>
-                              <td role="presentation">
-                                 <div class="picker__day picker__day--infocus" data-pick="1539973800000" role="gridcell" aria-label="10/20/2018">20</div>
-                              </td>
-                           </tr>
-                           <tr>
-                              <td role="presentation">
-                                 <div class="picker__day picker__day--infocus" data-pick="1540060200000" role="gridcell" aria-label="10/21/2018">21</div>
-                              </td>
-                              <td role="presentation">
-                                 <div class="picker__day picker__day--infocus" data-pick="1540146600000" role="gridcell" aria-label="10/22/2018">22</div>
-                              </td>
-                              <td role="presentation">
-                                 <div class="picker__day picker__day--infocus" data-pick="1540233000000" role="gridcell" aria-label="10/23/2018">23</div>
-                              </td>
-                              <td role="presentation">
-                                 <div class="picker__day picker__day--infocus" data-pick="1540319400000" role="gridcell" aria-label="10/24/2018">24</div>
-                              </td>
-                              <td role="presentation">
-                                 <div class="picker__day picker__day--infocus" data-pick="1540405800000" role="gridcell" aria-label="10/25/2018">25</div>
-                              </td>
-                              <td role="presentation">
-                                 <div class="picker__day picker__day--infocus" data-pick="1540492200000" role="gridcell" aria-label="10/26/2018">26</div>
-                              </td>
-                              <td role="presentation">
-                                 <div class="picker__day picker__day--infocus" data-pick="1540578600000" role="gridcell" aria-label="10/27/2018">27</div>
-                              </td>
-                           </tr>
-                           <tr>
-                              <td role="presentation">
-                                 <div class="picker__day picker__day--infocus" data-pick="1540665000000" role="gridcell" aria-label="10/28/2018">28</div>
-                              </td>
-                              <td role="presentation">
-                                 <div class="picker__day picker__day--infocus" data-pick="1540751400000" role="gridcell" aria-label="10/29/2018">29</div>
-                              </td>
-                              <td role="presentation">
-                                 <div class="picker__day picker__day--infocus" data-pick="1540837800000" role="gridcell" aria-label="10/30/2018">30</div>
-                              </td>
-                              <td role="presentation">
-                                 <div class="picker__day picker__day--infocus" data-pick="1540924200000" role="gridcell" aria-label="10/31/2018">31</div>
-                              </td>
-                              <td role="presentation">
-                                 <div class="picker__day picker__day--outfocus" data-pick="1541010600000" role="gridcell" aria-label="11/01/2018">1</div>
-                              </td>
-                              <td role="presentation">
-                                 <div class="picker__day picker__day--outfocus" data-pick="1541097000000" role="gridcell" aria-label="11/02/2018">2</div>
-                              </td>
-                              <td role="presentation">
-                                 <div class="picker__day picker__day--outfocus" data-pick="1541183400000" role="gridcell" aria-label="11/03/2018">3</div>
-                              </td>
-                           </tr>
-                           <tr>
-                              <td role="presentation">
-                                 <div class="picker__day picker__day--outfocus" data-pick="1541269800000" role="gridcell" aria-label="11/04/2018">4</div>
-                              </td>
-                              <td role="presentation">
-                                 <div class="picker__day picker__day--outfocus" data-pick="1541356200000" role="gridcell" aria-label="11/05/2018">5</div>
-                              </td>
-                              <td role="presentation">
-                                 <div class="picker__day picker__day--outfocus" data-pick="1541442600000" role="gridcell" aria-label="11/06/2018">6</div>
-                              </td>
-                              <td role="presentation">
-                                 <div class="picker__day picker__day--outfocus" data-pick="1541529000000" role="gridcell" aria-label="11/07/2018">7</div>
-                              </td>
-                              <td role="presentation">
-                                 <div class="picker__day picker__day--outfocus" data-pick="1541615400000" role="gridcell" aria-label="11/08/2018">8</div>
-                              </td>
-                              <td role="presentation">
-                                 <div class="picker__day picker__day--outfocus" data-pick="1541701800000" role="gridcell" aria-label="11/09/2018">9</div>
-                              </td>
-                              <td role="presentation">
-                                 <div class="picker__day picker__day--outfocus" data-pick="1541788200000" role="gridcell" aria-label="11/10/2018">10</div>
-                              </td>
-                           </tr>
-                        </tbody>
-                     </table>
-                     <div class="picker__footer"><button class="picker__button--close" type="button" data-close="true" disabled="" aria-controls="form-search-date">Close</button></div>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
-   </div>
-   <div class="nopadding col-md-3 col-xs-6 frm_duration">
-      <select class="form-control bs-select-hidden" name="Sduration" id="Sduration">
-         <option value="0">Duration</option>
-         <option value="0">half day</option>
-         <option value="1">1 day</option>
-         <option value="2">2 days</option>
-         <option value="3">3 days</option>
-         <option value="4">4 days</option>
-         <option value="5">5 days</option>
-         <option value="6">6 days</option>
-         <option value="7">1 week</option>
-         <option value="8">8 days</option>
-         <option value="9">9 days</option>
-         <option value="10">10 days</option>
-         <option value="11">11 days</option>
-         <option value="12">12 days</option>
-         <option value="13">13 days</option>
-         <option value="14">2 weeks</option>
-         <option value="21">3 weeks</option>
-         <option value="28">4 weeks</option>
-      </select>
-      <div class="btn-group bootstrap-select form-control" style="width: 100%;">
-         <button type="button" class="btn dropdown-toggle btn-default" data-toggle="dropdown" data-id="Sduration" title="Duration"><span class="filter-option pull-left">Duration</span>&nbsp;<span class="bs-caret"><span class="caret"></span></span></button>
-         <div class="dropdown-menu open">
-            <ul class="dropdown-menu inner" role="menu">
-               <li data-original-index="0" class="selected"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Duration</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li>
-               <li data-original-index="1"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">half day</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li>
-               <li data-original-index="2"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">1 day</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li>
-               <li data-original-index="3"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">2 days</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li>
-               <li data-original-index="4"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">3 days</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li>
-               <li data-original-index="5"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">4 days</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li>
-               <li data-original-index="6"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">5 days</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li>
-               <li data-original-index="7"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">6 days</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li>
-               <li data-original-index="8"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">1 week</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li>
-               <li data-original-index="9"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">8 days</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li>
-               <li data-original-index="10"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">9 days</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li>
-               <li data-original-index="11"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">10 days</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li>
-               <li data-original-index="12"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">11 days</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li>
-               <li data-original-index="13"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">12 days</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li>
-               <li data-original-index="14"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">13 days</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li>
-               <li data-original-index="15"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">2 weeks</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li>
-               <li data-original-index="16"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">3 weeks</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li>
-               <li data-original-index="17"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">4 weeks</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li>
-            </ul>
-         </div>
-      </div>
-   </div>
-   <div class="nopadding col-md-2 col-xs-12">
-      <button class="form-control btn btn--action btan--huge" type="submit">Search</button>
-   </div>
-</div>
-{% endblock %}
-
-
-
-{% extends "snippets/base.html" %} {% load staticfiles %} {% block css %}
-<link rel="stylesheet" href="{% static 'css/home/home.css' %}"> {% endblock %} {% block content_block %}
-
-<section style= "position: absolute; z-index:-1; top: 0; bottom: 0; width: 100%;height: 100%; overflow: hidden;">
-    <video preload="metadata" autoPlay loop muted oncanplay="this.muted=true" id="video" style="margin: auto; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); visibility: visible; min-width: 100%; min-height: 100%; width:auto; height: auto;">
-      <source src="{% static 'video/1.mp4' %}" type="video/MP4">
-    </video>
-</section>
-
-<div id="apple">
-  <form class="form-inline" action="{% url 'vehicle:vehicles' %}" method="POST" autocomplete="off">{% csrf_token %}
-    <div class="form-group">
-            <input type="text" class="form-control email" name="place" list="places" placeholder="Places">
-            <datalist id="places">
-              <option value="Meghalaya">
-              <option value="Assam">
-              <option value="Arunachal Pradesh">
-              <option value="Nagaland">
-              <option value="Sikkim">
-            </datalist>
-        </div>
-
-          <div class="form-group">
-            <input type="text" name="tripDay" class="form-control date" id="datetimepicker" placeholder="DD/MM/YYYY">
-        </div>
-
-      <div class="form-group">
-        <input type="text" list="Duration" name="Duration" class="form-control" id="list" placeholder="Days">
-        <datalist id="Duration">
-          <option value="1">
-          <option value="2">
-          <option value="3">
-          <option value="3">
-          <option value="4">
-          <option value="5">
-          <option value="10">
-          <option value="30">
-        </datalist>
-      </div>
-          <button type="submit" class="btn">Submit</button>
-    </form>
-</div>
-
-
-<script>
-    $("#datetimepicker").datetimepicker({
-     timepicker:false,
-     format:'Y-m-d'
-     });
-</script>
-
-{% endblock }
-
-      <!--<div class="ca">-->
-        <!--<div class="co">-->
-          <!--<img class= "image" src="{{ item.images.url }}">-->
-        <!--</div>-->
-        <!--<div class="mo">-->
-          <!--<div class="info-bundle">-->
-            <!--<p class="title">{{item.place}}</p>-->
-            <!--<p  class="title-btn"><a target="_blank" href="{% url 'customer:user_detail_page' pk=item.pk %}">See more</a></p>-->
-            <!--<input hidden readonly="readonly" type="number" value="{{item.id}}">-->
-            <!--<br>-->
-            <!--<br>-->
-          <!--</div>-->
-        <!--</div>-->
-      <!--</div>-->
-
-
 {% extends "snippets/base.html" %}
 
 {% load staticfiles %}
     {% block css %}<link rel="stylesheet" href="{% static 'css/home/destination.css' %}">{% endblock %}
 
     {% block content_block %}
-      <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
   <!-- Indicators -->
   <ol class="carousel-indicators">
     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
     <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
     <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="5"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="6"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="7"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="8"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="9"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="10"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="11"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="12"></li>
   </ol>
   <!-- Wrapper for slides -->
   <div class="carousel-inner">
-      {% for item in items %}
     <div class="carousel-item">
-          <img class="d-block w-100 responsive-image" src="{{ item.images.url }}">
-          <div class="carousel-caption d-md-block">
-            <a class="btn" href="{% url 'customer:itinerary_detail_page' pk=item.pk %}">More Info</a>
-          </div>
+      <img class="d-block w-100" src="https://images.unsplash.com/photo-1432958576632-8a39f6b97dc7?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ&s=6ecedc1e639d8a4b77aa8e85f4962f03" data-color="lightblue" alt="First Image">
+      <div class="carousel-caption d-md-block">
+        <h5>First Image</h5>
+      </div>
     </div>
-    {% endfor %}
-
+    <div class="carousel-item">
+      <img class="d-block w-100" src="https://images.unsplash.com/photo-1504736038806-94bd1115084e?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ&s=3d045bbf1ecc01c4c9ec011ce5c8977d" data-color="firebrick" alt="Second Image">
+      <div class="carousel-caption d-md-block">
+        <h5>Second Image</h5>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img class="d-block w-100" src="https://images.unsplash.com/photo-1419064642531-e575728395f2?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ&s=76d5c793e4f8d02d7a9be27bc71256f7" data-color="violet" alt="Third Image">
+      <div class="carousel-caption d-md-block">
+        <h5>Third Image</h5>
+      </div>
     </div>
   </div>
   <!-- Controls -->
@@ -358,9 +41,11 @@
 <span class="carousel-control-next-icon" aria-hidden="true"></span>
 <span class="sr-only">Next</span>
 </a>
+</div>
+
 <script>
-  $(function(){
-  var $item = $('.carousel-item');
+$(function() {
+var $item = $('.carousel-item');
 var $wHeight = $(window).height();
 $item.eq(0).addClass('active');
 $item.height($wHeight);
@@ -385,6 +70,96 @@ $('.carousel').carousel({
   interval: 6000,
   pause: "false"
 });
-  })
+})
+</script>
+    {% endblock %}
+
+
+
+{% extends "snippets/base.html" %}
+
+{% load staticfiles %}
+    {% block css %}<link rel="stylesheet" href="{% static 'css/home/destination.css' %}">{% endblock %}
+<link rel="stylesheet" href="https://tympanus.net/Development/Slicebox/css/demo.css">
+
+    {% block content_block %}
+<div class="co">
+  <div class="wrapper">
+
+    <ul id="sb-slider" class="sb-slider">
+        {% for item in items %}
+      <li>
+        <a href="{% url 'customer:itinerary_detail_page' pk=item.pk%}" target="_blank"><img src="{{ item.images.url }}"/></a>
+        <div class="sb-description">
+          <h3>{{item.place}}</h3>
+        </div>
+      </li>
+        {% endfor %}
+
+    </ul>
+
+    <div id="shadow" class="shadow"></div>
+
+    <div id="nav-arrows" class="nav-arrows">
+      <a href="#">Next</a>
+      <a href="#">Previous</a>
+    </div>
+
+  </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" type="text/javascript"></script>
+
+<script src="https://tympanus.net/Development/Slicebox/js/jquery.slicebox.js"></script>
+
+<script>
+$(function() {
+
+  var Page = (function() {
+
+    var $navArrows = $( '#nav-arrows' ).hide(),
+        $shadow = $( '#shadow' ).hide(),
+        slicebox = $( '#sb-slider' ).slicebox( {
+          onReady : function() {
+
+            $navArrows.show();
+            $shadow.show();
+
+          },
+          orientation : 'r',
+          cuboidsRandom : true,
+          disperseFactor : 30
+        } ),
+
+        init = function() {
+
+          initEvents();
+
+        },
+        initEvents = function() {
+
+          // add navigation events
+          $navArrows.children( ':first' ).on( 'click', function() {
+
+            slicebox.next();
+            return false;
+
+          } );
+
+          $navArrows.children( ':last' ).on( 'click', function() {
+
+            slicebox.previous();
+            return false;
+
+          } );
+
+        };
+
+    return { init : init };
+
+  })();
+
+  Page.init();
+
+});
 </script>
     {% endblock %}
