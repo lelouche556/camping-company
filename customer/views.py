@@ -6,6 +6,7 @@ from .models import Customer
 from itinerary.models import Itinerary
 from django.contrib.auth.models import User
 import requests
+from django.contrib import messages
 import os
 # Create your views here.
 
@@ -27,7 +28,11 @@ def simple_message(name, email, subject, message):
 
 @login_required
 def user_page(request):
-    customer = Customer.objects.get(user=request.user)
+    try:
+        customer = Customer.objects.get(user=request.user)
+    except:
+        messages.error(request, "Complete sign up")
+        return redirect("register:welcome")
     return render(request, "customer/user_page.html", {"customer": customer})
 
 

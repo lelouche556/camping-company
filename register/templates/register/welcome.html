@@ -6,6 +6,13 @@
 
 
 {% block content_block %}
+        {% if messages %}
+            {% for message in messages %}
+                <div style="text-align: center; margin-top:4%;" class="alert alert-warning">
+                    <strong>{{message}}</strong>
+                </div>
+            {% endfor %}
+        {% endif %}
 <h1 style="text-align:center; color:white;">Welcome {{request.user}}</h1>
 <h3 style="text-align:center; color:white;">You are almost Done</h3>
         <form method="POST" action="{% url 'register:welcome' %}">{% csrf_token %}

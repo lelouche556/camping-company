@@ -7,8 +7,6 @@
 <div class="container">
 {% if thar.car_type != "thar" %}
 <div class="car">
-      <div class="row">
-         <div class="col-md-6 col-sm-12">
             <div id="myCarousel2" class="carousel slide" data-ride="carousel">
                <!-- Indicators -->
                <ul class="carousel-indicators">
@@ -37,6 +35,7 @@
                </a>
             </div>
          </div>
+    <br/>
                 <div class="price">
                     <button onclick= "location.href = '{% url 'vehicle:vehicle_info' %}';" class="btn">More Info</button>
                     {% if user.is_authenticated %}
@@ -45,54 +44,47 @@
                         <button onclick="location.href = '{% url 'register:signin' %}';" class="btn">Book Now</button>
                     {% endif %}
                 </div>
-            </div>
-         </div>
-      </div>
         {% endif %}
 
         {% if xenon.car_type != "xenon" %}
-<div class="car">
-      <div class="row">
-         <div class="col-md-6 col-sm-12">
-            <div id="myCarousel" class="carousel slide" data-ride="carousel">
-               <!-- Indicators -->
-               <ul class="carousel-indicators">
-                  <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                  <li data-target="#myCarousel" data-slide-to="1"></li>
-                  <li data-target="#myCarousel" data-slide-to="2"></li>
-               </ul>
-               <!-- The slideshow -->
-               <div class="carousel-inner">
-                  <div class="carousel-item active">
-                     <img src="{% static 'images/IMG_1229.jpg' %}">
-                  </div>
-                  <div class="carousel-item">
-                     <img src="{% static 'images/IMG_2753.jpg' %}" >
-                  </div>
-                  <div class="carousel-item">
-                     <img src="{% static 'images/Meghalaya-tourism-the-camping-company.png' %}">
-                  </div>
-               </div>
-               <!-- Left and right controls -->
-               <a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
-               <span class="carousel-control-prev-icon"></span>
-               </a>
-               <a class="carousel-control-next" href="#myCarousel" data-slide="next">
-               <span class="carousel-control-next-icon"></span>
-               </a>
+    <div class="car">
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+           <!-- Indicators -->
+           <ul class="carousel-indicators">
+              <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+              <li data-target="#myCarousel" data-slide-to="1"></li>
+              <li data-target="#myCarousel" data-slide-to="2"></li>
+           </ul>
+           <!-- The slideshow -->
+           <div class="carousel-inner">
+              <div class="carousel-item active">
+                 <img src="{% static 'images/IMG_1229.jpg' %}">
+              </div>
+              <div class="carousel-item">
+                 <img src="{% static 'images/IMG_2753.jpg' %}" >
+              </div>
+              <div class="carousel-item">
+                 <img src="{% static 'images/Meghalaya-tourism-the-camping-company.png' %}">
+              </div>
+           </div>
+           <!-- Left and right controls -->
+           <a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
+           <span class="carousel-control-prev-icon"></span>
+           </a>
+           <a class="carousel-control-next" href="#myCarousel" data-slide="next">
+           <span class="carousel-control-next-icon"></span>
+           </a>
+        </div>
+     </div>
+    <br>
+            <div class="price">
+                <button onclick= "location.href = '{% url 'vehicle:vehicle_info' %}';" class="btn">More Info</button>
+                {% if user.is_authenticated %}
+                    <button onclick="location.href = '{% url 'customer:user_page' %}';" class="btn">Book Now</button>
+                {% else %}
+                    <button onclick="location.href = '{% url 'register:signin' %}';" class="btn">Book Now</button>
+                {% endif %}
             </div>
-         </div>
-                <div class="price">
-                    <button onclick= "location.href = '{% url 'vehicle:vehicle_info' %}';" class="btn">More Info</button>
-                    {% if user.is_authenticated %}
-                        <button onclick="location.href = '{% url 'customer:user_page' %}';" class="btn">Book Now</button>
-                    {% else %}
-                        <button onclick="location.href = '{% url 'register:signin' %}';" class="btn">Book Now</button>
-                    {% endif %}
-                </div>
-            </div>
-         </div>
-      </div>
         {% endif %}
     {% if thar.car_type == "thar" and xenon.car_type == "xenon" %}
         <h1>No Vehicles Available, The date you have specified</h1>

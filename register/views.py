@@ -3,7 +3,6 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, logout, login
 from django.contrib.auth.models import User
 from customer.models import Customer
-from django.http import Http404
 from django.contrib import messages
 # Create your views here.
 
@@ -40,8 +39,14 @@ def signin(request):
                 login(request, user)
                 return redirect("app:represent")
             else:
-                login(request, user)
-                messages.success(request, "Logged in")
+                customer = Customer.objects.filter(user=user)
+                if customer.count() == 1:
+                    login(request, user)
+                    messages.success(request, "Logged in")
+                else:
+                    login(request, user)
+                    messages.error(request, "Complete sign up")
+                    return redirect("register:welcome")
                 return redirect("customer:user_page")
         else:
             messages.error(request, "Password/Username is wrong")
