@@ -7,29 +7,31 @@
     {% block content_block %}
         {% if messages %}
             {% for message in messages %}
-                <div style="text-align: center; margin-top:4%;" class="alert alert-success">
+                <div class="alert alert-success">
                     <strong>{{message}}</strong>
                 </div>
             {% endfor %}
         {% endif %}
-        <div class="content">
-            <div class="card">
-                <div class="firstinfo"><img src="https://www.ncc.metu.edu.tr/sites/default/files/user-pro.png"></span>
-                    <div class="profileinfo">
-                        <h1 style="text-transform: capitalize">{{request.user}}</h1>
-                        <h3>{{customer.nickname}}</h3>
-                        <p class="bio"> {{customer.about}}</p>
+        <div class="manager">
+            <div class="content">
+                <div class="card">
+                    <div class="firstinfo"><img src="https://www.ncc.metu.edu.tr/sites/default/files/user-pro.png"></span>
+                        <div class="profileinfo">
+                            <h1 style="text-transform: capitalize">{{request.user}}</h1>
+                            <h3>{{customer.nickname}}</h3>
+                            <p class="bio"> {{customer.about}}</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="badgescard">
-                <span title="Create Itinerary"> <a href="{% url 'customer:create_itinerary' %}" class="fas fa-pencil-alt"> </a></span>
-                <span title="Delete Itinerary"> <a href="{% url 'customer:delete_itinerary' %}" class="fas fa-trash-alt"></a></span>
-                <span title="Show Itinerary"> <a href="{% url 'customer:custom_itinerary' %}" class="fas fa-eye"></a></span>
-                <span title="Trip Status"> <a href="{% url 'customer:trip_detail' %}" class="fas fa-compass"></a></span>
-                <!--<span title="Profile"> <a class="fas fa-user-alt"></a></span>-->
-                <!--<span></span>-->
-                <!--<span></span>-->
+                <div class="badgescard">
+                    <span title="Create Itinerary"> <a href="{% url 'customer:create_itinerary' %}" class="fas fa-pencil-alt"> </a></span>
+                    <span title="Delete Itinerary"> <a href="{% url 'customer:delete_itinerary' %}" class="fas fa-trash-alt"></a></span>
+                    <span title="Show Itinerary"> <a href="{% url 'customer:custom_itinerary' %}" class="fas fa-eye"></a></span>
+                    <span title="Trip Status"> <a href="{% url 'customer:trip_detail' %}" class="fas fa-compass"></a></span>
+                    <!--<span title="Profile"> <a class="fas fa-user-alt"></a></span>-->
+                    <!--<span></span>-->
+                    <!--<span></span>-->
+                </div>
             </div>
         </div>
             <div class="buttt">

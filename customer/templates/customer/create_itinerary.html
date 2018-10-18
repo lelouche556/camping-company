@@ -3,6 +3,7 @@
     {% block css %}<link rel="stylesheet" href="{% static 'css/customer/create_itinerary.css' %}">{% endblock %}
 
     {% block content_block %}
+<div class="manager">
   <div class="container">
       {% if itinerary is None %}
         <div class="row">
@@ -38,4 +39,5 @@
         <a href="{% url 'customer:custom_itinerary' %}" class="btn btn-primary">Check The Created One?</a>
       {% endif %}
   </div>
+    </div>
 {% endblock %}

@@ -1,14 +1,15 @@
 {% extends "snippets/base.html" %}
 {% load staticfiles %}
-    {% block css %}<link rel="stylesheet" href="{% static 'css/customer/create_itinerary.css' %}">{% endblock %}
+    {% block css %}<link rel="stylesheet" href="{% static 'css/customer/custom.css' %}">{% endblock %}
 
     {% block content_block %}
+<div class="manager">
     <div class="container">
-                <h1 style="text-align: center;">Your Personalized Itinerary</h1>
+                <h1>Your Personalized Itinerary</h1>
         {% if list %}
             {% for x in list %}
-                    <h2 style="text-align: center;">Day: {{forloop.counter}}</h2>
-            <div class="row" style="cursor:pointer;">
+                    <h2>Day: {{forloop.counter}}</h2>
+            <div class="row point">
                 {% for y in data %}
                     {% for z in y.destination.all %}
                             {% if z.pk in x %}
@@ -32,8 +33,9 @@
 
         </div>
         {% else %}
-            <h1 style="text-align: center">No Active Itinerary Please Create One</h1>
+            <h1>No Active Itinerary Please Create One</h1>
         {% endif %}
     </div>
+</div>
 
      {% endblock %}
