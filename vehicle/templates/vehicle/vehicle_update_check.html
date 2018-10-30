@@ -5,113 +5,87 @@
     {% endblock %}
 
 {% block content_block %}
+<div class="container">
     <div class="row">
-       <form method="POST" autocomplete="off">
+       <div class="fix">
+       <form class="form-inline" method="POST" autocomplete="off">
           {% csrf_token %}
           <div class="col-md-3">
-             <div class="form-inline">
                 <label for="engine_oil_level">engine_oil:</label>
                 <input value="{{vehicle.engine_oil_level}}" id="engine_oil_level" class="form-control" type="number" name="engine_oil">
-             </div>
           </div>
           <div class="col-md-3">
-             <div class="form-inline">
                 <label for="brake_fluid">brake_fluid:</label>
                 <input value="{{vehicle.brake_fluid_level}}" id="brake_fluid" class="form-control" type="number" name="brake_fluid">
              </div>
-          </div>
           <div class="col-md-3">
-             <div class="form-inline">
                 <label for="water_level">water_level:</label>
                 <input value="{{vehicle.water_level}}" id="water_level" class="form-control" type="number" name="water_level">
-             </div>
           </div>
           <div class="col-md-3">
-             <div class="form-inline">
                 <label for="windscreen">windscreen_washer:</label>
                 <input type="hidden" name="windscreen" value="False">
                 <input id="windscreen" class="form-control bool" type="checkbox" name="windscreen" value="{{vehicle.windscreen_washer}}">
              </div>
-          </div>
           <p><br>
              <br>
           </p>
           <div class="col-md-3">
-             <div class="form-inline">
                 <label for="seatbelts">Seatbelts:</label>
                 <input type="hidden" name="seatbelts" value="False">
                 <input id="seatbelts" class="form-control bool" type="checkbox" name="seatbelts" value="{{vehicle.seatbelts_check}}">
              </div>
-          </div>
           <div class="col-md-3">
-             <div class="form-inline">
                 <label for="parking">Parking_brake:</label>
                 <input type="hidden" name="parking" value="False">
                 <input id="parking" class="form-control bool" type="checkbox" name="parking" value="{{vehicle.parking_brake}}">
-             </div>
           </div>
           <div class="col-md-3">
-             <div class="form-inline">
                 <label for="clutch">clutch_gearshift:</label>
                 <input type="hidden" name="clutch" value="False">
                 <input id="clutch" class="form-control bool" type="checkbox" name="clutch" value="{{vehicle.clutch_gearshift}}">
-             </div>
           </div>
           <div class="col-md-3">
-             <div class="form-inline">
                 <label for="burning">burning_smell:</label>
                 <input type="hidden" name="burning" value="False">
                 <input id="burning" class="form-control bool" type="checkbox" name="burning" value="{{vehicle.burning_smell}}">
-             </div>
           </div>
           <p><br>
              <br>
           </p>
           <div class="col-md-3">
-             <div class="form-inline">
                 <label for="steering_alignment">steering_alignment:</label>
                 <input type="hidden" name="steering" value="False">
                 <input class="form-control bool" type="checkbox" name="steering" id="steering_alignment" value="{{vehicle.steering_alignment}}">
-             </div>
           </div>
           <div class="col-md-3">
-             <div class="form-inline">
                 <label for="dashboard">dashboard:</label>
                 <input type="hidden" name="dashboard" value="False">
                 <input id="dashboard" class="form-control bool" type="checkbox" name="dashboard" value="{{vehicle.dashboard}}">
-             </div>
           </div>
           <div class="col-md-3">
-             <div class="form-inline">
                 <label for="check_lights">check_lights:</label>
                 <input type="hidden" name="check_lights" value="False">
                 <input id="check_lights" class="form-control bool" type="checkbox" name="check_lights" value="{{vehicle.check_lights}}">
-             </div>
           </div>
           <div class="col-md-3">
-             <div class="form-inline">
                 <label for="horn">horn:</label>
                 <input type="hidden" name="horn" value="False">
                 <input id="horn" class="form-control bool" type="checkbox" name="horn" value="{{vehicle.horn}}">
-             </div>
           </div>
           <p>
              <br>
              <br>
           </p>
           <div class="col-md-3">
-             <div class="form-inline">
                 <label for="tyres">tyres:</label>
                 <input type="hidden" name="tyres" value="False">
                 <input id="tyres" class="form-control bool" type="checkbox" name="tyres" value="{{vehicle.tyres}}">
-             </div>
           </div>
           <div class="col-md-3">
-             <div class="form-inline">
                 <label for="leakage">leakage:</label>
                 <input type="hidden" name="leakage" value="False">
                 <input id="leakage" class="form-control bool" type="checkbox" name="leakage" value="{{vehicle.leakage}}">
-             </div>
           </div>
           <div class="col-md-3">
              <div class="form-inline">
@@ -119,5 +93,11 @@
              </div>
           </div>
        </form>
+                <br>
+      <br>
+      <br>
+      <br>
     </div>
+    </div>
+</div>
 {% endblock %}

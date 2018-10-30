@@ -4,92 +4,74 @@
 <link rel="stylesheet" href="{% static 'css/rest.css' %}">
 {% endblock %}
 {% block content_block %}
+<div class="container">
 <div class="row">
-   <form method="POST" autocomplete="off">
+   <div class="fix">
+   <form class="form-inline" method="POST" autocomplete="off">
        {% csrf_token %}
       <div class="col-md-3">
-         <div class="form-inline">
             <label for="start">Start Date:</label>
             <input id="start" class="form-control datetimepicker" type="text" name="startdate" placeholder="DD/MM/YY">
-         </div>
       </div>
       <div class="col-md-3">
-         <div class="form-inline">
             <label for="sttime">Start Time:</label>
             <input id="sttime" class="form-control date" type="text" name="starttime" placeholder="12:00">
-         </div>
       </div>
       <div class="col-md-3">
-         <div class="form-inline">
             <label for="end">End Date:</label>
             <input id="end" class="form-control datetimepicker" type="text" name="enddate" placeholder="DD/MM/YY">
-         </div>
       </div>
       <div class="col-md-3">
-         <div class="form-inline">
             <label for="entime">End Time:</label>
             <input id="entime" class="form-control date" type="text" name="endtime" placeholder="12:00">
          </div>
-      </div>
       <p><br>
          <br>
       </p>
              <div class="col-md-3">
-         <div class="form-inline">
             <label for="duration">Days:</label>
             <input id="duration" class="form-control" type="text" name="duration" placeholder="Number of days">
-         </div>
       </div>
       <div class="col-md-3">
-         <div class="form-inline">
             <label for="price">Amount:</label>
             <input id="price" class="form-control" type="text" name="amount" placeholder="Rs xxxx">
-         </div>
       </div>
       <div class="col-md-3">
-         <div class="form-inline">
             <label for="destination">Destination:</label>
             <input id="destination" class="form-control" type="text" name="destination" placeholder="destination">
-         </div>
       </div>
       <div class="col-md-3">
-          <div class="form-inline">
          <label for="address">Address:</label>
          <input id="address" class="form-control" type="text" name="address" placeholder="residence_address">
-      </div>
           </div>
        <p><br>
          <br>
       </p>
 
       <div class="col-md-3">
-         <div class="form-inline">
             <label>Trip Status:</label>
             <input class="form-control" list="browsers" name="tripstatus" placeholder="Trip status">
             <datalist id="browsers">
                <option value="ongoing">
                <option value="ended">
             </datalist>
-         </div>
       </div>
 
       <div class="col-md-3">
-         <div class="form-inline">
             <label>CarType:</label>
             <input class="form-control" list="car" name="tripstatus" placeholder="Car Type">
             <datalist id="car">
                <option value="thar">
                <option value="xenon">
             </datalist>
-         </div>
       </div>
 
             <div class="col-md-3">
-          <div class="form-inline">
             <button class="btn btn-primary btn-block">Submit!</button>
       </div>
-          </div>
    </form>
+</div>
+</div>
 </div>
 <script>
    $(".datetimepicker").datetimepicker({

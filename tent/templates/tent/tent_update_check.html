@@ -6,60 +6,50 @@
     {% endblock %}
 
 {% block content_block %}
+<div class="container">
     <div class="row">
-       <form method="POST" autocomplete="off">
+       <div class="fix">
+       <form class="form-inline" method="POST" autocomplete="off">
           {% csrf_token %}
           <div class="col-md-3">
-             <div class="form-inline">
                 <label for="rod">rod:</label>
                 <input type="hidden" name="rod" value="False">
                 <input id="rod" class="form-control bool" type="checkbox" name="rod" value="{{tent.rod}}">
-             </div>
           </div>
           <div class="col-md-3">
-             <div class="form-inline">
                 <input type="hidden" name="mattress" value="False">
                 <label for="mattress">mattress:</label>
                 <input id="mattress" class="form-control bool" type="checkbox" name="mattress" value="{{tent.mattress}}">
-             </div>
           </div>
           <div class="col-md-3">
-             <div class="form-inline">
                 <label for="zip">zip:</label>
                 <input type="hidden" name="zip" value="False">
                 <input id="zip" class="form-control bool" type="checkbox" name="zip" value="{{tent.zip}}">
-             </div>
           </div>
           <div class="col-md-3">
-             <div class="form-inline">
                 <input type="hidden" name="rain_cover" value="False">
                 <label for="rain_cover">rain_cover:</label>
                 <input id="rain_cover" class="form-control bool" type="checkbox" name="rain_cover" value="{{tent.rain_cover}}">
-             </div>
           </div>
           <p>
              <br>
              <br>
           </p>
           <div class="col-md-3">
-             <div class="form-inline">
                 <label for="ladder">ladder:</label>
                 <input type="hidden" name="ladder" value="False">
                 <input id="ladder" class="form-control bool" type="checkbox" name="ladder" value="{{tent.ladder}}">
-             </div>
           </div>
           <div class="col-md-3">
-             <div class="form-inline">
-                <label for="straps">steering_alignment:</label>
+                <label for="straps">straps:</label>
                 <input type="hidden" name="straps" value="False">
                 <input class="form-control bool" type="checkbox" name="straps" id="straps" value="{{tent.straps}}">
-             </div>
           </div>
           <div class="col-md-3">
-             <div class="form-inline">
                 <button class="btn btn-primary btn-block">Submit!</button>
              </div>
-          </div>
        </form>
+       </div>
     </div>
+</div>
 {% endblock %}

@@ -4,37 +4,31 @@
 <link rel="stylesheet" href="{% static 'css/rest.css' %}">
 {% endblock %}
 {% block content_block %}
+<div class="container">
 <div class="row">
-   <form method="POST" autocomplete="off">
+    <div class="fix">
+   <form class="form-inline" method="POST" autocomplete="off">
        {% csrf_token %}
       <div class="col-md-3">
-         <div class="form-inline">
             <label for="yellow_box">yellow_box:</label>
              <input type="hidden" name="yellow_box" value="False">
             <input id="yellow_box" class="form-control bool" type="checkbox" name="yellow_box" value="False">
-         </div>
       </div>
 
              <div class="col-md-3">
-         <div class="form-inline">
             <label for="kettel">kettel:</label>
              <input type="hidden" name="kettel" value="False">
             <input id="kettel" class="form-control bool" type="checkbox" name="kettel" value="False">
-         </div>
       </div>
       <div class="col-md-3">
-         <div class="form-inline">
             <label for="utensils">utensils:</label>
              <input type="hidden" name="utensils" value="False">
             <input id="utensils" class="form-control bool" type="checkbox" name="utensils" value="False">
-         </div>
       </div>
       <div class="col-md-3">
-         <div class="form-inline">
             <label for="stove">stove:</label>
              <input type="hidden" name="stove" value="False">
             <input id="stove" class="form-control bool" type="checkbox" name="stove" value="False">
-         </div>
       </div>
           <p>
               <br>
@@ -42,42 +36,34 @@
           </p>
 
       <div class="col-md-3">
-          <div class="form-inline">
          <label for="bbq_grill">bbq_grill:</label>
               <input type="hidden" name="bbq_grill" value="False">
          <input id="bbq_grill" class="form-control bool" type="checkbox" name="bbq_grill" value="False">
       </div>
-          </div>
 
       <div class="col-md-3">
-         <div class="form-inline">
             <label for="spare_tyre">spare_tyre:</label>
              <input type="hidden" name="spare_tyre" value="False">
             <input class="form-control bool" type="checkbox" name="spare_tyre" id="spare_tyre" value="False">
-         </div>
       </div>
 
       <div class="col-md-3">
-         <div class="form-inline">
             <label for="shovel">shovel:</label>
              <input type="hidden" name="shovel" value="False">
             <input class="form-control bool" type="checkbox" name="shovel" id="shovel" value="False">
-         </div>
       </div>
 
       <div class="col-md-3">
-         <div class="form-inline">
             <label for="mug_bucket">mug_bucket:</label>
              <input type="hidden" name="yellow_box" value="False">
             <input class="form-control bool" type="checkbox" name="mug_bucket" id="mug_bucket" value="False">
-         </div>
       </div>
 
             <div class="col-md-3">
-          <div class="form-inline">
             <button class="btn btn-primary btn-block">Submit!</button>
-      </div>
           </div>
    </form>
     </div>
+</div>
+</div>
 {% endblock %}

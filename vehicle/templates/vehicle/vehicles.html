@@ -4,6 +4,9 @@
     {% endblock %}
 
 {% block content_block %}
+    <br>
+    <br>
+
 <div class="container">
 {% if thar.car_type != "thar" %}
 <div class="car">
@@ -38,7 +41,9 @@
     <br/>
                 <div class="price">
                     <button onclick= "location.href = '{% url 'vehicle:vehicle_info' %}';" class="btn">More Info</button>
-                    {% if user.is_authenticated %}
+                    {% if user.is_superuser %}
+                        <!--<p>What are you doing here</p>-->
+                    {% elif user.is_authenticated %}
                         <button onclick="location.href = '{% url 'customer:user_page' %}';" class="btn">Book Now</button>
                     {% else %}
                         <button onclick="location.href = '{% url 'register:signin' %}';" class="btn">Book Now</button>

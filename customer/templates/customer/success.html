@@ -5,8 +5,12 @@
     {% endblock %}
 
     {% block content_block %}
+    <br>
+    <br>
+    <br>
+    <br>
     <div class="fix">
         <h1>Your Request has been Taken we will Contact You soon!</h1>
-        <a href="/vehicles/" class="btn btn-lg btn-primary">Go back</a>
+        <a href="{% url 'customer:user_page' %}" class="btn btn-lg btn-primary">Go back</a>
     </div>
     {% endblock %}

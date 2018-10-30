@@ -1,6 +1,5 @@
 {% extends "snippets/base.html" %} {% load staticfiles %} {% block css %}
 <link rel="stylesheet" href="{% static 'css/home/home.css' %}">
-<link href="{% static 'css/calender/jquery.datetimepicker.css' %}" rel="stylesheet">
 {% endblock %}
 
 {% block content_block %}
@@ -51,7 +50,6 @@
         </div>
     </div>
   </form>
-<script src="{% static 'js/jquery.datetimepicker.full.min.js' %}"></script>
 <script>
     $("#datetimepicker").datetimepicker({
      timepicker:false,
