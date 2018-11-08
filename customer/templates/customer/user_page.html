@@ -3,7 +3,9 @@
     {% block css %}
         <link rel="stylesheet" href="{% static 'css/customer/user_page.css' %}">
     {% endblock %}
-
+{% block title %}
+    <title>Profile.</title>
+{% endblock %}
     {% block content_block %}
         {% if messages %}
             {% for message in messages %}

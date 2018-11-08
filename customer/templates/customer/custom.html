@@ -3,6 +3,13 @@
     {% block css %}<link rel="stylesheet" href="{% static 'css/customer/custom.css' %}">{% endblock %}
 
     {% block content_block %}
+{% block title %}
+    <title>Your Personalised Itinerary</title>
+{% endblock %}
+{% block meta %}
+<meta name="description" content="Camping company India is a 4x4 off-roading company that takes you for an off-road adventure of a lifetime across various regions of India. ">
+<meta name="keywords" content="camping company, personalised itinerary, update,create,delete, itineraries">
+{% endblock %}
 <div class="manager">
     <div class="container">
                 <h1>Your Personalized Itinerary</h1>
@@ -14,11 +21,11 @@
                     {% for z in y.destination.all %}
                             {% if z.pk in x %}
                                     <div class="col-sm-6 col-md-4">
-                                      <div class="card">
+                                      <div class="card h-100">
                                     <img class="card-img-top" src="{{z.images.url}}" alt="image not found">
                                         <div class="card-body">
                                           <h5 class="card-title">{{z.place}}</h5>
-                                           <p class="card-text truncate">Description: {{z.description}}</p>
+                                           <p class="card-text truncate">{{z.description}}</p>
                                             <!--<p>Activities: {{z.activities}}</p>-->
                                         </div>
                                       </div>
@@ -28,6 +35,7 @@
                 {% endfor %}
             </div>
             {% endfor %}
+        <br>
         <div class="text-center">
             <a href="{% url 'customer:book' pk=user.pk %}" class="stretch btn btn-lg">Book Now</a>
 
