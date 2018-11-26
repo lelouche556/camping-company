@@ -16,6 +16,9 @@
                 </div>
             {% endfor %}
         {% endif %}
+<br>
+<br>
+
 <h1 style="text-align:center; color:white;">Welcome {{request.user}}</h1>
 <h3 style="text-align:center; color:white;">You are almost Done</h3>
         <form method="POST" action="{% url 'register:welcome' %}">{% csrf_token %}
@@ -30,7 +33,7 @@
     <fieldset>
       <h2 class="fs-title">Account Details</h2>
       <h3 class="fs-subtitle">For More Awesome Adventure</h3>
-      <input id="email" type="number" name="license_number" placeholder="license_number" />
+      <input id="email" type="text" name="license_number" placeholder="license_number" />
       <input id="city" type="text" name="city" placeholder="City" />
       <input id="nickname" type="text" name="nickname" placeholder="NICKNAME" />
       <textarea id="about" name="about" placeholder="ABOUT YOURSELF" ></textarea>
@@ -48,7 +51,8 @@
     </fieldset>
     <fieldset>
       <h2 class="fs-title">Success</h2>
-      <h3 class="fs-subtitle">Thank you for registering with us.</h3>
+        <h2 class="fs-subtitle">By clicking Submit, you agree on our <a target="_blank" href="{% url 'app:terms_condition' %}">terms and condition.</a></h2>
+        <h3 class="fs-subtitle">Thank you for registering with us.</h3>
       <input type="submit" name="submit" class="submit action-button" value="Submit" />
     </fieldset>
   </div>

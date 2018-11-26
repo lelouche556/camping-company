@@ -77,8 +77,9 @@ def welcome(request):
         user.number = number
         user.save()
         Customer.objects.get_or_create(phone=number, user=user, city=city,
-                                       address=address,nickname=nickname,
-                                       license_number=license_number,about=about)
+                                       address=address, nickname=nickname,
+                                       license_number=license_number, about=about,
+                                       terms_condition=True)
 
         return redirect("customer:user_page")
     return render(request, "register/welcome.html")
