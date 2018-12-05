@@ -14,7 +14,7 @@ def signup(request):
         user = User.objects.filter(username=username)
         password1 = request.POST.get("password1")
         if user.count() == 1:
-            messages.error(request, "Username/email already taken")
+            messages.error(request, "Username/email already taken or log in to complete signup")
             return redirect("register:signin")
 
         user = User.objects.create_user(username=username, email=email)

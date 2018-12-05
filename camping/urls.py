@@ -30,6 +30,7 @@ urlpatterns = [
     url(r'^vehicles/', include("vehicle.urls", namespace="vehicle")),
     url(r'^accounts/', include("register.urls", namespace="register")),
     url(r'^user/', include("customer.urls", namespace="customer")),
+    url(r'^blog/', include("blog.urls", namespace="blog")),
 ]
 
 if settings.DEBUG:

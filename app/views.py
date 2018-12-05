@@ -122,3 +122,5 @@ def destination(request):
     return render(request, "app/destination.html", {"items": items})
 
 
+def faq(request):
+    return render(request, "app/faq.html")

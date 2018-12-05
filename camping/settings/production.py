@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'search',
     'itinerary',
     'destination',
+    'blog',
 ]
 
 MIDDLEWARE = [
