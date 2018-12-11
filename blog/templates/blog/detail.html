@@ -1,0 +1,13 @@
+{% extends "snippets/base.html" %}
+{% load staticfiles %}
+    {% block css %}
+        <link rel="stylesheet" href="{% static 'css/home/blog_detail.css' %}">
+    {% endblock %}
+
+    {% block content_block %}
+        <img src="{{author.blog_cover_images.url}}" width="100%" height="500">
+        <div class="container my-5">
+            <p>{{author.content|linebreaks}}</p>
+        </div>
+    <br>
+    {% endblock %}

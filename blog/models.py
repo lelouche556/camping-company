@@ -6,9 +6,16 @@ from django.contrib.auth.models import User
 
 class Blog(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    heading = models.CharField(max_length=30)
+    sub_heading = models.CharField(max_length=30)
+    description = models.CharField(max_length=128)
     content = models.TextField()
-    # maybe image upload in future
-    # comments??
-    # views/like??
+    # tags = models.TextField() comments?? views/like??
+    blog_images = models.ImageField(upload_to="blog_images", blank=True)
+    blog_cover_images = models.ImageField(upload_to="blog_cover_images", blank=True)
     created_date = models.DateField(auto_now_add=True)
-    created_time = models.DateField(auto_now_add=True)
+    created_time = models.TimeField(auto_now_add=True)
+    approved = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.user.username

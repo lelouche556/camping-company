@@ -1,40 +1,36 @@
 {% extends "snippets/base.html" %}
 {% load staticfiles %}
     {% block css %}
-        <link rel="stylesheet" href="{% static 'css/rest.css' %}">
+<link rel="stylesheet" href="{% static 'css/home/blog.css' %}">
     {% endblock %}
 
     {% block content_block %}
-        Guide to first time overlanding expedition like it’s your 100th time!
-
-
-Heena is born and brought up in a metro city. She had done fair bit of travel but mostly stayed in hotels or at pre-pitched camps. This guide has been designed to keep her in mind. She also happens to be the co-founder of Camping Co and recently been promoted to CEO after completing her 51st overlanding trip.
-
-1.Always reach your campsite before sunset. Sun sets here between 4.30-6pm, it’s much easier to set up an amazing campsite with the sun going down! At the time of picking up the vehicle we do quick 45 min orientation to make you comfortable with the equipments and how to set up the campsite.
-2.Travel light!
-3.Always drive carefully. All our cars are made with love & utmost care. We personally take care of them. We also care about you a lot more than those so please follow traffic and local road rules.
-4.All our partner properties or homestays are run and managed by passionate people like us so please be nice and respectful to them.
-5.Bring back your waste to the city where it can be treated properly. We want to keep the mountains as clean as possible please help us in doing so. We are the promoters of litter free and responsible tourism.
-6.In case you are going for a trek, carry only a backpack with essentials and change of clothes. In other words ‘the less you need, the more you know’
-7.Explore new places and campgrounds apart from the ones mentioned in your itinerary. Trust us there are many and also tell us about it. We are a sucker for a good travel story.
-8.Carry a book if you love reading and experience bliss!
-9.Build a bonfire. Add a skill to your explorer hat.
-10.Take pictures and share it with us. We may cover your story on insta handle @thecampingcompany
-11. Whenever in doubt ask for local help or reach out to us. People are quite friendly here but be genuinely nice to them.
-
-
-Heena’s contrasting photos
-
-
-
-
-
-
-My first overlanding trip:
-
-At 6am my alarm started buzzing and being the lazy pig that I’d like to call myself I immediately put it on snooze but Harsh had woken up and without disturbing me he had made himself a cup of red tea and started getting ready for the trip that would change our perspective towards life. He had spent past 6 months researching about overlanding vehicles and finally building one after spending 5 days at the workshop which gave him enough experience to become a service representative. That’s the thing about him he always had this innate love for learning new things which I always aspire to inculcate in my personality.
-While I was still dreaming in my cosy little bed, he came and said if you don’t get up and be ready in 20 mins I am leaving for the trip. I knew he wasn’t teasing me nor it was any of his tricks to get me out of the bed. I got up immediately like a robot and said give me 15, the thought of missing out on this trip was enough for me to not think about the questions I was wondering about since the time we decided to go on such a trip. Where will we park the vehicle at night? Will it be cold out? What should I pack?
-I dressed my best in the stipulated time. I wouldn’t have been able to do that had I been getting ready for office. It has always been easy and natural for me. We picked up one of our colleagues and left for Meghalaya, we had gone there many times and almost formed a ritual that we’d stop for juicy and delicious pineapples on the way. I’d smile at everyone I see on the road, wave at children, play all kinds of music because Harsh & I like almost everything else have a different taste in music. Meanwhile our friend at the back seat was enjoying the dew in the air when we started to go towards Laitlum grand Canyon, the roads were covered in clouds and the visibility was not more than 10metres. I sat on front seat window door with more than half of my body feeling the cold wind and wet because of the clouds. I was feeling cold and had gotten goosebumps but I was too lost in the moment to notice. It wasn’t our first visit to this place but it certainly seemed first because we had gone there in winters before and this time it was monsoon - the best season to visit Meghalaya!
-The place has a big open area just before people start trekking down to village Rasong which I never noticed before. I could see the rolling hills all around me. It was a perfect place to spend the night in the overlanding vehicle and just like that we discovered our very first campsite. We opened the tent and I was the first one to go inside and opened all the windows of tent and sat at the edge with a surprising revelation that it was actually innumerable times better than my bed, than any bed I had slept in my life. For the next 1 hour I kept staring into the horizon feeling ecstatic about the product that we have created and being grateful that about 2 years ago we got the opportunity to launch Uber in Guwahati.
-
+<br>
+<div class="my-5">
+  {% for x in all %}
+  <div class="blog-card">
+    <div class="meta">
+      <div class="photo" style="background-image: url(../../..{{x.blog_images.url}})"></div>
+      <ul class="details">
+        <li class="author"><a href="{% url 'customer:user_page' %}">{{x.user.username|title}}</a></li>
+        <li class="date">{{x.created_date}}</li>
+        <li class="tags">
+          <ul>
+            <li class="tags">{{x.created_time}}</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <div class="description">
+      <h1>{{x.heading}}</h1>
+      <h2>{{x.sub_heading}}</h2>
+      <p>{{x.description}}</p>
+      <p class="read-more">
+        <a href="{% url 'blog:blog_detail' pk=x.pk %}">Read More</a>
+      </p>
+    </div>
+  </div>
+  {% endfor %}
+  <br>
+  </div>
     {% endblock %}

@@ -19,11 +19,9 @@
           {% for item in items %}
         <div class="carousel-item">
             <img class="d-block w-100" src="{{ item.images.url }}">
-          <div class="carousel-caption d-md-block">
-              <p><a href="{% url 'customer:itinerary_detail_page' pk=item.pk %}">{{item.place}}</a></p>
-              <br>
-          </div>
+            <p><a href="{% url 'customer:itinerary_detail_page' pk=item.pk %}">{{item.place}}</a></p>
         </div>
+
               {% endfor %}
           </div>
       <!-- Controls -->
