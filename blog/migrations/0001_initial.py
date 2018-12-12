@@ -20,7 +20,7 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('content', models.TextField()),
                 ('created_date', models.DateField()),
-                ('created_time', models.DateField()),
+                ('created_time', models.TimeField()),
                 ('approved', models.BooleanField()),
                 ('blog_cover_images', models.ImageField(blank=True, upload_to='blog_cover_images')),
                 ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
