@@ -1,12 +1,15 @@
 from django.shortcuts import render
 from blog.models import Blog
-import datetime
 
 # Create your views here.
 
 
 def all_blog(request):
     blogs = Blog.objects.all().order_by("-created_time")
+    # try:
+    #     blogs = Blog.objects.all().order_by("-created_time")
+    # except Blog.DoesNotExist:
+    #     blogs = None
     return render(request, "blog/all_blog.html", {"all": blogs})
 
 

@@ -6,8 +6,8 @@ from django.contrib.auth.models import User
 
 class Blog(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    heading = models.CharField(max_length=30)
-    sub_heading = models.CharField(max_length=30)
+    heading = models.CharField(max_length=64)
+    sub_heading = models.CharField(max_length=64)
     description = models.CharField(max_length=128)
     content = models.TextField()
     # tags = models.TextField() comments?? views/like??
