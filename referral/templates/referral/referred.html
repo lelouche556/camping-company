@@ -1,0 +1,17 @@
+{% extends "snippets/base.html" %}
+{% load staticfiles %}
+    {% block css %}
+        <link rel="stylesheet" href="{% static 'css/referred.css' %}">
+    {% endblock %}
+
+
+    {% block content_block %}
+    <br>
+        <div class="container my-5">
+            {% if default %}
+            <h1>YOu have been referred great referral link user {{check.user.username}} will get 2000 and you too on purchase of 200</h1>
+            {% else %}
+            <h1>Sorry Bad Referral Link double check to see if it is correct</h1>
+            {% endif %}
+        </div>
+    {% endblock %}

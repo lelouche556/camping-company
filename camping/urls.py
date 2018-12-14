@@ -31,6 +31,7 @@ urlpatterns = [
     url(r'^accounts/', include("register.urls", namespace="register")),
     url(r'^user/', include("customer.urls", namespace="customer")),
     url(r'^blog/', include("blog.urls", namespace="blog")),
+    url(r'^referral/', include("referral.urls", namespace="referral")),
 ]
 
 if settings.DEBUG:

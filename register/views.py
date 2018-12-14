@@ -4,6 +4,7 @@ from django.contrib.auth import authenticate, logout, login
 from django.contrib.auth.models import User
 from customer.models import Customer
 from django.contrib import messages
+from referral.models import Referral
 # Create your views here.
 
 
@@ -18,9 +19,11 @@ def signup(request):
             return redirect("register:signin")
 
         user = User.objects.create_user(username=username, email=email)
+        referral = Referral(user=user)
         user.set_password(password1)
 
         user.save()
+        referral.save()
         login(request, user)
         return redirect("register:welcome")
 

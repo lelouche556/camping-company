@@ -4,21 +4,25 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from trip.models import Trip
 from destination.models import Destination
+from django.contrib import messages
+
 
 import requests
 
 # Create your views here.
 
-def simple_message(name, email, subject, message):
+
+def simple_message(name, email, subject, message, phone):
     return requests.post(
         os.environ.get("MAILGUN_URL"),
         auth=("api", os.environ.get("MAILGUN_API_KEY")),
         data={"from": os.environ.get("MAILGUN_FROM"),
               "to": os.environ.get("email"),
               "subject": subject,
-              "text": "Name of the person queried : {} \nEmail of the person queried : "
-                      "{} \nQuery : {}".format(name, email, message)
+              "text": "Name of the person queried : {} \n phone number of person {} \nEmail of the person queried : "
+                      "{} \nQuery : {}".format(name, phone, email, message)
               })
+
 
 def home(request):
     return render(request, "app/home.html")
@@ -61,10 +65,12 @@ def findus(request):
     if request.method == "POST":
         email = str(request.POST.get("email"))
         name = str(request.POST.get("name"))
-        subject = str(request.POST.get("subject"))
+        phone = str(request.POST.get("phone"))
+        subject = "Query"
         message = str(request.POST.get("message"))
-        simple_message(name, email, subject, message)
-        return redirect("findus")
+        simple_message(name, email, subject, message, phone)
+        messages.success(request, "Your message sent")
+        return redirect("app:findus")
     else:
         return render(request, "app/findus.html")
 
