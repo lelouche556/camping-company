@@ -7,10 +7,11 @@
     {% block content_block %}
 <br>
 <div class="my-5">
+  <img src="{{author.blog_cover_images.url}}" width="100%" height="500">
   {% for x in all %}
   <div class="blog-card">
     <div class="meta">
-      <div class="photo" style="background-image: url(../../..{{x.blog_images.url}})"></div>
+      <div class="photo" style="background-image: url({{x.blog_images.url}})"></div>
       <ul class="details">
         <li class="author"><a href="{% url 'customer:user_page' %}">{{x.user.username|title}}</a></li>
         <li class="date">{{x.created_date}}</li>
