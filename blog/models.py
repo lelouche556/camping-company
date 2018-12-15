@@ -13,8 +13,8 @@ class Blog(models.Model):
     # tags = models.TextField() comments?? views/like??
     blog_images = models.ImageField(upload_to="blog_images", blank=True)
     blog_cover_images = models.ImageField(upload_to="blog_images", blank=True)
-    # created_date = models.DateField(auto_now_add=True)
-    # created_time = models.TimeField(auto_now_add=True)
+    created_date = models.DateField(auto_now_add=True)
+    created_time = models.TimeField(auto_now_add=True)
     approved = models.BooleanField(default=False)
 
     def __str__(self):
