@@ -31,6 +31,16 @@ DEBUG = False
 ALLOWED_HOSTS = [".camping-co.com"]
 # ALLOWED_HOSTS = [".herokuapp.com"]
 
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = os.environ.get("email1")
+EMAIL_HOST_PASSWORD = os.environ.get("password1")
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
+MANAGERS = (
+    (os.environ.get("email1"), "kanishk"),
+)
+ADMINS = MANAGERS
 
 # Application definition
 
