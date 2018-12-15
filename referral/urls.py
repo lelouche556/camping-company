@@ -5,5 +5,5 @@ from referral.views import referred_view
 app_name = "referral"
 
 urlpatterns = [
-    url(r'^referred/(?P<slug>[\w-]+)/$', referred_view, name="referred"),
+    url(r'^(?P<slug>[\w-]+)/$', referred_view, name="referred"),
 ]

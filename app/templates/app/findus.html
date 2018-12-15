@@ -9,6 +9,13 @@
 <meta name="keywords" content="contact camping company, how to find camping company, query camping company, contact number camping company, Timings available  ">
 {% endblock %}
     {% block content_block %}
+            {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-success">
+                    <strong>{{message}}</strong>
+                </div>
+            {% endfor %}
+        {% endif %}
   <div class="con">
   <form id="contact" action="{% url 'app:findus' %}" method="post"> {% csrf_token %}
     <h3>Contact Us</h3>

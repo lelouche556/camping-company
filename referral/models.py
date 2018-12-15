@@ -22,7 +22,7 @@ class Referral(models.Model):
 def referral_pre_save_receiver(sender, instance, *args, **kwargs):
     if not instance.slug:
         instance.slug = unique_slug_generator(instance)
-        instance.referral_link = "https://www.camping-co.com/referral/referred/" + instance.slug
+        instance.referral_link = "https://www.camping-co.com/referral/" + instance.slug
 
 
 pre_save.connect(referral_pre_save_receiver, sender=Referral)
