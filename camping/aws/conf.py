@@ -8,6 +8,15 @@ AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
 AWS_FILE_EXPIRE = 200
 AWS_PRELOAD_METADATA = True
 
+AWS_IS_GZIPPED = True
+GZIP_CONTENT_TYPES = (
+    "text/css",
+    "text/javascript",
+    "application/javascript",
+    "application/x-javascript",
+    "image/svg+xml"
+)
+
 DEFAULT_FILE_STORAGE = 'camping.aws.utils.MediaRootS3BotoStorage'
 STATICFILES_STORAGE = 'camping.aws.utils.StaticRootS3BotoStorage'
 AWS_STORAGE_BUCKET_NAME = 'camping-company'
@@ -19,12 +28,9 @@ STATIC_URL = S3_URL + 'static/'
 ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
 
 two_months = datetime.timedelta(days=61)
-date_two_months_later = datetime.date.today() + two_months
-expires = date_two_months_later.strftime("%A, %d %B %Y 20:00:00 GMT")
 
-AWS_HEADERS = {
-    'Expires': expires,
-    'Cache-Control': 'max-age=%d' % (int(two_months.total_seconds()), ),
+AWS_S3_OBJECT_PARAMETERS = {
+    'CacheControl': 'max-age=%d' % (int(two_months.total_seconds()), ),
 }
 
 AWS_QUERYSTRING_AUTH = False
