@@ -12,6 +12,14 @@
 {% endblock %}
 
 {% block content_block %}
+<br>
+        {% if messages %}
+            {% for message in messages %}
+                <div class="my-4 alert alert-danger" style="text-align: center">
+                    <strong>{{message}}</strong>
+                </div>
+            {% endfor %}
+        {% endif %}
 
 <section class="port">
     <video preload="metadata" autoPlay loop muted oncanplay="this.muted=true" id="video">

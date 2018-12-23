@@ -46,6 +46,7 @@ def signin(request):
                 if customer.count() == 1:
                     login(request, user)
                     messages.success(request, "Logged in")
+                    request.session["user_pk"] = user.pk
                 else:
                     login(request, user)
                     messages.error(request, "Complete sign up")
