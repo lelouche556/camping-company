@@ -21,6 +21,7 @@
     </div>
 <script src="{% static 'js/jquery.datetimepicker.full.js' %}"></script>
     <script>
+    window.onload = function(){
     let result1 = "{{thar.check_in_date|date:"Y-m-d"}}" + "," + "{{thar.check_out_date|date:"Y-m-d"}}" + "," + "booked" + "," + "xdsoft_highlighted_mint"
     let result2 = "{{xenon.check_in_date|date:"Y-m-d"}}" + "," + "{{xenon.check_out_date|date:"Y-m-d"}}" + "," + "booked" + "," + "xdsoft_highlighted_mint"
 
@@ -35,6 +36,7 @@
              highlightedPeriods: [result2],
              formatDate:'Y.m.d'
          });
+         }
 
     </script>
     {% endblock %}
