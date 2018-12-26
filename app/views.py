@@ -130,3 +130,7 @@ def destination(request):
 
 def faq(request):
     return render(request, "app/faq.html")
+
+
+def sitemap(request):
+    return render(request, "app/sitemap.xml")
