@@ -9,7 +9,7 @@
         <div class="container my-5 mr-auto">
           {% for y in image %}
             <p>{{y.content|linebreaks}}</p>
-            {% if not y.blog_image2.url.isempty %}
+            {% if not y.blog_image1.url.isempty %}
                 <img src="{{y.blog_image1.url}}">
             {% else %}
             {% endif %}
