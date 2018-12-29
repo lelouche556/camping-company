@@ -9,7 +9,6 @@ class Blog(models.Model):
     heading = models.CharField(max_length=64)
     sub_heading = models.CharField(max_length=64)
     description = models.CharField(max_length=128)
-    content = models.TextField()
     # tags = models.TextField() comments?? views/like??
     blog_images = models.ImageField(upload_to="blog_images", blank=True)
     blog_cover_images = models.ImageField(upload_to="blog_images", blank=True)
@@ -18,4 +17,17 @@ class Blog(models.Model):
     approved = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.user.username
+        return str(self.pk)
+
+
+class Image(models.Model):
+    blog = models.ForeignKey(Blog, on_delete=models.CASCADE)
+    blog_image1 = models.ImageField(upload_to="blog_image", blank=True)
+    blog_image2 = models.ImageField(upload_to="blog_image", blank=True)
+    content = models.TextField()
+    created_date = models.DateField(auto_now_add=True)
+    created_time = models.TimeField(auto_now_add=True)
+    approved = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.blog.heading

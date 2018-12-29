@@ -10,6 +10,7 @@ from django.contrib import messages
 @login_required
 def referred_view(request, slug):
     if not request.session.get("user_pk"):
+        messages.error(request, "Please Log in Again")
         return redirect("app:home")
 
     default = True
@@ -20,7 +21,6 @@ def referred_view(request, slug):
         user2 = Referral.objects.get(slug=slug)  # one ref link used
     except:
         return render(request, "referral/referred.html", {"default": default})
-
     if user1.referred:
         messages.error(request, "You already referred")
         return redirect("app:home")
@@ -31,5 +31,5 @@ def referred_view(request, slug):
         user1.referred = True
         user2.save()
         user1.save()
-        request.session["user_pk"] = None  # idk may have security concern
+        #request.session["user_pk"] = None  # idk may have security concern
         return render(request, "referral/referred.html", {"user2": user2})

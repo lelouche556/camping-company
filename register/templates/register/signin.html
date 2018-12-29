@@ -99,7 +99,7 @@
 
         </div>
 <script>
-    $(function(){
+    window.onload = function(){
         var password = document.getElementById("password1")
       , confirm_password = document.getElementById("password2");
 
@@ -113,6 +113,6 @@
 
     password.onchange = validatePassword;
     confirm_password.onkeyup = validatePassword;
-    });
+    };
 </script>
     {% endblock %}

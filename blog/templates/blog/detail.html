@@ -5,9 +5,20 @@
     {% endblock %}
 
     {% block content_block %}
-        <img src="{{author.blog_cover_images.url}}" width="100%" height="500">
-        <div class="container my-5">
-            <p>{{author.content|linebreaks}}</p>
-        </div>
+        <img class="image" src="{{blog.blog_cover_images.url}}">
+        <div class="container my-5 mr-auto">
+          {% for y in image %}
+            <p>{{y.content|linebreaks}}</p>
+                <img src="{{y.blog_image1.url}}">
+              {% if not y.blog_image2.url.isempty %}
+            <br>
+            <br>
+            <br>
+            <br>
+                <img src="{{y.blog_image2.url}}">
+              {% else %}
+              {% endif %}
+          {% endfor %}
+            </div>
     <br>
     {% endblock %}

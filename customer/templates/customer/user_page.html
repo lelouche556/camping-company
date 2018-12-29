@@ -14,6 +14,7 @@
                 </div>
             {% endfor %}
         {% endif %}
+<div class="container">
         <div class="manager">
             <div class="content">
                 <div class="card">
@@ -36,10 +37,17 @@
                 </div>
             </div>
         </div>
+            <br>
+            <br>
+             <div id="presentation">
+                 <h3>Your referral link</h3>
+            <p class="container">{{referral.referral_link}}</p>
+            </div>
             <div class="buttt">
                 <a class="btn btn-primary" href="{% url 'customer:create_itinerary' %}">Create Itinerary</a>
                 <a class="btn btn-primary" href="{% url 'customer:delete_itinerary' %}">Delete Itinerary</a>
                 <a class="btn btn-primary" href="{% url 'customer:custom_itinerary' %}">Show Itinerary</a>
                 <a class="btn btn-primary" href="{% url 'customer:trip_detail' %}">Trip Details</a>
             </div>
-    {% endblock %}
+</div>
+ {% endblock %}

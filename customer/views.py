@@ -4,6 +4,7 @@ from django.http import Http404
 from destination.models import Destination
 from .models import Customer
 from itinerary.models import Itinerary
+from referral.models import Referral
 from django.contrib.auth.models import User
 import requests
 from django.contrib import messages
@@ -33,7 +34,10 @@ def user_page(request):
     except:
         messages.error(request, "Complete sign up")
         return redirect("register:welcome")
-    return render(request, "customer/user_page.html", {"customer": customer})
+    user = User.objects.get(username=customer.user.username)
+    referral = Referral.objects.get(user=user)
+    print(referral.referral_link)
+    return render(request, "customer/user_page.html", {"customer": customer, "referral": referral})
 
 
 @login_required

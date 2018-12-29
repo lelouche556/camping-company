@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from blog.models import Blog
+from blog.models import Blog, Image
 
 # Create your views here.
 
@@ -14,8 +14,12 @@ def all_blog(request):
 
 
 def blog_detail(request, pk):
-    author = Blog.objects.get(pk=pk)
-    return render(request, "blog/detail.html", {"author": author})
+    blog = Blog.objects.get(pk=pk)
+    # user = User.objects.get(pk=pk)
+    image_ = Image.objects.filter(blog=blog)
+    # for x in image_:
+    #     print(type(x.blog_image2.url))
+    return render(request, "blog/detail.html", {"blog": blog, "image": image_})
 
 
 def create_blog(request):
