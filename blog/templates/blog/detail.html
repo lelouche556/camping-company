@@ -11,12 +11,15 @@
             <p>{{y.content|linebreaks}}</p>
             {% if not y.blog_image2.url.isempty %}
                 <img src="{{y.blog_image1.url}}">
+            {% else %}
+            {% endif %}
             {% if not y.blog_image2.url.isempty %}
             <br>
             <br>
             <br>
             <br>
                 <img src="{{y.blog_image2.url}}">
+            {% else %}
               {% endif %}
           {% endfor %}
             </div>
