@@ -1,0 +1,146 @@
+[
+{
+    "model": "destination.destination",
+    "pk": 1,
+    "fields": {
+        "place": "White water village",
+        "description": "White Water Village offers unique experience for adventurers to know about an alternate way of living. Also a great opportunity to learn kayaking in Umtrew river at one of the most serene location surrounded by deep forests and lush tea gardens by Pro-Kayakers from Australia.",
+        "activities": "Swimming in natural pool, kayaking, local village exploration, cliff diving, fishing Situated right on the banks of the Umtrew River, one of the premier extreme kayaking rivers. The rapids at the Village are class 2-4. From Ski Jump to natural river pools, there's something for everyone, from beginner to the elite kayakers.",
+        "distance": 80,
+        "hours": 6,
+        "images": "pics/1.jpg"
+    }
+},
+{
+    "model": "destination.destination",
+    "pk": 2,
+    "fields": {
+        "place": "Umiam Lake",
+        "description": "With its picturesque, panoramic setting, surrounded by the lush and lofty East Khasi Hill, Umiam Lake is a nature lover\u2019s paradise. Lakeside campsites offer some of the State's most coveted overnight options, making this area the best 'known-secret' this side of the country.",
+        "activities": "Fishing, boating, angling, nature walks,water cycling and trails",
+        "distance": 83,
+        "hours": 1,
+        "images": "pics/2.jpg"
+    }
+},
+{
+    "model": "destination.destination",
+    "pk": 3,
+    "fields": {
+        "place": "Mawphlang Sacred Groove",
+        "description": "One of the most remarkable features of the Khasi Hills are the sacred forests, which have been preserved by traditional religious sanction, since the ancient days. Inside the outer rim, the sacred groves are virtually Nature's Own Museum.",
+        "activities": "Jungle trek, football with locals, exploring numerous flaura, local village exploration, hot water springs",
+        "distance": 120,
+        "hours": 4,
+        "images": "pics/3.jpg"
+    }
+},
+{
+    "model": "destination.destination",
+    "pk": 4,
+    "fields": {
+        "place": "Shnonpdeng Dawki",
+        "description": "A small border town in the Jaintia Hills, Dawki and its famed river Umngot is a must visit if in Meghalaya. Sandwiched between India and Bangladesh, Dawki is a major center of trade between India and Bangladesh. Experience local boating & fishing competition during spring.",
+        "activities": "Cliff diving,  canoeing, fishing, boating, nature walks",
+        "distance": 178,
+        "hours": 4,
+        "images": "pics/4.jpg"
+    }
+},
+{
+    "model": "destination.destination",
+    "pk": 5,
+    "fields": {
+        "place": "Krangsuri",
+        "description": "Krang Suri is one of the most beautiful waterfalls located in Meghalaya. A beautiful drive through the pine forests and open grasslands will take you to this majestic waterfalls that has now become a major crowd puller.",
+        "activities": "Swimming, trekking",
+        "distance": 190,
+        "hours": 4,
+        "images": "pics/5.jpg"
+    }
+},
+{
+    "model": "destination.destination",
+    "pk": 6,
+    "fields": {
+        "place": "Living Root Bridge",
+        "description": "Get ready to soak in a breathtaking scenery when you are trekking to the living root bridge or the double decker root bridge in Cherrapunji.The way leading to the root bridge is exciting as you cross thick jungles, stone steps, water streams etc and the view from the spot is amazing.Tyrna village is the base point of this 1.5 hour long trek.",
+        "activities": "Free fish pedicure, Swimming, Cliff diving, Trekking",
+        "distance": 160,
+        "hours": 12,
+        "images": "pics/6.jpg"
+    }
+},
+{
+    "model": "destination.destination",
+    "pk": 7,
+    "fields": {
+        "place": "Waterfalls of Meghalaya",
+        "description": "Meghalaya has some of the most beautiful waterfalls to lay eyes on with mesmerizing valleys and verdant hillocks. The land best described as an Abode of Clouds, Meghalaya houses some spellbound waterfalls that are something not to miss",
+        "activities": "None",
+        "distance": 82,
+        "hours": 12,
+        "images": "pics/7.jpg"
+    }
+},
+{
+    "model": "destination.destination",
+    "pk": 8,
+    "fields": {
+        "place": "Dainthlen Falls",
+        "description": "Dain Thlen Falls is one of the most breathtaking falls. It also has interesting legends associated with it. The waterfall derives its name from a Thlen (Khasi word for Python). As per the legend, people decided to rid themselves of evil, captured the Thlen and killed it at the wide flat rock overlooking the waterfall. Adjacent to the very spot where the Thlen was slaughtered lies the Dain-thlen Waterfalls. Natural rock carvings of the episode draw visitors to see the image of the Thlen, the symbol of greed, corruption and evil.",
+        "activities": "None",
+        "distance": 150,
+        "hours": 3,
+        "images": "pics/8.jpg"
+    }
+},
+{
+    "model": "destination.destination",
+    "pk": 9,
+    "fields": {
+        "place": "Kynrem Falls",
+        "description": "The Kynrem Falls is located 12 kilometres from Cherrapunji in East Khasi Hills district in the Indian state of Meghalaya. It is situated inside the Thangkharang Park. It is the 7th highest waterfalls in India.",
+        "activities": "None",
+        "distance": 164,
+        "hours": 3,
+        "images": "pics/9.jpg"
+    }
+},
+{
+    "model": "destination.destination",
+    "pk": 10,
+    "fields": {
+        "place": "Lyngksiar Waterfall",
+        "description": "Lyngksiar is a well hidden waterfall in the lush green grass lands of Sohra. It is a bit of a hike from the road that leads to the Denthlen falls",
+        "activities": "None",
+        "distance": 142,
+        "hours": 3,
+        "images": "pics/10.jpg"
+    }
+},
+{
+    "model": "destination.destination",
+    "pk": 11,
+    "fields": {
+        "place": "Nohsngithiang Falls",
+        "description": "Nohsngithiang Falls is a seven-segmented waterfall located 1 kilometre south of Mawsmai village in East Khasi Hills district in the Indian state of Meghalaya. The water falls from a height of 315 metres and has an average width of 70 metres",
+        "activities": "None",
+        "distance": 149,
+        "hours": 3,
+        "images": "pics/11.jpg"
+    }
+},
+{
+    "model": "destination.destination",
+    "pk": 12,
+    "fields": {
+        "place": "Caving in Meghalaya",
+        "description": "Caving is exploring the dark and dusky gift of nature. Blessed with immense natural beauty, Meghalaya enjoys richness in cave. In fact the world\u2019s longest cave is found in Meghalaya.Enjoy the  myriads of stalagmites and stalactites, endless galleys of different size and shape and nature\u2019s treasure hunt",
+        "activities": "None",
+        "distance": 156,
+        "hours": 6,
+        "images": "pics/12.jpg"
+    }
+}
+]

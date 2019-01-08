@@ -11,7 +11,6 @@ pip-selfcheck.json
 # Django related
 db.sqlite3
 db2.sqlite3
-mysql2.json
 media/
 static/
 camping/settings/local.py
