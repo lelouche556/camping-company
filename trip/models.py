@@ -6,12 +6,14 @@ from django.db.models.signals import post_save
 
 tripStatus = (
     ("ended", "Ended"),
-    ("ongoing", "Ongoing")
+    ("ongoing", "Ongoing"),
+     ("upcoming", "Upcoming")
 )
 
 car_type = (
     ("thar", "Thar"),
-    ("xenon", "Xenon")
+    ("xenon2014", "Xenon2014"),
+    ("xenon2018", "Xenon2018")
 )
 
 
@@ -28,6 +30,7 @@ class Trip (models.Model):
     trip_status = models.CharField(blank=True, max_length=128, null=True, choices=tripStatus)
     car_type = models.CharField(blank=True, max_length=64, null=True, choices=car_type)
     active = models.BooleanField(default=True)
+    guest = models.IntegerField()
 
     def __str__(self):
         return self.user.username

@@ -132,5 +132,10 @@ def faq(request):
     return render(request, "app/faq.html")
 
 
+def all_user(request):
+    trips = Trip.objects.all()
+    return render(request, "app/all_user.html", {"trips": trips})
+
+
 def sitemap(request):
     return render(request, "app/sitemap.xml")
