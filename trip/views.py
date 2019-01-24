@@ -21,12 +21,13 @@ def trip_create(request, pk):
         residence_address = request.POST.get("address")
         trip_status = request.POST.get("tripstatus")
         car_type = request.POST.get("cartype")
+        guest = request.POST.get("guests")
 
         Trip.objects.get_or_create(check_in_date=check_in_date, check_out_date=check_out_date,
                                    check_in_time=check_in_time, check_out_time=check_out_time,
                                    duration_of_trip=duration_of_trip, amount_paid=amount_paid,
                                    destination=destination, residence_address=residence_address,
-                                   trip_status=trip_status, car_type=car_type, user=user)
+                                   trip_status=trip_status, car_type=car_type, user=user, guest=guest)
         return redirect("app:create_status", pk=user.pk)
 
     else:
