@@ -12,9 +12,10 @@ def signup(request):
     if request.method == "POST":
         username = request.POST.get("username")
         email = request.POST.get("email")
-        user = User.objects.filter(username=username)
+        user_n = User.objects.filter(username=username)
+        user_e = User.objects.filter(email=email)
         password1 = request.POST.get("password1")
-        if user.count() == 1:
+        if user_n.count() == 1 or user_e.count() == 1:
             messages.error(request, "Username/email already taken or log in to complete signup")
             return redirect("register:signin")
 
