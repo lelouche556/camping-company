@@ -44,13 +44,11 @@
             <label for="destination">Destination:</label>
             <input id="destination" class="form-control" type="text" name="destination" placeholder="destination">
       </div>
-      <div class="col-md-3">
-         <label for="address">Address:</label>
-         <input id="address" class="form-control" type="text" name="address" placeholder="residence_address">
-          </div>
-       <p><br>
-         <br>
-      </p>
+
+     <div class="col-md-3">
+        <label for="addr">Address:</label>
+        <input id="addr" class="form-control" type="text" name="addr" placeholder="residence_addresss">
+      </div>
 
       <div class="col-md-3">
             <label>Trip Status:</label>
@@ -64,7 +62,7 @@
 
       <div class="col-md-3">
             <label>CarType:</label>
-            <input class="form-control" list="car" name="tripstatus" placeholder="Car Type">
+            <input class="form-control" list="car" name="cartype" placeholder="Car Type">
             <datalist id="car">
                <option value="Thar">
                <option value="Xenon 2014">
@@ -80,6 +78,7 @@
 </div>
 </div>
 <script>
+window.onload = function(){
    $(".datetimepicker").datetimepicker({
        timepicker:false,
        format:'Y-m-d'
@@ -89,5 +88,6 @@
        datepicker:false,
        format:'H:i:i'
     });
+    }
 </script>
 {% endblock %}

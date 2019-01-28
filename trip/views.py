@@ -18,7 +18,7 @@ def trip_create(request, pk):
         duration_of_trip = request.POST.get("duration")
         amount_paid = request.POST.get("amount")
         destination = request.POST.get("destination")
-        residence_address = request.POST.get("address")
+        residence_address = request.POST.get("addr")
         trip_status = request.POST.get("tripstatus")
         car_type = request.POST.get("cartype")
         guest = request.POST.get("guests")
@@ -45,7 +45,7 @@ def trip_update(request, pk):
         duration_of_trip = request.POST.get("duration")
         amount_paid = request.POST.get("amount")
         destination = request.POST.get("destination")
-        residence_address = request.POST.get("address")
+        residence_address = request.POST.get("addr")
         trip_status = request.POST.get("tripstatus")
         car_type = request.POST.get("cartype")
 

@@ -4,7 +4,7 @@ from django.db.models.signals import post_save
 
 # Create your models here.
 
-tripStatus = (
+trip_status = (
     ("Ended", "Ended"),  # first pair is what save in db
     ("Ongoing", "Ongoing"),
      ("Upcoming", "Upcoming")
@@ -12,8 +12,8 @@ tripStatus = (
 
 car_type = (
     ("Thar", "Thar"),
-    ("Xenon2014", "Xenon2014"),
-    ("Xenon2018", "Xenon2018")
+    ("Xenon 2014", "Xenon 2014"),
+    ("Xenon 2018", "Xenon 2018")
 )
 
 
@@ -24,10 +24,10 @@ class Trip (models.Model):
     check_in_time = models.TimeField(blank=True, null=True)
     check_out_time = models.TimeField(blank=True, null=True)
     duration_of_trip = models.PositiveIntegerField(blank=True, null=True)
-    amount_paid = models.PositiveIntegerField(blank=True, null=True)
+    amount_paid = models.BigIntegerField(blank=True, null=True)
     destination = models.CharField(blank=True, max_length=128, null=True)
     residence_address = models.CharField(blank=True, max_length=128, null=True)
-    trip_status = models.CharField(blank=True, max_length=128, null=True, choices=tripStatus)
+    trip_status = models.CharField(blank=True, max_length=128, null=True, choices=trip_status)
     car_type = models.CharField(blank=True, max_length=64, null=True, choices=car_type)
     active = models.BooleanField(default=True)
     guest = models.IntegerField()
@@ -37,7 +37,7 @@ class Trip (models.Model):
 
 
 def save1(trip, vehicle, tent, equipment, itinerary):
-    if trip.trip_status == "ended":
+    if trip.trip_status == "Ended":
         trip.active = False
         vehicle.active = False
         tent.active = False

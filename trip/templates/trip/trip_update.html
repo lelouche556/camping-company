@@ -41,8 +41,8 @@
             <input value="{{trip.destination}}" id="destination" class="form-control" type="text" name="destination" placeholder="destination">
       </div>
       <div class="col-md-3">
-         <label for="address">Address:</label>
-         <input value="{{trip.residence_address}}" id="address" class="form-control" type="text" name="address" placeholder="residence_address">
+         <label for="addr">Address:</label>
+         <input value="{{trip.residence_address}}" id="addr" class="form-control" type="text" name="addr" placeholder="residence_address">
           </div>
        <p><br>
          <br>
@@ -52,8 +52,9 @@
             <label for="list">Trip Status:</label>
             <input value="{{trip.trip_status}}" class="form-control" list="browsers" name="tripstatus" id="list" placeholder="Trip status">
             <datalist id="browsers">
-               <option value="ongoing">
-               <option value="ended">
+               <option value="Upcoming">
+               <option value="Ongoing">
+               <option value="Ended">
             </datalist>
       </div>
 
@@ -61,8 +62,9 @@
             <label>Car Type:</label>
             <input class="form-control" value="{{trip.car_type}}" list="car" name="cartype" placeholder="Car Type">
             <datalist id="car">
-               <option value="thar">
-               <option value="xenon">
+               <option value="Thar">
+               <option value="Xenon 2014">
+               <option value="Xenon 2018">
             </datalist>
       </div>
 
@@ -78,6 +80,7 @@
 </div>
 </div>
 <script>
+window.onload = function(){
    $(".datetimepicker").datetimepicker({
        timepicker:false,
        format:'Y-m-d'
@@ -87,5 +90,6 @@
        datepicker:false,
        format:'H:i:i'
     });
+    }
 </script>
 {% endblock %}
