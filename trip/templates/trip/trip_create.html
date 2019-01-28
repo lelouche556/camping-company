@@ -11,7 +11,7 @@
        {% csrf_token %}
       <div class="col-md-3">
             <label for="start">Start Date:</label>
-            <input id="start" class="form-control datetimepicker" type="text" name="startdate" placeholder="DD/MM/YY">
+            <input id="start" class="form-control datetimepicker" type="text" name="startdate" placeholder="YY-MM-DD">
       </div>
       <div class="col-md-3">
             <label for="sttime">Start Time:</label>
@@ -19,7 +19,7 @@
       </div>
       <div class="col-md-3">
             <label for="end">End Date:</label>
-            <input id="end" class="form-control datetimepicker" type="text" name="enddate" placeholder="DD/MM/YY">
+            <input id="end" class="form-control datetimepicker" type="text" name="enddate" placeholder="YY-MM-DD">
       </div>
       <div class="col-md-3">
             <label for="entime">End Time:</label>
@@ -65,8 +65,9 @@
             <label>CarType:</label>
             <input class="form-control" list="car" name="tripstatus" placeholder="Car Type">
             <datalist id="car">
-               <option value="thar">
-               <option value="xenon">
+               <option value="Thar">
+               <option value="Xenon 2014">
+                <option value="Xenon 2018">
             </datalist>
       </div>
 

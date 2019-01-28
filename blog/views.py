@@ -24,3 +24,11 @@ def blog_detail(request, pk):
 
 def create_blog(request):
     return render(request, "blog/create.html")
+
+
+def event(request):
+    return render(request, "blog/event.html")
+
+
+def event_form(request):
+    return render(request, "blog/event_form.html")

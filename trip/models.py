@@ -11,9 +11,9 @@ tripStatus = (
 )
 
 car_type = (
-    ("thar", "Thar"),
-    ("xenon2014", "Xenon2014"),
-    ("xenon2018", "Xenon2018")
+    ("Thar", "Thar"),
+    ("Xenon2014", "Xenon2014"),
+    ("Xenon2018", "Xenon2018")
 )
 
 
