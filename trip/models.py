@@ -5,9 +5,9 @@ from django.db.models.signals import post_save
 # Create your models here.
 
 tripStatus = (
-    ("ended", "Ended"),
-    ("ongoing", "Ongoing"),
-     ("upcoming", "Upcoming")
+    ("Ended", "Ended"),  # first pair is what save in db
+    ("Ongoing", "Ongoing"),
+     ("Upcoming", "Upcoming")
 )
 
 car_type = (
