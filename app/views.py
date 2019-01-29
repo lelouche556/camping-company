@@ -83,7 +83,8 @@ def find_user(request):
             try:
                 users = User.objects.get(email=email)
             except User.DoesNotExist:
-                raise Http404("User does not exist")
+                messages.error(request, "User Does Not Exist Please sign up")
+                return redirect("app:find_user")
 
             return render(request, "app/find_user.html", {"users": users})
         else:
