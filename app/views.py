@@ -3,6 +3,9 @@ from django.shortcuts import render, redirect, Http404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from trip.models import Trip
+from tent.models import TentCheck
+from vehicle.models import VehicleCheck
+from equipment.models import EquipmentCheck
 from destination.models import Destination
 from django.contrib import messages
 
@@ -86,18 +89,9 @@ def find_user(request):
                 messages.error(request, "User Does Not Exist Please sign up")
                 return redirect("app:find_user")
 
-            return render(request, "app/find_user.html", {"users": users})
+            return redirect("app:show_status", pk=users.pk)
         else:
             return render(request, "app/find_user.html")
-    else:
-        return redirect("customer:user_page")
-
-
-@login_required
-def create_status(request, pk):
-    if request.user.is_superuser:
-        users = User.objects.get(pk=pk)
-        return render(request, "app/create_check.html", {"users": users})
     else:
         return redirect("customer:user_page")
 
@@ -106,12 +100,12 @@ def create_status(request, pk):
 def show_status(request, pk):
     if request.user.is_superuser:
         users = User.objects.get(pk=pk)
-        trip = users.trip_check.filter(user=users, active=True)
-        if trip.count() == 1:
-            return render(request, "app/show.html", {"users": users, "active": True})
-        else:
-            return render(request, "app/show.html", {"users": users, "active": False})
-
+        trcount = users.trip_check.filter(user=users, active=True).count()
+        ecount = users.equipment_check.filter(user=users, active=True).count()
+        vcount = users.vehicle_check.filter(user=users, active=True).count()
+        tcount = users.tent_check.filter(user=users, active=True).count()
+        return render(request, "app/show.html", {"users": users,"ecount": ecount, "tcount": tcount,
+                                                 "vcount": vcount, "trcount": trcount})
     else:
         return redirect("customer:user_page")
 

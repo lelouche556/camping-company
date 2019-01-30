@@ -36,6 +36,10 @@
             <label for="price">Amount:</label>
             <input value="{{trip.amount_paid}}" id="price" class="form-control" type="text" name="amount" placeholder="Rs xxxx">
       </div>
+       <div class="col-md-3">
+        <label for="guests">Guests:</label>
+        <input value="{{trip.guest}}" id="guests" class="form-control" type="text" name="guests" >
+      </div>
       <div class="col-md-3">
             <label for="destination">Destination:</label>
             <input value="{{trip.destination}}" id="destination" class="form-control" type="text" name="destination" placeholder="destination">
@@ -67,13 +71,16 @@
                <option value="Xenon 2018">
             </datalist>
       </div>
-
+                            <div class="col-md-3">
+                <label for="active">Active:</label>
+                <input type="hidden" name="active" value="False">
+                <input id="active" class="form-control bool" type="checkbox" name="active" value="{{trip.active}}">
+             </div>
+            <br>
             <div class="col-md-3">
             <button class="btn btn-primary btn-block">Submit!</button>
       </div>
    </form>
-      <br>
-      <br>
       <br>
       <br>
 </div>

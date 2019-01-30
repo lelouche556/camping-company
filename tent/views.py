@@ -1,13 +1,12 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from tent.models import TentCheck
-
 # Create your views here.
 
 
 def tent_create_check(request, pk):
+    users = User.objects.get(id=pk)
     if request.method == "POST":
-        user = User.objects.get(pk=pk)
         rod = request.POST.get("rod")
         mattress = request.POST.get("mattress")
         zip = request.POST.get("zip")
@@ -15,11 +14,11 @@ def tent_create_check(request, pk):
         ladder = request.POST.get("ladder")
         straps = request.POST.get("straps")
 
-        TentCheck.objects.get_or_create(rod=rod, mattress=mattress, zip=zip,
-                                        rain_cover=rain_cover, ladder=ladder, straps=straps,
-                                        user=user)
-
-        return redirect("app:create_status", pk=user.pk)
+        tent = TentCheck(rod=rod, mattress=mattress, zip=zip,
+                         rain_cover=rain_cover, ladder=ladder, straps=straps,
+                         user=users)
+        tent.save()
+        return redirect("app:show_status", pk=users.pk)
 
     else:
         return render(request, "tent/tent_create_check.html")
@@ -35,10 +34,11 @@ def tent_update_check(request, pk):
         rain_cover = request.POST.get("rain_cover")
         ladder = request.POST.get("ladder")
         straps = request.POST.get("straps")
+        active = request.POST.get("active")
 
         TentCheck.objects.update(rod=rod, mattress=mattress, zip=zip,
                                  rain_cover=rain_cover, ladder=ladder, straps=straps,
-                                 user=users)
+                                 user=users, active=active)
 
         return redirect("app:show_status", pk=users.pk)
 

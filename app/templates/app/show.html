@@ -3,12 +3,11 @@
     {% block css %}
         <link rel="stylesheet" href="{% static 'css/rest.css' %}">
     {% endblock %}
+
     {% block content_block %}
-    <div class="fix">
-        {% if users is None %}
-            <h1>No Current Data</h1>
-        {% else %}
-        <h1>Summary of the user:</h1> {% if active %}<span>(Currently Active Status)</span> {% else %} <span>(Currently Not Active)</span>{% endif %}
+<br>
+<div class="fix">
+        <h1>Summary of the user:</h1> {% if trcount %}<span>(Currently Active Status)</span> {% else %} <span>(Currently Not Active)</span>{% endif %}
         <p>username: {{users.username}}</p>
         <p>email: {{users.email}}</p>
         <p>first_name: {{users.first_name}}</p>
@@ -29,15 +28,19 @@
             <p>duration_of_trip: {{x.duration_of_trip}}</p>
             <p>amount_paid: {{x.amount_paid}}</p>
             <p>destination: {{x.destination}}</p>
+            <p>Guest: {{x.guest}}</p>
             <p>residence_address: {{x.residence_address}}</p>
             <p>trip_status: {{x.trip_status}}</p>
             <p>car_type: {{x.car_type}}</p>
             <p>
-                <a href="/status/delete" class="btn btn-danger btn-sm">Delete Status</a>
-                <a href="{% url 'trip:update_trip' pk=x.pk%}" class="btn btn-warning btn-sm">Update status</a>
+                <a href="/status/delete" class="btn btn-sm">Delete Status</a>
+                <a href="{% url 'trip:update_trip' pk=x.pk%}" class="btn btn-sm">Update status</a>
             </p>
-        {% endif %}
+            {% endif %}
         {% endfor %}
+            {% if trcount < 1 %}
+                <a href="{% url 'trip:create_trip' pk=users.pk %}" class="btn btn-sm">create Status</a>
+            {% endif %}
 
                 <h1>Vehicle status</h1>
         {% for x in users.vehicle_check.all %}
@@ -62,8 +65,10 @@
             </p>
             {% endif %}
         {% endfor %}
+    {% if vcount < 1 %}
+                        <a href="{% url 'vehicle:vehicle_create_check' pk=users.pk %}" class="btn btn-sm">create Status</a>
+{% endif %}
         <h1>Tent status</h1>
-
         {% for x in users.tent_check.all %}
             {% if x.active %}
             <p>rod: {{ x.rod }}</p>
@@ -76,11 +81,12 @@
                 <a href="/status/delete" class="btn btn-danger btn-sm">Delete Status</a>
                 <a href="{% url 'tent:tent_update_check' pk=x.pk %}" class="btn btn-warning btn-sm">Update status</a>
             </p>
-        {% endif %}
+            {% endif %}
         {% endfor %}
-
+            {% if tcount < 1 %}
+                <a href="{% url 'tent:tent_create_check' pk=users.pk %}" class="btn btn-sm">create Status</a>
+            {% endif %}
         <h1>Equipment Status</h1>
-
         {% for x in users.equipment_check.all %}
         {% if x.active %}
             <p>yellow_box: {{ x.yellow_box }}</p>
@@ -95,8 +101,12 @@
                 <a href="/status/delete" class="btn btn-danger btn-sm">Delete Status</a>
                 <a href="{% url 'equipment:equipment_update_check' pk=x.pk %}" class="btn btn-warning btn-sm">Update status</a>
             </p>
-        {% endif %}
+            {% endif %}
         {% endfor %}
-    </div>
+    {% if ecount < 1 %}
+                        <a href="{% url 'equipment:equipment_create_check' pk=users.pk %}" class="btn btn-sm">create Status</a>
 {% endif %}
+    </div>
+<br>
+<br>
     {% endblock %}

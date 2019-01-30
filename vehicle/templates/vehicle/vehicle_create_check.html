@@ -10,6 +10,9 @@
        <div class="fix">
        <form class="form-inline" method="POST" autocomplete="off">
           {% csrf_token %}
+           <div class="col-md-3">
+               <button type="button" value="" class="btn btn-primary customvalue">Check/Uncheck Box</button>
+          </div>
           <div class="col-md-3">
                 <label for="engine_oil_level">engine_oil:</label>
                 <input id="engine_oil_level" class="form-control" type="number" name="engine_oil">
@@ -25,7 +28,7 @@
           <div class="col-md-3">
                 <label for="windscreen">windscreen_washer:</label>
                 <input type="hidden" name="windscreen" value="False">
-                <input id="windscreen" class="form-control bool" type="checkbox" name="windscreen" value="False">
+                <input id="windscreen" class="form-control bool customcheckbox" type="checkbox" name="windscreen" value="False">
              </div>
           <p><br>
              <br>
@@ -33,22 +36,22 @@
           <div class="col-md-3">
                 <label for="seatbelts">Seatbelts:</label>
                 <input type="hidden" name="seatbelts" value="False">
-                <input id="seatbelts" class="form-control bool" type="checkbox" name="seatbelts" value="False">
+                <input id="seatbelts" class="form-control bool customcheckbox" type="checkbox" name="seatbelts" value="False">
           </div>
           <div class="col-md-3">
                 <label for="parking">Parking_brake:</label>
                 <input type="hidden" name="parking" value="False">
-                <input id="parking" class="form-control bool" type="checkbox" name="parking" value="False">
+                <input id="parking" class="form-control bool customcheckbox" type="checkbox" name="parking" value="False">
           </div>
           <div class="col-md-3">
                 <label for="clutch">clutch_gearshift:</label>
                 <input type="hidden" name="clutch" value="False">
-                <input id="clutch" class="form-control bool" type="checkbox" name="clutch" value="False">
+                <input id="clutch" class="form-control bool customcheckbox" type="checkbox" name="clutch" value="False">
           </div>
           <div class="col-md-3">
                 <label for="burning">burning_smell:</label>
                 <input type="hidden" name="burning" value="False">
-                <input id="burning" class="form-control bool" type="checkbox" name="burning" value="False">
+                <input id="burning" class="form-control bool customcheckbox" type="checkbox" name="burning" value="False">
           </div>
           <p><br>
              <br>
@@ -56,22 +59,22 @@
           <div class="col-md-3">
                 <label for="steering_alignment">steering_alignment:</label>
                 <input type="hidden" name="steering" value="False">
-                <input class="form-control bool" type="checkbox" name="steering" id="steering_alignment" value="False">
+                <input class="form-control bool customcheckbox" type="checkbox" name="steering" id="steering_alignment" value="False">
           </div>
           <div class="col-md-3">
                 <label for="dashboard">dashboard:</label>
                 <input type="hidden" name="dashboard" value="False">
-                <input id="dashboard" class="form-control bool" type="checkbox" name="dashboard" value="False">
+                <input id="dashboard" class="form-control bool customcheckbox" type="checkbox" name="dashboard" value="False">
           </div>
           <div class="col-md-3">
                 <label for="check_lights">check_lights:</label>
                 <input type="hidden" name="check_lights" value="False">
-                <input id="check_lights" class="form-control bool" type="checkbox" name="check_lights" value="False">
+                <input id="check_lights" class="form-control bool customcheckbox" type="checkbox" name="check_lights" value="False">
           </div>
           <div class="col-md-3">
                 <label for="horn">horn:</label>
                 <input type="hidden" name="horn" value="False">
-                <input id="horn" class="form-control bool" type="checkbox" name="horn" value="False">
+                <input id="horn" class="form-control bool customcheckbox" type="checkbox" name="horn" value="False">
           </div>
           <p>
              <br>
@@ -80,12 +83,12 @@
           <div class="col-md-3">
                 <label for="tyres">tyres:</label>
                 <input type="hidden" name="tyres" value="False">
-                <input id="tyres" class="form-control bool" type="checkbox" name="tyres" value="False"">
+                <input id="tyres" class="form-control bool customcheckbox" type="checkbox" name="tyres" value="False">
           </div>
           <div class="col-md-3">
                 <label for="leakage">leakage:</label>
                 <input type="hidden" name="leakage" value="False">
-                <input id="leakage" class="form-control bool" type="checkbox" name="leakage" value="False">
+                <input id="leakage" class="form-control bool customcheckbox" type="checkbox" name="leakage" value="False">
           </div>
           <div class="col-md-3">
                 <button class="btn btn-primary btn-block">Submit!</button>
@@ -94,4 +97,19 @@
     </div>
     </div>
 </div>
+<script>
+window.onload = function(){
+  var chkbox = $('.customcheckbox');
+  $(".customvalue").click(function(){
+    var leak = $("#leakage").prop("checked")
+    if (leak) {
+    chkbox.prop('checked', false);
+    chkbox.prop('value', "False");
+    } else {
+    chkbox.prop('checked', true);
+    chkbox.prop('value', "True");
+    }
+  });
+}
+</script>
 {% endblock %}
