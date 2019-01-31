@@ -16,7 +16,7 @@
 <br>
         {% if messages %}
             {% for message in messages %}
-                <div class="my-4 alert alert-danger" style="text-align: center">
+                <div class="my-4 alert alert-{{message.tags}}" style="text-align: center">
                     <strong>{{message}}</strong>
                 </div>
             {% endfor %}

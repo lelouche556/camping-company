@@ -16,3 +16,15 @@ class Customer(models.Model):
 
     def __str__(self):
         return self.user.username
+
+
+class Form(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    people = models.CharField(max_length=64)
+    companion = models.CharField(max_length=64)
+    expectations = models.CharField(max_length=64)
+    overlanding = models.CharField(max_length=64)
+    itinerary = models.CharField(max_length=64)
+
+    def __str__(self):
+        return self.user.username

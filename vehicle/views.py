@@ -8,11 +8,11 @@ from trip.models import Trip
 
 def vehicles(request):
     try:
-        xenon = Trip.objects.get(active=True, car_type__icontains="xenon")
+        xenon = Trip.objects.get(active=True, car_type__icontains="Xenon 2014")
     except Trip.DoesNotExist:
         xenon = None
     try:
-        thar = Trip.objects.get(active=True,car_type__icontains="thar")
+        thar = Trip.objects.get(active=True,car_type__icontains="Thar")
     except Trip.DoesNotExist:
         thar = None
     return render(request, "vehicle/vehicles.html", {"xenon": xenon, "thar": thar})

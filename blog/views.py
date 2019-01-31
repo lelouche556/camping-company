@@ -1,5 +1,6 @@
-from django.shortcuts import render
-from blog.models import Blog, Image
+from django.shortcuts import render, redirect
+from blog.models import Blog, Image, Form
+from django.contrib import messages
 
 # Create your views here.
 
@@ -31,4 +32,22 @@ def event(request):
 
 
 def event_form(request):
+    if request.method == "POST":
+        referral = request.POST.get("referral")
+        name = request.POST.get("name")
+        phone = request.POST.get("phone")
+        email = request.POST.get("email")
+        driving = request.POST.get("kyc")
+        food = request.POST.get("food")
+        sleep = request.POST.get("sleep")
+        anything = request.POST.get("else")
+        forms = Form.objects.filter(email=email)
+        if forms.count() == 1:
+            messages.error(request, "You already fill the form")
+            return redirect("app:home")
+        Form(name=name, phone=phone, referral=referral,
+             email=email, driving=driving, food=food,
+             sleep=sleep, anything=anything).save()
+        messages.success(request, "Thanks for filling the form")
+        return redirect("app:home")
     return render(request, "blog/event_form.html")

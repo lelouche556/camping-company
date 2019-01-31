@@ -3,7 +3,9 @@ from customer.views import (user_page, book,
                             itinerary_detail_page,
                             custom_itinerary,
                             create_itinerary,
-                            delete_itinerary, trip_detail)
+                            delete_itinerary,
+                            trip_detail,
+                            form)
 
 app_name = "customer"
 
@@ -15,5 +17,6 @@ urlpatterns = [
     url(r'^itinerary/delete/$', delete_itinerary, name="delete_itinerary"),
     url(r'^itinerary/$', custom_itinerary, name="custom_itinerary"),
     url(r'^trip_detail/$', trip_detail, name="trip_detail"),
+    url(r'^form/$', form, name="form"),
 
 ]

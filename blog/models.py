@@ -31,3 +31,17 @@ class Image(models.Model):
 
     def __str__(self):
         return self.blog.heading
+
+
+class Form(models.Model):
+    referral = models.CharField(max_length=64)
+    name = models.CharField(max_length=64)
+    phone = models.CharField(max_length=64)
+    email = models.CharField(max_length=64)
+    driving = models.CharField(max_length=64)
+    food = models.CharField(max_length=64)
+    sleep = models.CharField(max_length=64)
+    anything = models.CharField(max_length=64)
+
+    def __str__(self):
+        return self.email

@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.http import Http404
 from destination.models import Destination
-from .models import Customer
+from .models import Customer, Form
 from itinerary.models import Itinerary
 from referral.models import Referral
 from django.contrib.auth.models import User
@@ -113,3 +113,25 @@ def book(request, pk):
     message = str("{} just Booked a car :D name {} phone {}".format(name, user.first_name, user.customer_check.phone))
     simple_message(name, email, subject, message)
     return render(request, "customer/success.html")
+
+
+@login_required
+def form(request):
+    user = User.objects.get(pk=request.user.pk)
+    forms = Form.objects.filter(user=user)
+    if forms.count() == 1:
+        messages.error(request, "You already fill the form Thanks")
+        return redirect("customer:user_page")
+
+    if request.method == "POST":
+        companion = request.POST.get("partner")
+        people = request.POST.get("people")
+        expectations = request.POST.get("experience")
+        overlanding = request.POST.get("overlanding")
+        itinerary = request.POST.get("itinerary")
+        Form.objects.get_or_create(user=user, people=people, companion=companion,
+                                   expectations=expectations, overlanding=overlanding,
+                                   itinerary=itinerary)
+        messages.success(request, "Thanks for filling the form")
+        return redirect("customer:user_page")
+    return render(request, "customer/user_form.html")
