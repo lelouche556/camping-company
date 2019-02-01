@@ -15,16 +15,19 @@ def signup(request):
         user_n = User.objects.filter(username=username)
         user_e = User.objects.filter(email=email)
         password1 = request.POST.get("password1")
+        referral = request.POST.get("referral")
+        ref_user = Referral.objects.get(referral_link=referral)
         if user_n.count() == 1 or user_e.count() == 1:
             messages.error(request, "Username/email already taken or log in to complete signup")
             return redirect("register:signin")
 
         user = User.objects.create_user(username=username, email=email)
-        referral = Referral(user=user)
+        referral = Referral(user=user, referred_by=ref_user.user)
+        ref_user.referred_users.add(user)
         user.set_password(password1)
-
         user.save()
         referral.save()
+        ref_user.save()
         login(request, user)
         return redirect("register:welcome")
 
@@ -36,7 +39,6 @@ def signin(request):
     if request.method == "POST":
         username = request.POST.get("username")
         password = request.POST.get("password")
-
         user = authenticate(username=username, password=password)
         if user is not None:
             if user.is_superuser:

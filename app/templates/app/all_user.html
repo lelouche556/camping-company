@@ -26,8 +26,8 @@
                     <td>{{ trip.user.first_name|title }}</td>
                     <td>{{ trip.car_type|title }}</td>
                     <td>{{ trip.guest }}</td>
-                    <td>{{ trip.check_in_date }}</td>
-                    <td>{{ trip.check_out_date }}</td>
+                    <td>{{ trip.check_in_date|date:"Y/m/d"  }}</td>
+                    <td>{{ trip.check_out_date|date:"Y/m/d"  }}</td>
                     <td>{{ trip.trip_status|title }}</td>
                 </tr>
             {% endfor %}
@@ -38,9 +38,9 @@
 <br>
 <script>
     window.onload = function(){
-    $(document).ready(function() {
-    $('#example').DataTable();
-} );
+    $('#example').DataTable( {
+        "order": [[ 3, "desc" ]]
+    } );
 }
 </script>
 {% endblock %}

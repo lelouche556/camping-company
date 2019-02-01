@@ -28,7 +28,6 @@
 
               <div class="tab-content">
                 <div id="signup">
-                  <h1>Sign Up for Free</h1>
 
                   <form action="{% url 'register:signup' %}" method="post">{% csrf_token %}
 
@@ -60,6 +59,12 @@
                       ConfirmPassword<span class="req">*</span>
                     </label>
                     <input id="password2" type="password"required autocomplete="off" name="password2"/>
+                  </div>
+                      <div class="field-wrap">
+                    <label>
+                      Referral link (if any)
+                    </label>
+                    <input id="referral" type="text" autocomplete="off" name="referral"/>
                   </div>
 
                   <button class="button button-block">Get Started</button>
