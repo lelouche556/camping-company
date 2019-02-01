@@ -14,7 +14,6 @@
     <br>
 
 <div class="container">
-{% if thar.car_type != "thar" %}
 <div class="car">
             <div id="myCarousel2" class="carousel slide" data-ride="carousel">
                <!-- Indicators -->
@@ -54,10 +53,8 @@
                         <button onclick="location.href = '{% url 'register:signin' %}';" class="btn">Book Now</button>
                     {% endif %}
                 </div>
-        {% endif %}
     <br>
 
-        {% if xenon.car_type != "xenon" %}
     <div class="car">
         <div id="myCarousel" class="carousel slide" data-ride="carousel">
            <!-- Indicators -->
@@ -98,11 +95,7 @@
                     <button onclick="location.href = '{% url 'register:signin' %}';" class="btn">Book Now</button>
                 {% endif %}
             </div>
-        {% endif %}
     <br>
-    {% if thar.car_type == "thar" and xenon.car_type == "xenon" %}
-        <h1>No Vehicles Available, The date you have specified</h1>
-    {% endif %}
 </div>
 <!--<script>-->
     <!--$(".datetimepicker").datetimepicker({-->

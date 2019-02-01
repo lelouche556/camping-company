@@ -9,7 +9,7 @@
         <div class="row">
             <div class="col-6 scrollbar" id="style-1">
                 <br>
-        <img src="https://s3.ap-south-1.amazonaws.com/camping-company/media/blog_images/image6.png">
+        <img class="top" src="https://s3.ap-south-1.amazonaws.com/camping-company/media/blog_images/image6.png">
         <p>A 700+KM Journey across Indigenous Land - Meghalaya on wheels is calling! No matter how much you might enjoy staying in a five-star hotel, you will always be stationary, trapped in one place. So, to feed your sense of freedom and adventure, book yourself on an overlanding expedition.  </p>
         <h1>How does it work?</h1>
         <p>A one of a kind overlanding expedition in Northeast India will take you through the beautiful roads of Meghalaya to explore some breathtaking destinations in overlanding vehicles during the day and you will be waking up in a new and exciting location every morning which will make you connect with Nature like never before.</p>
@@ -69,21 +69,11 @@
         <p><span>Total trip cost with accommodation in a ground tent:</span> Rs.24,500 per person</p>
         <p><span>Total trip cost with accommodation in a BYOT(Bring your own tent):</span> 22,500 per person</p>
         <p>*Limited seats available</p>
-
-        <h1>Next Step:</h1>
-        <p>To block your seat and to avail, early bird discounts fill out this <a href="{% url 'blog:event_form' %}">form</a></p>
-
-        <p>Please reach out to us on below-mentioned details for any further questions.</p>
-
-        <p>Cheers!</p>
-
-        <p>Heena Manav
-        Co-founder - Camping Company
-        +91863-869-2498
-        </p>
+                <p class="align"><button onclick="location.href='{% url 'register:signin' %}'" class="btn btn-lg btn-primary">Book Now</button></p>
+        <p class="align"><a class="btn btn-lg btn-primary" href="{% url 'blog:event_form' %}">Send Enquiry</a></p>
         <br>
     </div>
-            <div class="col-6">
+            <div class="col-6 imageres">
                 <br>
                 <video controls style="max-width: 100%;">
               <source src="https://s3.ap-south-1.amazonaws.com/camping-company/media/blog_images/video.mov" type="video/mp4">
@@ -116,7 +106,6 @@
         </div>
         </div>
         </div>
-        <br>
-        <br>
     </div>
+<br>
     {% endblock %}

@@ -8,6 +8,7 @@
 {% url 'register:signin' as register_url %}
 {% url 'app:faq' as faq_url %}
 {% url 'blog:all_blog' as blog_url %}
+{% url 'blog:event' as event_url %}
 {% load staticfiles %}
 
 <header>
@@ -30,6 +31,7 @@
             <li class="nav-item {% if request.path == destination_url  %}active{% endif %}"><a class="nav-link" href="{{destination_url}}">Destinations</a></li>
             <li class="nav-item {% if request.path == vehicle_url  %}active{% endif %}"><a class="nav-link" href="{{vehicle_url}}">Vehicles</a></li>
             <li class="nav-item {% if request.path == blog_url  %}active{% endif %}"><a class="nav-link" href="{{blog_url}}">Blog</a></li>
+            <li class="nav-item {% if request.path == event_url  %}active{% endif %}"><a class="nav-link" href="{{event_url}}">Events</a></li>
             <li class="nav-item {% if request.path == findus_url  %}active{% endif %}"><a class="nav-link" href="{{findus_url}}">Contact</a></li>
             {% if user.is_authenticated %}
               <li class="nav-item {% if request.path == signout_url  %}active{% endif %}"><a class="nav-link" href="{{signout_url}}">Logout</a></li>
