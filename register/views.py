@@ -9,6 +9,7 @@ from referral.models import Referral
 
 
 def signup(request):
+
     if request.method == "POST":
         username = request.POST.get("username")
         email = request.POST.get("email")
@@ -20,20 +21,21 @@ def signup(request):
         if user_n.count() == 1 or user_e.count() == 1:
             messages.error(request, "Username/email already taken or log in to complete signup")
             return redirect("register:signin")
-        try:
-            ref_user = Referral.objects.filter(slug=code)
-        except:
+
+        if code is "":
             user = User.objects.create_user(username=username, email=email)
             Referral(user=user).save()
             user.set_password(password1)
             user.save()
             login(request, user)
             return redirect("register:welcome")
-        if ref_user.count() < 1:
-            messages.warning(request, "Wrong Referral code")
+        try:
+            ref_user = Referral.objects.get(slug=code)
+        except:
+            messages.warning(request, "Wrong referral code")
             return redirect("register:signin")
         user = User.objects.create_user(username=username, email=email)
-        referral = Referral(user=user, referred_by=ref_user.user)
+        referral = Referral(user=user, referred_by=ref_user.user, referred=True)
         ref_user.referred_users.add(user)
         user.set_password(password1)
         user.save()
@@ -44,27 +46,6 @@ def signup(request):
 
     else:
         return render(request, "register/signin.html")
-
-
-# def signup(request):
-#     if request.method == "POST":
-#         username = request.POST.get("username")
-#         email = request.POST.get("email")
-#         user = User.objects.filter(username=username)
-#         password1 = request.POST.get("password1")
-#         if user.count() == 1:
-#             messages.error(request, "Username/email already taken")
-#             return redirect("register:signin")
-#
-#         user = User.objects.create_user(username=username, email=email)
-#         user.set_password(password1)
-#         Referral(user=user).save()
-#         user.save()
-#         login(request, user)
-#         return redirect("register:welcome")
-#
-#     else:
-#         return render(request, "register/signin.html")
 
 
 def signin(request):
