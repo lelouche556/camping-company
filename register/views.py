@@ -8,52 +8,63 @@ from referral.models import Referral
 # Create your views here.
 
 
-# def signup(request):
-#     if request.method == "POST":
-#         username = request.POST.get("username")
-#         email = request.POST.get("email")
-#         user_n = User.objects.filter(username=username)
-#         user_e = User.objects.filter(email=email)
-#         password1 = request.POST.get("password1")
-#         # referral = request.POST.get("referral")
-#         # ref_user = Referral.objects.get(referral_link=referral)
-#         if user_n.count() == 1 or user_e.count() == 1:
-#             messages.error(request, "Username/email already taken or log in to complete signup")
-#             return redirect("register:signin")
-#
-#         user = User.objects.create_user(username=username, email=email)
-#         #referral = Referral(user=user, referred_by=ref_user.user)
-#         #ref_user.referred_users.add(user)
-#         user.set_password(password1)
-#         user.save()
-#         #referral.save()
-#         #ref_user.save()
-#         login(request, user)
-#         return redirect("register:welcome")
-#
-#     else:
-#         return render(request, "register/signin.html")
-
-
 def signup(request):
     if request.method == "POST":
         username = request.POST.get("username")
         email = request.POST.get("email")
-        user = User.objects.filter(username=username)
+        user_n = User.objects.filter(username=username)
+        user_e = User.objects.filter(email=email)
         password1 = request.POST.get("password1")
-        if user.count() == 1:
-            messages.error(request, "Username/email already taken")
-            return redirect("register:signin")
+        code = request.POST.get("slug")
 
+        if user_n.count() == 1 or user_e.count() == 1:
+            messages.error(request, "Username/email already taken or log in to complete signup")
+            return redirect("register:signin")
+        try:
+            ref_user = Referral.objects.filter(slug=code)
+        except:
+            user = User.objects.create_user(username=username, email=email)
+            Referral(user=user).save()
+            user.set_password(password1)
+            user.save()
+            login(request, user)
+            return redirect("register:welcome")
+        if ref_user.count() < 1:
+            messages.warning(request, "Wrong Referral code")
+            return redirect("register:signin")
         user = User.objects.create_user(username=username, email=email)
+        referral = Referral(user=user, referred_by=ref_user.user)
+        ref_user.referred_users.add(user)
         user.set_password(password1)
-        Referral(user=user).save()
         user.save()
+        referral.save()
+        ref_user.save()
         login(request, user)
         return redirect("register:welcome")
 
     else:
         return render(request, "register/signin.html")
+
+
+# def signup(request):
+#     if request.method == "POST":
+#         username = request.POST.get("username")
+#         email = request.POST.get("email")
+#         user = User.objects.filter(username=username)
+#         password1 = request.POST.get("password1")
+#         if user.count() == 1:
+#             messages.error(request, "Username/email already taken")
+#             return redirect("register:signin")
+#
+#         user = User.objects.create_user(username=username, email=email)
+#         user.set_password(password1)
+#         Referral(user=user).save()
+#         user.save()
+#         login(request, user)
+#         return redirect("register:welcome")
+#
+#     else:
+#         return render(request, "register/signin.html")
 
 
 def signin(request):
@@ -73,11 +84,11 @@ def signin(request):
                     request.session["user_pk"] = user.pk
                 else:
                     login(request, user)
-                    messages.error(request, "Complete sign up")
+                    messages.warning(request, "Complete sign up")
                     return redirect("register:welcome")
                 return redirect("customer:user_page")
         else:
-            messages.error(request, "Password/Username is wrong")
+            messages.warning(request, "Password/Username is wrong")
             return redirect("register:signin")
     return render(request, "register/signin.html")
 

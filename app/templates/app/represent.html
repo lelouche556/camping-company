@@ -1,14 +1,46 @@
 {% extends "snippets/base.html" %}
 {% load staticfiles %}
     {% block css %}
-        <link rel="stylesheet" href="{% static 'css/rest.css' %}">
+        <link rel="stylesheet" href="{% static 'css/all_user.css' %}">
     {% endblock %}
 
     {% block content_block %}
-    <div class="fix">
-        <h1>Hey!! {{user.username|title}} What would you like to do??</h1>
-        <a href="{% url 'app:find_user' %}" class="btn btn-default btn-lg">Find User</a>
-        <a href="{% url 'app:calender' %}" class="btn btn-default btn-lg">Calender</a>
-        <a href="{% url 'app:all_user' %}" class="btn btn-default btn-lg">Find All User</a>
-    </div>
-    {% endblock %}
+<div class="container my-5">
+    <br>
+    <br>
+    <br>
+<table id="example" class="table table-striped table-bordered" style="width:100%">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Car Type</th>
+                <th>Guests</th>
+                <th>Start-Date</th>
+                <th>End-Date</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for trip in trips %}
+                <tr>
+                    <td><a href="{% url 'app:show_status' pk=trip.user.pk %}">{{ trip.user.first_name|title }}</a></td>
+                    <td>{{ trip.car_type|title }}</td>
+                    <td>{{ trip.guest }}</td>
+                    <td>{{ trip.check_in_date|date:"Y/m/d"  }}</td>
+                    <td>{{ trip.check_out_date|date:"Y/m/d"  }}</td>
+                    <td>{{ trip.trip_status|title }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+
+    </table>
+</div>
+<br>
+<script>
+    window.onload = function(){
+    $('#example').DataTable( {
+        "order": [[ 3, "desc" ]]
+    } );
+}
+</script>
+{% endblock %}

@@ -13,7 +13,7 @@
     {% block content_block %}
         {% if messages %}
             {% for message in messages %}
-                <div class="alert alert-warning">
+                <div class="alert alert-{{message.tags}}">
                     <strong>{{message}}</strong>
                 </div>
             {% endfor %}
@@ -60,12 +60,12 @@
                     </label>
                     <input id="password2" type="password"required autocomplete="off" name="password2"/>
                   </div>
-                      <!--<div class="field-wrap">-->
-                    <!--<label>-->
-                      <!--Referral link (if any)-->
-                    <!--</label>-->
-                    <!--<input id="referral" type="text" autocomplete="off" name="referral"/>-->
-                  <!--</div>-->
+                      <div class="field-wrap">
+                    <label>
+                      Referral code (if any, code is 6 digit)
+                    </label>
+                    <input id="referral" type="text" autocomplete="off" name="slug"/>
+                  </div>
 
                   <button class="button button-block">Get Started</button>
 

@@ -10,16 +10,8 @@ def vehicles(request):
     return render(request, "vehicle/vehicles.html")
 
 
-def thar(request):
-    return render(request, "vehicle/vehicle1.html")
-
-
 def vehicle_info(request):
     return render(request, "vehicle/vehicle_info.html")
-
-
-def time(request):
-    return render(request, "vehicle/vehicle2.html")
 
 
 def vehicle_create_check(request, pk):

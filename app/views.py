@@ -3,9 +3,6 @@ from django.shortcuts import render, redirect, Http404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from trip.models import Trip
-from tent.models import TentCheck
-from vehicle.models import VehicleCheck
-from equipment.models import EquipmentCheck
 from destination.models import Destination
 from django.contrib import messages
 
@@ -79,24 +76,6 @@ def findus(request):
 
 
 @login_required
-def find_user(request):
-    if request.user.is_superuser:
-        if request.method == "POST":
-            email = request.POST.get("email")
-            try:
-                users = User.objects.get(email=email)
-            except User.DoesNotExist:
-                messages.error(request, "User Does Not Exist Please sign up")
-                return redirect("app:find_user")
-
-            return redirect("app:show_status", pk=users.pk)
-        else:
-            return render(request, "app/find_user.html")
-    else:
-        return redirect("customer:user_page")
-
-
-@login_required
 def show_status(request, pk):
     if request.user.is_superuser:
         users = User.objects.get(pk=pk)
@@ -113,7 +92,8 @@ def show_status(request, pk):
 @login_required
 def represent(request):
     if request.user.is_superuser:
-        return render(request, "app/represent.html")
+        trips = Trip.objects.all()
+        return render(request, "app/represent.html", {"trips": trips})
     else:
         return redirect("customer:user_page")
 
@@ -125,11 +105,6 @@ def destination(request):
 
 def faq(request):
     return render(request, "app/faq.html")
-
-
-def all_user(request):
-    trips = Trip.objects.all()
-    return render(request, "app/all_user.html", {"trips": trips})
 
 
 def sitemap(request):

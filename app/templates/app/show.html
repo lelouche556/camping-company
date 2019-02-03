@@ -1,24 +1,41 @@
 {% extends "snippets/base.html" %}
 {% load staticfiles %}
     {% block css %}
-        <link rel="stylesheet" href="{% static 'css/rest.css' %}">
+        <link rel="stylesheet" href="{% static 'css/show.css' %}">
     {% endblock %}
 
     {% block content_block %}
 <br>
-<div class="fix">
-        <h1>Summary of the user:</h1> {% if trcount %}<span>(Currently Active Status)</span> {% else %} <span>(Currently Not Active)</span>{% endif %}
+<br>
+<div class="container">
+<div id="item-list">
+<ul>
+  <li>
+    <a class="expand">
+    <div class="right-arrow">+</div>
+    <div class="icon london"></div>
+    <h2>Summary of the user</h2>
+    <span>Info About the User</span>
+    </a>
+
+    <div class="detail">
+        </h1> {% if trcount %}<span>(Currently Active Status)</span> {% else %} <span>(Currently Not Active)</span>{% endif %}
         <p>username: {{users.username}}</p>
         <p>email: {{users.email}}</p>
         <p>first_name: {{users.first_name}}</p>
         <p>last_name: {{users.last_name}}</p>
         <p>phone_number: {{users.customer_check.phone}}</p>
         <p>terms_conditions: {{users.customer_check.terms_condition}}</p>
-        <p>
-            <a href="/status/delete" class="btn btn-danger btn-sm">Delete Status</a>
-            <a href="/status/update" class="btn btn-warning btn-sm">Update status</a>
-        </p>
-        <h1>Trip status</h1>
+    </div>
+  </li>
+  <li>
+    <a class="expand">
+    <div class="right-arrow">+</div>
+<div class="icon london"></div>
+        <h2>Trip status</h2>
+    <span>Info About the User's Trip Status</span></a>
+
+    <div class="detail">
         {% for x in users.trip_check.all %}
             {% if x.active %}
             <p>check_in_date: {{ x.check_in_date }}</p>
@@ -33,7 +50,6 @@
             <p>trip_status: {{x.trip_status}}</p>
             <p>car_type: {{x.car_type}}</p>
             <p>
-                <a href="/status/delete" class="btn btn-sm">Delete Status</a>
                 <a href="{% url 'trip:update_trip' pk=x.pk%}" class="btn btn-sm">Update status</a>
             </p>
             {% endif %}
@@ -41,8 +57,16 @@
             {% if trcount < 1 %}
                 <a href="{% url 'trip:create_trip' pk=users.pk %}" class="btn btn-sm">create Status</a>
             {% endif %}
+    </div>
+  </li>
+  <li>
+    <a class="expand">
+    <div class="right-arrow">+</div>
+<div class="icon london"></div>
+        <h2>Vehicle status</h2>
+    <span>Info About the User's used Vehicle Status</span></a>
 
-                <h1>Vehicle status</h1>
+    <div class="detail">
         {% for x in users.vehicle_check.all %}
         {% if x.active %}
             <p>engine_oil_level: {{ x.engine_oil_level }}</p>
@@ -60,15 +84,24 @@
             <p>tyres: {{x.tyres}}</p>
             <p>leakage: {{x.leakage}}</p>
             <p>
-                <a href="/status/delete" class="btn btn-danger btn-sm">Delete Status</a>
                 <a href="{% url 'vehicle:vehicle_update_check' pk=x.pk%}" class="btn btn-warning btn-sm">Update status</a>
             </p>
             {% endif %}
         {% endfor %}
     {% if vcount < 1 %}
-                        <a href="{% url 'vehicle:vehicle_create_check' pk=users.pk %}" class="btn btn-sm">create Status</a>
+        <a href="{% url 'vehicle:vehicle_create_check' pk=users.pk %}" class="btn btn-sm">create Status</a>
 {% endif %}
-        <h1>Tent status</h1>
+    </div>
+  </li>
+
+    <li>
+    <a class="expand">
+    <div class="right-arrow">+</div>
+<div class="icon london"></div>
+        <h2>Tent status</h2>
+    <span>Info About the User's used Tent Status</span></a>
+
+    <div class="detail">
         {% for x in users.tent_check.all %}
             {% if x.active %}
             <p>rod: {{ x.rod }}</p>
@@ -78,7 +111,6 @@
             <p>ladder: {{x.ladder}}</p>
             <p>straps: {{x.straps}}</p>
             <p>
-                <a href="/status/delete" class="btn btn-danger btn-sm">Delete Status</a>
                 <a href="{% url 'tent:tent_update_check' pk=x.pk %}" class="btn btn-warning btn-sm">Update status</a>
             </p>
             {% endif %}
@@ -86,7 +118,16 @@
             {% if tcount < 1 %}
                 <a href="{% url 'tent:tent_create_check' pk=users.pk %}" class="btn btn-sm">create Status</a>
             {% endif %}
-        <h1>Equipment Status</h1>
+    </div>
+  </li>
+    <li>
+    <a class="expand">
+    <div class="right-arrow">+</div>
+<div class="icon london"></div>
+        <h2>Equipment check</h2>
+    <span>Info About the User's used Equipment Status</span></a>
+
+    <div class="detail">
         {% for x in users.equipment_check.all %}
         {% if x.active %}
             <p>yellow_box: {{ x.yellow_box }}</p>
@@ -98,7 +139,6 @@
             <p>shovel: {{x.shovel}}</p>
             <p>mug_bucket: {{x.mug_bucket}}</p>
             <p>
-                <a href="/status/delete" class="btn btn-danger btn-sm">Delete Status</a>
                 <a href="{% url 'equipment:equipment_update_check' pk=x.pk %}" class="btn btn-warning btn-sm">Update status</a>
             </p>
             {% endif %}
@@ -107,6 +147,24 @@
                         <a href="{% url 'equipment:equipment_create_check' pk=users.pk %}" class="btn btn-sm">create Status</a>
 {% endif %}
     </div>
+    </li>
+</ul>
 <br>
 <br>
+</div>
+</div>
+    <script>
+       window.onload = function(){
+  $(".expand").on( "click", function() {
+    $(this).next().slideToggle(100);
+    $expand = $(this).find(">:first-child");
+
+    if($expand.text() == "+") {
+      $expand.text("-");
+    } else {
+      $expand.text("+");
+    }
+  });
+  }
+    </script>
     {% endblock %}
