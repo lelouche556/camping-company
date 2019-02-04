@@ -43,11 +43,11 @@ def equipment_update_check(request, pk):
         mug_bucket = request.POST.get("mug_bucket")
         active = request.POST.get("active")
 
-        EquipmentCheck.objects.update(user=users, yellow_box=yellow_box,
-                                      kettel=kettel, utensils=utensils, stove=stove,
-                                      bbq_grill=bbq_grill, spare_tyre=spare_tyre,
-                                      shovel=shovel, mug_bucket=mug_bucket, active=active
-                                             )
+        EquipmentCheck.objects.filter(pk=pk).update(user=users, yellow_box=yellow_box,
+                                                    kettel=kettel, utensils=utensils, stove=stove,
+                                                    bbq_grill=bbq_grill, spare_tyre=spare_tyre,
+                                                    shovel=shovel, mug_bucket=mug_bucket, active=active
+                                                    )
 
         return redirect("app:show_status", pk=users.pk)
 

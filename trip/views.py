@@ -51,12 +51,12 @@ def trip_update(request, pk):
         car_type = request.POST.get("cartype")
         guest = request.POST.get("guests")
         active = request.POST.get("active")
-        Trip.objects.update(check_in_date=check_in_date, check_out_date=check_out_date,
-                            check_in_time=check_in_time, check_out_time=check_out_time,
-                            duration_of_trip=duration_of_trip, amount_paid=amount_paid,
-                            destination=destination, residence_address=residence_address,
-                            trip_status=trip_status, car_type=car_type, user=users,
-                            guest=guest, active=active)
+        Trip.objects.filter(pk=pk).update(check_in_date=check_in_date, check_out_date=check_out_date,
+                                          check_in_time=check_in_time, check_out_time=check_out_time,
+                                          duration_of_trip=duration_of_trip, amount_paid=amount_paid,
+                                          destination=destination, residence_address=residence_address,
+                                          trip_status=trip_status, car_type=car_type, user=users,
+                                          guest=guest, active=active)
         return redirect("app:show_status", pk=users.pk)
 
     else:

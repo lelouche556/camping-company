@@ -9,6 +9,7 @@
 {% url 'app:faq' as faq_url %}
 {% url 'blog:all_blog' as blog_url %}
 {% url 'blog:event' as event_url %}
+{% url 'app:represent' as represent_url %}
 {% load staticfiles %}
 
 <header>
@@ -26,6 +27,8 @@
         <ul class="navbar-nav navbar-right mr-auto">
             {% if user.is_authenticated and not user.is_superuser %}
                 <li class="nav-item {% if request.path == customer_url  %}active{% endif %}"><a class="nav-link" href="{{customer_url}}">Profile</a></li>
+            {% else %}
+                <li class="nav-item {% if request.path == represent_url  %}active{% endif %}"><a class="nav-link" href="{{represent_url}}">Represent</a></li>
             {% endif %}
             <li class="nav-item {% if request.path == about_url  %}active{% endif %}"><a class="nav-link" href="{{about_url}}">About</a></li>
             <li class="nav-item {% if request.path == destination_url  %}active{% endif %}"><a class="nav-link" href="{{destination_url}}">Destinations</a></li>

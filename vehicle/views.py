@@ -49,7 +49,7 @@ def vehicle_update_check(request, pk):
     vehicle = VehicleCheck.objects.get(pk=pk, active=True)
     if request.method == "POST":
         users = User.objects.get(pk=vehicle.user.pk)
-        engine_oil_level = request.POST.get("brake_fluid")
+        engine_oil_level = request.POST.get("engine_oil")
         brake_fluid_level = request.POST.get("water_level")
         water_level = request.POST.get("brake_fluid")
         windscreen_washer = request.POST.get("windscreen")
@@ -65,13 +65,13 @@ def vehicle_update_check(request, pk):
         leakage = request.POST.get("leakage")
         active = request.POST.get("active")
 
-        VehicleCheck.objects.update(user=users, engine_oil_level=engine_oil_level,
-                                    brake_fluid_level=brake_fluid_level, water_level=water_level,
-                                    windscreen_washer=windscreen_washer, seatbelts_check=seatbelts_check,
-                                    parking_brake=parking_brake, clutch_gearshift=clutch_gearshift,
-                                    burning_smell=burning_smell, steering_alignment=steering_alignment,
-                                    dashboard=dashboard, check_lights=check_lights, horn=horn, tyres=tyres,
-                                    leakage=leakage, active=active)
+        VehicleCheck.objects.filter(pk=pk).update(user=users, engine_oil_level=engine_oil_level,
+                                                  brake_fluid_level=brake_fluid_level, water_level=water_level,
+                                                  windscreen_washer=windscreen_washer, seatbelts_check=seatbelts_check,
+                                                  parking_brake=parking_brake, clutch_gearshift=clutch_gearshift,
+                                                  burning_smell=burning_smell, steering_alignment=steering_alignment,
+                                                  dashboard=dashboard, check_lights=check_lights, horn=horn, tyres=tyres,
+                                                  leakage=leakage, active=active)
 
         return redirect("app:show_status", pk=users.pk)
 

@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from trip.models import Trip
 from destination.models import Destination
 from django.contrib import messages
-
+from django.http import JsonResponse
 
 import requests
 
@@ -92,8 +92,24 @@ def show_status(request, pk):
 @login_required
 def represent(request):
     if request.user.is_superuser:
+        if request.is_ajax():
+            email = request.POST.get("email")
+            try:
+                user = User.objects.get(email=email)
+                pk = user.pk
+                data = {
+                    "id": pk
+                }
+                return JsonResponse(data)
+            except:
+                data = {
+                    "id": 0
+                }
+                return JsonResponse(data)
+
         trips = Trip.objects.all()
-        return render(request, "app/represent.html", {"trips": trips})
+        users = User.objects.all()
+        return render(request, "app/represent.html", {"trips": trips, "users": users})
     else:
         return redirect("customer:user_page")
 

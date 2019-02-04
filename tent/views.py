@@ -36,9 +36,9 @@ def tent_update_check(request, pk):
         straps = request.POST.get("straps")
         active = request.POST.get("active")
 
-        TentCheck.objects.update(rod=rod, mattress=mattress, zip=zip,
-                                 rain_cover=rain_cover, ladder=ladder, straps=straps,
-                                 user=users, active=active)
+        TentCheck.objects.filter(pk=pk).update(rod=rod, mattress=mattress, zip=zip,
+                                               rain_cover=rain_cover, ladder=ladder, straps=straps,
+                                               user=users, active=active)
 
         return redirect("app:show_status", pk=users.pk)
 

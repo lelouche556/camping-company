@@ -19,7 +19,7 @@
     </a>
 
     <div class="detail">
-        </h1> {% if trcount %}<span>(Currently Active Status)</span> {% else %} <span>(Currently Not Active)</span>{% endif %}
+        {% if trcount %}<span>(Currently Active Status)</span> {% else %} <span>(Currently Not Active)</span>{% endif %}
         <p>username: {{users.username}}</p>
         <p>email: {{users.email}}</p>
         <p>first_name: {{users.first_name}}</p>

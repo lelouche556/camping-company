@@ -9,6 +9,14 @@
     <br>
     <br>
     <br>
+        <form id="tests" action="{% url 'app:represent' %}" method="POST">{% csrf_token %}
+        <div class="form-group">
+        <label for="usr">Email:</label>
+        <input type="text" class="form-control" id="usr">
+            <br>
+        <input class="btn btn-secondary" type="submit" value="Start Adding Status">
+    </div>
+    </form>
 <table id="example" class="table table-striped table-bordered" style="width:100%">
         <thead>
             <tr>
@@ -42,5 +50,29 @@
         "order": [[ 3, "desc" ]]
     } );
 }
+</script>
+<script>
+    $(document).ready(function() {
+            $("#tests").submit(function(e) {
+        e.preventDefault();
+        var t = $("input[name=csrfmiddlewaretoken]").val();
+        return $.ajax({
+            type: "POST",
+            url: "/represent/",
+            data: {
+                email: $("#usr").val(),
+                csrfmiddlewaretoken: t
+            },
+            success: function(e) {
+                if (e.id === 0){
+                    alert("email not found")
+                    }else{
+                ser = e.id.toString(10)
+                window.location = "http://127.0.0.1:8000/status/"+ser+"/show/"
+            }
+            },
+        })
+    })
+    })
 </script>
 {% endblock %}
