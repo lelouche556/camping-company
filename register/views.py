@@ -19,7 +19,7 @@ def signup(request):
         code = request.POST.get("slug")
 
         if user_n.count() == 1 or user_e.count() == 1:
-            messages.error(request, "Username/email already taken or log in to complete signup")
+            messages.warning(request, "Username/email already taken or log in to complete signup")
             return redirect("register:signin")
 
         if code is "":
