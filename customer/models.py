@@ -13,6 +13,7 @@ class Customer(models.Model):
     nickname = models.CharField(max_length=64)
     about = models.TextField()
     terms_condition = models.BooleanField(default=False)
+    active = models.BooleanField(default=True)
 
     def __str__(self):
         return self.user.username

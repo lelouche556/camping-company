@@ -27,7 +27,7 @@
         <ul class="navbar-nav navbar-right mr-auto">
             {% if user.is_authenticated and not user.is_superuser %}
                 <li class="nav-item {% if request.path == customer_url  %}active{% endif %}"><a class="nav-link" href="{{customer_url}}">Profile</a></li>
-            {% else %}
+            {% elif user.is_superuser %}
                 <li class="nav-item {% if request.path == represent_url  %}active{% endif %}"><a class="nav-link" href="{{represent_url}}">Represent</a></li>
             {% endif %}
             <li class="nav-item {% if request.path == about_url  %}active{% endif %}"><a class="nav-link" href="{{about_url}}">About</a></li>

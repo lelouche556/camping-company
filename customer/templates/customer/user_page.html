@@ -9,7 +9,7 @@
     {% block content_block %}
         {% if messages %}
             {% for message in messages %}
-                <div class="alert alert-success">
+                <div class="alert alert-{{message.tags}}">
                     <strong>{{message}}</strong>
                 </div>
             {% endfor %}
@@ -39,17 +39,17 @@
         </div>
             <br>
             <br>
-             <div id="presentation">
+             <div class="presentation">
                  <h3>Your referral link</h3>
                  <p class="container">{{referral.referral_link}}<span>  (code is last 6 digit)</span></div>
-            <div id="presentation">
+            <div class="presentation">
                  <h3></h3>
             <p class="container">Your friend gets 2000 off and you’ll get 2000 once they book.(trip over 10000)</p></div>
-            <div class="buttt">
-                <a class="btn btn-primary" href="{% url 'customer:create_itinerary' %}">Create Itinerary</a>
-                <a class="btn btn-primary" href="{% url 'customer:delete_itinerary' %}">Delete Itinerary</a>
-                <a class="btn btn-primary" href="{% url 'customer:custom_itinerary' %}">Show Itinerary</a>
-                <a class="btn btn-primary" href="{% url 'customer:trip_detail' %}">Trip Details</a>
-            </div>
+            <!--<div class="buttt">-->
+                <!--<a class="btn btn-primary" href="{% url 'customer:create_itinerary' %}">Create Itinerary</a>-->
+                <!--<a class="btn btn-primary" href="{% url 'customer:delete_itinerary' %}">Delete Itinerary</a>-->
+                <!--<a class="btn btn-primary" href="{% url 'customer:custom_itinerary' %}">Show Itinerary</a>-->
+                <!--<a class="btn btn-primary" href="{% url 'customer:trip_detail' %}">Trip Details</a>-->
+            <!--</div>-->
 </div>
  {% endblock %}

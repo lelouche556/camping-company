@@ -36,7 +36,7 @@ def user_page(request):
         return redirect("register:welcome")
     user = User.objects.get(username=customer.user.username)
     referral = Referral.objects.get(user=user)
-    print(referral.referral_link)
+    # print(referral.referral_link)
     return render(request, "customer/user_page.html", {"customer": customer, "referral": referral})
 
 
@@ -44,22 +44,24 @@ def user_page(request):
 def create_itinerary(request):
     # Search.objects.new_or_get(request)
     items = Destination.objects.all()
-    try:
-        itinerary = Itinerary.objects.get(user=request.user, active=True)
-    except:
-        return render(request, "customer/create_itinerary.html", {"items": items})
-    context = {"items": items, "itinerary": itinerary}
-    return render(request, "customer/create_itinerary.html", context)
+    itinerary = Itinerary.objects.filter(user=request.user, active=True).count()
+    if itinerary == 0:
+        context = {"items": items, "itinerary": itinerary}
+        return render(request, "customer/create_itinerary.html", context)
+    else:
+        return render(request, "customer/create_itinerary.html", {"items": items, "itinerary": itinerary})
 
 
 @login_required
 def delete_itinerary(request):
-    try:
-        itinerary = Itinerary.objects.get(user=request.user, active=True)
-    except Itinerary.DoesNotExist:
-        raise Http404("No Itinerary found, Create one To delete")
-    itinerary.delete()
-    return redirect("customer:create_itinerary")
+    itinerary = Itinerary.objects.filter(user=request.user, active=True)
+    if itinerary.count() == 0:
+        messages.warning(request,"No itinerary found create one")
+        return redirect("customer:user_page")
+    elif itinerary.count() == 1:
+        itinerary.delete()
+        messages.success(request,"successfully deleted")
+    return redirect("customer:user_page")
 
 
 @login_required
@@ -120,8 +122,8 @@ def form(request):
     user = User.objects.get(pk=request.user.pk)
     forms = Form.objects.filter(user=user)
     if forms.count() == 1:
-        messages.error(request, "You already fill the form Thanks")
-        return redirect("customer:user_page")
+        messages.warning(request, "You already fill the form Thanks")
+        return redirect("app:home")
 
     if request.method == "POST":
         companion = request.POST.get("partner")

@@ -9,9 +9,16 @@
 <meta name="keywords" content="camping company, personalised itinerary, update,create,delete, itineraries">
 {% endblock %}
     {% block content_block %}
+        {% if messages %}
+            {% for message in messages %}
+                <div style="text-align: center; margin-top: 4%;" class="alert alert-{{message.tags}}">
+                    <strong>{{message}}</strong>
+                </div>
+            {% endfor %}
+        {% endif %}
 <div class="manager">
   <div class="container">
-      {% if itinerary is None %}
+      {% if itinerary is 0 %}
         <div class="row">
         {% for item in items %}
           <div class="col-md-4 col-sm-6">
