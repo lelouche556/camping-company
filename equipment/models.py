@@ -18,3 +18,21 @@ class EquipmentCheck(models.Model):
 
     def __str__(self):
         return self.user.username
+
+
+class Inventory(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="inventory")
+    degree_8_sleeping = models.IntegerField(blank=True)
+    degree_summer_sleeping = models.IntegerField(blank=True)
+    kettle = models.IntegerField(blank=True)
+    stove = models.IntegerField(blank=True)
+    plates = models.IntegerField(blank=True)
+    ground_tent = models.IntegerField(blank=True)
+    charger = models.IntegerField(blank=True)
+    chairs = models.IntegerField(blank=True)
+    foldable_table_and_chair = models.IntegerField(blank=True)
+    canister = models.IntegerField(blank=True)
+    active = models.BooleanField(default=True)
+
+    def __str__(self):
+        return self.user.username

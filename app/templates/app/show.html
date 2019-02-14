@@ -148,6 +148,37 @@
 {% endif %}
     </div>
     </li>
+
+    <li>
+    <a class="expand">
+    <div class="right-arrow">+</div>
+<div class="icon london"></div>
+        <h2>Inventory</h2>
+    <span>Info About the User's used Inventory Status</span></a>
+
+    <div class="detail">
+        {% for x in users.inventory.all %}
+        {% if x.active %}
+            <p>Degree 8 sleeping bag: {{ x.degree_8_sleeping }}</p>
+            <p>degree_summer_sleeping: {{x.degree_summer_sleeping}}</p>
+            <p>kettle: {{x.kettle}}</p>
+            <p>stove: {{x.stove}}</p>
+            <p>plates: {{x.plates}}</p>
+            <p>ground_tent: {{x.ground_tent}}</p>
+            <p>charger: {{x.charger}}</p>
+            <p>chairs: {{x.chairs}}</p>
+            <p>foldable_table_and_chair: {{x.foldable_table_and_chair}}</p>
+            <p>canister: {{x.canister}}</p>
+            <p>
+                <a href="{% url 'equipment:inventory_update' pk=x.pk %}" class="btn btn-warning btn-sm">Update status</a>
+            </p>
+            {% endif %}
+        {% endfor %}
+    {% if icount < 1 %}
+        <a href="{% url 'equipment:inventory_create' pk=users.pk %}" class="btn btn-sm">create Status</a>
+{% endif %}
+    </div>
+    </li>
 </ul>
 <br>
 <br>

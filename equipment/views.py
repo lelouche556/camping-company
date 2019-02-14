@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
-from equipment.models import EquipmentCheck
+from equipment.models import EquipmentCheck, Inventory
 
 # Create your views here.
 
@@ -53,3 +53,59 @@ def equipment_update_check(request, pk):
 
     else:
         return render(request, "equipment/equipment_update_check.html", {"equipment": equipment})
+
+
+def inventory_create(request, pk):
+    users = User.objects.get(id=pk)
+    if request.method == "POST":
+        degree_8_sleeping = request.POST.get("degree_8_sleeping")
+        degree_summer_sleeping = request.POST.get("degree_summer_sleeping")
+        kettle = request.POST.get("kettle")
+        stove = request.POST.get("stove")
+        plates = request.POST.get("plates")
+        ground_tent = request.POST.get("ground_tent")
+        charger = request.POST.get("charger")
+        chairs = request.POST.get("chairs")
+        foldable_table_and_chair = request.POST.get("foldable_table_and_chair")
+        canister = request.POST.get("canister")
+
+        inventory = Inventory(user=users, degree_8_sleeping=degree_8_sleeping,
+                              degree_summer_sleeping=degree_summer_sleeping,
+                              kettle=kettle, stove=stove, plates=plates,
+                              ground_tent=ground_tent, charger=charger, chairs=chairs,
+                              foldable_table_and_chair=foldable_table_and_chair, canister=canister)
+        inventory.save()
+
+        return redirect("app:show_status", pk=users.pk)
+
+    else:
+        return render(request, "equipment/inventory_create.html")
+
+
+def inventory_update(request, pk):
+    users = User.objects.get(id=pk)
+    inventory = Inventory.objects.get(pk=pk)
+    print(inventory.chairs)
+    if request.method == "POST":
+        degree_8_sleeping = request.POST.get("degree_8_sleeping")
+        degree_summer_sleeping = request.POST.get("degree_summer_sleeping")
+        kettle = request.POST.get("kettle")
+        stove = request.POST.get("stove")
+        plates = request.POST.get("plates")
+        ground_tent = request.POST.get("ground_tent")
+        charger = request.POST.get("charger")
+        chairs = request.POST.get("chairs")
+        foldable_table_and_chair = request.POST.get("foldable_table_and_chair")
+        canister = request.POST.get("canister")
+
+        Inventory.objects.filter(id=pk).update(user=users, degree_8_sleeping=degree_8_sleeping,
+                                               degree_summer_sleeping=degree_summer_sleeping,
+                                               kettle=kettle, stove=stove, plates=plates,
+                                               ground_tent=ground_tent, charger=charger, chairs=chairs,
+                                               foldable_table_and_chair=foldable_table_and_chair, canister=canister)
+
+        return redirect("app:show_status", pk=users.pk)
+
+    else:
+        return render(request, "equipment/inventory_update.html", {"inventory": inventory})
+

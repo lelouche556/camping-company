@@ -2,6 +2,8 @@ import os
 from django.shortcuts import render, redirect, Http404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+
+from equipment.models import Inventory
 from trip.models import Trip
 from destination.models import Destination
 from django.contrib import messages
@@ -83,8 +85,10 @@ def show_status(request, pk):
         ecount = users.equipment_check.filter(user=users, active=True).count()
         vcount = users.vehicle_check.filter(user=users, active=True).count()
         tcount = users.tent_check.filter(user=users, active=True).count()
-        return render(request, "app/show.html", {"users": users,"ecount": ecount, "tcount": tcount,
-                                                 "vcount": vcount, "trcount": trcount})
+        icount = users.inventory.filter(user=users, active=True).count()
+        return render(request, "app/show.html", {"users": users, "ecount": ecount,
+                                                 "tcount": tcount, "vcount": vcount,
+                                                 "trcount": trcount, "icount": icount})
     else:
         return redirect("customer:user_page")
 
@@ -108,8 +112,9 @@ def represent(request):
                 return JsonResponse(data)
 
         trips = Trip.objects.all()
+        inventory = Inventory.objects.all()
         users = User.objects.all()
-        return render(request, "app/represent.html", {"trips": trips, "users": users})
+        return render(request, "app/represent.html", {"trips": trips, "users": users, "inventorys": inventory})
     else:
         return redirect("customer:user_page")
 
@@ -121,6 +126,10 @@ def destination(request):
 
 def faq(request):
     return render(request, "app/faq.html")
+
+
+def damage_charges(request):
+    return render(request, "app/damage_charges.html")
 
 
 def sitemap(request):

@@ -1,0 +1,71 @@
+{% include "snippets/base.html" %}
+{% load staticfiles %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/rest.css' %}">
+{% endblock %}
+{% block content_block %}
+<div class="container">
+<div class="row">
+    <div class="fix">
+   <form class="form-inline" method="POST" autocomplete="off">
+       {% csrf_token %}
+
+      <div class="col-md-3">
+        <label for="degree_8_sleeping">Sleeping bag Degree 8:</label>
+        <input id="degree_8_sleeping" class="form-control" type="Number" name="degree_8_sleeping">
+      </div>
+
+         <div class="col-md-3">
+            <label for="degree_summer_sleeping">Summer sleeping bag:</label>
+            <input id="degree_summer_sleeping" class="form-control" type="Number" name="degree_summer_sleeping">
+         </div>
+      <div class="col-md-3">
+            <label for="kettle">kettle:</label>
+            <input id="kettle" class="form-control" type="Number" name="kettle">
+      </div>
+      <div class="col-md-3">
+            <label for="stove">stove:</label>
+            <input id="stove" class="form-control" type="Number" name="stove">
+      </div>
+          <p>
+              <br>
+              <br>
+          </p>
+
+      <div class="col-md-3">
+         <label for="plates">plates:</label>
+         <input id="plates" class="form-control" type="Number" name="plates">
+      </div>
+
+      <div class="col-md-3">
+         <label for="ground_tent">ground_tent:</label>
+         <input id="ground_tent" class="form-control" type="Number" name="ground_tent">
+      </div>
+
+        <div class="col-md-3">
+         <label for="charger">charger:</label>
+         <input id="charger" class="form-control" type="Number" name="charger">
+      </div>
+
+      <div class="col-md-3">
+         <label for="chairs">chairs:</label>
+         <input id="chairs" class="form-control" type="Number" name="chairs">
+      </div>
+
+       <div class="col-md-3">
+         <label for="foldable_table_and_chair">foldable_table_and_chair:</label>
+         <input id="foldable_table_and_chair" class="form-control" type="Number" name="foldable_table_and_chair">
+      </div>
+
+        <div class="col-md-3">
+         <label for="canister">canister:</label>
+         <input id="canister" class="form-control" type="Number" name="canister">
+      </div>
+            <div class="col-md-3">
+                <button class="btn btn-secondary btn-block">Submit!</button>
+            </div>
+   </form>
+    </div>
+</div>
+</div>
+{% endblock %}
