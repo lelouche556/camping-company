@@ -94,13 +94,6 @@
 </div>
 <br>
 <script>
-    window.onload = function(){
-    $('.equipment').DataTable( {
-        "order": [[ 3, "desc" ]]
-    } );
-}
-</script>
-<script>
    window.onload = function(){
    var loc = window.location.origin
             $("#tests").submit(function(e) {
@@ -123,6 +116,9 @@
             },
         })
     })
+        $('.equipment').DataTable( {
+        "order": [[ 3, "desc" ]]
+    } );
     }
 </script>
 <script>

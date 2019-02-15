@@ -83,10 +83,9 @@ def inventory_create(request, pk):
 
 
 def inventory_update(request, pk):
-    users = User.objects.get(id=pk)
     inventory = Inventory.objects.get(pk=pk)
-    print(inventory.chairs)
     if request.method == "POST":
+        users = User.objects.get(pk=inventory.user.pk)
         degree_8_sleeping = request.POST.get("degree_8_sleeping")
         degree_summer_sleeping = request.POST.get("degree_summer_sleeping")
         kettle = request.POST.get("kettle")
