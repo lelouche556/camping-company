@@ -102,6 +102,7 @@
 </script>
 <script>
    window.onload = function(){
+   var loc = window.location.origin
             $("#tests").submit(function(e) {
         e.preventDefault();
         var t = $("input[name=csrfmiddlewaretoken]").val();
@@ -114,10 +115,10 @@
             },
             success: function(e) {
                 if (e.id === 0){
-                    alert("email not found")
+                    alert("Email not found")
                     }else{
                 ser = e.id.toString(10)
-                window.location = "http://127.0.0.1:8000/status/"+ser+"/show/"
+                window.location = loc + "/status/"+ser+"/show/"
             }
             },
         })
