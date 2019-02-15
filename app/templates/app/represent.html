@@ -101,7 +101,7 @@
 }
 </script>
 <script>
-    $(document).ready(function() {
+   window.onload = function(){
             $("#tests").submit(function(e) {
         e.preventDefault();
         var t = $("input[name=csrfmiddlewaretoken]").val();
@@ -122,7 +122,7 @@
             },
         })
     })
-    })
+    }
 </script>
 <script>
     var sum = 0
