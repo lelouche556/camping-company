@@ -1,13 +1,14 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from vehicle.models import VehicleCheck
-from trip.models import Trip
+from vehicle.models import VehicleDefinition
 
 # Create your views here.
 
 
 def vehicles(request):
-    return render(request, "vehicle/vehicles.html")
+    vehicle = VehicleDefinition.objects.filter(available=True)
+    return render(request, "vehicle/vehicles.html", {"vehicles": vehicle})
 
 
 def vehicle_info(request):

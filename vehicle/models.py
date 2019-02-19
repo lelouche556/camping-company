@@ -26,3 +26,18 @@ class VehicleCheck(models.Model):
 
     def __str__(self):
         return self.user.username
+
+
+class VehicleDefinition(models.Model):
+    car_name = models.CharField(max_length=64)
+    seat = models.CharField(max_length=12)
+    year = models.CharField(max_length=4)
+    available = models.BooleanField()
+    check_in_date = models.DateField(blank=True, null=True)
+    check_out_date = models.DateField(blank=True, null=True)
+    color = models.CharField(max_length=12)
+    car_image = models.ImageField(upload_to="cars")
+
+    def __str__(self):
+        return self.car_name
+
