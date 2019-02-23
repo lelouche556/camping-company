@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from vehicle.models import VehicleDefinition
 
 # Create your models here.
 
@@ -34,3 +36,14 @@ class Trip (models.Model):
     def __str__(self):
         return self.user.username
 
+
+def trip_post_save_receiver(sender, instance, *args, **kwargs):
+    vehicle = VehicleDefinition.objects.filter(car_name=instance.car_type)
+    if vehicle.count() < 1:
+        VehicleDefinition(check_in_date=instance.check_in_date,
+                          check_out_date=instance.check_out_date,
+                          car_name=instance.car_type).save()
+    print("ALl good")
+
+
+post_save.connect(trip_post_save_receiver, sender=Trip)

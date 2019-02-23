@@ -20,6 +20,7 @@
         <div class="col-6">
             <img src="{{vehicle.car_image.url}}">
             <h3>{{vehicle.car_name}}</h3>
+            <h3>{% if vehicle.available %} Available</h3>
             <div class="price">
                 <button onclick= "location.href = '{% url 'vehicle:vehicle_info' %}';" class="btn">More Info</button>
                 {% if user.is_superuser %}
@@ -30,6 +31,12 @@
                     <button onclick="location.href = '{% url 'register:signin' %}';" class="btn">Book Now</button>
                 {% endif %}
             </div>
+                {% else %}
+            <h3>Not Available</h3>
+            <div class="price">
+                <button onclick= "location.href = '{% url 'vehicle:vehicle_info' %}';" class="btn">More Info</button>
+            </div>
+            {% endif %}
         </div>
     <br>
     <br>

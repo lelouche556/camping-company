@@ -7,7 +7,7 @@ from vehicle.models import VehicleDefinition
 
 
 def vehicles(request):
-    vehicle = VehicleDefinition.objects.filter(available=True)
+    vehicle = VehicleDefinition.objects.filter()
     return render(request, "vehicle/vehicles.html", {"vehicles": vehicle})
 
 
