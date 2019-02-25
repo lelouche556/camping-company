@@ -1,7 +1,8 @@
 {% extends "snippets/base.html" %}
 
 {% load staticfiles %}
-    {% block css %}<link rel="stylesheet" href="{% static 'css/home/destination.css' %}">
+    {% block css %}
+    <link rel="stylesheet" href="{% static 'css/home/destination.css' %}">
     {% endblock %}
 
     {% block title %}
@@ -45,7 +46,7 @@
         <div class="carousel-item {% if forloop.counter == 1 %} active {% endif %}">
           <img style="" src="{{ x.images.url }}" width="1100" height="500">
           <div class="carousel-caption">
-              <p style="position: relative;"><a href="{% url 'customer:itinerary_detail_page' x.pk %}">{{x.place}}</a></p>
+              <p style="position: relative;"><a href="{% url 'destination:destination_detail_page' x.pk %}">{{x.place}}</a></p>
           </div>
         </div>
           {% endfor %}

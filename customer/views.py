@@ -67,14 +67,7 @@ def delete_itinerary(request):
 @login_required
 def trip_detail(request):
     users = User.objects.get(pk=request.user.pk)
-    return render(request, "customer/trip_status.html", {"users":users})
-
-
-def itinerary_detail_page(request, pk):
-    # Search.objects.new_or_get(request)
-    item = Destination.objects.get(pk=pk)
-    context = {"item": item}
-    return render(request, "customer/detail.html", context)
+    return render(request, "customer/trip_status.html", {"users": users})
 
 
 @login_required

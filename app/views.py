@@ -131,11 +131,6 @@ def represent(request):
         return redirect("customer:user_page")
 
 
-def destination(request):
-    items = Destination.objects.all()
-    return render(request, "app/destination.html", {"items": items})
-
-
 def faq(request):
     return render(request, "app/faq.html")
 

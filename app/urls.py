@@ -7,7 +7,6 @@ urlpatterns = [
     url(r'^$', views.home, name="home"),
     url(r'^about/$', views.about, name="about"),
     url(r'^findus/$', views.findus, name="findus"),
-    url(r'^destinations/$', views.destination, name="destination"),
     url(r'^represent/$', views.represent, name="represent"),
     url(r'^calender/$', views.calender, name="calender"),
     url(r'^status/(?P<pk>\d+)/show/$', views.show_status, name="show_status"),

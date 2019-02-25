@@ -29,7 +29,7 @@
           <div class="mo">
             <div class="info-bundle">
               <p class="title">{{item.place}}</p>
-              <a target="_blank" href="{% url 'customer:itinerary_detail_page' pk=item.pk %}">See more</a>
+              <a target="_blank" href="{% url 'destination:destination_detail_page' pk=item.pk %}">See more</a>
               <input hidden readonly="readonly" type="number" value="{{item.id}}">
               <br>
               <br>
