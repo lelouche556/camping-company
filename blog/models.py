@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.db.models.signals import pre_save
 
 # Create your models here.
 
@@ -15,9 +16,10 @@ class Blog(models.Model):
     created_date = models.DateField(auto_now_add=True)
     created_time = models.TimeField(auto_now_add=True)
     approved = models.BooleanField(default=False)
+    slug = models.SlugField(max_length=40, blank=True, null=True)
 
     def __str__(self):
-        return str(self.pk)
+        return self.slug
 
 
 class Image(models.Model):
@@ -45,3 +47,12 @@ class Form(models.Model):
 
     def __str__(self):
         return self.email
+
+
+def blog_pre_save_receiver(sender, instance, **kwargs):
+    print(instance)
+    title = instance.heading.split()
+    instance.slug = "-".join(title)
+
+
+pre_save.connect(blog_pre_save_receiver, sender=Blog)

@@ -6,7 +6,7 @@ app_name = "blog"
 
 urlpatterns = [
     url(r'^$', all_blog, name="all_blog"),
-    url(r'^(?P<pk>\d+)/detail/$', blog_detail, name="blog_detail"),
+    url(r'^(?P<slug>[\w-]+)/$', blog_detail, name="blog_detail"),
     url(r'^event/$', event, name="event"),
     url(r'^event_form/$', event_form, name="event_form"),
 
