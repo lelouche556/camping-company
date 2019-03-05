@@ -50,9 +50,9 @@ class Form(models.Model):
 
 
 def blog_pre_save_receiver(sender, instance, **kwargs):
-    print(instance)
     title = instance.heading.split()
-    instance.slug = "-".join(title)
+    instance.slug = "-".join(title).replace("?", "")
+    # slug cant have question marks boy
 
 
 pre_save.connect(blog_pre_save_receiver, sender=Blog)
