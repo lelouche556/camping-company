@@ -48,7 +48,7 @@
         <div class="carousel-item {% if forloop.counter == 1 %} active {% endif %}">
           <img style="" src="{{ x.images.url }}" width="1100" height="500">
           <div class="carousel-caption">
-              <p style="position: relative;"><a href="{% url 'destination:destination_detail_page' x.pk %}">{{x.place}}</a></p>
+              <p style="position: relative;"><a href="{% url 'destination:destination_detail_page' x.slug %}">{{x.place}}</a></p>
           </div>
         </div>
           {% endfor %}

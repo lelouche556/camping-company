@@ -9,9 +9,9 @@ def destination(request):
     return render(request, "destination/destination.html", {"items": items})
 
 
-def destination_detail_page(request, pk):
+def destination_detail_page(request, slug):
     # Search.objects.new_or_get(request)
-    item = Destination.objects.get(pk=pk)
+    item = Destination.objects.get(slug=slug)
     context = {"item": item}
     return render(request, "destination/detail.html", context)
 
