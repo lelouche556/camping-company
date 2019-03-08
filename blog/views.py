@@ -15,10 +15,9 @@ def all_blog(request):
 
 
 def blog_detail(request, slug):
-    blog_ = Blog.objects.get(slug=slug)
-    blog = Blog.objects.get(pk=blog_.pk)
+    blog = Blog.objects.get(slug=slug)
     # user = User.objects.get(pk=pk)
-    image_ = Image.objects.filter(blog=blog)
+    image_ = Image.objects.filter(blog=blog).order_by("pk")
     # for x in image_:
     #     print(type(x.blog_image2.url))
     return render(request, "blog/detail.html", {"blog": blog, "image": image_})
