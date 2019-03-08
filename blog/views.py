@@ -15,7 +15,8 @@ def all_blog(request):
 
 
 def blog_detail(request, slug):
-    blog = Blog.objects.get(slug=slug)
+    blog_ = Blog.objects.get(slug=slug)
+    blog = Blog.objects.get(blog_.pk)
     # user = User.objects.get(pk=pk)
     image_ = Image.objects.filter(blog=blog)
     # for x in image_:
