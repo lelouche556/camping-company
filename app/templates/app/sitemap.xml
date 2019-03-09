@@ -1,148 +1,155 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+
 <url>
   <loc>https://www.camping-co.com/</loc>
-  <lastmod>2019-03-08T05:34:33+00:00</lastmod>
+  <lastmod>2019-03-09T05:33:11+00:00</lastmod>
   <priority>1.00</priority>
 </url>
 <url>
   <loc>https://www.camping-co.com/about/</loc>
-  <lastmod>2019-03-08T05:34:33+00:00</lastmod>
+  <lastmod>2019-03-09T05:33:11+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://www.camping-co.com/destination/</loc>
-  <lastmod>2019-03-08T05:34:33+00:00</lastmod>
+  <lastmod>2019-03-09T05:33:11+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://www.camping-co.com/vehicles/vehicle_info/</loc>
-  <lastmod>2019-03-08T05:34:33+00:00</lastmod>
+  <lastmod>2019-03-09T05:33:11+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://www.camping-co.com/blog/</loc>
-  <lastmod>2019-03-08T05:34:33+00:00</lastmod>
+  <lastmod>2019-03-09T05:33:11+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://www.camping-co.com/blog/event/</loc>
-  <lastmod>2019-03-08T05:34:33+00:00</lastmod>
+  <lastmod>2019-03-09T05:33:11+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://www.camping-co.com/findus/</loc>
-  <lastmod>2019-03-08T05:34:33+00:00</lastmod>
+  <lastmod>2019-03-09T05:33:11+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://www.camping-co.com/accounts/login/</loc>
-  <lastmod>2019-03-08T05:34:33+00:00</lastmod>
+  <lastmod>2019-03-09T05:33:11+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://www.camping-co.com/faq/</loc>
-  <lastmod>2019-03-08T05:34:33+00:00</lastmod>
+  <lastmod>2019-03-09T05:33:11+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://www.camping-co.com/terms_condition/</loc>
-  <lastmod>2019-03-08T05:34:33+00:00</lastmod>
+  <lastmod>2019-03-09T05:33:11+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://www.camping-co.com/destination/White-water-village/</loc>
-  <lastmod>2019-03-08T05:34:33+00:00</lastmod>
+  <lastmod>2019-03-09T05:33:11+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.camping-co.com/destination/Umiam-Lake/</loc>
-  <lastmod>2019-03-08T05:34:33+00:00</lastmod>
+  <lastmod>2019-03-09T05:33:11+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.camping-co.com/destination/Mawphlang-Sacred-Groove/</loc>
-  <lastmod>2019-03-08T05:34:33+00:00</lastmod>
+  <lastmod>2019-03-09T05:33:11+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.camping-co.com/destination/Shnonpdeng-Dawki/</loc>
-  <lastmod>2019-03-08T05:34:33+00:00</lastmod>
+  <lastmod>2019-03-09T05:33:11+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.camping-co.com/destination/Krangsuri/</loc>
-  <lastmod>2019-03-08T05:34:33+00:00</lastmod>
+  <lastmod>2019-03-09T05:33:11+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.camping-co.com/destination/Living-Root-Bridge/</loc>
-  <lastmod>2019-03-08T05:34:33+00:00</lastmod>
+  <lastmod>2019-03-09T05:33:11+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.camping-co.com/destination/Waterfalls-of-Meghalaya/</loc>
-  <lastmod>2019-03-08T05:34:33+00:00</lastmod>
+  <lastmod>2019-03-09T05:33:11+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.camping-co.com/destination/Dainthlen-Falls/</loc>
-  <lastmod>2019-03-08T05:34:33+00:00</lastmod>
+  <lastmod>2019-03-09T05:33:11+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.camping-co.com/destination/Kynrem-Falls/</loc>
-  <lastmod>2019-03-08T05:34:33+00:00</lastmod>
+  <lastmod>2019-03-09T05:33:11+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.camping-co.com/destination/Lyngksiar-Waterfall/</loc>
-  <lastmod>2019-03-08T05:34:33+00:00</lastmod>
+  <lastmod>2019-03-09T05:33:11+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.camping-co.com/destination/Nohsngithiang-Falls/</loc>
-  <lastmod>2019-03-08T05:34:33+00:00</lastmod>
+  <lastmod>2019-03-09T05:33:11+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.camping-co.com/destination/Caving-in-Meghalaya/</loc>
-  <lastmod>2019-03-08T05:34:33+00:00</lastmod>
+  <lastmod>2019-03-09T05:33:11+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.camping-co.com/blog/My-first-overlanding-trip/</loc>
-  <lastmod>2019-03-08T05:34:33+00:00</lastmod>
+  <lastmod>2019-03-09T05:33:11+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.camping-co.com/blog/Top-10-places-in-Meghalaya/</loc>
-  <lastmod>2019-03-08T05:34:33+00:00</lastmod>
+  <lastmod>2019-03-09T05:33:11+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.camping-co.com/blog/Christmas-in-Meghalaya/</loc>
-  <lastmod>2019-03-08T05:34:33+00:00</lastmod>
+  <lastmod>2019-03-09T05:33:11+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.camping-co.com/blog/An-Overlanding-Trip/</loc>
-  <lastmod>2019-03-08T05:34:33+00:00</lastmod>
+  <lastmod>2019-03-09T05:33:11+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.camping-co.com/blog/What-is-overlanding/</loc>
-  <lastmod>2019-03-08T05:34:33+00:00</lastmod>
+  <lastmod>2019-03-09T05:33:11+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.camping-co.com/blog/event_form/</loc>
-  <lastmod>2019-03-08T05:34:33+00:00</lastmod>
+  <lastmod>2019-03-09T05:33:11+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.camping-co.com/damage_charges/</loc>
-  <lastmod>2019-03-08T05:34:33+00:00</lastmod>
+  <lastmod>2019-03-09T05:33:11+00:00</lastmod>
   <priority>0.64</priority>
 </url>
+
+
 </urlset>
