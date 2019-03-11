@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, Http404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from customer.models import Customer
 
 from equipment.models import Inventory
 from trip.models import Trip
@@ -18,6 +19,20 @@ def home(request):
 
 def about(request):
     return render(request, "app/about.html")
+
+
+def all_user(request):
+    users = User.objects.all()
+    return render(request, "app/all_user.html", {"users": users})
+
+
+def detail_user(request, pk):
+    user = User.objects.get(pk=pk)
+    try:
+        customer = Customer.objects.get(user=user)
+    except:
+        return render(request, "app/user_detail.html",)
+    return render(request, "app/user_detail.html", {"customer": customer})
 
 
 def terms_condition(request):

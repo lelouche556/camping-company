@@ -1,0 +1,40 @@
+{% extends "snippets/base.html" %}
+{% load staticfiles %}
+{% block css %}
+<!--<link rel="stylesheet" href="{% static 'css/home/about.css' %}">-->
+{% endblock %}
+
+
+{% block meta %}
+{% endblock %}
+
+{% block content_block %}
+<br/>
+    <h1 class="my-5" style="text-align: center;">Detail</h1>
+<div class="container">
+    {% if customer is not none %}
+<table class="table table-striped table-bordered equipment" style="width:100%">
+        <thead>
+            <tr>
+                <th>Phone</th>
+                <th>License Number</th>
+                <th>City</th>
+                <th>Address</th>
+            </tr>
+        </thead>
+        <tbody>
+                <tr>
+                <td>{{ customer.phone }}</td>
+                <td>{{ customer.license_number }}</td>
+                <td>{{ customer.city }}</td>
+                <td>{{ customer.address }}</td>
+                </tr>
+        </tbody>
+
+    </table>
+    {% else %}
+        <h2>User Has not Signed Up :(</h2>
+    {% endif %}
+    <a class="btn btn-secondary" href="{% url 'app:all_user' %}">Back to all User</a>
+</div>
+{% endblock %}
