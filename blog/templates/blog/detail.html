@@ -18,7 +18,7 @@
         <img class="image" src="{{blog.blog_cover_images.url}}">
         <div class="container my-5 mr-auto">
           {% for y in image %}
-            <p>{{y.content|linebreaks}}</p>
+            <p>{{y.content|linebreaks|safe}}</p>
             {% if not y.blog_image1.url.isempty %}
                 <img class="fix" src="{{y.blog_image1.url}}">
             {% else %}
