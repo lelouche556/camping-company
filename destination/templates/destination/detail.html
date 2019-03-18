@@ -5,10 +5,10 @@
     <link rel="canonical" href="https://www.camping-co.com">
     {% endblock %}
     {% block title %}
-        <title>Know more about the destination, the origin, activity etc.</title>
+        <title>{{item.place}}</title>
     {% endblock %}
     {% block meta %}
-<meta name="description" content="Camping company India is a 4x4 off-roading company that takes you for an off-road adventure of a lifetime across various regions of India. ">
+<meta name="description" content="{{item.description}}">
 <meta name="keywords" content="camping places detail, camping activities, camping origins, camping stay hours">
 {% endblock %}
     {% block content_block %}
@@ -20,7 +20,7 @@
                 </div>
             </div>
             <div class="col-md-12 col-lg-12">
-                <div class="co max_width">
+                <div class="co">
                     <h2>{{item.place}}</h2>
                     <p>{{item.description}}</p>
                     <p>Activities: {{item.activities}}</p>
