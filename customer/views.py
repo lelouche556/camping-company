@@ -56,11 +56,11 @@ def create_itinerary(request):
 def delete_itinerary(request):
     itinerary = Itinerary.objects.filter(user=request.user, active=True)
     if itinerary.count() == 0:
-        messages.warning(request,"No itinerary found create one")
+        messages.warning(request, "No itinerary found create one")
         return redirect("customer:user_page")
     elif itinerary.count() == 1:
         itinerary.delete()
-        messages.success(request,"successfully deleted")
+        messages.success(request, "successfully deleted")
     return redirect("customer:user_page")
 
 
