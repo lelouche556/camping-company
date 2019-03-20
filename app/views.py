@@ -81,6 +81,7 @@ def findus(request):
 
 @login_required
 def show_status(request, pk):
+    # put active everywhere not only in trip status because if not trip can be
     if request.user.is_superuser:
         users = User.objects.get(pk=pk)
         trcount = users.trip_check.filter(user=users, active=True).count()
@@ -113,8 +114,8 @@ def represent(request):
                 }
                 return JsonResponse(data)
 
-        trips = Trip.objects.all()
-        inventory = Inventory.objects.all()
+        trips = Trip.objects.filter(active=True)
+        inventory = Inventory.objects.filter(active=True)
         users = User.objects.all()
         return render(request, "app/represent.html", {"trips": trips, "users": users, "inventorys": inventory})
     else:

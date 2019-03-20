@@ -41,12 +41,11 @@ def equipment_update_check(request, pk):
         spare_tyre = request.POST.get("spare_tyre")
         shovel = request.POST.get("shovel")
         mug_bucket = request.POST.get("mug_bucket")
-        active = request.POST.get("active")
 
         EquipmentCheck.objects.filter(pk=pk).update(user=users, yellow_box=yellow_box,
                                                     kettel=kettel, utensils=utensils, stove=stove,
                                                     bbq_grill=bbq_grill, spare_tyre=spare_tyre,
-                                                    shovel=shovel, mug_bucket=mug_bucket, active=active
+                                                    shovel=shovel, mug_bucket=mug_bucket
                                                     )
 
         return redirect("app:show_status", pk=users.pk)
@@ -101,7 +100,8 @@ def inventory_update(request, pk):
                                                degree_summer_sleeping=degree_summer_sleeping,
                                                kettle=kettle, stove=stove, plates=plates,
                                                ground_tent=ground_tent, charger=charger, chairs=chairs,
-                                               foldable_table_and_chair=foldable_table_and_chair, canister=canister)
+                                               foldable_table_and_chair=foldable_table_and_chair, canister=canister,
+                                               )
 
         return redirect("app:show_status", pk=users.pk)
 

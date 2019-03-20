@@ -64,7 +64,6 @@ def vehicle_update_check(request, pk):
         horn = request.POST.get("horn")
         tyres = request.POST.get("tyres")
         leakage = request.POST.get("leakage")
-        active = request.POST.get("active")
 
         VehicleCheck.objects.filter(pk=pk).update(user=users, engine_oil_level=engine_oil_level,
                                                   brake_fluid_level=brake_fluid_level, water_level=water_level,
@@ -72,7 +71,7 @@ def vehicle_update_check(request, pk):
                                                   parking_brake=parking_brake, clutch_gearshift=clutch_gearshift,
                                                   burning_smell=burning_smell, steering_alignment=steering_alignment,
                                                   dashboard=dashboard, check_lights=check_lights, horn=horn, tyres=tyres,
-                                                  leakage=leakage, active=active)
+                                                  leakage=leakage)
 
         return redirect("app:show_status", pk=users.pk)
 

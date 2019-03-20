@@ -43,7 +43,5 @@ def trip_post_save_receiver(sender, instance, *args, **kwargs):
         VehicleDefinition(check_in_date=instance.check_in_date,
                           check_out_date=instance.check_out_date,
                           car_name=instance.car_type).save()
-    print("ALl good")
-
 
 post_save.connect(trip_post_save_receiver, sender=Trip)

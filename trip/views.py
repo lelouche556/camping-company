@@ -1,5 +1,9 @@
 from django.shortcuts import render, redirect
 from trip.models import Trip
+from tent.models import TentCheck
+from vehicle.models import VehicleCheck
+from equipment.models import EquipmentCheck, Inventory
+from itinerary.models import Itinerary
 from django.contrib.auth.models import User
 from django.utils.dateparse import parse_date, parse_time
 
@@ -50,13 +54,32 @@ def trip_update(request, pk):
         trip_status = request.POST.get("tripstatus")
         car_type = request.POST.get("cartype")
         guest = request.POST.get("guests")
-        active = request.POST.get("active")
         Trip.objects.filter(pk=pk).update(check_in_date=check_in_date, check_out_date=check_out_date,
                                           check_in_time=check_in_time, check_out_time=check_out_time,
                                           duration_of_trip=duration_of_trip, amount_paid=amount_paid,
                                           destination=destination, residence_address=residence_address,
                                           trip_status=trip_status, car_type=car_type, user=users,
-                                          guest=guest, active=active)
+                                          guest=guest)
+        trip = Trip.objects.filter(user=users).last()
+        tent = TentCheck.objects.filter(user=users).last()
+        vehicle = VehicleCheck.objects.filter(user=users).last()
+        equipment = EquipmentCheck.objects.filter(user=users).last()
+        inventory = Inventory.objects.filter(user=users).last()
+        # itinerary = Itinerary.objects.filter(user=users).last()
+
+        if trip.trip_status == "Ended":
+            trip.active = False
+            tent.active = False
+            vehicle.active = False
+            equipment.active = False
+            inventory.active = False
+            # itinerary.active = False
+            # itinerary.save() problem when itinerary not created let it be like this for now
+            trip.save()
+            tent.save()
+            vehicle.save()
+            equipment.save()
+            inventory.save()
         return redirect("app:show_status", pk=users.pk)
 
     else:
