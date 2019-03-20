@@ -60,6 +60,7 @@ def trip_update(request, pk):
                                           destination=destination, residence_address=residence_address,
                                           trip_status=trip_status, car_type=car_type, user=users,
                                           guest=guest)
+
         trip = Trip.objects.filter(user=users).last()
         tent = TentCheck.objects.filter(user=users).last()
         vehicle = VehicleCheck.objects.filter(user=users).last()
