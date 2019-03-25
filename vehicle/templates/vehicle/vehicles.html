@@ -18,7 +18,7 @@
     <div class="row">
     {% for vehicle in vehicles %}
         <div class="col-6">
-            <img src="{{vehicle.car_image.url}}">
+            <img class="imgg" src="{{vehicle.car_image.url}}">
             <h3>{{vehicle.car_name}}</h3>
             <h3>{% if vehicle.available %} Available</h3>
             <div class="price">

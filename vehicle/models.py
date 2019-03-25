@@ -44,7 +44,7 @@ class VehicleDefinition(models.Model):
 
 
 def vehicle_pre_save_receiver(sender, instance, *args, **kwargs):
-    print(instance.check_in_date)
+    pass
 
 
 pre_save.connect(vehicle_pre_save_receiver, sender=VehicleDefinition)
