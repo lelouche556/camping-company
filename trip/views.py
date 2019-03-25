@@ -3,7 +3,6 @@ from trip.models import Trip
 from tent.models import TentCheck
 from vehicle.models import VehicleCheck
 from equipment.models import EquipmentCheck, Inventory
-from itinerary.models import Itinerary
 from django.contrib.auth.models import User
 from django.utils.dateparse import parse_date, parse_time
 
@@ -75,7 +74,8 @@ def trip_update(request, pk):
             equipment.active = False
             inventory.active = False
             # itinerary.active = False
-            # itinerary.save() problem when itinerary not created let it be like this for now
+            # itinerary.save() problem when itinerary not created
+            # let it be like this for now ye error sab mein aayega must use try except
             trip.save()
             tent.save()
             vehicle.save()
