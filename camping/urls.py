@@ -33,6 +33,8 @@ urlpatterns = [
     url(r'^blog/', include("blog.urls", namespace="blog")),
     url(r'^referral/', include("referral.urls", namespace="referral")),
     url(r'^destination/', include("destination.urls", namespace="destination")),
+    url(r'^payment/', include("payment.urls", namespace="payment")),
+
 ]
 
 if settings.DEBUG:

@@ -5,13 +5,13 @@ from django.contrib.auth.models import User
 from customer.models import Customer
 from django.contrib import messages
 from referral.models import Referral
+from payment.models import BillingProfile
 from app.utils import *
 
 # Create your views here.
 
 
 def signup(request):
-
     if request.method == "POST":
         username = request.POST.get("username")
         email = request.POST.get("email")
@@ -25,17 +25,22 @@ def signup(request):
             return redirect("register:signin")
 
         if code is "":
+
+            '''If referral code is empty'''
             user = User.objects.create_user(username=username, email=email)
             Referral(user=user).save()
             user.set_password(password1)
             user.save()
             login(request, user)
+            BillingProfile(user=user, email=email).save()
             return redirect("register:welcome")
         try:
             ref_user = Referral.objects.get(slug=code)
         except:
             messages.warning(request, "Wrong referral code")
             return redirect("register:signin")
+
+        '''If referral code is not empty'''
         user = User.objects.create_user(username=username, email=email)
         referral = Referral(user=user, referred_by=ref_user.user, referred=True)
         ref_user.referred_users.add(user)
@@ -44,6 +49,7 @@ def signup(request):
         referral.save()
         ref_user.save()
         login(request, user)
+        BillingProfile(user=user, email=email).save()
         message_to_customer(email)
 
         return redirect("register:welcome")
