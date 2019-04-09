@@ -26,7 +26,7 @@
                 {% if user.is_superuser %}
                     <!--<p>What are you doing here</p>-->
                 {% elif user.is_authenticated %}
-                    <button onclick="location.href = '{% url 'customer:user_page' %}';" class="btn">Book Now</button>
+                    <button onclick="location.href = '{% url 'payment:payment' %}';" class="btn">Book Now</button>
                 {% else %}
                     <button onclick="location.href = '{% url 'register:signin' %}';" class="btn">Book Now</button>
                 {% endif %}

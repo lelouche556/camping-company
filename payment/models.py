@@ -35,7 +35,7 @@ class BillingProfile(models.Model):
     def charge(self, order_obj, card=None):
         return Charge.objects.do(self, order_obj, card)
 
-    # objects = BillingProfileManager()
+    objects = BillingProfileManager()
 
 
 def billing_profile_created_receiver(sender, instance, *args, **kwargs):
@@ -94,20 +94,19 @@ class Card(models.Model):
 
 
 class ChargeManager(models.Manager):
-    def do(self, billing_profile, order_obj, card=None):  # Charge.objects.do()
+    def do(self, billing_profile, total, card=None):  # Charge.objects.do()
         card_obj = card
         if card_obj is None:
             cards = billing_profile.card_set.filter(default=True)  # card_obj.billing_profile
             if cards.exists():
-                card_obj = cards.first()
+                card_obj = cards.last()
         if card_obj is None:
             return False, "No cards available"
         c = stripe.Charge.create(
-            amount=int(order_obj.total * 100),  # 39.19 --> 3919
-            currency="usd",
+            amount=total * 100,  # 39.19 --> 3919
+            currency="inr",
             customer=billing_profile.customer_id,
             source=card_obj.stripe_id,
-            metadata={"order_id": order_obj.order_id},
         )
         new_charge_obj = self.model(
             billing_profile=billing_profile,

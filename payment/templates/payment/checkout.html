@@ -11,7 +11,7 @@
         <br>
         <div class="col-10 col-md-6 mx-auto">
         <h1 class="my-3">Add Payment Method</h1>
-        <form action="{% url 'payment:add_card' %}" method="post" id="payment-form" data-token="{{ publish_key }}">{% csrf_token %}
+        <form action="{% url 'payment:checkout' %}" method="post" id="payment-form" data-token="{{ publish_key }}">{% csrf_token %}
             <div class="form-row">
             <div id="card-element" class="form-control">
               <!-- A Stripe Element will be inserted here. -->
@@ -38,7 +38,6 @@ var elements = stripe.elements();
 var style = {
   base: {
     color: '#32325d',
-    fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
     fontSmoothing: 'antialiased',
     fontSize: '16px',
     '::placeholder': {
@@ -83,11 +82,21 @@ form.addEventListener('submit', function(event) {
     }
   });
 });
+    function redirectToNext(nextPath, timeoffset) {
+        // body...
+        if (nextPath){
+        setTimeout(function(){
+                    window.location.href = nextPath
+                }, timeoffset)
+        }
+    }
     function stripeTokenHandler(token){
-        console.log(token.id)
-        var paymentMethodEndpoint = "{% url 'payment:add_card' %}"
+        var paymentMethodEndpoint = "{% url 'payment:checkout' %}"
+        var nextUrl = "/payment"
+        var t = $("input[name=csrfmiddlewaretoken]").val();
         var data = {
-            'token': token.id
+            'token': token.id,
+            'csrfmiddlewaretoken': t
         }
         $.ajax({
             data: data,

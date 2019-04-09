@@ -1,8 +1,9 @@
 from django.conf.urls import url
-from payment.views import add_card
+from payment.views import cart, checkout
 
 app_name = "payment"
 
 urlpatterns = [
-    url(r'^$', add_card, name="add_card"),
+    url(r'^$', cart, name="payment"),
+    url(r'^checkout/$', checkout, name="checkout"),
 ]
