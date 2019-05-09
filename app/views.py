@@ -1,9 +1,8 @@
 from django.shortcuts import render, redirect, Http404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from customer.models import Customer
-
 from equipment.models import Inventory
+from customer.models import Customer
 from trip.models import Trip
 from django.contrib import messages
 from django.http import JsonResponse
@@ -31,7 +30,13 @@ def detail_user(request, pk):
     try:
         customer = Customer.objects.get(user=user)
     except:
-        return render(request, "app/user_detail.html",)
+        return render(request, "app/user_detail.html")
+
+    if request.is_ajax():
+        lead_status = request.POST.get("lead_status")
+        Customer.objects.filter(user=user).update(
+            lead_status=lead_status)
+        return JsonResponse({"data": lead_status})
     return render(request, "app/user_detail.html", {"customer": customer})
 
 

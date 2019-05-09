@@ -33,6 +33,7 @@ def signup(request):
             user.save()
             login(request, user)
             BillingProfile(user=user, email=email).save()
+            Customer(user=user).save()
             return redirect("register:welcome")
         try:
             ref_user = Referral.objects.get(slug=code)
@@ -50,6 +51,7 @@ def signup(request):
         ref_user.save()
         login(request, user)
         BillingProfile(user=user, email=email).save()
+        Customer(user=user).save()
         message_to_customer(email)
 
         return redirect("register:welcome")
@@ -106,10 +108,10 @@ def welcome(request):
         user.last_name = lname
         user.number = number
         user.save()
-        Customer.objects.get_or_create(phone=number, user=user, city=city,
-                                       address=address, nickname=nickname,
-                                       license_number=license_number, about=about,
-                                       terms_condition=True)
+        Customer.objects.filter(user=user).update(phone=number, city=city,
+                                                  address=address, nickname=nickname,
+                                                  license_number=license_number, about=about,
+                                                  terms_condition=True)
         message_to_company(email=user.email, message="someone signed up yay!! :)",
                            name=fname, phone=number,
                            subject="God Damn someone signed up")
