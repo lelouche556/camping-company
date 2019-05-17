@@ -12,9 +12,11 @@ trip_status = (
 )
 
 car_type = (
-    ("Thar", "Thar"),
-    ("Xenon 2014", "Xenon 2014"),
-    ("Xenon 2018", "Xenon 2018")
+    ("As 12u 8992", "As 12u 8992"),  # Thar
+    ("Ar 01f 6925", "Ar 01f 6925"),  # 1 white
+    ("As 12u 8992", "As 12u 8992"),  # Black
+    ("Ml 10b 8441", "Ml 10b 8441"),  # 2 white
+
 )
 
 
