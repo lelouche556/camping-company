@@ -1,28 +1,85 @@
-from django.shortcuts import render, HttpResponse, redirect
-from payment.models import BillingProfile, Card, Charge
+import hashlib
+from random import randint
+from django.views.decorators.csrf import csrf_protect, csrf_exempt
+from django.shortcuts import render, redirect
 from django.http import JsonResponse
-import stripe
+from paywix.payu import PAYU
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+from payment.models import Payment
+
 
 # Create your views here.
 
-stripe.api_key = "sk_test_t8IRzVYaOAkgHniaZHzr4Bb9"
-STRIPE_PUB_KEY = "pk_test_nJn74rHFJDwtw4Tb62fq5sqI"
+# Import Payu from PAYWIX
+payu = PAYU()
 
 
+@login_required
 def checkout(request):
-    if request.method == "POST" and request.is_ajax():
-        billing_profile, billing_profile_created = BillingProfile.objects.new_or_get(request)
-        if not billing_profile:
-            return HttpResponse({"message": "Cannot find this user"}, status_code=401)
-        token = request.POST.get("token")
-        if token is not None:
-            Card.objects.add_new(billing_profile, token)
-            Charge.objects.do(billing_profile=billing_profile, total=round(float(request.POST.get("total")),2))
-            return JsonResponse({"message": "Success! Your card was added."})
-        else:
-            return redirect("/")
-    return render(request, "payment/checkout.html", {"publish_key": STRIPE_PUB_KEY})
+    user = User.objects.get(pk=request.user.pk)
+    payment = Payment.objects.get(user=user)
+    hash_object = hashlib.sha256(b'randint(0,20)')
+    txnid = hash_object.hexdigest()[0:20]
+    payment_data = {
+        'txnid': txnid,
+        'amount': str(payment.amount),
+        'firstname': payment.firstname,
+        'email': payment.email,
+        'phone': payment.phone,
+        'productinfo': 'car book'
+    }
+    payment.txnid = txnid
+    payment.productinfo = 'car book'
+    payment.save()
+    payu_data = payu.initate_transaction(payment_data)
+    if request.is_ajax():
+        request.POST.get("total")
+        return JsonResponse(payu_data)
+    return render(request, "payment/checkout.html", {"posted": payu_data})
 
 
+# Success URL
+@csrf_protect
+@csrf_exempt
+def payment_success(request):
+    # Payu will return response success data with hash value
+    # Need to verify the data with payu check_hash
+    print(request.user.is_authenticated)
+    try:
+        payu_success_data = payu.check_hash(dict(request.POST))
+        status = payu_success_data["data"]["status"]
+        txn = payu_success_data["data"]["txnid"]
+        amount = payu_success_data["data"]["amount"]
+        success = {
+            "status": status,
+            "txnid": txn,
+            "amount": amount
+        }
+        return render(request, "payment/success.html", success)
+    except:
+        return redirect("app:home")
+
+
+# Failure URL
+@csrf_protect
+@csrf_exempt
+def payment_failure(request):
+
+    payu_failure_data = payu.check_hash(dict(request.POST))
+
+    return render(request, "payment/failure.html")
+
+
+@login_required
 def cart(request):
+    user = User.objects.get(pk=request.user.pk)
+    payment = Payment.objects.get(user=user)
+    # if not request.POST.get("status"):
+    #     return redirect("app:home")
+    if request.is_ajax():
+        amount = round(float(request.POST.get("total")))
+        payment.amount = amount
+        payment.save()
+        return JsonResponse({"success": "success"})
     return render(request, "payment/cart.html")

@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.db.models.signals import pre_save
 
 # Create your models here.
 
@@ -38,13 +37,7 @@ class VehicleDefinition(models.Model):
     check_out_date = models.DateField(blank=True, null=True)
     color = models.CharField(max_length=12, blank=True, null=True)
     car_image = models.ImageField(upload_to="cars", blank=True, null=True)
+    duration = models.IntegerField()
 
     def __str__(self):
         return self.car_name
-
-
-def vehicle_pre_save_receiver(sender, instance, *args, **kwargs):
-    pass
-
-
-pre_save.connect(vehicle_pre_save_receiver, sender=VehicleDefinition)

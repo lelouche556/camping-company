@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'customer',
     'trip',
     'vehicle',
+    'paywix',
     'tent',
     'equipment',
     'search',
@@ -152,8 +153,6 @@ MEDIA_ROOT = MEDIA_DIR
 
 STATIC_ROOT = STATIC_ROOT_DIR
 
-LOGIN_URL = "/accounts/login/"
-
 
 from camping.aws.conf import *
 
@@ -176,3 +175,10 @@ SECURE_FRAME_DENY = True
 # }
 #
 # CACHE_MIDDLEWARE_SECONDS = 1036800
+
+PAYU_MERCHANT_KEY = os.environ.get("Merchant"),  # Merchant key from payu
+PAYU_KEY = os.environ.get("Pay_Key"), #"mPXEdCTk"
+PAYU_SALT = os.environ.get("Salt"),  # Merchant salt from payu
+PAYMENT_MODE ='TEST'
+PAYU_SUCCESS_URL = 'http://127.0.0.1:8000/cart/success/'  # success url
+PAYU_FAILURE_URL = 'http://127.0.0.1:8000/cart/failure/'  # failure url

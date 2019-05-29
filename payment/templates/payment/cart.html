@@ -9,7 +9,7 @@
 <br>
 <div class="shopping-cart my-5 container">
 <h1>Shopping Cart</h1>
-<form method="POST">{% csrf_token %}
+<form id="payment-form" method="POST">{% csrf_token %}
 <div class="shopping-cart">
 
   <div class="column-labels">
@@ -23,15 +23,15 @@
   <hr>
   <div class="product">
     <div class="product-image">
-      <img src="https://s.cdpn.io/3/dingo-dog-bones.jpg">
+      <img src="{{vehicle.car_image.url}}">
     </div>
     <div class="product-details">
-      <div class="product-title">Dingo Dog Bones</div>
-      <p class="product-description">The best dog bones of all time. Holy crap. Your dog will be begging for these things! I got curious once and ate one myself. I'm a fan.</p>
+      <div class="product-title">Car (2999 per night) Base price (350 per preson after 2)</div>
+      <p class="product-description"></p>
     </div>
-    <div class="product-price">12.99</div>
+    <div class="product-price">350</div>
     <div class="product-quantity">
-      <input type="number" value="0" min="0">
+      <input quant="111" type="number" value="2" min="2">
     </div>
 
     <div class="product-line-price">0</div>
@@ -39,13 +39,93 @@
 <hr>
   <div class="product">
     <div class="product-image">
-      <img src="https://s.cdpn.io/3/large-NutroNaturalChoiceAdultLambMealandRiceDryDogFood.png">
+      <img src="">
     </div>
     <div class="product-details">
-      <div class="product-title">Nutro™ Adult Lamb and Rice Dog Food</div>
-      <p class="product-description">Who doesn't like lamb and rice? We've all hit the halal cart at 3am while quasi-blackout after a night of binge drinking in Manhattan. Now it's your dog's turn!</p>
+      <div class="product-title">Campkit (Sleeping bags, kettle, saucepan, charcoal stove)</div>
+      <p class="product-description"></p>
     </div>
-    <div class="product-price">45.99</div>
+    <div class="product-price">1500</div>
+    <div class="product-quantity">
+      <input type="number" value="0" min="0">
+    </div>
+
+    <div class="product-line-price">0</div>
+  </div>
+  <hr>
+  <div class="product">
+    <div class="product-image">
+      <img src="">
+    </div>
+    <div class="product-details">
+      <div class="product-title">Gas stove</div>
+      <p class="product-description"></p>
+    </div>
+    <div class="product-price">1000</div>
+    <div class="product-quantity">
+      <input type="number" value="0" min="0">
+    </div>
+
+    <div class="product-line-price">0</div>
+  </div>
+  <hr>
+  <div class="product">
+    <div class="product-image">
+      <img src="">
+    </div>
+    <div class="product-details">
+      <div class="product-title">Solar power station for charging needs</div>
+      <p class="product-description"></p>
+    </div>
+    <div class="product-price">500</div>
+    <div class="product-quantity">
+      <input type="number" value="0" min="0">
+    </div>
+
+    <div class="product-line-price">0</div>
+  </div>
+  <hr>
+  <div class="product">
+    <div class="product-image">
+      <img src="">
+    </div>
+    <div class="product-details">
+      <div class="product-title">Torch</div>
+      <p class="product-description"></p>
+    </div>
+    <div class="product-price">50</div>
+    <div class="product-quantity">
+      <input type="number" value="0" min="0">
+    </div>
+
+    <div class="product-line-price">0</div>
+  </div>
+  <hr>
+  <div class="product">
+    <div class="product-image">
+      <img src="">
+    </div>
+    <div class="product-details">
+      <div class="product-title">Camping Chair</div>
+      <p class="product-description"></p>
+    </div>
+    <div class="product-price">50</div>
+    <div class="product-quantity">
+      <input type="number" value="0" min="0">
+    </div>
+
+    <div class="product-line-price">0</div>
+  </div>
+  <hr>
+  <div class="product">
+    <div class="product-image">
+      <img src="">
+    </div>
+    <div class="product-details">
+      <div class="product-title">Table</div>
+      <p class="product-description"></p>
+    </div>
+    <div class="product-price">1000</div>
     <div class="product-quantity">
       <input type="number" value="0" min="0">
     </div>
@@ -56,19 +136,19 @@
   <div class="totals">
     <div class="totals-item">
       <label>Subtotal</label>
-      <div class="totals-value" id="cart-subtotal">0</div>
+      <div class="totals-value" id="cart-subtotal">2999</div>
     </div>
     <div class="totals-item">
-      <label>Tax (5%)</label>
-      <div class="totals-value" id="cart-tax">0</div>
+      <label>Tax</label>
+      <div class="totals-value" id="cart-tax">539.82</div>
     </div>
     <div class="totals-item">
-      <label>Shipping</label>
-      <div class="totals-value" id="cart-shipping">0</div>
+      <label>Convenience charge</label>
+      <div class="totals-value" id="cart-shipping">59.98</div>
     </div>
     <div class="totals-item totals-item-total">
       <label>Grand Total</label>
-      <div class="totals-value" id="cart-total">0</div>
+      <div class="totals-value" id="cart-total">3598.8</div>
     </div>
   </div>
       <button type="button" class="checkout">Checkout</button>
@@ -78,10 +158,23 @@
 <br>
 <script>
   window.onload = function(){
+  let duration = localStorage.getItem("duration")
 var totals = 0;
-var taxRate = 0.05;
-var shippingRate = 15.00;
+var taxRate = 0.18;
+var shippingRate = .021;
 var fadeTime = 300;
+
+
+if (duration >= 4){
+$('.product-price')[2].textContent = 2000
+}
+
+var pri = 2999 * parseInt(localStorage.getItem("duration"));
+var tot = ((.18 * pri) + (.02 * pri) + pri)
+$(".totals-value")[0].textContent = pri
+$(".totals-value")[1].textContent = (.18 * pri).toFixed(2);
+$(".totals-value")[2].textContent = (.021 * pri).toFixed(2);
+$(".totals-value")[3].textContent = tot
 
 
 /* Assign actions */
@@ -94,10 +187,11 @@ $('.product-removal button').click( function() {
 });
 
 
+
 /* Recalculate cart */
 function recalculateCart()
 {
-  var subtotal = 0;
+  var subtotal = 2999 * parseInt(localStorage.getItem("duration"));
 
   /* Sum up row totals */
   $('.product').each(function () {
@@ -106,8 +200,8 @@ function recalculateCart()
 
   /* Calculate totals */
   var tax = subtotal * taxRate;
-  var shipping = (subtotal > 0 ? shippingRate : 0);
-  var total = subtotal; /*+ tax + shipping;*/
+  var shipping = subtotal * shippingRate;
+  var total = subtotal + tax + shipping; /*+ tax + shipping;*/
   totals = total
 
   /* Update totals display */
@@ -133,6 +227,14 @@ function updateQuantity(quantityInput)
   var productRow = $(quantityInput).parent().parent();
   var price = parseFloat(productRow.children('.product-price').text());
   var quantity = $(quantityInput).val();
+  if ($(quantityInput).attr("quant")){
+  if (quantity <= 2){
+    quantity = 0;
+  } else {
+    quantity -= 2
+    }
+}
+
   var linePrice = price * quantity;
 
   /* Update line price display and recalc cart totals */
@@ -145,9 +247,12 @@ function updateQuantity(quantityInput)
   });
   }
     $("button").click(function(){
-              var paymentForm = $("#payment-form")
-        var paymentMethodEndpoint = "{% url 'payment:checkout' %}"
+        var paymentForm = $("#payment-form")
+        var paymentMethodEndpoint = "{% url 'payment:payment' %}"
         var t = $("input[name=csrfmiddlewaretoken]").val();
+        if (totals == 0){
+          totals = tot
+        }
         var data = {
             "total": totals,
             'csrfmiddlewaretoken': t
@@ -157,7 +262,7 @@ function updateQuantity(quantityInput)
             url: paymentMethodEndpoint,
             method: "POST",
             success: function(data){
-                window.location.href = paymentMethodEndpoint
+                window.location.href = "{% url 'payment:checkout' %}"
             },
             error: function(error){
                 console.log(error)

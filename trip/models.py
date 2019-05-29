@@ -1,7 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.db.models.signals import post_save
-from vehicle.models import VehicleDefinition
 
 # Create your models here.
 
@@ -12,10 +10,10 @@ trip_status = (
 )
 
 car_type = (
-    ("As 12u 8992", "As 12u 8992"),  # Thar
-    ("Ar 01f 6925", "Ar 01f 6925"),  # 1 white
-    ("As 12u 8992", "As 12u 8992"),  # Black
-    ("Ml 10b 8441", "Ml 10b 8441"),  # 2 white
+    ("As 12u 8992", "As 12u 8992"),  # thar
+    ("Ar 01f 6925", "Ar 01f 6925"),  # first white
+    ("ML 10b 7655", "Ml 10b 7655"),  # Black
+    ("Ml 10b 8441", "Ml 10b 8441"),  # Unicorn
 
 )
 
@@ -39,11 +37,12 @@ class Trip (models.Model):
         return self.user.username
 
 
-def trip_post_save_receiver(sender, instance, *args, **kwargs):
-    vehicle = VehicleDefinition.objects.filter(car_name=instance.car_type)
-    if vehicle.count() < 1:
-        VehicleDefinition(check_in_date=instance.check_in_date,
-                          check_out_date=instance.check_out_date,
-                          car_name=instance.car_type).save()
-
-post_save.connect(trip_post_save_receiver, sender=Trip)
+# def trip_post_save_receiver(sender, instance, *args, **kwargs):
+#     vehicle = VehicleDefinition.objects.filter(car_name=instance.car_type)
+#     if vehicle.count() < 1:
+#         VehicleDefinition(check_in_date=instance.check_in_date,
+#                           check_out_date=instance.check_out_date,
+#                           car_name=instance.car_type).save()
+#
+#
+# post_save.connect(trip_post_save_receiver, sender=Trip)

@@ -22,9 +22,10 @@
 
 {% block content_block %}
 <br>
+<br>
         {% if messages %}
             {% for message in messages %}
-                <div class="my-4 alert alert-{{message.tags}}" style="text-align: center">
+                <div class="my-2 alert alert-{{message.tags}}" style="text-align: center">
                     <strong>{{message}}</strong>
                 </div>
             {% endfor %}
@@ -36,7 +37,7 @@
     </video>
 </section>
 
-  <form class="form-inline" action="{% url 'vehicle:vehicles' %}" method="POST" autocomplete="off">{% csrf_token %}
+  <form class="form-inline" action="{% url 'vehicle:vehicles' %}" method="GET" autocomplete="off">
     <div id="apple" class="row no-gutters">
         <div class="col-md-3 col-sm-12">
             <div class="form-group">
@@ -109,11 +110,10 @@
      timepicker:false,
      format:'Y-m-d'
      });
-     }
-</script>
-<script>
-window.onload = function(){
-   (function ($) {
+
+
+    // the counter below home page
+        (function ($) {
 	$.fn.countTo = function (options) {
 		options = options || {};
 
@@ -203,6 +203,7 @@ jQuery(function ($) {
 	$this.countTo(options);
   }
 });
-}
+     }
+
 </script>
 {% endblock %}

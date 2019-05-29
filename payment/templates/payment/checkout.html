@@ -1,126 +1,56 @@
 {% extends "snippets/base.html" %}
 {% load staticfiles %}
     {% block css %}
-        <link rel="stylesheet" href="{% static 'css/customer/add_card.css' %}">
+        <link rel="stylesheet" href="{% static 'css/customer/checkout.css' %}">
     {% endblock %}
 
-
     {% block content_block %}
-        <br>
-        <br>
-        <br>
-        <div class="col-10 col-md-6 mx-auto">
-        <h1 class="my-3">Add Payment Method</h1>
-        <form action="{% url 'payment:checkout' %}" method="post" id="payment-form" data-token="{{ publish_key }}">{% csrf_token %}
-            <div class="form-row">
-            <div id="card-element" class="form-control">
-              <!-- A Stripe Element will be inserted here. -->
-            </div>
+  <head onload="submitPayuForm()">
+  <script type="text/javascript">
+    var hash = "{{ hashh }}";
+    function submitPayuForm() {
+      if(hash == '') {
+        return;
+      }
+      var payuForm = document.forms.payuForm;
+      payuForm.submit();
+    }
+  </script>
+  </head>
+<div class="peeek-loading">
+  <ul>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+  </ul>
+</div>
 
-            <!-- Used to display form errors. -->
-            <div id="card-errors" role="alert"></div>
-          </div>
-            <button class="btn btn-secondary my-3">Submit Payment</button>
-        </form>
-        </div>
+      <form class action={{ posted.action }} method="post" name="payuForm">
+        <input type="hidden" name="key" value="{{posted.key}}" />
+        <input type="hidden" name="hash_string" value="{{ posted.hash_string }}" />
+        <input type="hidden" name="hash" value="{{ posted.hashh }}"/>
+        <input type="hidden" name="posted" value="{{ posted }}"/>
+        <input type="hidden" name="txnid" value="{{ posted.txnid }}" />
+        <input type="hidden" name="amount" value="{{ posted.amount|default:'' }}" />
+        <input type="hidden" name="firstname" id="firstname" value="{{ posted.firstname|default:'' }}" />
+        <input type="hidden" name="email" id="email" value="{{ posted.email|default:'' }}" />
+        <input type="hidden" name="phone" value="{{ posted.phone|default:'' }}" />
+        <input type="hidden" name="productinfo" value="{{ posted.productinfo|default:'' }}">
+        <input type="hidden" name="surl" value="{{ posted.surl }}" size="64">
+        <input type="hidden" name="furl" value="{{ posted.furl }}" size="64">
+        <input type="hidden" name="service_provider" value="{{posted.service_provider}}" size="64" />
+        <input id="imp" type="submit" value="Submit" />
+    </form>
 <script>
 window.onload = function(){
-// Create a Stripe client.
-var paymentForm = $("#payment-form")
-var pubKey = paymentForm.attr("data-token")
-var stripe = Stripe(pubKey);
-
-// Create an instance of Elements.
-var elements = stripe.elements();
-
-// Custom styling can be passed to options when creating an Element.
-// (Note that this demo uses a wider set of styles than the guide below.)
-var style = {
-  base: {
-    color: '#32325d',
-    fontSmoothing: 'antialiased',
-    fontSize: '16px',
-    '::placeholder': {
-      color: '#aab7c4'
-    }
-  },
-  invalid: {
-    color: '#fa755a',
-    iconColor: '#fa755a'
-  }
-};
-
-// Create an instance of the card Element.
-var card = elements.create('card', {style: style});
-
-// Add an instance of the card Element into the `card-element` <div>.
-card.mount('#card-element');
-
-// Handle real-time validation errors from the card Element.
-card.addEventListener('change', function(event) {
-  var displayError = document.getElementById('card-errors');
-  if (event.error) {
-    displayError.textContent = event.error.message;
-  } else {
-    displayError.textContent = '';
-  }
-});
-
-// Handle form submission.
-var form = document.getElementById('payment-form');
-form.addEventListener('submit', function(event) {
-  event.preventDefault();
-
-  stripe.createToken(card).then(function(result) {
-    if (result.error) {
-      // Inform the user if there was an error.
-      var errorElement = document.getElementById('card-errors');
-      errorElement.textContent = result.error.message;
-    } else {
-      // Send the token to your server.
-      stripeTokenHandler(result.token);
-    }
-  });
-});
-    function redirectToNext(nextPath, timeoffset) {
-        // body...
-        if (nextPath){
-        setTimeout(function(){
-                    window.location.href = nextPath
-                }, timeoffset)
-        }
-    }
-    function stripeTokenHandler(token){
-        var paymentMethodEndpoint = "{% url 'payment:checkout' %}"
-        var nextUrl = "/payment"
-        var t = $("input[name=csrfmiddlewaretoken]").val();
-        var data = {
-            'token': token.id,
-            'csrfmiddlewaretoken': t
-        }
-        $.ajax({
-            data: data,
-            url: paymentMethodEndpoint,
-            method: "POST",
-            success: function(data){
-                var succesMsg = data.message || "Success! Your card was added."
-                card.clear()
-                if (nextUrl){
-                    succesMsg = succesMsg + "<br/><br/><i class='fa fa-spin fa-spinner'></i> Redirecting..."
-                }
-                if ($.alert){
-                    $.alert(succesMsg)
-                } else {
-                    alert(succesMsg)
-                }
-                redirectToNext(nextUrl, 1500)
-
-            },
-            error: function(error){
-                console.log(error)
-            }
-        })
-    }
+  $("#imp").click()
 }
 </script>
     {% endblock %}

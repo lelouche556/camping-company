@@ -5,8 +5,9 @@ from django.contrib.auth.models import User
 from customer.models import Customer
 from django.contrib import messages
 from referral.models import Referral
-from payment.models import BillingProfile
 from app.utils import *
+from payment.models import Payment
+from django.utils.http import is_safe_url
 
 # Create your views here.
 
@@ -32,7 +33,7 @@ def signup(request):
             user.set_password(password1)
             user.save()
             login(request, user)
-            BillingProfile(user=user, email=email).save()
+            Payment(user=user, email=email).save()
             Customer(user=user).save()
             return redirect("register:welcome")
         try:
@@ -50,7 +51,7 @@ def signup(request):
         referral.save()
         ref_user.save()
         login(request, user)
-        BillingProfile(user=user, email=email).save()
+        Payment(user=user, email=email).save()
         Customer(user=user).save()
         message_to_customer(email)
 
@@ -61,7 +62,9 @@ def signup(request):
 
 
 def signin(request):
+    next_ = request.GET.get('next')
     if request.method == "POST":
+        next_post = request.POST.get('next')
         username = request.POST.get("username")
         password = request.POST.get("password")
         user = authenticate(username=username, password=password)
@@ -79,11 +82,15 @@ def signin(request):
                     login(request, user)
                     messages.warning(request, "Complete sign up")
                     return redirect("register:welcome")
-                return redirect("customer:user_page")
+
+                if next_post != "None":  # not used is_safe_url  here next post is none (a string)
+                    return redirect(next_post)
+                else:
+                    return redirect("customer:user_page")
         else:
             messages.warning(request, "Password/Username is wrong")
             return redirect("register:signin")
-    return render(request, "register/signin.html")
+    return render(request, "register/signin.html", {"next": next_})
 
 
 @login_required
@@ -115,6 +122,8 @@ def welcome(request):
         message_to_company(email=user.email, message="someone signed up yay!! :)",
                            name=fname, phone=number,
                            subject="God Damn someone signed up")
+
+        Payment(firstname=fname, phone=number).save()
 
         return redirect("customer:user_page")
     return render(request, "register/welcome.html")

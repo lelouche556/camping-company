@@ -2,13 +2,37 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from vehicle.models import VehicleCheck
 from vehicle.models import VehicleDefinition
+from datetime import date
+from django.contrib import messages
+
 
 # Create your views here.
 
 
 def vehicles(request):
-    vehicle = VehicleDefinition.objects.filter()
-    return render(request, "vehicle/vehicles.html", {"vehicles": vehicle})
+    arr = []
+    list1 = []
+    d0 = request.GET.get("tripDay").split("-")
+    duration = request.GET.get("Duration")
+    if d0[0] is '':
+        messages.warning(request, "Please fill the date")
+        return redirect("app:home")
+    if duration is '':
+        messages.warning(request, "Please fill the Duration")
+        return redirect("app:home")
+
+    vehicle = VehicleDefinition.objects.all()
+    for x in vehicle:
+        if x.check_out_date is None:
+            continue
+        d1 = x.check_out_date
+        days_diff = (date(int(d0[0]), int(d0[1]), int(d0[2])) - date(d1.year, d1.month, d1.day)).days
+        if days_diff >= 0:
+            arr.append(1)
+        else:
+            arr.append(0)
+        list1 = zip(vehicle, arr)
+    return render(request, "vehicle/vehicles.html", {"list1": list1})
 
 
 def vehicle_info(request):

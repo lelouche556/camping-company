@@ -1,10 +1,6 @@
 from django.contrib import admin
-from payment.models import BillingProfile, Card, Charge
+from payment.models import Payment
 # Register your models here.
 
 
-admin.site.register(BillingProfile)
-
-admin.site.register(Card)
-
-admin.site.register(Charge)
+admin.site.register(Payment)
