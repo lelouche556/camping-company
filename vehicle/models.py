@@ -28,7 +28,7 @@ class VehicleCheck(models.Model):
         return self.user.username
 
 
-class VehicleDef(models.Model):
+class Definition(models.Model):
     car_name = models.CharField(max_length=64, blank=True, null=True)
     seat = models.CharField(max_length=12, blank=True, null=True)
     year = models.CharField(max_length=4, blank=True, null=True)

@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from vehicle.models import VehicleCheck
-from vehicle.models import VehicleDef
+from vehicle.models import Definition
 from datetime import date
 from django.contrib import messages
 
@@ -21,7 +21,7 @@ def vehicles(request):
         messages.warning(request, "Please fill the Duration")
         return redirect("app:home")
 
-    vehicle = VehicleDef.objects.all()
+    vehicle = Definition.objects.all()
     for x in vehicle:
         if x.check_out_date is None:
             continue
