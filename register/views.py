@@ -6,7 +6,7 @@ from customer.models import Customer
 from django.contrib import messages
 from referral.models import Referral
 from app.utils import *
-#from payment.models import Payment
+from payment.models import Payment
 from django.utils.http import is_safe_url
 
 # Create your views here.
@@ -33,7 +33,7 @@ def signup(request):
             user.set_password(password1)
             user.save()
             login(request, user)
-            #Payment(user=user, email=email).save()
+            Payment(user=user, email=email).save()
             Customer(user=user).save()
             return redirect("register:welcome")
         try:
@@ -51,7 +51,7 @@ def signup(request):
         referral.save()
         ref_user.save()
         login(request, user)
-        #Payment(user=user, email=email).save()
+        Payment(user=user, email=email).save()
         Customer(user=user).save()
         message_to_customer(email)
 
