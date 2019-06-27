@@ -28,7 +28,7 @@ class VehicleCheck(models.Model):
         return self.user.username
 
 
-class VehicleDefinition(models.Model):
+class VehicleDef(models.Model):
     car_name = models.CharField(max_length=64, blank=True, null=True)
     seat = models.CharField(max_length=12, blank=True, null=True)
     year = models.CharField(max_length=4, blank=True, null=True)
@@ -38,7 +38,6 @@ class VehicleDefinition(models.Model):
     color = models.CharField(max_length=12, blank=True, null=True)
     car_image = models.ImageField(upload_to="cars", blank=True, null=True)
     duration = models.IntegerField()
-    active = models.BooleanField(default=True)
 
     def __str__(self):
         return self.car_name
