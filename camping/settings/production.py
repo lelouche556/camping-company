@@ -180,5 +180,5 @@ PAYU_MERCHANT_KEY = os.environ.get("Merchant"),  # Merchant key from payu
 PAYU_KEY = os.environ.get("Pay_Key"), #"mPXEdCTk"
 PAYU_SALT = "EFzLJRC1kD"  # Merchant salt from payu
 PAYMENT_MODE = os.environ.get("mode")
-PAYU_SUCCESS_URL = 'http://127.0.0.1:8000/cart/success/'  # success url
-PAYU_FAILURE_URL = 'http://127.0.0.1:8000/cart/failure/'  # failure url
+PAYU_SUCCESS_URL = 'https://www.camping-co.com/cart/success/'  # success url
+PAYU_FAILURE_URL = 'https://www.camping-co.com/cart/failure/'  # failure url
