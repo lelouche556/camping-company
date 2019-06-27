@@ -56,7 +56,7 @@ INSTALLED_APPS = [
     'destination',
     'blog',
     'referral',
-    'payment',
+    'pay',
 ]
 
 MIDDLEWARE = [

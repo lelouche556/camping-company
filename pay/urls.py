@@ -1,10 +1,10 @@
 from django.conf.urls import url
-from payment.views import (cart, checkout,
+from pay.views import (cart, checkout,
                            payment_success,
                            payment_failure,
                            )
 
-app_name = "payment"
+app_name = "pay"
 
 urlpatterns = [
     url(r'^$', cart, name="payment"),

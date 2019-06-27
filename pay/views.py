@@ -6,7 +6,7 @@ from django.http import JsonResponse
 from paywix.payu import PAYU
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from payment.models import Payment
+from pay.models import Pay
 
 
 # Create your views here.
@@ -19,7 +19,7 @@ payu = PAYU()
 @login_required
 def checkout(request):
     user = User.objects.get(pk=request.user.pk)
-    payment = Payment.objects.get(user=user)
+    payment = Pay.objects.get(user=user)
     hash_object = hashlib.sha256(b'randint(0,20)')
     txnid = hash_object.hexdigest()[0:20]
     payment_data = {
