@@ -75,7 +75,7 @@ def payment_failure(request):
 @login_required
 def cart(request):
     user = User.objects.get(pk=request.user.pk)
-    payment = Payment.objects.get(user=user)
+    payment = Pay.objects.get(user=user)
     # if not request.POST.get("status"):
     #     return redirect("app:home")
     if request.is_ajax():

@@ -248,7 +248,7 @@ function updateQuantity(quantityInput)
   }
     $("button").click(function(){
         var paymentForm = $("#payment-form")
-        var paymentMethodEndpoint = "{% url 'payment:payment' %}"
+        var paymentMethodEndpoint = "{% url 'pay:pay' %}"
         var t = $("input[name=csrfmiddlewaretoken]").val();
         if (totals == 0){
           totals = tot
@@ -262,7 +262,7 @@ function updateQuantity(quantityInput)
             url: paymentMethodEndpoint,
             method: "POST",
             success: function(data){
-                window.location.href = "{% url 'payment:checkout' %}"
+                window.location.href = "{% url 'pay:checkout' %}"
             },
             error: function(error){
                 console.log(error)

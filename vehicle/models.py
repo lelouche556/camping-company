@@ -38,6 +38,7 @@ class VehicleDefinition(models.Model):
     color = models.CharField(max_length=12, blank=True, null=True)
     car_image = models.ImageField(upload_to="cars", blank=True, null=True)
     duration = models.IntegerField()
+    active = models.BooleanField(default=True)
 
     def __str__(self):
         return self.car_name

@@ -7,7 +7,7 @@ from pay.views import (cart, checkout,
 app_name = "pay"
 
 urlpatterns = [
-    url(r'^$', cart, name="payment"),
+    url(r'^$', cart, name="pay"),
     url(r'^checkout/$', checkout, name="checkout"),
     url(r'^success/$', payment_success, name="success"),
     url(r'^failure/$', payment_failure, name="failure"),
