@@ -123,7 +123,7 @@ def welcome(request):
                            name=fname, phone=number,
                            subject="God Damn someone signed up")
 
-        Payment(firstname=fname, phone=number).save()
+        Pay(firstname=fname, phone=number).save()
 
         return redirect("customer:user_page")
     return render(request, "register/welcome.html")
