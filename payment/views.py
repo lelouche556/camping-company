@@ -12,6 +12,7 @@ from payment.models import Payment
 # Create your views here.
 
 # Import Payu from PAYWIX
+
 payu = PAYU()
 
 
