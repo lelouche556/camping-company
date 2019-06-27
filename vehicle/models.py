@@ -41,18 +41,3 @@ class VehicleDef(models.Model):
 
     def __str__(self):
         return self.car_name
-
-
-class VehicleDef1(models.Model):
-    car_name = models.CharField(max_length=64, blank=True, null=True)
-    seat = models.CharField(max_length=12, blank=True, null=True)
-    year = models.CharField(max_length=4, blank=True, null=True)
-    available = models.BooleanField(default=False)
-    check_in_date = models.DateField(blank=True, null=True)
-    check_out_date = models.DateField(blank=True, null=True)
-    color = models.CharField(max_length=12, blank=True, null=True)
-    car_image = models.ImageField(upload_to="cars", blank=True, null=True)
-    duration = models.IntegerField()
-
-    def __str__(self):
-        return self.car_name
