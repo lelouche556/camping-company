@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from vehicle.models import VehicleCheck
 from vehicle.models import Definition
 from datetime import date
+from pay.models import Pay
 from django.contrib import messages
 
 
@@ -10,6 +11,12 @@ from django.contrib import messages
 
 
 def vehicles(request):
+    user = request.user
+    try:
+        pay = Pay.objects.get(user=user)
+    except:
+        messages.warning(request, "Please Sign up first,Service available for new customer")
+        return redirect("app:home")
     arr = []
     list1 = []
     d0 = request.GET.get("tripDay").split("-")

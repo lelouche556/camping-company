@@ -176,9 +176,9 @@ SECURE_FRAME_DENY = True
 #
 # CACHE_MIDDLEWARE_SECONDS = 1036800
 
-PAYU_MERCHANT_KEY = "2l6Xqq0a"  # Merchant key from payu
-PAYU_KEY = "mPXEdCTk"
-PAYU_SALT = "EFzLJRC1kD"  # Merchant salt from payu
-PAYMENT_MODE ='LIVE'
+PAYU_MERCHANT_KEY = os.environ.get("PAY_MERCHANT")  # Merchant key from payu
+PAYU_KEY = os.environ.get("PAY_KEY")
+PAYU_SALT = os.environ.get("PAY_SALT")  # Merchant salt from payu
+PAYMENT_MODE = os.environ.get("PAY_MODE")
 PAYU_SUCCESS_URL = 'https://www.camping-co.com/cart/success/'  # success url
 PAYU_FAILURE_URL = 'https://www.camping-co.com/cart/failure/'  # failure url
