@@ -121,9 +121,9 @@ def welcome(request):
                                                   terms_condition=True)
         message_to_company(email=user.email, message="someone signed up yay!! :)",
                            name=fname, phone=number,
-                           subject="God Damn someone signed up")
+                           subject="Leads Team Rock and Roll")
 
-        Pay(firstname=fname, phone=number).save()
+        Pay.objects.filter(user=user).update(firstname=fname, phone=number)
 
         return redirect("customer:user_page")
     return render(request, "register/welcome.html")
