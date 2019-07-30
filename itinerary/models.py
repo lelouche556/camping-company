@@ -6,7 +6,7 @@ from destination.models import Destination
 
 class Itinerary(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True, related_name="itinerary_check")
-    destination = models.ManyToManyField(Destination, blank=True, related_name="trips")
+    # destination = models.ManyToManyField(Destination, blank=True, related_name="trips")
     created_time = models.TimeField(auto_now_add=True)
     created_date = models.DateField(auto_now_add=True)
     active = models.BooleanField(default=True)
