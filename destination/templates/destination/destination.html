@@ -1,71 +1,220 @@
 {% extends "snippets/base.html" %}
-
 {% load staticfiles %}
-    {% block css %}
-    <link rel="stylesheet" href="{% static 'css/home/destination.css' %}">
-    {% endblock %}
-
-    {% block title %}
-        <title>The places Offered By Camping Co</title>
-    {% endblock %}
-
-    {% block meta %}
-        <meta name="description" content="Camping company India is a 4x4 off-roading company that takes you for an off-road adventure of a lifetime across various regions of India. ">
-        <meta name="keywords" content="destination, beautiful places, East India, Mountains, valleys, waterfall, umiam lake, White water village Mawphlang Sacred Groove,Shnonpdeng Dawki,Krangsuri,Living Root Bridge, Dainthlen Falls, Waterfalls of Meghalaya, Kynrem Falls, Nohsngithiang Falls, Caving in Meghalaya">
-    {% endblock %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/home/destination.css' %}">
+<link rel="stylesheet" href="{% static 'css/blog/blog.css' %}">
+{% endblock %}
+{% block title %}
+<title>The places Offered By Camping Co</title>
+{% endblock %}
+{% block meta %}
+<meta name="description" content="Camping company India is a 4x4 off-roading company that takes you for an off-road adventure of a lifetime across various regions of India. ">
+<meta name="keywords" content="destination, beautiful places, East India, Mountains, valleys, waterfall, umiam lake, White water village Mawphlang Sacred Groove,Shnonpdeng Dawki,Krangsuri,Living Root Bridge, Dainthlen Falls, Waterfalls of Meghalaya, Kynrem Falls, Nohsngithiang Falls, Caving in Meghalaya">
+{% endblock %}
 {% block content_block %}
 <br>
-
-<div class="container">
-    <h1 class="header">Self drive rental car</h1>
-    <div class="fade-div">
-        <h2>This is an interactive map. Double click to continue</h2>
-    </div>
-    <iframe src="https://maphub.net/embed/48876?button=0&panel=1"></iframe>
-    <span class="colors"><i class="fas fa-camera"></i> Sight Seeing</span>
-    <br>
-    <span class="colors"><i class="fas fa-fire"></i> Camp sites</span>
-</div>
-
-<div id="demo" class="carousel slide" data-ride="carousel">
-  <ul class="carousel-indicators">
-    <li data-target="#demo" data-slide-to="0" class="active"></li>
-    <li data-target="#demo" data-slide-to="1"></li>
-    <li data-target="#demo" data-slide-to="2"></li>
-      <li data-target="#demo" data-slide-to="3"></li>
-    <li data-target="#demo" data-slide-to="4"></li>
-      <li data-target="#demo" data-slide-to="5"></li>
-    <li data-target="#demo" data-slide-to="6"></li>
-      <li data-target="#demo" data-slide-to="7"></li>
-    <li data-target="#demo" data-slide-to="8"></li>
-      <li data-target="#demo" data-slide-to="9"></li>
-    <li data-target="#demo" data-slide-to="10"></li>
-    <li data-target="#demo" data-slide-to="11"></li>
-
-  </ul>
-    <div class="carousel-inner">
-          {% for x in items %}
-        <div class="carousel-item {% if forloop.counter == 1 %} active {% endif %}">
-          <img style="" src="{{ x.images.url }}" width="1100" height="500">
-          <div class="carousel-caption">
-              <p style="position: relative;"><a href="{% url 'destination:destination_detail_page' x.slug %}">{{x.place}}</a></p>
-          </div>
-        </div>
+<div class="">
+   <h1>&nbsp;</h1>
+   <div class="row">
+      <div class="col-md-6 col-lg-6 scrollbar">
+         <div class="ico">
+            <i class="fas fa-map"></i>
+         </div>
+         <form id="submit" method="POST">
+            {% csrf_token %}
+            <div class="blog-card alt" style="box-shadow: none;">
+               <div class="input-group mb-3">
+                  <input id="place" type="text" class="form-control" placeholder="filter camp sites with location">
+               </div>
+            </div>
+         </form>
+        <div class="replace-me">
+          {% for x in places %}
+             <div class="my-5 blog-card alt remove"> <div class="meta"> <div class="photo" style="background-image: url({{ x.images.url}})"></div> <ul class="details"> <li class="author"><a href="#">{{x.latitude}}</a></li> <li class="date">{{x.longitude}}</li> <li class="tags"> <ul> <li class="tags">Camsite</li> </ul> </li> </ul> </div> <div class="description"> <h1>{{x.title}}</h1> <h2>sad</h2> <p>{{x.description|truncatechars_html:100}}</p> <p class="read-more"> <a href="{% url 'destination:destination_detail_page' slug=x.destination.slug %}">Read More</a> </p> </div> </div>
           {% endfor %}
+        </div>
       </div>
-  <a class="carousel-control-prev" href="#demo" data-slide="prev">
-    <span class="carousel-control-prev-icon"></span>
-  </a>
-  <a class="carousel-control-next" href="#demo" data-slide="next">
-    <span class="carousel-control-next-icon"></span>
-  </a>
+      <div class="col-md-6 col-lg-6">
+         <div id="map"></div>
+      </div>
+   </div>
 </div>
 <script>
-    window.onload = function(){
-        $(".fade-div").click(function () {
-        $(this).hide()
-})
+   function initMap(list1){
+       var st = []
+       var curr_date = new Date()
+       if (curr_date.getHours() > 18) {
+           st = [
+           {elementType: 'geometry', stylers: [{color: '#242f3e'}]},
+           {elementType: 'labels.text.stroke', stylers: [{color: '#242f3e'}]},
+           {elementType: 'labels.text.fill', stylers: [{color: '#746855'}]},
+           {
+             featureType: 'administrative.locality',
+             elementType: 'labels.text.fill',
+             stylers: [{color: '#d59563'}]
+           },
+           {
+             featureType: 'poi',
+             elementType: 'labels.text.fill',
+             stylers: [{color: '#d59563'}]
+           },
+           {
+             featureType: 'poi.park',
+             elementType: 'geometry',
+             stylers: [{color: '#263c3f'}]
+           },
+           {
+             featureType: 'poi.park',
+             elementType: 'labels.text.fill',
+             stylers: [{color: '#6b9a76'}]
+           },
+           {
+             featureType: 'road',
+             elementType: 'geometry',
+             stylers: [{color: '#38414e'}]
+           },
+           {
+             featureType: 'road',
+             elementType: 'geometry.stroke',
+             stylers: [{color: '#212a37'}]
+           },
+           {
+             featureType: 'road',
+             elementType: 'labels.text.fill',
+             stylers: [{color: '#9ca5b3'}]
+           },
+           {
+             featureType: 'road.highway',
+             elementType: 'geometry',
+             stylers: [{color: '#746855'}]
+           },
+           {
+             featureType: 'road.highway',
+             elementType: 'geometry.stroke',
+             stylers: [{color: '#1f2835'}]
+           },
+           {
+             featureType: 'road.highway',
+             elementType: 'labels.text.fill',
+             stylers: [{color: '#f3d19c'}]
+           },
+           {
+             featureType: 'transit',
+             elementType: 'geometry',
+             stylers: [{color: '#2f3948'}]
+           },
+           {
+             featureType: 'transit.station',
+             elementType: 'labels.text.fill',
+             stylers: [{color: '#d59563'}]
+           },
+           {
+             featureType: 'water',
+             elementType: 'geometry',
+             stylers: [{color: '#17263c'}]
+           },
+           {
+             featureType: 'water',
+             elementType: 'labels.text.fill',
+             stylers: [{color: '#515c6d'}]
+           },
+           {
+             featureType: 'water',
+             elementType: 'labels.text.stroke',
+             stylers: [{color: '#17263c'}]
+           }
+         ]
+       }
 
-    }
+
+       var options = {
+       zoom:8,
+       center:{lat:25.4670,lng:91.3662},
+        styles: st
+
+     }
+
+
+     var map = new google.maps.Map(document.getElementById('map'), options);
+       var markers = []
+      {% for x in places %}
+      markers.push({
+         coords:{lat:{{x.latitude}},lng:{{x.longitude}}},
+         iconImage:'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
+         content:'<div class="py-4"><div class="card-deck"><div class="card"><img class="card-img-top" src="{{x.images.url}}" alt="Card image cap"><div class="card-body"><h5 class="card-title">{{x.title}}</h5><p class="card-text">{{x.description}}</p></div></div></div></div>'
+        })
+
+       {% endfor %}
+
+     var k = 1
+     for(var i = 0;i < markers.length;i++){
+       if (typeof list1 == "undefined" || i+1 in list1){
+         addMarker(markers[i]);
+
+
+       }
+     }
+
+
+
+
+     function addMarker(props){
+       var marker = new google.maps.Marker({
+         position:props.coords,
+         map:map,
+
+       });
+
+
+       if(props.iconImage){
+
+         marker.setIcon(props.iconImage);
+       }
+
+
+       if(props.content){
+         var infoWindow = new google.maps.InfoWindow({
+           content:props.content
+         });
+
+         marker.addListener('click', function(){
+           infoWindow.open(map, marker);
+         });
+       }
+     }
+   }
 </script>
-    {% endblock %}
+<script async defer
+   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCCxmxdedxi10xCOdJBY8d43O-fDmj02Ao&callback=initMap"></script>
+<script>
+   window.onload = function () {
+   var loc = window.location.origin
+       $("#submit").submit(function(e) {
+       e.preventDefault();
+       var t = $("input[name=csrfmiddlewaretoken]").val();
+       return $.ajax({
+           type: "POST",
+           url: "/destination/",
+           data: {
+               place: $("#place").val(),
+               csrfmiddlewaretoken: t
+           },
+           success: function(e) {
+               e.list1.push("z")
+               $("#place").val("")
+               $(".remove").remove()
+               {% for x in places %}
+                if({{x.pk}} in e.list1){
+                  $(".replace-me").append('<div class="my-5 blog-card alt remove"> <div class="meta"> <div class="photo" style="background-image: url({{ x.images.url}})"></div> <ul class="details"> <li class="author"><a href="#">{{x.latitude}}</a></li> <li class="date">{{x.longitude}}</li> <li class="tags"> <ul> <li class="tags">Camsite</li> </ul> </li> </ul> </div> <div class="description"> <h1>{{x.title}}</h1> <h2>sad</h2> <p>{{x.description|truncatechars_html:100}}</p> <p class="read-more"> <a href="#">Read More</a> </p> </div> </div>')
+                }
+               {% endfor %}
+               initMap(e.list1)
+               }
+           })
+        })
+       $(".ico").click(function(){
+           $("#map").toggle()
+       })
+   }
+</script>
+{% endblock %}

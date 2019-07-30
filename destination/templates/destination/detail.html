@@ -1,34 +1,156 @@
 {% extends "snippets/base.html" %}
 {% load staticfiles %}
-    {% block css %}
-    <link rel="stylesheet" href="{% static 'css/home/detail.css' %}">
-    <link rel="canonical" href="https://www.camping-co.com">
-    {% endblock %}
-    {% block title %}
-        <title>{{item.place}}</title>
-    {% endblock %}
-    {% block meta %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/home/detail.css' %}">
+<link rel="canonical" href="https://www.camping-co.com">
+{% endblock %}
+{% block title %}
+<title>{{item.place}}</title>
+{% endblock %}
+{% block meta %}
 <meta name="description" content="{{item.description}}">
 <meta name="keywords" content="camping places detail, camping activities, camping origins, camping stay hours">
 {% endblock %}
-    {% block content_block %}
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12 col-lg-12">
-                <div class="co">
-                    <img src="{{item.images.url}}">
-                </div>
+{% block content_block %}
+<h1>&nbsp;</h1>
+<br>
+<div class="ani-image">
+   <img class="ani-image__fix ani-image--1" style="width:100%; height: 500px; background-image: url({{image.image1.url}});">
+   <img class="ani-image__fix ani-image--2" style="width:100%; height: 500px; background-image: url({{image.image2.url}});">
+   <img class="ani-image__fix ani-image--3" style="width:100%; height: 500px; background-image: url({{image.image3.url}});">
+   <img class="ani-image__fix ani-image--4" style="width:100%; height: 500px; background-image: url({{image.image4.url}});">
+
+</div>
+<div class="container">
+   <div class="cards">
+      <h2>{{destination.place}}</h2>
+      <p>location</p>
+      <i class="fas fa-car"></i>
+      <i class="fas fa-biking"></i>
+      <i class="fas fa-fire"></i>
+      <i class="fas fa-toilet-paper"></i>
+      <span class="cards__text">Off &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cycling &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Campfire &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Toilet </span>
+      <span class="cards__text">Roading</span>
+      <p><strong>Known for:</strong> Farming and Country Games</p>
+   </div>
+   <div class="description">
+      <div class="row">
+         <div class="col-md-3">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-file-alt ico"></i>
+            <h4>Description</h4>
+         </div>
+         <div class="col-md-8 text-style">
+            <p class="">{{destination.description}}</p>
+            <!--<p><strong>More</strong></p>-->
+         </div>
+      </div>
+   </div>
+   <div class="">
+      <div class="row">
+         <div class="col-md-3">
+            <h4>Amenities</h4>
+         </div>
+         <div class="col-md-9 divide">
+            <ul>
+               <li>{{amenity.basic_toilet}}</li>
+               <li>Charging points</li>
+               <li>Covered Area</li>
+               <li>Campfire</li>
+               <li>Toilet</li>
+               <li>Drinking water</li>
+               <li>Drinking water</li>
+               <li>Drinking water</li>
+               <li>Drinking water</li>
+               <li>Drinking water</li>
+               <li>Drinking water</li>
+               <li>Drinking water</li>
+               <li>Drinking water</li>
+               <li>Drinking water</li>
+               <li>Drinking water</li>
+            </ul>
+         </div>
+      </div>
+   </div>
+   <hr>
+   <div class="">
+      <div class="row">
+         <div class="col-md-3">
+            <h4>Details</h4>
+         </div>
+         <div class="col-md-9">
+            <p><strong>Type of land</strong><br>
+               private
+            </p>
+            <p><strong>Accessible By</strong><br>
+               Road
+            </p>
+            <p><strong>Check In</strong><br>
+               11:30:00
+            </p>
+            <p><strong>Check Out</strong><br>
+               11:00:00
+            </p>
+            <p><strong>Cancellation Policy</strong><br>
+               Moderate <a href="#"></a>
+            </p>
+         </div>
+      </div>
+   </div>
+   <hr>
+   <div class="">
+      <div class="row">
+         <div class="col-md-3">
+            <h4>Activities</h4>
+         </div>
+         <div class="col-md-9">
+            <ul>
+               <li><i class="fas fa-car"></i>&nbsp;&nbsp;&nbsp;&nbsp;Off-Roading&nbsp;&nbsp;&nbsp;&nbsp;</li>
+            </ul>
+            <ul>
+               <li><i class="fas fa-biking"></i>&nbsp;&nbsp;&nbsp;&nbsp;Cycling</li>
+            </ul>
+         </div>
+      </div>
+   </div>
+   <hr>
+   <div class="">
+      <div class="row">
+         <div class="col-md-3">
+            <h4>Other Features</h4>
+         </div>
+         <div class="col-md-8 text-style">
+            <p>Organic Farm, Farm Volunteering, Free food for work, Sweat Donation, Educational Tour, Country Games, Camp Fire, Cycle tour of villages</p>
+         </div>
+      </div>
+      <hr>
+      <div class="">
+         <div class="row">
+            <div class="col-md-3">
+               <h4>Accommodation</h4>
             </div>
-            <div class="col-md-12 col-lg-12">
-                <div class="co">
-                    <h2>{{item.place}}</h2>
-                    <p>{{item.description}}</p>
-                    <p>Activities: {{item.activities}}</p>
-                    <p>Distance from Guwahti: {{item.distance}} Km</p>
-                    <p>Stay-Hours: {{item.hours}}</p>
-                </div>
+            <div class="col-md-8 text-style">
+               <p>Organic Farm, Farm Volunteering, Free food for work, Sweat Donation, Educational Tour, Country Games, Camp Fire, Cycle tour of villages</p>
             </div>
-        </div>
-    </div>
-    <br><br><br><br>
-    {% endblock %}
+         </div>
+      </div>
+   </div>
+    <hr>
+    {% if user.is_authenticated %}
+    <div class="">
+         <div class="row">
+            <div class="col-md-3">
+               <h4>Contact Number</h4>
+            </div>
+            <div class="col-md-8">
+                <p>21321312312</p>
+            </div>
+         </div>
+      </div>
+</div>
+    {% else %}
+        <a class="btn btn-secondary" href="{% url 'register:signin' %}">Contact number</a>
+</div>
+    {% endif %}
+    <br>
+    <br>
+{% endblock %}
