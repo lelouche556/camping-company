@@ -18,7 +18,7 @@
    <div class="row">
       <div class="col-md-6 col-lg-6 scrollbar">
          <div class="ico">
-            <i class="fas fa-map"></i>
+            <i class="fas fa-map-marked-alt"></i>
          </div>
          <form id="submit" method="POST">
             {% csrf_token %}
@@ -130,7 +130,7 @@
        var options = {
        zoom:8,
        center:{lat:25.4670,lng:91.3662},
-        styles: st
+       styles: st
 
      }
 
@@ -140,8 +140,8 @@
       {% for x in places %}
       markers.push({
          coords:{lat:{{x.latitude}},lng:{{x.longitude}}},
-         iconImage:'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
-         content:'<div class="py-4"><div class="card-deck"><div class="card"><img class="card-img-top" src="{{x.images.url}}" alt="Card image cap"><div class="card-body"><h5 class="card-title">{{x.title}}</h5><p class="card-text">{{x.description}}</p></div></div></div></div>'
+         iconImage:'https://cdn4.iconfinder.com/data/icons/camp/96/tend-48.png',
+         content:'<div class="py-4"><div class="card-deck"><div class="card"><img class="card-img-top" src="{{x.images.url}}" alt="Card image cap"><div class="card-body"><h5 class="card-title">{{x.title}}</h5><p class="card-text">{{x.description}}</p></div></div></div></div>',
         })
 
        {% endfor %}

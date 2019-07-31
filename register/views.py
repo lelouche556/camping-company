@@ -68,6 +68,9 @@ def signin(request):
         username = request.POST.get("username")
         password = request.POST.get("password")
         user = authenticate(username=username, password=password)
+        if user is None:
+            messages.warning(request,"Please sign in first")
+            return redirect("register:signin")
         if user is not None:
             if user.is_superuser:
                 login(request, user)

@@ -38,18 +38,18 @@ class Image(models.Model):
 
 class Amenity(models.Model):
     destination = models.ForeignKey(Destination, on_delete=models.CASCADE)
-    basic_toilet = models.CharField(max_length=64, default="No")
-    bathroom = models.CharField(max_length=64, default="No")
-    kitchen = models.CharField(max_length=64, default="No")
-    pets_allowed = models.CharField(max_length=64, default="No")
-    charging_points = models.CharField(max_length=64, default="No")
-    drinking_water = models.CharField(max_length=64, default="No")
-    covered_area = models.CharField(max_length=64, default="No")
-    barbeque_grills = models.CharField(max_length=64, default="No")
-    good_for_groups = models.CharField(max_length=64, default="No")
-    campfire = models.CharField(max_length=64, default="No")
-    picnic_table = models.CharField(max_length=64, default="No")
-    breakfast = models.CharField(max_length=64, default="No")
+    basic_toilet = models.BooleanField()
+    bathroom = models.BooleanField()
+    kitchen = models.BooleanField()
+    pets_allowed = models.BooleanField()
+    charging_points = models.BooleanField()
+    drinking_water = models.BooleanField()
+    covered_area = models.BooleanField()
+    barbeque_grills = models.BooleanField()
+    good_for_groups = models.BooleanField()
+    campfire = models.BooleanField()
+    picnic_table = models.BooleanField()
+    breakfast = models.BooleanField()
 
     def __str__(self):
         return self.destination.place
@@ -69,9 +69,9 @@ class Detail(models.Model):
 
 class Activity(models.Model):
     destination = models.ForeignKey(Destination, on_delete=models.CASCADE)
-    off_roading = models.CharField(max_length=64, default="No")
-    trekking = models.CharField(max_length=64, default="No")
-    boating = models.CharField(max_length=64, default="No")
+    off_roading = models.BooleanField()
+    trekking = models.BooleanField()
+    boating = models.BooleanField()
 
     def __str__(self):
         return self.destination.place

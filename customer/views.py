@@ -1,6 +1,5 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from django.http import Http404
 from destination.models import Destination
 from .models import Customer, Form
 from itinerary.models import Itinerary
