@@ -39,7 +39,7 @@
          <div class="col-md-3">
             <h4>Activities</h4>
          </div>
-         <div class="col-md-9">
+         <div class="col-md-9 divide">
             <ul>
 
                {% if activity.off_roading %}
@@ -60,6 +60,67 @@
                   <li><i class="fas fa-ship">&nbsp;</i>boating</li>
                {% else %}
                   <li class="strike"><i class="fas fa-ship">&nbsp;&nbsp;</i>boating</li>
+               {% endif %}
+
+
+               {% if activity.waterfall %}
+                  <li><i class="fas fa-car">&nbsp;</i>waterfalls</li>
+               {% else %}
+                  <li class="strike"><i class="fas fa-table">&nbsp;&nbsp;</i>waterfalls</li>
+               {% endif %}
+
+               {% if activity.lake %}
+                  <li><i class="fas fa-car">&nbsp;</i>lake</li>
+               {% else %}
+                  <li class="strike"><i class="fas fa-table">&nbsp;&nbsp;</i>lake</li>
+               {% endif %}
+
+
+               {% if activity.jungle_walk %}
+                  <li><i class="fas fa-car">&nbsp;</i>Jungle walk</li>
+               {% else %}
+                  <li class="strike"><i class="fas fa-table">&nbsp;&nbsp;</i>Jungle walk</li>
+               {% endif %}
+
+
+               {% if activity.caving %}
+                  <li><i class="fas fa-car">&nbsp;</i>caving</li>
+               {% else %}
+                  <li class="strike"><i class="fas fa-table">&nbsp;&nbsp;</i>caving</li>
+               {% endif %}
+
+
+               {% if activity.local_farm %}
+                  <li><i class="fas fa-car">&nbsp;</i>Local farm visit - Strawberry farm</li>
+               {% else %}
+                  <li class="strike"><i class="fas fa-table">&nbsp;&nbsp;</i>Local farm visit - Strawberry farm</li>
+               {% endif %}
+
+               {% if activity.river_beach %}
+                  <li><i class="fas fa-car">&nbsp;</i>river-beach</li>
+               {% else %}
+                  <li class="strike"><i class="fas fa-table">&nbsp;&nbsp;</i>river-beach</li>
+               {% endif %}
+
+
+               {% if activity.swimming %}
+                  <li><i class="fas fa-car">&nbsp;</i>swimming</li>
+               {% else %}
+                  <li class="strike"><i class="fas fa-table">&nbsp;&nbsp;</i>swimming</li>
+               {% endif %}
+
+
+               {% if activity.historical_monument %}
+                  <li><i class="fas fa-car">&nbsp;</i>historical-monument</li>
+               {% else %}
+                  <li class="strike"><i class="fas fa-table">&nbsp;&nbsp;</i>historical-monument</li>
+               {% endif %}
+
+
+               {% if activity.fishing %}
+                  <li><i class="fas fa-car">&nbsp;</i>fishing</li>
+               {% else %}
+                  <li class="strike"><i class="fas fa-table">&nbsp;&nbsp;</i>fishing</li>
                {% endif %}
             </ul>
          </div>

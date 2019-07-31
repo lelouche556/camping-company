@@ -72,6 +72,15 @@ class Activity(models.Model):
     off_roading = models.BooleanField()
     trekking = models.BooleanField()
     boating = models.BooleanField()
+    waterfall = models.BooleanField()
+    lake = models.BooleanField()
+    jungle_walk = models.BooleanField()
+    caving = models.BooleanField()
+    local_farm = models.BooleanField()
+    river_beach = models.BooleanField()
+    swimming = models.BooleanField()
+    historical_monument = models.BooleanField()
+    fishing = models.BooleanField()
 
     def __str__(self):
         return self.destination.place
