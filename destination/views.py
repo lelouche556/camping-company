@@ -38,7 +38,7 @@ def destination_detail_page(request, slug):
                "destination": destination,
                "amenity": amenity,
                "activity": activity,
-               "detail": detail
+               "detail": detail,
                }
     return render(request, "destination/detail.html", context)
 

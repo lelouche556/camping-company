@@ -23,16 +23,19 @@
 </div>
 <div class="container">
    <div class="cards">
-      <h2>{{destination.place}}</h2>
-      <p>location</p>
+      <h2 style="display: inline-block;">{{destination.place}}</h2> &nbsp;<span>(Shillong,Meghalaya)</span>
+      <p><strong>Known for:</strong> Farming and Country Games</p>
       <i class="fas fa-car"></i>
       <i class="fas fa-biking"></i>
       <i class="fas fa-fire"></i>
       <i class="fas fa-toilet-paper"></i>
       <span class="cards__text">Off &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cycling &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Campfire &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Toilet </span>
       <span class="cards__text">Roading</span>
-      <p><strong>Known for:</strong> Farming and Country Games</p>
+      <br>
+      <p style="display: inline-block;">Contact Number</p>
+      <p style="display: inline-block;">21321312312</p>
    </div>
+
 
       <div class="">
       <div class="row">
@@ -64,63 +67,63 @@
 
 
                {% if activity.waterfall %}
-                  <li><i class="fas fa-car">&nbsp;</i>waterfalls</li>
+                  <li><i class="fas fa-water">&nbsp;</i>waterfalls</li>
                {% else %}
-                  <li class="strike"><i class="fas fa-table">&nbsp;&nbsp;</i>waterfalls</li>
+                  <li class="strike"><i class="fas fa-water">&nbsp;&nbsp;</i>waterfalls</li>
                {% endif %}
 
                {% if activity.lake %}
-                  <li><i class="fas fa-car">&nbsp;</i>lake</li>
+                  <li><i class="fas fa-water">&nbsp;</i>lake</li>
                {% else %}
-                  <li class="strike"><i class="fas fa-table">&nbsp;&nbsp;</i>lake</li>
+                  <li class="strike"><i class="fas fa-water">&nbsp;&nbsp;</i>lake</li>
                {% endif %}
 
 
                {% if activity.jungle_walk %}
-                  <li><i class="fas fa-car">&nbsp;</i>Jungle walk</li>
+                  <li><i class="fas fa-tree">&nbsp;</i>Jungle walk</li>
                {% else %}
-                  <li class="strike"><i class="fas fa-table">&nbsp;&nbsp;</i>Jungle walk</li>
+                  <li class="strike"><i class="fas fa-tree">&nbsp;&nbsp;</i>Jungle walk</li>
                {% endif %}
 
 
                {% if activity.caving %}
-                  <li><i class="fas fa-car">&nbsp;</i>caving</li>
+                  <li><i class="fas fa-archway">&nbsp;</i>caving</li>
                {% else %}
-                  <li class="strike"><i class="fas fa-table">&nbsp;&nbsp;</i>caving</li>
+                  <li class="strike"><i class="fas fa-archway">&nbsp;&nbsp;</i>caving</li>
                {% endif %}
 
 
                {% if activity.local_farm %}
-                  <li><i class="fas fa-car">&nbsp;</i>Local farm visit - Strawberry farm</li>
+                  <li><i class="fas fa-tractor">&nbsp;</i>Local farm visit - Strawberry farm</li>
                {% else %}
-                  <li class="strike"><i class="fas fa-table">&nbsp;&nbsp;</i>Local farm visit - Strawberry farm</li>
+                  <li class="strike"><i class="fas fa-tractor">&nbsp;&nbsp;</i>Local farm visit - Strawberry farm</li>
                {% endif %}
 
                {% if activity.river_beach %}
-                  <li><i class="fas fa-car">&nbsp;</i>river-beach</li>
+                  <li><i class="fas fa-umbrella-beach">&nbsp;</i>river-beach</li>
                {% else %}
-                  <li class="strike"><i class="fas fa-table">&nbsp;&nbsp;</i>river-beach</li>
+                  <li class="strike"><i class="fas fa-umbrella-beach">&nbsp;&nbsp;</i>river-beach</li>
                {% endif %}
 
 
                {% if activity.swimming %}
-                  <li><i class="fas fa-car">&nbsp;</i>swimming</li>
+                  <li><i class="fas fa-water">&nbsp;</i>swimming</li>
                {% else %}
-                  <li class="strike"><i class="fas fa-table">&nbsp;&nbsp;</i>swimming</li>
+                  <li class="strike"><i class="fas fa-water">&nbsp;&nbsp;</i>swimming</li>
                {% endif %}
 
 
                {% if activity.historical_monument %}
-                  <li><i class="fas fa-car">&nbsp;</i>historical-monument</li>
+                  <li><i class="fas fa-school">&nbsp;</i>historical-monument</li>
                {% else %}
-                  <li class="strike"><i class="fas fa-table">&nbsp;&nbsp;</i>historical-monument</li>
+                  <li class="strike"><i class="fas fa-school">&nbsp;&nbsp;</i>historical-monument</li>
                {% endif %}
 
 
                {% if activity.fishing %}
-                  <li><i class="fas fa-car">&nbsp;</i>fishing</li>
+                  <li><i class="fas fa-fish">&nbsp;</i>fishing</li>
                {% else %}
-                  <li class="strike"><i class="fas fa-table">&nbsp;&nbsp;</i>fishing</li>
+                  <li class="strike"><i class="fas fa-fish">&nbsp;&nbsp;</i>fishing</li>
                {% endif %}
             </ul>
          </div>
@@ -215,11 +218,14 @@
  <div class="description">
       <div class="row">
          <div class="col-md-3">
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-file-alt ico"></i>
-            <h4>Description</h4>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <div class="description__style">
+               <br>
+               <h4>Description and Features</h4>
+            </div>
          </div>
          <div class="col-md-8 text-style">
-            <p class="">{{destination.description}}</p>
+            <p class="">{{destination.description|safe}}</p>
             <!--<p><strong>More</strong></p>-->
          </div>
       </div>
@@ -251,44 +257,41 @@
       </div>
    </div>
    <hr>
-<!--   <div class="">-->
-<!--      <div class="row">-->
-<!--         <div class="col-md-3">-->
-<!--            <h4>Other Features</h4>-->
-<!--         </div>-->
-<!--         <div class="col-md-8 text-style">-->
-<!--            <p>Organic Farm, Farm Volunteering, Free food for work, Sweat Donation, Educational Tour, Country Games, Camp Fire, Cycle tour of villages</p>-->
-<!--         </div>-->
-<!--      </div>-->
-<!--      <hr>-->
-<!--      <div class="">-->
-<!--         <div class="row">-->
-<!--            <div class="col-md-3">-->
-<!--               <h4>Accommodation</h4>-->
-<!--            </div>-->
-<!--            <div class="col-md-8 text-style">-->
-<!--               <p>Organic Farm, Farm Volunteering, Free food for work, Sweat Donation, Educational Tour, Country Games, Camp Fire, Cycle tour of villages</p>-->
-<!--            </div>-->
-<!--         </div>-->
-<!--      </div>-->
-<!--   </div>-->
-<!--    <hr>-->
-    {% if user.is_authenticated %}
-    <div class="">
+   <div class="">
+      <div class="row">
+         <div class="col-md-3">
+            <h4>Other Features</h4>
+         </div>
+         <div class="col-md-8 text-style">
+            <p>Organic Farm, Farm Volunteering, Free food for work, Sweat Donation, Educational Tour, Country Games, Camp Fire, Cycle tour of villages</p>
+         </div>
+      </div>
+      <hr>
+      <div class="">
          <div class="row">
             <div class="col-md-3">
-               <h4>Contact Number</h4>
+               <h4>Accommodation</h4>
             </div>
-            <div class="col-md-8">
-                <p>21321312312</p>
+            <div class="col-md-8 text-style">
+               <p>Organic Farm, Farm Volunteering, Free food for work, Sweat Donation, Educational Tour, Country Games, Camp Fire, Cycle tour of villages</p>
             </div>
          </div>
       </div>
-</div>
-    {% else %}
-        <a class="btn btn-secondary" href="{% url 'register:signin' %}">Contact number</a>
-</div>
-    {% endif %}
+   </div>
+    <hr>
+
+   <div class="">
+         <div class="row">
+            <div class="col-md-3">
+               <h4>Important to know</h4>
+            </div>
+            <div class="col-md-8 text-style">
+               <p>Organic Farm, Farm Volunteering, Free food for work, Sweat Donation, Educational Tour, Country Games, Camp Fire, Cycle tour of villages</p>
+            </div>
+         </div>
+      </div>
+    <hr>
     <br>
     <br>
+      </div>
 {% endblock %}
