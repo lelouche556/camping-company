@@ -5,8 +5,11 @@
     {% endblock %}
 
     {% block content_block %}
-<div class="container my-5">
     <br>
+<div class="container my-5">
+    <div class="alert alert-success">
+  <strong>last-activity: {{super_user.last_login}}</strong>
+</div>
     <br>
     <br>
         <form id="tests" action="{% url 'app:represent' %}" method="POST">{% csrf_token %}

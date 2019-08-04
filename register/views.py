@@ -65,6 +65,9 @@ def signin(request):
     next_ = request.GET.get('next')
     if request.method == "POST":
         next_post = request.POST.get('next')
+        print(next_post)
+        next_post = next_post.replace("k", "/")
+        print(next_post)
         username = request.POST.get("username")
         password = request.POST.get("password")
         user = authenticate(username=username, password=password)

@@ -13,7 +13,7 @@ class Blog(models.Model):
     # tags = models.TextField() comments?? views/like??
     blog_images = models.ImageField(upload_to="blog_images", blank=True)
     blog_cover_images = models.ImageField(upload_to="blog_images", blank=True)
-    created_date = models.DateField(auto_now_add=True)
+    created_date = models.DateField(auto_now_add=True)  # auto_now update every time save, auto now add only once
     created_time = models.TimeField(auto_now_add=True)
     approved = models.BooleanField(default=False)
     slug = models.SlugField(max_length=40, blank=True, null=True)

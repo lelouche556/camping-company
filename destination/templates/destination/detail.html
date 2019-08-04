@@ -14,30 +14,152 @@
 {% block content_block %}
 <h1>&nbsp;</h1>
 <br>
-<div class="ani-image">
-   <img class="ani-image__fix ani-image--1" style="width:100%; height: 500px; background-image: url({{image.image1.url}});">
-   <img class="ani-image__fix ani-image--2" style="width:100%; height: 500px; background-image: url({{image.image2.url}});">
-   <img class="ani-image__fix ani-image--3" style="width:100%; height: 500px; background-image: url({{image.image3.url}});">
-   <img class="ani-image__fix ani-image--4" style="width:100%; height: 500px; background-image: url({{image.image4.url}});">
-
-</div>
-<div class="container">
-   <div class="cards">
-      <h2 style="display: inline-block;">{{destination.place}}</h2> &nbsp;<span>(Shillong,Meghalaya)</span>
-      <p><strong>Known for:</strong> Farming and Country Games</p>
+<br>
+   <div class="container">
+      <div class="row no-gutters">
+         <div class="col-md-6">
+               <img class="image__fix" style="width:100%; height: 360px; background-image: url({{image.image1.url}});">
+            </div>
+         <div class="col-md-6">
+               <img class="image__fix" style="width:100%; height: 360px; background-image: url({{image.image2.url}});">
+         </div>
+      </div>
+      <div class="row no-gutters">
+         <div class="col-md-6">
+            <img class="image__fix" style="width:100%; height: 360px; background-image: url({{image.image3.url}});">
+         </div>
+         <div class="col-md-6">
+               <img class="image__fix" style="width:100%; height: 360px; background-image: url({{image.image4.url}});">
+         </div>
+      </div>
+   </div>
+<br>
+      <div class="cards">
+      <h2 style="display: inline-block;">{{destination.place}}</h2> &nbsp;<span>({{destination.state_city}})</span>
+      <p><strong>Known for:</strong> {{destination.cc_higlight}}</p>
       <i class="fas fa-car"></i>
       <i class="fas fa-biking"></i>
       <i class="fas fa-fire"></i>
       <i class="fas fa-toilet-paper"></i>
-      <span class="cards__text">Off &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cycling &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Campfire &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Toilet </span>
+      <span class="cards__text">Off &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cycling &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Campfire &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Toilet </span>
       <span class="cards__text">Roading</span>
       <br>
-      <p style="display: inline-block;">Contact Number</p>
-      <p style="display: inline-block;">21321312312</p>
+         {% if user.is_authenticated %}
+         <p>Contact Number: {{detail.phone}}</p>
+         <a href="{{destination.map_loc}}">Google Maps Location</a>
+         {% else %}
+         <p class="cards__contact">Contact Number</p>
+         <form action="{% url 'register:signin' %}" method="GET">
+            <input hidden name="next" value="{{place}}">
+            <button class="btn btn-secondary">Sign in for info</button>
+         </form>
+         {% endif %}
+      </div>
+
+<div class="container">
+   <div class="description">
+      <div class="row">
+         <div class="col-md-3">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <div class="description__style">
+               <h4>Description and Features</h4>
+            </div>
+         </div>
+         <div class="col-md-9 text-style">
+            <br>
+            <div class="description__content">{{destination.description|safe}}</div>
+         </div>
+      </div>
    </div>
+   <hr>
+      <br>
+   <div class="">
+      <div class="row">
+         <div class="col-md-3">
+            <h4>Amenities</h4>
+         </div>
+         <div class="col-md-9 divide">
+            <ul>
+               {% if amenity.basic_toilet %}
+                  <li><i class="fas fa-toilet">&nbsp;</i>Toilet</li>
+               {% else %}
+                  <li class="strike"><i class="fas fa-toilet">&nbsp;&nbsp;</i>Toilet</li>
+               {% endif %}
 
+               {% if amenity.bathroom %}
+                  <li><i class="fas fa-toilet">&nbsp;</i>bathroom</li>
+               {% else %}
+                  <li class="strike"><i class="fas fa-restroom">&nbsp;&nbsp;</i>bathroom</li>
+               {% endif %}
 
-      <div class="">
+               {% if amenity.kitchen %}
+                  <li><i class="fas fa-utensils">&nbsp;</i>kitchen</li>
+               {% else %}
+                  <li class="strike"><i class="fas fa-utensils">&nbsp;&nbsp;</i>kitchen</li>
+               {% endif %}
+
+               {% if amenity.pets_allowed %}
+                  <li><i class="fas fa-paw">&nbsp;</i>pets</li>
+               {% else %}
+                  <li class="strike"><i class="fas fa-paw">&nbsp;&nbsp;</i>pets</li>
+               {% endif %}
+
+               {% if amenity.charging_points %}
+                  <li><i class="fas fa-charging-station"></i>&nbsp;</i>charging-points</li>
+               {% else %}
+                  <li class="strike"><i class="fas fa-charging-station"></i>&nbsp;&nbsp;</i>charging-points</li>
+               {% endif %}
+
+               {% if amenity.drinking_water %}
+                  <li><i class="fas fa-glass-whiskey">&nbsp;</i>drinking-water</li>
+               {% else %}
+                  <li class="strike"><i class="fas fa-glass-whiskey">&nbsp;&nbsp;</i>drinking-water</li>
+               {% endif %}
+
+               {% if amenity.covered_area %}
+                  <li class="fix"><i class="fas fa-home">&nbsp;</i>covered-area</li>
+               {% else %}
+                  <li class="strike"><i class="fas fa-home">&nbsp;&nbsp;</i>covered_area</li>
+               {% endif %}
+
+               {% if amenity.barbeque_grills %}
+                  <li><img src="https://img.icons8.com/material-outlined/24/000000/grill.png">barbeque</li>
+               {% else %}
+                  <li class="strike"><img src="https://img.icons8.com/material-outlined/24/000000/grill.png"> >barbeque</li>
+               {% endif %}
+
+               {% if amenity.good_for_groups %}
+                  <li><i class="fas fa-user">&nbsp;</i>for-groups</li>
+               {% else %}
+                  <li class="strike"><i class="fas fa-user">&nbsp;&nbsp;</i>for_groups</li>
+               {% endif %}
+
+               {% if amenity.campfire %}
+                  <li><i class="fas fa-fire">&nbsp;</i>campfire</li>
+               {% else %}
+                  <li class="strike"><i class="fas fa-fire">&nbsp;&nbsp;</i>campfire</li>
+               {% endif %}
+
+               {% if amenity.picnic_table %}
+                  <li><i class="fas fa-table">&nbsp;</i>picnic-table</li>
+               {% else %}
+                  <li class="strike"><i class="fas fa-table">&nbsp;&nbsp;</i>picnic_table</li>
+               {% endif %}
+
+               {% if amenity.breakfast %}
+                  <li><i class="fas fa-egg">&nbsp;</i>breakfast</li>
+               {% else %}
+                  <li class="strike"><i class="fas fa-egg">&nbsp;&nbsp;</i>breakfast</li>
+               {% endif %}
+
+            </ul>
+         </div>
+      </div>
+   </div>
+   <hr>
+   <br>
+
+   <div class="Activity">
       <div class="row">
          <div class="col-md-3">
             <h4>Activities</h4>
@@ -130,168 +252,45 @@
       </div>
    </div>
    <hr>
-
+      <br>
    <div class="">
-      <div class="row">
-         <div class="col-md-3">
-            <h4>Amenities</h4>
-         </div>
-         <div class="col-md-9 divide">
-            <ul>
-               {% if amenity.basic_toilet %}
-                  <li><i class="fas fa-toilet">&nbsp;</i>Toilet</li>
-               {% else %}
-                  <li class="strike"><i class="fas fa-toilet">&nbsp;&nbsp;</i>Toilet</li>
-               {% endif %}
-
-               {% if amenity.bathroom %}
-                  <li><i class="fas fa-toilet">&nbsp;</i>bathroom</li>
-               {% else %}
-                  <li class="strike"><i class="fas fa-restroom">&nbsp;&nbsp;</i>bathroom</li>
-               {% endif %}
-
-               {% if amenity.kitchen %}
-                  <li><i class="fas fa-utensils">&nbsp;</i>kitchen</li>
-               {% else %}
-                  <li class="strike"><i class="fas fa-utensils">&nbsp;&nbsp;</i>kitchen</li>
-               {% endif %}
-
-               {% if amenity.pets_allowed %}
-                  <li><i class="fas fa-paw">&nbsp;</i>pets</li>
-               {% else %}
-                  <li class="strike"><i class="fas fa-paw">&nbsp;&nbsp;</i>pets</li>
-               {% endif %}
-
-               {% if amenity.charging_points %}
-                  <li><i class="fas fa-charging-station"></i>&nbsp;</i>charging-points</li>
-               {% else %}
-                  <li class="strike"><i class="fas fa-charging-station"></i>&nbsp;&nbsp;</i>charging-points</li>
-               {% endif %}
-
-               {% if amenity.drinking_water %}
-                  <li><i class="fas fa-glass-whiskey">&nbsp;</i>drinking-water</li>
-               {% else %}
-                  <li class="strike"><i class="fas fa-glass-whiskey">&nbsp;&nbsp;</i>drinking-water</li>
-               {% endif %}
-
-               {% if amenity.covered_area %}
-                  <li class="fix"><i class="fas fa-home">&nbsp;</i>covered-area</li>
-               {% else %}
-                  <li class="strike"><i class="fas fa-home">&nbsp;&nbsp;</i>covered_area</li>
-               {% endif %}
-
-               {% if amenity.barbeque_grills %}
-                  <li><img src="https://img.icons8.com/material-outlined/24/000000/grill.png">barbeque</li>
-               {% else %}
-                  <li class="strike"><img src="https://img.icons8.com/material-outlined/24/000000/grill.png"> >barbeque</li>
-               {% endif %}
-
-               {% if amenity.good_for_groups %}
-                  <li><i class="fas fa-user">&nbsp;</i>for-groups</li>
-               {% else %}
-                  <li class="strike"><i class="fas fa-user">&nbsp;&nbsp;</i>for_groups</li>
-               {% endif %}
-
-               {% if amenity.campfire %}
-                  <li><i class="fas fa-fire">&nbsp;</i>campfire</li>
-               {% else %}
-                  <li class="strike"><i class="fas fa-fire">&nbsp;&nbsp;</i>campfire</li>
-               {% endif %}
-
-               {% if amenity.picnic_table %}
-                  <li><i class="fas fa-table">&nbsp;</i>picnic-table</li>
-               {% else %}
-                  <li class="strike"><i class="fas fa-table">&nbsp;&nbsp;</i>picnic_table</li>
-               {% endif %}
-
-               {% if amenity.breakfast %}
-                  <li><i class="fas fa-egg">&nbsp;</i>breakfast</li>
-               {% else %}
-                  <li class="strike"><i class="fas fa-egg">&nbsp;&nbsp;</i>breakfast</li>
-               {% endif %}
-
-            </ul>
-         </div>
-      </div>
-   </div>
-   <hr>
- <div class="description">
-      <div class="row">
-         <div class="col-md-3">
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <div class="description__style">
-               <br>
-               <h4>Description and Features</h4>
+         <div class="row">
+            <div class="col-md-3">
+               <h4 class="description__style">Accommodation and Charges</h4>
+            </div>
+            <div class="col-md-8 text-style details">
+               <p>checkin: {{detail.check_in}}</p>
+               <p>checkout: {{detail.check_out}}</p>
+               <p>cancellation-policy: {{detail.cancellation_policy}}</p>
             </div>
          </div>
-         <div class="col-md-8 text-style">
-            <p class="">{{destination.description|safe}}</p>
-            <!--<p><strong>More</strong></p>-->
-         </div>
       </div>
-   </div>
-   <hr>
-
-      <div class="">
-      <div class="row">
-         <div class="col-md-3">
-            <h4>Details</h4>
-         </div>
-         <div class="col-md-9">
-            <p><strong>Type of land</strong><br>
-               {{detail.type_of_land}}
-            </p>
-            <p><strong>Accessible By</strong><br>
-               {{detail.accessible_By}}
-            </p>
-            <p><strong>Check In</strong><br>
-               {{detail.check_in}}
-            </p>
-            <p><strong>Check Out</strong><br>
-               {{detail.check_out}}
-            </p>
-            <p><strong>Cancellation Policy</strong><br>
-               {{detail.cancellation_policy}} <a href="#"></a>
-            </p>
-         </div>
-      </div>
-   </div>
-   <hr>
+    <hr>
+      <br>
    <div class="">
       <div class="row">
          <div class="col-md-3">
-            <h4>Other Features</h4>
+            <h4>Climate</h4>
          </div>
-         <div class="col-md-8 text-style">
-            <p>Organic Farm, Farm Volunteering, Free food for work, Sweat Donation, Educational Tour, Country Games, Camp Fire, Cycle tour of villages</p>
+         <div class="col-md-8 text-style details">
+            <p>Suitable for: All Seasons</p>
+            <p>{{destination.night_time_temperature_summer}}</p>
+            <p>{{destination.night_time_temperature_winter}}</p>
          </div>
       </div>
       <hr>
-      <div class="">
-         <div class="row">
-            <div class="col-md-3">
-               <h4>Accommodation</h4>
-            </div>
-            <div class="col-md-8 text-style">
-               <p>Organic Farm, Farm Volunteering, Free food for work, Sweat Donation, Educational Tour, Country Games, Camp Fire, Cycle tour of villages</p>
-            </div>
-         </div>
-      </div>
-   </div>
-    <hr>
-
    <div class="">
          <div class="row">
             <div class="col-md-3">
-               <h4>Important to know</h4>
+               <h4>Note</h4>
             </div>
-            <div class="col-md-8 text-style">
-               <p>Organic Farm, Farm Volunteering, Free food for work, Sweat Donation, Educational Tour, Country Games, Camp Fire, Cycle tour of villages</p>
+            <div class="col-md-8 text-style details">
+               <p>{{destination.important_to_know}}</p>
             </div>
          </div>
       </div>
-    <hr>
     <br>
     <br>
       </div>
+</div>
 {% endblock %}

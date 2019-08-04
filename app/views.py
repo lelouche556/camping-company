@@ -6,6 +6,7 @@ from customer.models import Customer
 from trip.models import Trip
 from django.contrib import messages
 from django.http import JsonResponse
+from django.utils import timezone
 
 from app.utils import *
 
@@ -118,11 +119,17 @@ def represent(request):
                     "id": 0
                 }
                 return JsonResponse(data)
-
+        super_user = request.user
         trips = Trip.objects.filter(active=True)
         inventory = Inventory.objects.filter(active=True)
         users = User.objects.all()
-        return render(request, "app/represent.html", {"trips": trips, "users": users, "inventorys": inventory})
+        context = {
+            "trips": trips,
+            "users": users,
+            "inventorys": inventory,
+            "super_user": super_user
+        }
+        return render(request, "app/represent.html", context)
     else:
         return redirect("customer:user_page")
 

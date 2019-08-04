@@ -8,6 +8,9 @@ from django.db.models.signals import pre_save
 
 class Destination(models.Model):
     place = models.CharField(max_length=64)
+    state_city = models.CharField(max_length=64)
+    cc_higlight = models.CharField(max_length=128)
+    map_loc = models.CharField(max_length=64)
     description = models.TextField()
     distance = models.IntegerField()
     hours = models.IntegerField()
@@ -17,7 +20,6 @@ class Destination(models.Model):
     night_time_temperature_winter = models.CharField(max_length=64)
     season = models.CharField(max_length=64)
     slug = models.SlugField(max_length=40, blank=True, null=True)
-    #location and known for
 
     def __str__(self):
         return self.place
@@ -61,6 +63,7 @@ class Detail(models.Model):
     accessible_By = models.CharField(max_length=64)
     check_in = models.CharField(max_length=64)
     check_out = models.CharField(max_length=64)
+    phone = models.BigIntegerField(null=True, blank=True)
     cancellation_policy = models.CharField(max_length=64)
 
     def __str__(self):
