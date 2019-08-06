@@ -12,7 +12,7 @@ def destination(request):
     places = Map.objects.all()
     if request.is_ajax():
         place = request.POST.get("place")
-        region = Region.objects.filter(name__icontains=place)
+        region = Region.objects.filter(name__icontains=place).order_by("pk")
 
         for x in region:
             for y in x.region.all():

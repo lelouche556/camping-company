@@ -105,7 +105,6 @@ class Map(models.Model):
 
 
 class Region(models.Model):
-    destination = models.ForeignKey(Destination, on_delete=models.CASCADE)
     region = models.ManyToManyField(Map, related_name="Region")
     name = models.CharField(max_length=128, blank=True, null=True)
 
