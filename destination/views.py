@@ -9,10 +9,10 @@ from django.http import JsonResponse
 
 def destination(request):
     list1 = []
-    places = Map.objects.all()
+    places = Map.objects.all().order_by("title")
     if request.is_ajax():
         place = request.POST.get("place")
-        region = Region.objects.filter(name__icontains=place).order_by("pk")
+        region = Region.objects.filter(name__icontains=place)
 
         for x in region:
             for y in x.region.all():
@@ -26,7 +26,10 @@ def destination(request):
 def destination_detail_page(request, slug):
     # Search.objects.new_or_get(request)
     destination = Destination.objects.get(slug=slug)
-    image = Image.objects.get(destination=destination)
+    try:
+        image = Image.objects.get(destination=destination)
+    except:
+        return render(request, "destination/detail.html", {"Data":"data available soon"})
     activity = Activity.objects.get(destination=destination)
     detail = Detail.objects.get(destination=destination)
     amenity = Amenity.objects.get(destination=destination)
