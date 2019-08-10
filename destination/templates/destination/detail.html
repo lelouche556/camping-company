@@ -15,7 +15,7 @@
 <h1>&nbsp;</h1>
 <br>
 <br>
-<h1>{{Data}}</h1>
+<h1 class="container">{{Data}}</h1>
    <div class="container">
       <div class="row no-gutters">
          <div class="col-md-6">
@@ -37,17 +37,18 @@
 <br>
       <div class="cards">
       <h2 style="display: inline-block;">{{destination.place}}</h2> &nbsp;<span>({{destination.state_city}})</span>
-      <p><strong>Known for:</strong> {{destination.cc_higlight}}</p>
+         <p><strong>Accessible By:</strong> {{detail.accessible_By}}</p>
+      <p style="margin-top: -2%;"><strong>Known for:</strong> {{destination.cc_higlight}}</p>
       <i class="fas fa-car"></i>
       <i class="fas fa-biking"></i>
       <i class="fas fa-fire"></i>
       <i class="fas fa-toilet-paper"></i>
-      <span class="cards__text">Off &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cycling &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Campfire &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Toilet </span>
+      <span class="cards__text">Off &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cycling &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Campfire &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;toilet </span>
       <span class="cards__text">Roading</span>
       <br>
+                  <p>Important To know: {{destination.important_to_know}}</p>
          {% if user.is_authenticated %}
-         <p>Contact Number: {{detail.phone}}</p>
-         <a href="{{destination.map_loc}}">Google Maps Location</a>
+         <p><a href="{{destination.map_loc}}">Google Maps Location</a>&nbsp;&nbsp;&nbsp;Contact Number: {{detail.phone}}</p>
          {% else %}
          <p class="cards__contact">Contact Number</p>
          <form action="{% url 'register:signin' %}" method="GET">
@@ -84,7 +85,7 @@
                {% if amenity.basic_toilet %}
                   <li><i class="fas fa-toilet">&nbsp;</i>Toilet</li>
                {% else %}
-                  <li class="strike"><i class="fas fa-toilet">&nbsp;&nbsp;</i>Toilet</li>
+                  <li class="strike"><i class="fas fa-toilet">&nbsp;&nbsp;</i>toilet</li>
                {% endif %}
 
                {% if amenity.bathroom %}
@@ -106,21 +107,21 @@
                {% endif %}
 
                {% if amenity.charging_points %}
-                  <li><i class="fas fa-charging-station"></i>&nbsp;</i>charging-points</li>
+                  <li><i class="fas fa-charging-station"></i>&nbsp;</i>charging points</li>
                {% else %}
-                  <li class="strike"><i class="fas fa-charging-station"></i>&nbsp;&nbsp;</i>charging-points</li>
+                  <li class="strike"><i class="fas fa-charging-station"></i>&nbsp;&nbsp;</i>charging points</li>
                {% endif %}
 
                {% if amenity.drinking_water %}
-                  <li><i class="fas fa-glass-whiskey">&nbsp;</i>drinking-water</li>
+                  <li><i class="fas fa-glass-whiskey">&nbsp;</i>drinking water</li>
                {% else %}
-                  <li class="strike"><i class="fas fa-glass-whiskey">&nbsp;&nbsp;</i>drinking-water</li>
+                  <li class="strike"><i class="fas fa-glass-whiskey">&nbsp;&nbsp;</i>drinking water</li>
                {% endif %}
 
                {% if amenity.covered_area %}
-                  <li class="fix"><i class="fas fa-home">&nbsp;</i>covered-area</li>
+                  <li class="fix"><i class="fas fa-home">&nbsp;</i>covered area</li>
                {% else %}
-                  <li class="strike"><i class="fas fa-home">&nbsp;&nbsp;</i>covered_area</li>
+                  <li class="strike"><i class="fas fa-home">&nbsp;&nbsp;</i>covered area</li>
                {% endif %}
 
                {% if amenity.barbeque_grills %}
@@ -129,22 +130,16 @@
                   <li class="strike"><img src="https://img.icons8.com/material-outlined/24/000000/grill.png"> >barbeque</li>
                {% endif %}
 
-               {% if amenity.good_for_groups %}
-                  <li><i class="fas fa-user">&nbsp;</i>for-groups</li>
-               {% else %}
-                  <li class="strike"><i class="fas fa-user">&nbsp;&nbsp;</i>for_groups</li>
-               {% endif %}
-
                {% if amenity.campfire %}
-                  <li><i class="fas fa-fire">&nbsp;</i>campfire</li>
+                  <li><i class="fas fa-fire">&nbsp;</i>bonfire</li>
                {% else %}
-                  <li class="strike"><i class="fas fa-fire">&nbsp;&nbsp;</i>campfire</li>
+                  <li class="strike"><i class="fas fa-fire">&nbsp;&nbsp;</i>bonfire</li>
                {% endif %}
 
                {% if amenity.picnic_table %}
-                  <li><i class="fas fa-table">&nbsp;</i>picnic-table</li>
+                  <li><i class="fas fa-table">&nbsp;</i>picnic table</li>
                {% else %}
-                  <li class="strike"><i class="fas fa-table">&nbsp;&nbsp;</i>picnic_table</li>
+                  <li class="strike"><i class="fas fa-table">&nbsp;&nbsp;</i>picnic table</li>
                {% endif %}
 
                {% if amenity.breakfast %}
@@ -176,9 +171,9 @@
 
 
                {% if activity.trekking %}
-                  <li><i class="fas fa-tree">&nbsp;</i>trekking</li>
+                  <li><i class="fas fa-hiking">&nbsp;</i>trekking</li>
                {% else %}
-                  <li class="strike"><i class="fas fa-tree">&nbsp;&nbsp;</i>trekking</li>
+                  <li class="strike"><i class="fas fa-hiking">&nbsp;&nbsp;</i>trekking</li>
                {% endif %}
 
 
@@ -203,9 +198,9 @@
 
 
                {% if activity.jungle_walk %}
-                  <li><i class="fas fa-tree">&nbsp;</i>Jungle walk</li>
+                  <li><i class="fas fa-tree">&nbsp;</i>jungle walk</li>
                {% else %}
-                  <li class="strike"><i class="fas fa-tree">&nbsp;&nbsp;</i>Jungle walk</li>
+                  <li class="strike"><i class="fas fa-tree">&nbsp;&nbsp;</i>jungle walk</li>
                {% endif %}
 
 
@@ -217,15 +212,15 @@
 
 
                {% if activity.local_farm %}
-                  <li><i class="fas fa-tractor">&nbsp;</i>Local farm visit - Strawberry farm</li>
+                  <li><i class="fas fa-tractor">&nbsp;</i>local farm visit</li>
                {% else %}
-                  <li class="strike"><i class="fas fa-tractor">&nbsp;&nbsp;</i>Local farm visit - Strawberry farm</li>
+                  <li class="strike"><i class="fas fa-tractor">&nbsp;&nbsp;</i>local farm visit</li>
                {% endif %}
 
                {% if activity.river_beach %}
-                  <li><i class="fas fa-umbrella-beach">&nbsp;</i>river-beach</li>
+                  <li><i class="fas fa-umbrella-beach">&nbsp;</i>river beach</li>
                {% else %}
-                  <li class="strike"><i class="fas fa-umbrella-beach">&nbsp;&nbsp;</i>river-beach</li>
+                  <li class="strike"><i class="fas fa-umbrella-beach">&nbsp;&nbsp;</i>river beach</li>
                {% endif %}
 
 
@@ -237,9 +232,9 @@
 
 
                {% if activity.historical_monument %}
-                  <li><i class="fas fa-school">&nbsp;</i>historical-monument</li>
+                  <li><i class="fas fa-school">&nbsp;</i>historical monument</li>
                {% else %}
-                  <li class="strike"><i class="fas fa-school">&nbsp;&nbsp;</i>historical-monument</li>
+                  <li class="strike"><i class="fas fa-school">&nbsp;&nbsp;</i>historical monument</li>
                {% endif %}
 
 
@@ -260,9 +255,9 @@
                <h4 class="description__style">Accommodation and Charges</h4>
             </div>
             <div class="col-md-8 text-style details">
-               <p>checkin: {{detail.check_in}}</p>
-               <p>checkout: {{detail.check_out}}</p>
-               <p>cancellation-policy: {{detail.cancellation_policy}}</p>
+               <p>Check-in: {{detail.check_in}}</p>
+               <p>Check-out: {{detail.check_out}}</p>
+               <p>Cancellation policy: {{detail.cancellation_policy}}</p>
             </div>
          </div>
       </div>
@@ -271,7 +266,7 @@
    <div class="">
       <div class="row">
          <div class="col-md-3">
-            <h4>Climate</h4>
+            <h4 class="description__style">Climate and Temperature</h4description__style>
          </div>
          <div class="col-md-8 text-style details">
             <p>Suitable for: All Seasons</p>
@@ -286,7 +281,7 @@
                <h4>Note</h4>
             </div>
             <div class="col-md-8 text-style details">
-               <p>{{destination.important_to_know}}</p>
+               <p>{{destination.note}}</p>
             </div>
          </div>
       </div>
