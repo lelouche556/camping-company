@@ -16,6 +16,7 @@ class Destination(models.Model):
     hours = models.IntegerField()
     accommodation = models.CharField(max_length=64)
     important_to_know = models.CharField(max_length=128)
+    note = models.CharField(max_length=128)
     night_time_temperature_summer = models.CharField(max_length=64)
     night_time_temperature_winter = models.CharField(max_length=64)
     season = models.CharField(max_length=64)

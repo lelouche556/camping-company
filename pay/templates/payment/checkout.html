@@ -1,56 +1,39 @@
 {% extends "snippets/base.html" %}
 {% load staticfiles %}
     {% block css %}
-        <link rel="stylesheet" href="{% static 'css/customer/checkout.css' %}">
+        <link rel="stylesheet" href="{% static 'css/customer/checkou.css' %}">
     {% endblock %}
 
     {% block content_block %}
-  <head onload="submitPayuForm()">
-  <script type="text/javascript">
-    var hash = "{{ hashh }}";
-    function submitPayuForm() {
-      if(hash == '') {
-        return;
-      }
-      var payuForm = document.forms.payuForm;
-      payuForm.submit();
-    }
-  </script>
-  </head>
-<div class="peeek-loading">
-  <ul>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-  </ul>
-</div>
+<br>
+<br>
+<br>
+<br>
+<!--          <form action="https://www.example.com/payment/success/" method="POST">-->
+<!--    <script-->
+<!--        src="https://checkout.razorpay.com/v1/checkout.js"-->
+<!--        data-key="rzp_test_jhx8CJoTQCL3Eh"-->
+<!--        data-amount="29935"-->
+<!--        data-currency="INR"-->
 
-      <form class action={{ posted.action }} method="post" name="payuForm">
-        <input type="hidden" name="key" value="{{posted.key}}" />
-        <input type="hidden" name="hash_string" value="{{ posted.hash_string }}" />
-        <input type="hidden" name="hash" value="{{ posted.hashh }}"/>
-        <input type="hidden" name="posted" value="{{ posted }}"/>
-        <input type="hidden" name="txnid" value="{{ posted.txnid }}" />
-        <input type="hidden" name="amount" value="{{ posted.amount|default:'' }}" />
-        <input type="hidden" name="firstname" id="firstname" value="{{ posted.firstname|default:'' }}" />
-        <input type="hidden" name="email" id="email" value="{{ posted.email|default:'' }}" />
-        <input type="hidden" name="phone" value="{{ posted.phone|default:'' }}" />
-        <input type="hidden" name="productinfo" value="{{ posted.productinfo|default:'' }}">
-        <input type="hidden" name="surl" value="{{ posted.surl }}" size="64">
-        <input type="hidden" name="furl" value="{{ posted.furl }}" size="64">
-        <input type="hidden" name="service_provider" value="{{posted.service_provider}}" size="64" />
-        <input id="imp" type="submit" value="Submit" />
-    </form>
+<!--        data-buttontext="Pay with Razorpay"-->
+<!--        data-name="Acme Corp"-->
+<!--        data-description="A Wild Sheep Chase is the third novel by Japanese author Haruki Murakami"-->
+<!--        data-image="https://example.com/your_logo.jpg"-->
+<!--        data-prefill.name="Gaurav Kumar"-->
+<!--        data-prefill.email="gaurav.kumar@example.com"-->
+<!--        data-theme.color="#dedede"-->
+<!--    ></script>-->
+<!--    <input id="imp" type="hidden" custom="Hidden Element" name="hidden">-->
+<!--    </form>-->
+<!--<script>-->
+
+<button>Pay</button>
 <script>
 window.onload = function(){
+window.onload = function(){
   $("#imp").click()
+}
 }
 </script>
     {% endblock %}

@@ -32,12 +32,20 @@ class Definition(models.Model):
     car_name = models.CharField(max_length=64, blank=True, null=True)
     seat = models.CharField(max_length=12, blank=True, null=True)
     year = models.CharField(max_length=4, blank=True, null=True)
-    available = models.BooleanField(default=False)
-    check_in_date = models.DateField(blank=True, null=True)
-    check_out_date = models.DateField(blank=True, null=True)
     color = models.CharField(max_length=12, blank=True, null=True)
     car_image = models.ImageField(upload_to="cars", blank=True, null=True)
-    duration = models.IntegerField()
 
     def __str__(self):
         return self.car_name
+
+
+class Book(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+    car_name = models.CharField(max_length=64, blank=True, null=True)
+    check_in_date = models.DateField(blank=True, null=True)
+    check_out_date = models.DateField(blank=True, null=True)
+    duration = models.IntegerField()
+    txnid = models.CharField(max_length=128,blank=True, null=True)
+
+    def __str__(self):
+        return str(self.duration)

@@ -21,12 +21,29 @@
   </div>
 
   <hr>
+
   <div class="product">
     <div class="product-image">
       <img src="{{vehicle.car_image.url}}">
     </div>
     <div class="product-details">
-      <div class="product-title">Car (2999 per night) Base price (350 per preson after 2)</div>
+      <div class="product-title">Car</div>
+      <p class="product-description"></p>
+    </div>
+    <div id="car-pr" class="product-price">2999</div>
+    <div class="product-quantity">
+        <input disabled>
+    </div>
+    <div class="product-line-price" id="car-price">2999</div>
+  </div>
+
+  <hr>
+  <div class="product">
+    <div class="product-image">
+      <img src="{{vehicle.car_image.url}}">
+    </div>
+    <div class="product-details">
+      <div class="product-title">Person</div>
       <p class="product-description"></p>
     </div>
     <div class="product-price">350</div>
@@ -132,14 +149,14 @@
 
     <div class="product-line-price">0</div>
   </div>
-<hr>
+    <hr>
   <div class="totals">
     <div class="totals-item">
       <label>Subtotal</label>
       <div class="totals-value" id="cart-subtotal">2999</div>
     </div>
     <div class="totals-item">
-      <label>Tax</label>
+      <label>IGST</label>
       <div class="totals-value" id="cart-tax">539.82</div>
     </div>
     <div class="totals-item">
@@ -151,7 +168,7 @@
       <div class="totals-value" id="cart-total">3598.8</div>
     </div>
   </div>
-      <button type="button" class="checkout">Checkout</button>
+      <button id="rzp-button1" type="button" class="checkout">Pay</button>
 </div>
 </form>
 </div>
@@ -159,22 +176,28 @@
 <script>
   window.onload = function(){
   let duration = localStorage.getItem("duration")
-var totals = 0;
-var taxRate = 0.18;
-var shippingRate = .021;
-var fadeTime = 300;
-
-
+  var totals = 0;
+  var taxs = 0;
+  var shippings = 0;
+  var taxRate = 0.18;
+  var shippingRate = .021;
+  var fadeTime = 300;
 if (duration >= 4){
-$('.product-price')[2].textContent = 2000
+$('.product-price')[3].textContent = 2000
 }
 
-var pri = 2999 * parseInt(localStorage.getItem("duration"));
-var tot = ((.18 * pri) + (.02 * pri) + pri)
+
+var pri = 2999 * parseInt(duration);
+$('#car-price').html(pri)
+
+var tax = pri * taxRate;
+var shipping = pri * shippingRate;
+
+var total = pri + tax + shipping;
 $(".totals-value")[0].textContent = pri
 $(".totals-value")[1].textContent = (.18 * pri).toFixed(2);
 $(".totals-value")[2].textContent = (.021 * pri).toFixed(2);
-$(".totals-value")[3].textContent = tot
+$(".totals-value")[3].textContent = total.toFixed(2);
 
 
 /* Assign actions */
@@ -191,7 +214,7 @@ $('.product-removal button').click( function() {
 /* Recalculate cart */
 function recalculateCart()
 {
-  var subtotal = 2999 * parseInt(localStorage.getItem("duration"));
+  var subtotal = 0;
 
   /* Sum up row totals */
   $('.product').each(function () {
@@ -203,6 +226,8 @@ function recalculateCart()
   var shipping = subtotal * shippingRate;
   var total = subtotal + tax + shipping; /*+ tax + shipping;*/
   totals = total
+  taxs = tax
+  shippings = shipping
 
   /* Update totals display */
   $('.totals-value').fadeOut(fadeTime, function() {
@@ -246,15 +271,71 @@ function updateQuantity(quantityInput)
     });
   });
   }
-    $("button").click(function(){
-        var paymentForm = $("#payment-form")
+
+  if (totals == 0){
+          totals = total
+          taxs = tax
+          shippings = shipping
+        }
+
+  var options = {
+    "key": "rzp_test_jhx8CJoTQCL3Eh",
+    "currency": "INR",
+    "name": "Camping co",
+    "description": "Overlanding expedition booked",
+    "image": "http://127.0.0.1:8000/static/images/favicon/apple-icon-57x57.png",
+    "handler": function (response){
+                  var end_point = {% url 'pay:pay' %}
+            var end = end_point + "success/";//success/faliure
+            var t = $("input[name=csrfmiddlewaretoken]").val();
+            data = {
+              "txnid": response.razorpay_payment_id,
+              "duration": localStorage.getItem("duration"),
+              "check_in": localStorage.getItem("check_in"),
+              "car_name": localStorage.getItem("car_name"),
+              "csrfmiddlewaretoken": t
+            }
+            $.ajax({
+              data: data,
+              url: end,
+              method: "POST",
+              success: function(data){
+                console.log("Done")
+                localStorage.clear();
+                window.location.href = end;
+              },
+              error: function(error){
+                  console.log(error)
+              }
+          })
+    },
+    "prefill": {
+    },
+    "notes": {
+        "address": "note value"
+    },
+    "theme": {
+        "color": "#1ab188"
+    }
+};
+document.getElementById('rzp-button1').onclick = function(e){
+    e.preventDefault();
+    var paymentForm = $("#payment-form")
+    var data = $('form').serialize();
         var paymentMethodEndpoint = "{% url 'pay:pay' %}"
         var t = $("input[name=csrfmiddlewaretoken]").val();
-        if (totals == 0){
-          totals = tot
-        }
         var data = {
             "total": totals,
+            "car_price": "2999",
+            "person_price": $(".product-line-price")[2].textContent,
+            "campkit": $(".product-line-price")[3].textContent,
+            "gas_stove": $(".product-line-price")[4].textContent,
+            "solar_power": $(".product-line-price")[5].textContent,
+            "torch": $(".product-line-price")[6].textContent,
+            "chair": $(".product-line-price")[7].textContent,
+            "table": $(".product-line-price")[8].textContent,
+            "igst": taxs,
+            "convenient": shippings,
             'csrfmiddlewaretoken': t
         }
         $.ajax({
@@ -262,13 +343,18 @@ function updateQuantity(quantityInput)
             url: paymentMethodEndpoint,
             method: "POST",
             success: function(data){
-                window.location.href = "{% url 'pay:checkout' %}"
+            options.amount = (data.amount) * 100
+            options.prefill.email = data.email
+            options.prefill.name = data.name
+            <!--options.key = data.razor_id-->
+            var rzp1 = new Razorpay(options);
+            rzp1.open();
             },
             error: function(error){
                 console.log(error)
             }
         })
-  });
+}
 }
 </script>
     {% endblock %}

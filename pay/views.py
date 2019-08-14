@@ -1,86 +1,104 @@
-import hashlib
-from random import randint
-from django.views.decorators.csrf import csrf_protect, csrf_exempt
+import math
 from django.shortcuts import render, redirect
+from django.contrib import messages
 from django.http import JsonResponse
-from paywix.payu import PAYU
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from pay.models import Pay
-
+from vehicle.models import Book, Definition
+from datetime import date, timedelta
+import datetime
+import os
+from app.utils import invoice_message
 
 # Create your views here.
 
-# Import Payu from PAYWIX
 
-payu = PAYU()
+@login_required
+def payment_success(request):
+    now = date.today().strftime("%Y-%m-%d")
+    try:
+        pay = Pay.objects.get(user=request.user)
+    except:
+        messages.warning(request, "Book a car first")
+        return redirect("app:home")
+    if request.is_ajax():
+        duration = int(request.POST.get("duration"))
+        check_in = request.POST.get("check_in").replace("-", "")
+        check_in = datetime.datetime.strptime(check_in, "%Y%m%d").date()
+        check_out = check_in + timedelta(duration)
+        car_name = request.POST.get("car_name")
+        txnid = request.POST.get("txnid")
+        request.session["txnid"] = txnid
+        pay.txnid = txnid
+        pay.save()
+        pay.save()
+        Book(user=request.user,
+             car_name=car_name,
+             check_out_date=check_out,
+             check_in_date=check_in,
+             duration=duration, txnid=txnid
+            ).save()
+
+    book = Book.objects.get(user=request.user, txnid=request.session["txnid"])
+    car = pay.car_price
+    duration = book.duration
+    txnid = pay.txnid
+    name = pay.firstname
+    person = pay.person_price
+    campkit = pay.campkit
+    gas = pay.gas_stove
+    solar = pay.solar_power
+    torch = pay.torch
+    table = pay.table
+    igst = pay.igst
+    convenient = pay.convenient
+    chair = pay.chair
+    total = pay.amount
+    count = book.pk
+
+    invoice_message(pay.email, os.environ.get("email"),
+                    car=car, duration=duration, txnid=txnid,
+                    now=now, name=name, person=person, campkit=campkit,
+                    gas=gas, solar=solar, torch=torch, table=table,
+                    igst=igst, convenient=convenient, chair=chair,total=total,
+                    count=count)
+
+    return render(request, "payment/success.html", {"pay": pay})
 
 
 @login_required
-def checkout(request):
-    user = User.objects.get(pk=request.user.pk)
-    payment = Pay.objects.get(user=user)
-    hash_object = hashlib.sha256(b'randint(0,20)')
-    txnid = hash_object.hexdigest()[0:20]
-    payment_data = {
-        'txnid': txnid,
-        'amount': str(payment.amount),
-        'firstname': payment.firstname,
-        'email': payment.email,
-        'phone': payment.phone,
-        'productinfo': 'car book'
-    }
-    payment.txnid = txnid
-    payment.productinfo = 'car book'
-    payment.save()
-    payu_data = payu.initate_transaction(payment_data)
-    if request.is_ajax():
-        request.POST.get("total")
-        return JsonResponse(payu_data)
-    return render(request, "payment/checkout.html", {"posted": payu_data})
-
-
-# Success URL
-@csrf_protect
-@csrf_exempt
-def payment_success(request):
-    # Payu will return response success data with hash value
-    # Need to verify the data with payu check_hash
-    print(request.user.is_authenticated)
-    try:
-        payu_success_data = payu.check_hash(dict(request.POST))
-        status = payu_success_data["data"]["status"]
-        txn = payu_success_data["data"]["txnid"]
-        amount = payu_success_data["data"]["amount"]
-        success = {
-            "status": status,
-            "txnid": txn,
-            "amount": amount
-        }
-        return render(request, "payment/success.html", success)
-    except:
-        return redirect("app:home")
-
-
-# Failure URL
-@csrf_protect
-@csrf_exempt
 def payment_failure(request):
-
-    payu_failure_data = payu.check_hash(dict(request.POST))
-
     return render(request, "payment/failure.html")
 
 
 @login_required
 def cart(request):
     user = User.objects.get(pk=request.user.pk)
-    payment = Pay.objects.get(user=user)
-    # if not request.POST.get("status"):
-    #     return redirect("app:home")
+    razor_id = (os.environ.get("razor_id"), "empty")
     if request.is_ajax():
-        amount = round(float(request.POST.get("total")))
-        payment.amount = amount
-        payment.save()
-        return JsonResponse({"success": "success"})
+        amount = math.ceil(float(request.POST.get("total")))
+        car_price = request.POST.get("car_price")
+        person_price = math.ceil(float(request.POST.get("person_price")))
+        campkit = math.ceil(float(request.POST.get("campkit")))
+        gas_stove = math.ceil(float(request.POST.get("gas_stove")))
+        solar_power = math.ceil(float(request.POST.get("solar_power")))
+        torch = math.ceil(float(request.POST.get("torch")))
+        chair = math.ceil(float(request.POST.get("chair")))
+        table = math.ceil(float(request.POST.get("table")))
+        igst = float(request.POST.get("igst"))
+        convenient = float(request.POST.get("convenient"))
+
+        Pay.objects.filter(user=user).update(amount=amount, car_price=car_price,
+                                             person_price=person_price, campkit=campkit,
+                                             gas_stove=gas_stove, solar_power=solar_power,
+                                             torch=torch, chair=chair, table=table,
+                                             igst=igst, convenient=convenient)
+        payment = Pay.objects.get(user=user)
+        name = payment.firstname
+        email = payment.email
+        return JsonResponse({"amount": amount, "email": email,
+                             "name": name,
+                             "razor_id": razor_id
+                             })
     return render(request, "payment/cart.html")

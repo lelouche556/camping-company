@@ -7,6 +7,7 @@ from django.contrib import messages
 from referral.models import Referral
 from app.utils import *
 from pay.models import Pay
+import re
 from django.utils.http import is_safe_url
 
 # Create your views here.
@@ -34,7 +35,7 @@ def signup(request):
             user.save()
             login(request, user)
             Pay(user=user, email=email).save()
-            Customer(user=user).save()
+            #Customer(user=user).save()
             return redirect("register:welcome")
         try:
             ref_user = Referral.objects.get(slug=code)
@@ -52,7 +53,7 @@ def signup(request):
         ref_user.save()
         login(request, user)
         Pay(user=user, email=email).save()
-        Customer(user=user).save()
+        #Customer(user=user).save()
         message_to_customer(email)
 
         return redirect("register:welcome")
@@ -65,15 +66,16 @@ def signin(request):
     next_ = request.GET.get('next')
     if request.method == "POST":
         next_post = request.POST.get('next')
-        print(next_post)
         next_post = next_post.replace("k", "/")
-        print(next_post)
         username = request.POST.get("username")
         password = request.POST.get("password")
-        user = authenticate(username=username, password=password)
-        if user is None:
-            messages.warning(request,"Please sign in first")
-            return redirect("register:signin")
+
+        if re.search("@", username):
+            u = User.objects.get(email=username)
+            user = authenticate(username=u.username, password=password)
+        else:
+            user = authenticate(username=username, password=password)
+
         if user is not None:
             if user.is_superuser:
                 login(request, user)
@@ -121,10 +123,11 @@ def welcome(request):
         user.last_name = lname
         user.number = number
         user.save()
-        Customer.objects.filter(user=user).update(phone=number, city=city,
-                                                  address=address, nickname=nickname,
-                                                  license_number=license_number, about=about,
-                                                  terms_condition=True)
+        customer = Customer(user=user, phone=number, city=city,
+                            address=address, nickname=nickname,
+                            license_number=license_number, about=about,
+                            terms_condition=True)
+        customer.save()
         message_to_company(email=user.email, message="someone signed up yay!! :)",
                            name=fname, phone=number,
                            subject="Leads Team Rock and Roll")

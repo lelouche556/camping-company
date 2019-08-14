@@ -11,9 +11,7 @@ docutils==0.14
 gunicorn==19.9.0
 idna==2.7
 jmespath==0.9.3
-paywix==2.1
 Pillow==5.2.0
-pip-autoremove==0.9.1
 psycopg2==2.7.5
 python-dateutil==2.7.3
 python-memcached==1.59
@@ -22,5 +20,4 @@ requests==2.21.0
 s3transfer==0.1.13
 six==1.11.0
 sqlparse==0.2.4
-stripe==2.23.0
 urllib3==1.23
