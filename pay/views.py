@@ -75,7 +75,7 @@ def payment_failure(request):
 @login_required
 def cart(request):
     user = User.objects.get(pk=request.user.pk)
-    razor_id = (os.environ.get("razor_id"), "empty")
+    razor_id = os.environ.get("razor_id")
     if request.is_ajax():
         amount = math.ceil(float(request.POST.get("total")))
         car_price = request.POST.get("car_price")
