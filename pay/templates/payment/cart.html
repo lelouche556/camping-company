@@ -48,7 +48,7 @@
     </div>
     <div class="product-price">350</div>
     <div class="product-quantity">
-      <input quant="111" type="number" value="2" min="2">
+      <input quant="111" type="number" value="0" min="0">
     </div>
 
     <div class="product-line-price">0</div>
@@ -59,7 +59,7 @@
       <img src="">
     </div>
     <div class="product-details">
-      <div class="product-title">Campkit (Sleeping bags, kettle, saucepan, charcoal stove)</div>
+      <div class="product-title">Campkit</div>
       <p class="product-description"></p>
     </div>
     <div class="product-price">1500</div>
@@ -149,6 +149,13 @@
 
     <div class="product-line-price">0</div>
   </div>
+
+  <div id="coupon-text" style="margin-left: 20%;">
+  <label for="coupon-code">Coupon code</label>
+  <input id="coupon-code" type="text">
+  <p style="font-size: 10px;">*Use CC20 for 20% discount</p>
+  </div>
+
     <hr>
   <div class="totals">
     <div class="totals-item">
@@ -182,6 +189,7 @@
   var taxRate = 0.18;
   var shippingRate = .021;
   var fadeTime = 300;
+
 if (duration >= 4){
 $('.product-price')[3].textContent = 2000
 }
@@ -253,11 +261,7 @@ function updateQuantity(quantityInput)
   var price = parseFloat(productRow.children('.product-price').text());
   var quantity = $(quantityInput).val();
   if ($(quantityInput).attr("quant")){
-  if (quantity <= 2){
-    quantity = 0;
-  } else {
-    quantity -= 2
-    }
+    price *= parseInt(duration)
 }
 
   var linePrice = price * quantity;
@@ -278,12 +282,21 @@ function updateQuantity(quantityInput)
           shippings = shipping
         }
 
+      $("#coupon-code").change(function(){
+      if($("#coupon-code").val() == "CC20"){
+    $("#coupon-text").html("<p>Applied<p>")
+    var temp = totals;
+    temp *= .02
+    totals -= temp
+  }
+});
+
+
   var options = {
-    "key": "rzp_test_jhx8CJoTQCL3Eh",
     "currency": "INR",
     "name": "Camping co",
     "description": "Overlanding expedition booked",
-    "image": "http://127.0.0.1:8000/static/images/favicon/apple-icon-57x57.png",
+    "image": "https://camping-co.com/static/images/favicon/apple-icon-57x57.png",
     "handler": function (response){
                   var end_point = {% url 'pay:pay' %}
             var end = end_point + "success/";//success/faliure
@@ -346,7 +359,8 @@ document.getElementById('rzp-button1').onclick = function(e){
             options.amount = (data.amount) * 100
             options.prefill.email = data.email
             options.prefill.name = data.name
-            <!--options.key = data.razor_id-->
+            options.key = data.razor_id
+
             var rzp1 = new Razorpay(options);
             rzp1.open();
             },
