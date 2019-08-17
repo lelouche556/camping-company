@@ -43,7 +43,7 @@
       <img src="{{vehicle.car_image.url}}">
     </div>
     <div class="product-details">
-      <div class="product-title">Person</div>
+      <div class="product-title">Extra Person</div>
       <p class="product-description"></p>
     </div>
     <div class="product-price">350</div>
@@ -177,9 +177,14 @@
       <div class="totals-value" id="cart-total">3598.8</div>
     </div>
 
-            <div class="totals-item">
+    <div class="totals-item">
       <label>Discount</label>
       <div class="totals-value" id="cart-discount">0</div>
+    </div>
+
+    <div class="totals-item">
+      <label>Amount Payable</label>
+      <div class="totals-value" id="cart-payable"></div>
     </div>
 
   </div>
@@ -201,7 +206,7 @@
 if (duration >= 4){
 $('.product-price')[3].textContent = 2000
 }
-if(localStorage.getItem("carname") === "thar"){
+if(localStorage.getItem("car_name") === "thar"){
   $("#quant").attr("max",3)
 } else {
   $("#quant").attr("max",2)
@@ -218,6 +223,8 @@ $(".totals-value")[0].textContent = pri
 $(".totals-value")[1].textContent = (.18 * pri).toFixed(2);
 $(".totals-value")[2].textContent = (.021 * pri).toFixed(2);
 $(".totals-value")[3].textContent = total.toFixed(2);
+
+$('#cart-payable').html((total).toFixed(2));
 
 
 /* Assign actions */
@@ -255,6 +262,7 @@ function recalculateCart()
     $('#cart-tax').html(tax.toFixed(2));
     $('#cart-shipping').html(shipping.toFixed(2));
     $('#cart-total').html(total.toFixed(2));
+    $('#cart-payable').html((total-(total*.2)).toFixed(2));
     if(total == 0){
       $('.checkout').fadeOut(fadeTime);
     }else{
@@ -301,7 +309,8 @@ function updateQuantity(quantityInput)
         temp *= .2
         totals -= temp
         $('#cart-discount').html(-(total*.2).toFixed(2));
-  }
+          $('#cart-payable').html((total-(total*.2)).toFixed(2));
+        }
 });
 
 

@@ -4,11 +4,13 @@ from destination.models import (Destination, Map,
                                 Amenity, Activity,
                                 Detail)
 from django.http import JsonResponse
+import os
 # Create your views here.
 
 
 def destination(request):
     list1 = []
+    maps = os.environ.get("maps")
     places = Map.objects.all().order_by("title")
     if request.is_ajax():
         place = request.POST.get("place")
@@ -20,7 +22,7 @@ def destination(request):
         data = {"list1": list1}
         return JsonResponse(data)
 
-    return render(request, "destination/destination.html", {"places": places, "list1": list1})
+    return render(request, "destination/destination.html", {"places": places, "maps": maps,"list1":list1})
 
 
 def destination_detail_page(request, slug):
