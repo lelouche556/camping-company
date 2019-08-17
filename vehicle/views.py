@@ -11,8 +11,7 @@ from datetime import date
 
 
 def vehicles(request):
-    now = date.today() #+ datetime.timedelta(47)
-    # now = now.strftime("%Y-%m-%d")
+    now = date.today()
     d0 = request.GET.get("tripDay").replace("-", "")
     duration = request.GET.get("Duration")
     if d0 is '':
@@ -24,6 +23,10 @@ def vehicles(request):
     check_in = datetime.datetime.strptime(d0, "%Y%m%d").date()
     check_out = check_in + datetime.timedelta(int(duration))
 
+    if check_in < now:
+        messages.warning(request, "cant book the car for past date")
+        return redirect("app:home")
+
     book1 = Book.objects.filter(car_name="xenon")
     thar = {}
     xenon = {}
@@ -31,20 +34,14 @@ def vehicles(request):
         for _ in book1:
             if now == _.check_out_date:
                 _.delete()
-
             if check_in < _.check_in_date and check_out < _.check_in_date or check_in > _.check_out_date:
-                xenon = Definition.objects.get(car_name="xenon")
-                break
-            else:
-                xenon = Book.objects.filter(check_in_date=check_in, check_out_date=check_out)
-                if xenon.count() == 4:
+                book = Book.objects.filter(check_in_date=check_in, check_out_date=check_out)
+                if book.count() == 4:
                     xenon = {}
                     break
                 else:
                     xenon = Definition.objects.get(car_name="xenon")
                     break
-            # elif check_out < _.check_out_date:
-            #     xenon = {}
     else:
         xenon = Definition.objects.get(car_name="xenon")
 
@@ -54,11 +51,8 @@ def vehicles(request):
             if now == _.check_out_date:
                 _.delete()
             if check_in < _.check_in_date and check_out < _.check_in_date or check_in > _.check_out_date:
-                thar = Definition.objects.get(car_name="thar")
-                break
-            else:
-                thar = Book.objects.filter(check_in_date=check_in, check_out_date=check_out)
-                if thar.count() == 1:
+                book = Book.objects.filter(check_in_date=check_in,check_out_date=check_out)
+                if book.count() == 1:
                     thar = {}
                     break
                 else:
