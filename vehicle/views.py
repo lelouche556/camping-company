@@ -36,7 +36,7 @@ def vehicles(request):
                 xenon = Definition.objects.get(car_name="xenon")
                 break
             else:
-                xenon = Book.objects.filter(check_out_date=now)
+                xenon = Book.objects.filter(check_in_date=check_in, check_out_date=check_out)
                 if xenon.count() == 4:
                     xenon = {}
                     break
@@ -57,7 +57,7 @@ def vehicles(request):
                 thar = Definition.objects.get(car_name="thar")
                 break
             else:
-                thar = Book.objects.filter(check_out_date=now)
+                thar = Book.objects.filter(check_in_date=check_in, check_out_date=check_out)
                 if thar.count() == 1:
                     thar = {}
                     break
