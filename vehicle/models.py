@@ -48,4 +48,4 @@ class Book(models.Model):
     txnid = models.CharField(max_length=128,blank=True, null=True)
 
     def __str__(self):
-        return str(self.duration)
+        return self.car_name + ' ' + str(self.duration)

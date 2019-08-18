@@ -207,9 +207,9 @@ if (duration >= 4){
 $('.product-price')[3].textContent = 2000
 }
 if(localStorage.getItem("car_name") === "thar"){
-  $("#quant").attr("max",3)
+  $("#quant").attr("max",4)
 } else {
-  $("#quant").attr("max",2)
+  $("#quant").attr("max",3)
   }
 
 var pri = 2999 * parseInt(duration);
@@ -262,7 +262,11 @@ function recalculateCart()
     $('#cart-tax').html(tax.toFixed(2));
     $('#cart-shipping').html(shipping.toFixed(2));
     $('#cart-total').html(total.toFixed(2));
-    $('#cart-payable').html((total-(total*.2)).toFixed(2));
+    if($("#coupon-text").html() == "Applied"){
+      $('#cart-payable').html((total-(total*.2)).toFixed(2));
+      } else {
+        $('#cart-payable').html(total.toFixed(2));
+      }
     if(total == 0){
       $('.checkout').fadeOut(fadeTime);
     }else{
@@ -304,7 +308,7 @@ function updateQuantity(quantityInput)
 
       $("#btn-coupon").click(function(){
       if($("#coupon-code").val() == "CC20"){
-        $("#coupon-text").html("<p>Applied<p>")
+        $("#coupon-text").html("Applied")
         var temp = totals;
         temp *= .2
         totals -= temp

@@ -32,6 +32,7 @@ def vehicles(request):
     xenon = {}
     if book1.count() != 0:
         for _ in book1:
+            # if _.check_in_date == check_in and _.check_out_date == check_out:
             if Book.objects.filter(check_in_date=check_in, check_out_date=check_out):
                 if Book.objects.filter(check_in_date=check_in, check_out_date=check_out).count() < 5:
                     xenon = Definition.objects.get(car_name="xenon")
