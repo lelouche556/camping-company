@@ -27,37 +27,32 @@ def vehicles(request):
         messages.warning(request, "cant book the car for past date")
         return redirect("app:home")
 
-    book1 = Book.objects.filter(car_name="xenon")
+    book1 = Book.objects.filter(car_name="xenon", check_out_date__gte=now)
     thar = {}
     xenon = {}
     if book1.count() != 0:
         for _ in book1:
-            if now == _.check_out_date:
-                _.delete()
-            if check_in < _.check_in_date and check_out < _.check_in_date or check_in > _.check_out_date:
-                book = Book.objects.filter(check_in_date=check_in, check_out_date=check_out)
-                if book.count() == 4:
-                    xenon = {}
-                    break
-                else:
+            if Book.objects.filter(check_in_date=check_in, check_out_date=check_out):
+                if Book.objects.filter(check_in_date=check_in, check_out_date=check_out).count() < 5:
                     xenon = Definition.objects.get(car_name="xenon")
                     break
+
+            if check_in < _.check_in_date and check_out < _.check_in_date or check_in > _.check_out_date:
+                xenon = Definition.objects.get(car_name="xenon")
+                break
     else:
         xenon = Definition.objects.get(car_name="xenon")
 
-    book2 = Book.objects.filter(car_name="thar")
+    book2 = Book.objects.filter(car_name="thar", check_out_date__gte=now)
     if book2.count() != 0:
         for _ in book2:
-            if now == _.check_out_date:
-                _.delete()
-            if check_in < _.check_in_date and check_out < _.check_in_date or check_in > _.check_out_date:
-                book = Book.objects.filter(check_in_date=check_in,check_out_date=check_out)
-                if book.count() == 1:
-                    thar = {}
-                    break
-                else:
+            if Book.objects.filter(check_in_date=check_in, check_out_date=check_out):
+                if Book.objects.filter(check_in_date=check_in, check_out_date=check_out).count() < 1:
                     thar = Definition.objects.get(car_name="thar")
                     break
+            if check_in < _.check_in_date and check_out < _.check_in_date or check_in > _.check_out_date:
+                thar = Definition.objects.get(car_name="thar")
+                break
     else:
         thar = Definition.objects.get(car_name="thar")
 
