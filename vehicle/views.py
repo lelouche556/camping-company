@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from vehicle.models import VehicleCheck
-from vehicle.models import Definition,Book
+from vehicle.models import Definition, Book
 from django.contrib import messages
 import datetime
 from datetime import date
@@ -11,6 +11,7 @@ from datetime import date
 
 
 def vehicles(request):
+    list1 = []
     now = date.today()
     d0 = request.GET.get("tripDay").replace("-", "")
     duration = request.GET.get("Duration")
@@ -27,36 +28,39 @@ def vehicles(request):
         messages.warning(request, "cant book the car for past date")
         return redirect("app:home")
 
-    book1 = Book.objects.filter(car_name="xenon", check_out_date__gte=now)
-    thar = {}
-    xenon = {}
-    if book1.count() != 0:
-        for _ in book1:
-            # if _.check_in_date == check_in and _.check_out_date == check_out:
-            if Book.objects.filter(check_in_date=check_in, check_out_date=check_out):
-                if Book.objects.filter(check_in_date=check_in, check_out_date=check_out).count() < 5:
-                    xenon = Definition.objects.get(car_name="xenon")
-                    break
+    definition = Definition.objects.filter(car_type="xenon")
+    for _ in definition:
+        book = Book.objects.filter(definition=_)
+        if book.count() == 0:
+            xenon = _
+            break
+        for b in book:
+            if check_in < b.check_in_date and check_out < b.check_in_date or check_in > b.check_out_date \
+                    and check_out > b.check_out_date:
+                list1.append(_)
+            else:
+                list1.append(None)
+        if None in list1:
+            xenon = {}
+        else:
+            xenon = _
+            break
+        list1 = []
 
-            if check_in < _.check_in_date and check_out < _.check_in_date or check_in > _.check_out_date:
-                xenon = Definition.objects.get(car_name="xenon")
+    definition = Definition.objects.filter(car_type="thar")
+    for _ in definition:
+        book = Book.objects.filter(definition=_)
+        if book.count() == 0:
+            thar = _
+            break
+        for b in book:
+            if check_in < b.check_in_date and check_out < b.check_in_date or check_in > b.check_out_date \
+                    and check_out > b.check_out_date:
+                thar = _
+
+            else:
+                thar = {}
                 break
-    else:
-        xenon = Definition.objects.get(car_name="xenon")
-
-    book2 = Book.objects.filter(car_name="thar", check_out_date__gte=now)
-    if book2.count() != 0:
-        for _ in book2:
-            if Book.objects.filter(check_in_date=check_in, check_out_date=check_out):
-                if Book.objects.filter(check_in_date=check_in, check_out_date=check_out).count() < 1:
-                    thar = Definition.objects.get(car_name="thar")
-                    break
-            if check_in < _.check_in_date and check_out < _.check_in_date or check_in > _.check_out_date:
-                thar = Definition.objects.get(car_name="thar")
-                break
-    else:
-        thar = Definition.objects.get(car_name="thar")
-
     return render(request, "vehicle/vehicles.html", {"thar": thar, "xenon": xenon})
 
 

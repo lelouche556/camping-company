@@ -28,17 +28,19 @@ def payment_success(request):
         check_in = datetime.datetime.strptime(check_in, "%Y%m%d").date()
         check_out = check_in + timedelta(duration)
         car_name = request.POST.get("car_name")
+        car_type = request.POST.get("car_type")
+        definition = Definition.objects.get(car_name=car_name)
         txnid = request.POST.get("txnid")
         request.session["txnid"] = txnid
         pay.txnid = txnid
         pay.save()
         pay.save()
         Book(user=request.user,
-             car_name=car_name,
+             car_name=car_type,
+             definition=definition,
              check_out_date=check_out,
              check_in_date=check_in,
-             duration=duration, txnid=txnid
-            ).save()
+             duration=duration, txnid=txnid).save()
 
     book = Book.objects.get(user=request.user, txnid=request.session["txnid"])
     car = pay.car_price

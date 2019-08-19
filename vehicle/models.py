@@ -30,6 +30,7 @@ class VehicleCheck(models.Model):
 
 class Definition(models.Model):
     car_name = models.CharField(max_length=64, blank=True, null=True)
+    car_type = models.CharField(max_length=64, blank=True, null=True)
     seat = models.CharField(max_length=12, blank=True, null=True)
     year = models.CharField(max_length=4, blank=True, null=True)
     color = models.CharField(max_length=12, blank=True, null=True)
@@ -41,11 +42,12 @@ class Definition(models.Model):
 
 class Book(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+    definition = models.ForeignKey(Definition, on_delete=models.CASCADE, null=True, blank=True)
     car_name = models.CharField(max_length=64, blank=True, null=True)
     check_in_date = models.DateField(blank=True, null=True)
     check_out_date = models.DateField(blank=True, null=True)
     duration = models.IntegerField()
-    txnid = models.CharField(max_length=128,blank=True, null=True)
+    txnid = models.CharField(max_length=128, blank=True, null=True)
 
     def __str__(self):
         return self.car_name + ' ' + str(self.duration)

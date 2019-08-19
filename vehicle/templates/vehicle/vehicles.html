@@ -27,7 +27,7 @@
                         </div>
                     </div>
                     <div class="p-4">
-                        <p class="uppercase tracking-wide text-sm font-bold text-gray-700">{{thar.car_name}}</p>
+                        <p class="uppercase tracking-wide text-sm font-bold text-gray-700">{{thar.car_type}}</p>
                         <p class="text-3xl text-gray-900">INR 2999*</p>
                         <p class="text-gray-700">4x4</p>
                     </div>
@@ -57,7 +57,7 @@
                         </div>
                     </div>
                     <div class="p-4">
-                        <p class="uppercase tracking-wide text-sm font-bold text-gray-700">{{xenon.car_name}}</p>
+                        <p class="uppercase tracking-wide text-sm font-bold text-gray-700">{{xenon.car_type}}</p>
                         <p class="text-3xl text-gray-900">INR 2999*</p>
                         <p class="text-gray-700">4x2</p>
                     </div>
@@ -87,21 +87,26 @@
 window.onload = function() {
     var queryDict = {}
     var check_in;
-    var car_name;
-    var x = "{{thar.car_name}}";
-    var y = "{{xenon.car_name}}";
+
+    var x1 = "{{thar.car_type}}";
+    var x2 = "{{thar.car_name}}";
+
+    var y1 = "{{xenon.car_type}}";
+    var y2 = "{{xenon.car_name}}";
+
     location.search.substr(1).split("&").forEach(function(item) {queryDict[item.split("=")[0]] = item.split("=")[1]})
     localStorage.setItem("duration", queryDict["Duration"]);
     localStorage.setItem("check_in", queryDict["tripDay"]);
 
     $("#btn-thar").click(function(){
-        localStorage.setItem("car_name", x);
+        localStorage.setItem("car_type", x1);
+        localStorage.setItem("car_name", x2);
     })
 
     $("#btn-xenon").click(function(){
-        localStorage.setItem("car_name", y);
+        localStorage.setItem("car_type", y1);
+        localStorage.setItem("car_name", y2);
     })
-
     }
 </script>
 {% endblock %}
