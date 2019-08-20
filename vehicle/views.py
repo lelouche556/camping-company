@@ -37,10 +37,10 @@ def vehicles(request):
         for b in book:
             if check_in < b.check_in_date and check_out < b.check_in_date or check_in > b.check_out_date \
                     and check_out > b.check_out_date:
-                list1.append(_)
+                list1.append(1)
             else:
-                list1.append(None)
-        if None in list1:
+                list1.append(0)
+        if 0 in list1:
             xenon = {}
         else:
             xenon = _

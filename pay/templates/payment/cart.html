@@ -309,11 +309,10 @@ function updateQuantity(quantityInput)
       $("#btn-coupon").click(function(){
       if($("#coupon-code").val() == "CC20"){
         $("#coupon-text").html("Applied")
-        var temp = totals;
-        temp *= .2
-        totals -= temp
+        totals = total-(total*.2)
         $('#cart-discount').html(-(total*.2).toFixed(2));
           $('#cart-payable').html((total-(total*.2)).toFixed(2));
+
         }
 });
 

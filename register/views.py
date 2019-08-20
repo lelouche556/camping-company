@@ -71,8 +71,12 @@ def signin(request):
         password = request.POST.get("password")
 
         if re.search("@", username):
-            u = User.objects.get(email=username)
-            user = authenticate(username=u.username, password=password)
+            try:
+                u = User.objects.get(email=username)
+                user = authenticate(username=u.username, password=password)
+            except:
+                messages.warning(request, "You Need to sign up first")
+                return redirect("app:home")
         else:
             user = authenticate(username=username, password=password)
 
