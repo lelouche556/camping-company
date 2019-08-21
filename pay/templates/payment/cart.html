@@ -195,6 +195,13 @@
 <br>
 <script>
   window.onload = function(){
+  if (!localStorage.getItem("reload")) {
+    localStorage.setItem("reload", "true");
+    location.reload(true);
+}
+else {
+    localStorage.removeItem("reload");
+}
   let duration = localStorage.getItem("duration")
   var totals = 0;
   var taxs = 0;
@@ -305,14 +312,12 @@ function updateQuantity(quantityInput)
           taxs = tax
           shippings = shipping
         }
-
       $("#btn-coupon").click(function(){
       if($("#coupon-code").val() == "CC20"){
         $("#coupon-text").html("Applied")
-        totals = total-(total*.2)
-        $('#cart-discount').html(-(total*.2).toFixed(2));
-          $('#cart-payable').html((total-(total*.2)).toFixed(2));
-
+        $('#cart-discount').html(-(totals*.2).toFixed(2));
+          $('#cart-payable').html((totals-(totals*.2)).toFixed(2));
+        totals = totals-(totals*.2)
         }
 });
 
@@ -386,7 +391,6 @@ document.getElementById('rzp-button1').onclick = function(e){
             options.prefill.email = data.email
             options.prefill.name = data.name
             options.key = data.razor_id
-
             var rzp1 = new Razorpay(options);
             rzp1.open();
             },
