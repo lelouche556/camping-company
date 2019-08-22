@@ -34,7 +34,6 @@ def payment_success(request):
         request.session["txnid"] = txnid
         pay.txnid = txnid
         pay.save()
-        pay.save()
         Book(user=request.user,
              car_name=car_type,
              definition=definition,

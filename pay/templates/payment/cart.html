@@ -199,9 +199,6 @@
     localStorage.setItem("reload", "true");
     location.reload(true);
 }
-else {
-    localStorage.removeItem("reload");
-}
   let duration = localStorage.getItem("duration")
   var totals = 0;
   var taxs = 0;
@@ -330,9 +327,9 @@ function updateQuantity(quantityInput)
     "currency": "INR",
     "name": "Camping co",
     "description": "Overlanding expedition booked",
-    "image": "https://camping-co.com/static/images/favicon/apple-icon-57x57.png",
+    "image": "{% static 'images/favicon/apple-icon-72x72.png' %}",
     "handler": function (response){
-                  var end_point = {% url 'pay:pay' %}
+            var end_point = {% url 'pay:pay' %}
             var end = end_point + "success/";//success/faliure
             var t = $("input[name=csrfmiddlewaretoken]").val();
             data = {
@@ -348,7 +345,6 @@ function updateQuantity(quantityInput)
               url: end,
               method: "POST",
               success: function(data){
-                console.log("Done")
                 localStorage.clear();
                 window.location.href = end;
               },
