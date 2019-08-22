@@ -318,6 +318,10 @@ function updateQuantity(quantityInput)
         $('#cart-discount').html(-(totals*.2).toFixed(2));
           $('#cart-payable').html((totals-(totals*.2)).toFixed(2));
         totals = totals-(totals*.2)
+        x = $("input")
+        for (let y of x){
+	        y.disabled = true
+            }
         }
 });
 
