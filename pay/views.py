@@ -5,6 +5,7 @@ from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from pay.models import Pay
+from customer.models import Customer
 from vehicle.models import Book, Definition
 from datetime import date, timedelta
 import datetime
@@ -57,13 +58,14 @@ def payment_success(request):
     chair = pay.chair
     total = pay.amount
     count = book.pk
+    coupon = pay.coupon
 
     invoice_message(pay.email, os.environ.get("email"),
                     car=car, duration=duration, txnid=txnid,
                     now=now, name=name, person=person, campkit=campkit,
                     gas=gas, solar=solar, torch=torch, table=table,
                     igst=igst, convenient=convenient, chair=chair,total=total,
-                    count=count)
+                    count=count, coupon=coupon)
 
     return render(request, "payment/success.html", {"pay": pay})
 
@@ -76,6 +78,11 @@ def payment_failure(request):
 @login_required
 def cart(request):
     user = User.objects.get(pk=request.user.pk)
+    try:
+        customer = Customer.objects.get(user=user)
+    except:
+        messages.warning(request, "Complete Sign up")
+        return redirect("register:welcome")
     razor_id = os.environ.get("razor_id")
     if request.is_ajax():
         amount = math.ceil(float(request.POST.get("total")))
@@ -89,12 +96,13 @@ def cart(request):
         table = math.ceil(float(request.POST.get("table")))
         igst = float(request.POST.get("igst"))
         convenient = float(request.POST.get("convenient"))
+        coupon = float(request.POST.get("coupon"))
 
         Pay.objects.filter(user=user).update(amount=amount, car_price=car_price,
                                              person_price=person_price, campkit=campkit,
                                              gas_stove=gas_stove, solar_power=solar_power,
                                              torch=torch, chair=chair, table=table,
-                                             igst=igst, convenient=convenient)
+                                             igst=igst, convenient=convenient, coupon=coupon)
         payment = Pay.objects.get(user=user)
         name = payment.firstname
         email = payment.email

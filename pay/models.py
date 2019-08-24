@@ -6,6 +6,7 @@ class Pay(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="payment")
     txnid = models.CharField(max_length=128, blank=True, null=True)
     amount = models.IntegerField(blank=True, null=True)
+    coupon = models.FloatField(blank=True, null=True)
     firstname = models.CharField(max_length=32, blank=True, null=True)
     email = models.CharField(max_length=128, blank=True, null=True)
     productinfo = models.CharField(max_length=32, default='car book')

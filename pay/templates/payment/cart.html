@@ -202,6 +202,7 @@
   var taxRate = 0.18;
   var shippingRate = .021;
   var fadeTime = 300;
+  var coupon = 0
 
 if (duration >= 4){
 $('.product-price')[3].textContent = 2000
@@ -310,6 +311,7 @@ function updateQuantity(quantityInput)
         $("#coupon-text").html("Applied")
         $('#cart-discount').html(-(totals*.2).toFixed(2));
           $('#cart-payable').html((totals-(totals*.2)).toFixed(2));
+        coupon = totals*.2
         totals = totals-(totals*.2)
         x = $("input")
         for (let y of x){
@@ -376,6 +378,7 @@ document.getElementById('rzp-button1').onclick = function(e){
             "table": $(".product-line-price")[8].textContent,
             "igst": taxs,
             "convenient": shippings,
+            "coupon": coupon
             'csrfmiddlewaretoken': t
         }
         $.ajax({
