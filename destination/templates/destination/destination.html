@@ -135,7 +135,7 @@
 
 
      var map = new google.maps.Map(document.getElementById('map'), options);
-       var markers = []
+       var markers = [0]
       {% for x in places %}
       markers.push({
          coords:{lat:{{x.latitude}},lng:{{x.longitude}}},
@@ -145,15 +145,18 @@
 
        {% endfor %}
 
-     var k = 1
-     for(var i = 0;i < markers.length;i++){
-     for (var z = 0; z < list1.length; z++){
-       if (typeof list1 == "undefined" || i == list1[z]){
-               addMarker(markers[i]);
-               break;
+     for(var i = 1;i < markers.length;i++){
+       if (typeof list1 == "undefined"){
+            addMarker(markers[i]);
+          } else {
+            for (var j = 0; j < list1.length; j++) {
+              if(i == list1[j]){
+                addMarker(markers[i]);
+                break
+              }
             }
-      }
-}
+          }
+        }
 
 
 
