@@ -133,24 +133,24 @@
 
      }
 
-
      var map = new google.maps.Map(document.getElementById('map'), options);
-       var markers = [0]
+       var markers = []
       {% for x in places %}
       markers.push({
          coords:{lat:{{x.latitude}},lng:{{x.longitude}}},
          iconImage:'https://cdn4.iconfinder.com/data/icons/camp/96/tend-48.png',
-         content:'<div class="py-4"><div class="card-deck"><div class="card"><img class="card-img-top" src="{{x.images.url}}" alt="Card image cap"><div class="card-body"><h5 class="card-title">{{x.title}}</h5><p class="card-text">{{x.description}}</p></div></div></div></div>',
+         content:'<div class="py-4"><div class="card-deck"><div prikey="{{x.pk}}" class="card"><img class="card-img-top" src="{{x.images.url}}" alt="Card image cap"><div class="card-body"><h5 class="card-title">{{x.title}}</h5><p class="card-text">{{x.description}}</p></div></div></div></div>',
         })
 
        {% endfor %}
 
-     for(var i = 1;i < markers.length;i++){
+     for(var i = 0;i < markers.length;i++)
        if (typeof list1 == "undefined"){
             addMarker(markers[i]);
           } else {
+            prikey = parseInt($(".card")[i].attr("prikey"))
             for (var j = 0; j < list1.length; j++) {
-              if(i == list1[j]){
+              if(prikey == list1[j]){
                 addMarker(markers[i]);
                 break
               }

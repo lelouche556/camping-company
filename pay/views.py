@@ -32,7 +32,6 @@ def payment_success(request):
         car_type = request.POST.get("car_type")
         definition = Definition.objects.get(car_name=car_name)
         txnid = request.POST.get("txnid")
-        request.session["txnid"] = txnid
         pay.txnid = txnid
         pay.save()
         Book(user=request.user,
@@ -42,30 +41,30 @@ def payment_success(request):
              check_in_date=check_in,
              duration=duration, txnid=txnid).save()
 
-    book = Book.objects.get(user=request.user, txnid=request.session["txnid"])
-    car = pay.car_price
-    duration = book.duration
-    txnid = pay.txnid
-    name = pay.firstname
-    person = pay.person_price
-    campkit = pay.campkit
-    gas = pay.gas_stove
-    solar = pay.solar_power
-    torch = pay.torch
-    table = pay.table
-    igst = pay.igst
-    convenient = pay.convenient
-    chair = pay.chair
-    total = pay.amount
-    count = book.pk
-    coupon = pay.coupon
+        book = Book.objects.get(user=request.user, txnid=txnid)
+        car = pay.car_price
+        duration = book.duration
+        txnid = pay.txnid
+        name = pay.firstname
+        person = pay.person_price
+        campkit = pay.campkit
+        gas = pay.gas_stove
+        solar = pay.solar_power
+        torch = pay.torch
+        table = pay.table
+        igst = pay.igst
+        convenient = pay.convenient
+        chair = pay.chair
+        total = pay.amount
+        count = book.pk
+        coupon = pay.coupon
 
-    invoice_message(pay.email, os.environ.get("email"),
-                    car=car, duration=duration, txnid=txnid,
-                    now=now, name=name, person=person, campkit=campkit,
-                    gas=gas, solar=solar, torch=torch, table=table,
-                    igst=igst, convenient=convenient, chair=chair,total=total,
-                    count=count, coupon=coupon)
+        invoice_message(pay.email, os.environ.get("email"),
+                        car=car, duration=duration, txnid=txnid,
+                        now=now, name=name, person=person, campkit=campkit,
+                        gas=gas, solar=solar, torch=torch, table=table,
+                        igst=igst, convenient=convenient, chair=chair,total=total,
+                        count=count, coupon=coupon)
 
     return render(request, "payment/success.html", {"pay": pay})
 
@@ -84,6 +83,10 @@ def cart(request):
         messages.warning(request, "Complete Sign up")
         return redirect("register:welcome")
     razor_id = os.environ.get("razor_id")
+    try:
+        price = int(request.POST.get("price"))
+    except:
+        return redirect("app:home")
     if request.is_ajax():
         amount = math.ceil(float(request.POST.get("total")))
         car_price = request.POST.get("car_price")
@@ -110,4 +113,4 @@ def cart(request):
                              "name": name,
                              "razor_id": razor_id
                              })
-    return render(request, "payment/cart.html")
+    return render(request, "payment/cart.html",{"price":price})

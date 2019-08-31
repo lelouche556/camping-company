@@ -30,11 +30,11 @@
       <div class="product-title">Car</div>
       <p class="product-description"></p>
     </div>
-    <div id="car-pr" class="product-price">2999</div>
+    <div id="car-pr" class="product-price">{{price}}</div>
     <div class="product-quantity">
         <input value="2" type="number" disabled>
     </div>
-    <div class="product-line-price" id="car-price">2999</div>
+    <div class="product-line-price" id="car-price">{{price}}</div>
   </div>
 
   <hr>
@@ -161,7 +161,7 @@
   <div class="totals">
     <div class="totals-item">
       <label>Subtotal</label>
-      <div class="totals-value" id="cart-subtotal">2999</div>
+      <div class="totals-value" id="cart-subtotal">{{price}}</div>
     </div>
     <div class="totals-item">
       <label>IGST</label>
@@ -213,7 +213,12 @@ if(localStorage.getItem("car_type") === "thar"){
   $("#quant").attr("max",3)
   }
 
-var pri = 2999 * parseInt(duration);
+  if(localStorage.getItem("car_type") === "caravan"){
+    $("input")[1].value = 6
+    document.getElementById("quant").disabled = true
+    }
+
+var pri = {{price}} * parseInt(duration);
 $('#car-price').html(pri)
 
 var tax = pri * taxRate;
@@ -368,7 +373,7 @@ document.getElementById('rzp-button1').onclick = function(e){
         var t = $("input[name=csrfmiddlewaretoken]").val();
         var data = {
             "total": totals,
-            "car_price": "2999",
+            "car_price": "{{price}}",
             "person_price": $(".product-line-price")[2].textContent,
             "campkit": $(".product-line-price")[3].textContent,
             "gas_stove": $(".product-line-price")[4].textContent,
