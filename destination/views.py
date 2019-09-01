@@ -47,5 +47,3 @@ def destination_detail_page(request, slug):
                "place": place
                }
     return render(request, "destination/detail.html", context)
-# fake initialization
-
