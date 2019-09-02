@@ -83,10 +83,11 @@ def cart(request):
         messages.warning(request, "Complete Sign up")
         return redirect("register:welcome")
     razor_id = os.environ.get("razor_id")
-    try:
-        price = int(request.POST.get("price"))
-    except:
-        return redirect("app:home")
+    if not request.is_ajax():
+        try:
+            price = int(request.POST.get("price"))
+        except:
+            return redirect("app:home")
     if request.is_ajax():
         amount = math.ceil(float(request.POST.get("total")))
         car_price = request.POST.get("car_price")
