@@ -9,6 +9,9 @@ from app.utils import *
 from pay.models import Pay
 import re
 from django.utils.http import is_safe_url
+from django.http import JsonResponse
+from register.models import Password
+from datetime import date
 
 # Create your views here.
 
@@ -140,3 +143,53 @@ def welcome(request):
 
         return redirect("customer:user_page")
     return render(request, "register/welcome.html")
+
+
+def pass_reset(request):
+
+    if request.is_ajax():
+        email = request.POST.get("email")
+        try:
+            user = User.objects.get(email=email)
+        except:
+            return JsonResponse({"error":"User does not exist"})
+        password = Password(email=email)
+        password.save()
+        print()
+        password_reset(name=user.first_name,email=email,subject="Password reset",link=password.reset_link)
+        return JsonResponse({"success":"success"})
+
+    slug = request.session.get("slug")
+
+    if request.method == "POST":
+        pass_resettor = Password.objects.get(slug=slug)
+        user = User.objects.get(email=pass_resettor.email)
+        password = request.POST.get("password1")
+        user.set_password(password)
+        user.save()
+        pass_resettor.active = False
+        pass_resettor.save()
+        messages.success(request,"Password change successfully")
+        return redirect("app:home")
+
+    try:
+        pass_resettor = Password.objects.get(slug=slug)
+        if not pass_resettor.active and pass_resettor.used:
+            del request.session["slug"]
+    except:
+        return render(request, "register/pass_reset.html",{"pass_resettor":{"used":False}})
+    return render(request, "register/pass_reset.html",{"pass_resettor":pass_resettor})
+
+
+def pass_rediretor(request,slug):
+    now = date.today()
+    pass_resettor = Password.objects.get(slug=slug)
+    request.session["slug"] = slug
+    if pass_resettor.initiate_date == now:
+        pass_resettor.used = True
+        pass_resettor.save()
+        return redirect("register:pass_reset")
+    else:
+        pass_resettor.active = False
+        pass_resettor.save()
+    return redirect("register:pass_reset")

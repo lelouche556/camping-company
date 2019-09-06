@@ -1,0 +1,124 @@
+{% extends "snippets/base.html" %}
+{% load staticfiles %}
+    {% block css %}
+        <link rel="stylesheet" href="{% static 'css/register/register.css' %}">
+    {% endblock %}
+{% block title %}
+    <title>Password reset.</title>
+{% endblock %}
+    {% block content_block %}
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{message.tags}}">
+                    <strong>{{message}}</strong>
+                </div>
+            {% endfor %}
+        {% endif %}
+
+{% if not pass_resettor.used %}
+        <div class="form">
+                <div id="login">
+                  <h1>Password reset!</h1>
+                  <form action="#" method="post">{% csrf_token %}
+                    <div class="field-wrap">
+                    <label>
+                      Email<span class="req">*</span>
+                    </label>
+                    <input type="email"required autocomplete="off" name="email"/>
+                  </div>
+
+                  <div class="field-wrap">
+                    <label>
+                      Last Remember Password<span class="req">*</span>
+                    </label>
+                    <input type="password"required autocomplete="off" name="password"/>
+                  </div>
+
+                  <button class="but button button-block">Reset</button>
+
+                  <div class="instruction">
+                    <p class="instruction_message">An email has sent to your requested email, this email is valid for 24 hours</p>
+                  </div>
+                  </form>
+                </div>
+
+              </div>
+              {% elif pass_resettor.used and pass_resettor.active %}
+              <div class="form">
+                      <div id="login">
+                        <h1>Password reset!</h1>
+
+                        <form action="{% url 'register:pass_reset' %}" method="post">{% csrf_token %}
+
+                          <div class="field-wrap">
+                            <label>
+                              Password<span class="req">*</span>
+                            </label>
+                            <input id="password1" type="password"required autocomplete="off" name="password1"/>
+                          </div>
+
+                          <div class="field-wrap">
+                            <label>
+                              ConfirmPassword<span class="req">*</span>
+                            </label>
+                            <input id="password2" type="password"required autocomplete="off" name="password2"/>
+                          </div>
+
+                        <button class="button button-block">Reset</button>
+                        </form>
+                      </div>
+                    </div>
+                {% else %}
+                  <div class="form">
+                    <h1>Password reset!</h1>
+                      <p class="instruction">Session expired</p>
+                  </div>
+              {% endif %}
+
+
+<script>
+  window.onload = function(){
+    {% if pass_resettor.used %}
+    var password = document.getElementById("password1")
+  , confirm_password = document.getElementById("password2");
+
+function validatePassword(){
+  if(password.value != confirm_password.value) {
+    confirm_password.setCustomValidity("Passwords Don't Match");
+  } else {
+    confirm_password.setCustomValidity('');
+  }
+}
+password.onchange = validatePassword;
+confirm_password.onkeyup = validatePassword;
+{% endif %}
+
+    $(".but").click(function(e){
+      e.preventDefault()
+        var resetMethodEndpoint = "{% url 'register:pass_reset' %}"
+        var t = $("input[name=csrfmiddlewaretoken]").val();
+        var email = $("input[name=email]").val();
+        var data = {
+            "email": email,
+            'csrfmiddlewaretoken': t,
+        }
+        $.ajax({
+            data: data,
+            url: resetMethodEndpoint,
+            method: "POST",
+            success: function(data){
+              if (data.error){
+                alert("user does not exist")
+              }
+              if(!data.error) {
+                $(".instruction_message").toggleClass()
+              }
+            },
+            error: function(error){
+                console.log(error)
+            }
+        })
+  });
+}
+</script>
+    {% endblock %}

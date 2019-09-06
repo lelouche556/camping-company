@@ -92,7 +92,7 @@
                     <input type="password"required autocomplete="off" name="password"/>
                   </div>
 
-                  <!--<p class="forgot"><a href="#">Forgot Password?</a></p>-->
+                  <p class="forgot"><a href="{% url 'register:pass_reset' %}">Forgot Password?</a></p>
 
                   <input type="hidden" name="next" value="{{next}}">
 
