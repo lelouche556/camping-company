@@ -14,9 +14,9 @@
                 {% elif user.is_superuser %}
                 <li class="nav-item {% if request.path == represent_url  %}active{% endif %}"><a class="nav-link" href="{{represent_url}}">Represent</a></li>
                 {% endif %}
+                <li class="nav-item {% if request.path == vehicle_url  %}active{% endif %}"><a class="nav-link" href="{{vehicle_url}}">Campers</a></li>
                 <li class="nav-item {% if request.path == destination_url  %}active{% endif %}"><a class="nav-link" href="{{destination_url}}">Campsites</a></li>
                 <li class="nav-item {% if request.path == destination_url  %}active{% endif %}"><a class="nav-link" href="#">Circuits</a></li>
-                <li class="nav-item {% if request.path == vehicle_url  %}active{% endif %}"><a class="nav-link" href="{{vehicle_url}}">Campers</a></li>
                 <li class="nav-item {% if request.path == blog_url  %}active{% endif %}"><a class="nav-link" href="{{blog_url}}">Journal</a></li>
                 <li class="nav-item {% if request.path == findus_url  %}active{% endif %}"><a class="nav-link" href="{{findus_url}}">Contact</a></li>
                 {% if user.is_authenticated %}
@@ -27,5 +27,4 @@
             </ul>
         </div>
     </nav>
-    <br>
 </header>
