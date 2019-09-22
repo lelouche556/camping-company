@@ -105,17 +105,17 @@
       </div>
       <div class="row">
         <div class="col-4">
-            <img src="{% static 'images/main_v2/SSS04380.jpg' %}" class="image-box__image" alt="Photo 1">
-            <p class="image-box__text">Campers</p>
+            <a class="products__image" href="{% url 'vehicle:vehicle' %}"><img src="{% static 'images/main_v2/SSS04380.jpg' %}" class="image-box__image" alt="Photo 1">
+            <p class="image-box__text">Campers</p></a>
         </div>
 
         <div class="col-4">
-            <img src="{% static 'images/main_v2/IMG_20190425_094134.jpg' %}" class="image-box__image" alt="Photo 1">
-            <p class="image-box__text">Campsites</p>
+            <a class="products__image" href="{% url 'destination:destinations' %}"><img src="{% static 'images/main_v2/IMG_20190425_094134.jpg' %}" class="image-box__image" alt="Photo 1">
+            <p class="image-box__text">Campsites</p></a>
         </div>
 
         <div class="col-4">
-            <img src="{% static 'images/main_v2/SSS03897.jpg' %}" class="image-box__image" alt="Photo 1">
+            <a class="products__image" href="#"><img src="{% static 'images/main_v2/SSS03897.jpg' %}" class="image-box__image" alt="Photo 1"></a>
             <p class="image-box__text">Circuits</p>
         </div>
       </div>
@@ -128,17 +128,17 @@
             <div class="margin-bottom">
                   <div class="row container">
                     <div class="col-4">
-                        <img src="{% static 'images/main_v2/camper.png' %}" class="process__image" alt="Photo 1">
+                        <img src="{% static 'images/main_v2/journey.png' %}" class="process__image" alt="Photo 1">
                         <span class="tertiary-text__heading">The Journey</span>
                       <span class="tertiary-text__description">Pick your dates,destination and travel circuit</span>
                     </div>
                     <div class="col-4">
-                        <img src="{% static 'images/main_v2/expert.png' %}" class="process__image" alt="Photo 1">
+                        <img src="{% static 'images/main_v2/camper.png' %}" class="process__image" alt="Photo 1">
                         <span class="tertiary-text__heading">The camper</span>
                         <span class="tertiary-text__description">Book a car for your journey with camping co</span>
                     </div>
                     <div class="col-4">
-                        <img src="{% static 'images/main_v2/journey.png' %}" class="process__image" alt="Photo 1">
+                        <img src="{% static 'images/main_v2/expert.png' %}" class="process__image" alt="Photo 1">
                         <span class="tertiary-text__heading">The expert</span>
                         <span class="tertiary-text__description">Our Overland expert will contact you post booking</span>
                     </div>
@@ -184,10 +184,12 @@
 
 
             <div class="col-3">
-                <div class="card__bonfire">
-                    <p class="card__number">1,100</p>
-                    <p class="card__text">bonfire built</p>
-                  </div>
+                <div class="card__numbers">
+                  <div class="card__bonfire">
+                      <p class="card__number">1,100</p>
+                      <p class="card__text">Bonfire built</p>
+                    </div>
+              </div>
               </div>
                 </div>
               </div>
