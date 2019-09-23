@@ -16,6 +16,8 @@
                 </div>
             {% endfor %}
         {% endif %}
+<br>
+<br>
 <div class="manager">
   <div class="container">
       {% if itinerary is 0 %}
@@ -24,7 +26,9 @@
           <div class="col-md-4 col-sm-6">
             <div class="ca">
           <div class="co">
-            <img class="imgg" src="{{ item.images.url }}">
+              {% for x in item.image_set.all|slice:":1" %}
+            <img class="imgg" src="{{ x.image1.url }}">
+              {% endfor %}
           </div>
           <div class="mo">
             <div class="info-bundle">

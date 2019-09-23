@@ -12,6 +12,7 @@
 {% endblock %}
 <div class="manager">
     <div class="container">
+        <br><br>
                 <h1>Your Personalized Itinerary</h1>
         {% if list %}
             {% for x in list %}
@@ -22,10 +23,12 @@
                             {% if z.pk in x %}
                                     <div class="col-sm-6 col-md-4">
                                       <div class="card h-100">
-                                    <img class="card-img-top" src="{{z.images.url}}" alt="image not found">
+                                          {% for image in z.image_set.all|slice:":1" %}
+                                    <img class="card-img-top" src="{{image.image1.url}}" alt="image not found">
+                                          {% endfor %}
                                         <div class="card-body">
                                           <h5 class="card-title">{{z.place}}</h5>
-                                           <p class="card-text truncate">{{z.description}}</p>
+                                           <div class="card-text truncate">{{z.description|safe}}</div>
                                             <!--<p>Activities: {{z.activities}}</p>-->
                                         </div>
                                       </div>
