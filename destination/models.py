@@ -113,6 +113,35 @@ class Region(models.Model):
         return self.name
 
 
+class Circuit(models.Model):
+    slug = models.SlugField(max_length=40, blank=True, null=True)
+    name = models.CharField(max_length=128,blank=True, null=True)
+    para11 = models.CharField(max_length=256,blank=True, null=True)
+    para12 = models.CharField(max_length=256,blank=True, null=True)
+    para13 = models.TextField()
+    para21 = models.CharField(max_length=256, blank=True, null=True)
+    para22 = models.CharField(max_length=256, blank=True, null=True)
+    para23 = models.TextField()
+    para31 = models.CharField(max_length=256, blank=True, null=True)
+    para32 = models.CharField(max_length=256, blank=True, null=True)
+    para33 = models.TextField()
+    para41 = models.CharField(max_length=256, blank=True, null=True)
+    para42 = models.CharField(max_length=256, blank=True, null=True)
+    para43 = models.TextField()
+    para51 = models.CharField(max_length=256, blank=True, null=True)
+    para52 = models.CharField(max_length=256, blank=True, null=True)
+    para53 = models.TextField()
+    main_image = models.ImageField(upload_to='circuit', blank=True)
+    image1 = models.ImageField(upload_to='circuit', blank=True)
+    image2 = models.ImageField(upload_to='circuit', blank=True)
+    image3 = models.ImageField(upload_to='circuit', blank=True)
+    image4 = models.ImageField(upload_to='circuit', blank=True)
+    image5 = models.ImageField(upload_to='circuit', blank=True)
+
+    def __str__(self):
+        return self.slug
+
+
 def destination_pre_save_receiver(sender, instance, **kwargs):
     title = instance.place.split()
     instance.slug = "-".join(title).replace("?", "")

@@ -1,0 +1,187 @@
+{% extends "snippets/base.html" %}
+{% load staticfiles %}
+    {% block css %}<link rel="stylesheet" href="{% static 'css/home/circuit.css' %}">{% endblock %}
+
+{% block title %}
+    <title>{{cir.name}}</title>
+{% endblock %}
+    {% block content_block %}
+  <body>
+
+
+    <header class="heador mb-5" style="background-image: url('../../../media/circuit/main_megh.jpeg')">
+<!--      <nav class="heador__nav">-->
+<!--        <ul class="navigation__list">-->
+<!--          <li class="navigation__item" > <a href="#" class="navigation__link">Campsites</a></li>-->
+<!--          <li class="navigation__item" > <a href="#" class="navigation__link">Campers</a></li>-->
+<!--          <li class="navigation__item" > <a href="#" class="navigation__link">Circuits</a></li>-->
+<!--          <li class="navigation__item" > <a href="#" class="navigation__link">Journal</a></li>-->
+<!--          <li class="navigation__item" > <a href="#" class="navigation__link">Contact</a></li>-->
+<!--          <li class="navigation__item" > <a href="#" class="navigation__link">Login/Sign up</a></li>-->
+<!--        </ul>-->
+<!--        <div class="header__logo-box">-->
+<!--          <img src="logo 400x400.png" alt="Logo" class="header__logo">-->
+<!--        </div>-->
+<!--      </nav>-->
+    </header>
+
+    <section class="section-circuits container">
+        <div class="heading-primary mb-5 ml-5">
+            <h1 class="heading-primary__main">{{cir.name}}</h1>
+        </div>
+
+        <div class="image">
+            <img id="image__jeep" class="image__jeep" src="{% static 'images/main_v2/camper.png' %}" alt="">
+            <div class="image__jeep--vertical"></div>
+        </div>
+        <div class="row">
+          <div class="col-7 mar-left">
+            <div class="heading-secondary">
+              <br>
+              <p class="heading-secondary__day">{{cir.para11}}</p>
+              <p class="heading-secondary__main">{{cir.para12}}</p>
+              <p class="heading-secondary__sub">{{cir.para13}}</p>
+            </div>
+          </div>
+
+          <div class="col-4">
+            <img class="image-right" src="{{cir.image1.url}}" alt="">
+          </div>
+          
+        </div>
+
+        <div class="row">
+            <div class="col-7 mar-left mb-5">
+              <div class="heading-secondary">
+                  <br>
+              <p class="heading-secondary__day">{{cir.para21}}</p>
+              <p class="heading-secondary__main">{{cir.para22}}</p>
+              <p class="heading-secondary__sub">{{cir.para23}}</p>
+              </div>
+            </div>
+            <div class="col-4">
+                <img class="image-right" src="{{cir.image2.url}}" alt="">
+              </div>
+          </div>
+
+
+          <div class="row">
+              <div class="col-7 mar-left mb-5">
+                <div class="heading-secondary">
+                    <br>
+              <p class="heading-secondary__day">{{cir.para31}}</p>
+              <p class="heading-secondary__main">{{cir.para32}}</p>
+              <p class="heading-secondary__sub">{{cir.para33}}</p>
+                </div>
+              </div>
+              <div class="col-4">
+                  <img class="image-right" src="{{cir.image3.url}}" alt="">
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-7 mar-left mb-5">
+                  <div class="heading-secondary">
+                      <br>
+                  <p class="heading-secondary__day">{{cir.para41}}</p>
+                <p class="heading-secondary__main">{{cir.para42}}</p>
+                <p class="heading-secondary__sub">{{cir.para43}}</p>
+                  </div>
+                </div>
+                <div class="col-4">
+                    <img class="image-right" src="{{cir.image4.url}}" alt="">
+                  </div>
+              </div>
+
+
+
+              <div class="row">
+                  <div class="col-7 mar-left mb-5">
+                    <div class="heading-secondary">
+                        <br>
+                        <p class="heading-secondary__day">{{cir.para51}}</p>
+              <p class="heading-secondary__main">{{cir.para52}}</p>
+              <p class="heading-secondary__sub">{{cir.para53}}</p>
+                    </div>
+                  </div>
+                  <div class="col-4">
+                      <img class="image-right" src="{{cir.image5.url}}" alt="">
+                    </div>
+                </div>
+  
+
+    </section>
+
+
+    <footer class="footer">
+      <div class="row">
+        <div class="col-4">
+            <img src="{% static 'images/main_v2/logo 400x400.png' %}" class="header__logo">
+            <br><br><br>
+            <span class="footer-text__description">Nature has a subtle way of enhancing consciousness,
+                mindfulness, and awareness. With this belief, The
+                Camping Company was created to provide a platform
+                to have an immersive experience with nature. It enables
+                travelers to explore the unexplored with the help of
+                SUVs, jeeps equipped with rooftop tents and camping
+                gears for a comfortable overlanding expedition. We are
+                the creators and believers of an alternate way of travel.</span>
+                <br><br><br><br><br><br><br>
+                <hr>
+                <br><br>
+                <span class="footer-text__follow">Follow Us:
+                  <i class="fa fa-facebook"></i>
+                  <i class="fa fa-instagram"></i>
+                  <i class="fa fa-twitter"></i>
+                </span>
+                <br><br><br>
+                <hr>
+        </div>
+        <div class="col-4">
+          <h5>
+              <strong><span class="footer-text__heading">Contact Us</span></strong>
+              <br><br>
+              <span class="footer-text__description">Talk to our experts? +91-6913332761 or Drop us a line, We promise to get back to you in 24 hours.</span>
+              <form class="footer__form">
+                <br>
+                <input type="text" placeholder="name" class="footer-text__input">
+                <input type="email" placeholder="email" class="footer-text__input">
+                <input type="text" placeholder="phone" class="footer-text__input">
+                <input type="text" placeholder="city" class="footer-text__input">
+                <textarea class="footer-text__area" name="" id="" cols="40" rows="10" placeholder="Enter Your Message Here..."></textarea>
+                <div class="footer-button-box">
+                  <br>
+                    <a href="#" class="footer-button-box__button">Submit</a>
+                </div>
+              </form>
+              <br>
+              <span>@2019 Camping <col></span>
+            </h5>
+        </div>
+
+        <div class="col-4">
+            <h5>
+                <a href="#" class="footer-text__heading">Careers</a>
+                <a href="#" class="footer-text__heading">Policy</a>
+                <a href="#" class="footer-text__heading">Media</a>
+                <a href="#" class="footer-text__heading">FAQ</a>
+              </h5>
+        </div>
+      </div>
+    </footer>
+  </body>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script>
+    window.onload = function(){
+      var $details = $("#image__jeep"),
+      detailsPos = 600;
+      $(window).on("scroll", function() {
+      if ($(window).scrollTop() > detailsPos)
+        $details.css("position", "fixed").css("top",0);
+      else
+        $details.css("position", "static");
+});
+    }
+  </script>
+{% endblock %}

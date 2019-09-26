@@ -2,7 +2,7 @@ from django.shortcuts import render
 from destination.models import (Destination, Map,
                                 Region, Image,
                                 Amenity, Activity,
-                                Detail)
+                                Detail, Circuit)
 from django.http import JsonResponse
 import os
 # Create your views here.
@@ -51,4 +51,9 @@ def destination_detail_page(request, slug):
 
 def circuits(request):
     return render(request, "destination/circuits.html")
+
+
+def circuit(request, slug):
+    cir = Circuit.objects.get(slug=slug)
+    return render(request, "destination/circuit.html", {"cir": cir})
 
