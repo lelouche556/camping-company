@@ -211,7 +211,7 @@
             </div>
 
             <div class="col-4">
-<!--                <iframe class="image-box__image" width="966" height="543" src="" data-src="https://www.youtube.com/embed/OiZFBOo63Jg" allowfullscreen></iframe>-->
+                <iframe class="image-box__image" width="966" height="543" src="" data-src="https://www.youtube.com/embed/OiZFBOo63Jg" allowfullscreen></iframe>
                 <h6 class="timestamps--2">
                     <span class="timestamps__date">30</span>
                     <span class="timestamps__month">Dec</span>
@@ -540,14 +540,11 @@ window.onload = function() {
 		ignoreTouch = 30;
 ;
 
-   function init() {
-   var vidDefer = document.getElementsByTagName('iframe');
+var vidDefer = document.getElementsByTagName('iframe');
    for (var i=0; i<vidDefer.length; i++) {
    if(vidDefer[i].getAttribute('data-src')) {
    vidDefer[i].setAttribute('src',vidDefer[i].getAttribute('data-src'));
-   } } }
-
-    init();
+   } }
     $("#datetimepicker").datetimepicker({
      timepicker:false,
      format:'Y-m-d',
