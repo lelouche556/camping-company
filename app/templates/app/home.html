@@ -201,7 +201,7 @@
             <div class="container">
            <div class="row">
             <div class="col-4">
-                <img src="https://camping-company.s3.amazonaws.com/media/blog_images/IMG_7252.jpg" class="image-box__image" alt="Photo 1">
+                <img src="{% static 'images/main_v2/c.jpg' %}" class="image-box__image" alt="Photo 1">
                 <h6 class="timestamps--1">
                     <span class="timestamps__date">11</span>
                     <span class="timestamps__month">Mar</span>
@@ -211,7 +211,7 @@
             </div>
 
             <div class="col-4">
-                <iframe class="image-box__image" width="966" height="543" src="https://www.youtube.com/embed/OiZFBOo63Jg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe class="image-box__image" width="966" height="543" src="" data-src="https://www.youtube.com/embed/OiZFBOo63Jg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 <h6 class="timestamps--2">
                     <span class="timestamps__date">30</span>
                     <span class="timestamps__month">Dec</span>
@@ -221,7 +221,7 @@
             </div>
 
             <div class="col-4">
-                <img src="https://camping-company.s3.amazonaws.com/media/blog_images/b.jpg" class="image-box__image" alt="Photo 1">
+                <img src="{% static 'images/main_v2/c.jpg' %}" class="image-box__image" alt="Photo 1">
                 <h6 class="timestamps--3">
                     <span class="timestamps__date">25</span>
                     <span class="timestamps__month">Dec</span>
@@ -467,8 +467,8 @@
     <footer class="footer container">
       <div class="row">
         <div class="col-4">
-            <h5>
-<img src="{% static 'images/main_v2/logo 400x400.png' %}" class="header__logo">
+            <div>
+                <img src="{% static 'images/main_v2/logo 400x400.png' %}" class="header__logo">
                 <br><br><br>
                 <span class="footer-text__description">Nature has a subtle way of enhancing consciousness,
                     mindfulness, and awareness. With this belief, The
@@ -488,10 +488,10 @@
                 </span>
                 <br><br><br>
                 <hr>
-              </h5>
+              </div>
         </div>
         <div class="col-4">
-          <h5>
+          <div>
               <strong><span class="footer-text__heading">Contact Us</span></strong>
               <br><br>
               <span class="footer-text__description">Talk to our experts? +91-6913332761 or Drop us a line, We promise to get back to you in 24 hours.</span>
@@ -508,8 +508,8 @@
                 </div>
               </form>
               <br>
-              <span>@2019 Camping <col></span>
-            </h5>
+              <span>@2019 Camping co</span>
+            </div>
         </div>
 
         <div class="col-4">
@@ -521,11 +521,17 @@
            </div>
         </div>
       </div>
-        </div>
     </footer>
-  </body>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-</html>
+
+<script>
+   function init() {
+   var vidDefer = document.getElementsByTagName('iframe');
+   for (var i=0; i<vidDefer.length; i++) {
+   if(vidDefer[i].getAttribute('data-src')) {
+   vidDefer[i].setAttribute('src',vidDefer[i].getAttribute('data-src'));
+   } } }
+   window.onload = init();
+</script>
 
 <script>
 var	testim = document.getElementById("testim"),
