@@ -211,7 +211,7 @@
             </div>
 
             <div class="col-4">
-                <iframe class="image-box__image" width="966" height="543" src="" data-src="https://www.youtube.com/embed/OiZFBOo63Jg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe class="image-box__image" width="966" height="543" src="" data-src="https://www.youtube.com/embed/OiZFBOo63Jg" allowfullscreen></iframe>
                 <h6 class="timestamps--2">
                     <span class="timestamps__date">30</span>
                     <span class="timestamps__month">Dec</span>
@@ -523,7 +523,7 @@
       </div>
     </footer>
 
-<script>
+<script defer>
    function init() {
    var vidDefer = document.getElementsByTagName('iframe');
    for (var i=0; i<vidDefer.length; i++) {
@@ -533,7 +533,7 @@
    window.onload = init();
 </script>
 
-<script>
+<script defer>
 var	testim = document.getElementById("testim"),
 		testimDots = Array.prototype.slice.call(document.getElementById("testim-dots").children),
     testimContent = Array.prototype.slice.call(document.getElementById("testim-content").children),
