@@ -524,8 +524,9 @@
     </footer>
 
 <script>
-var	testim = document.getElementById("testim"),
-		testimDots = Array.prototype.slice.call(document.getElementById("testim-dots").children),
+window.onload = function() {
+    var	testim = document.getElementById("testim"),
+    testimDots = Array.prototype.slice.call(document.getElementById("testim-dots").children),
     testimContent = Array.prototype.slice.call(document.getElementById("testim-content").children),
     testimLeftArrow = document.getElementById("left-arrow"),
     testimRightArrow = document.getElementById("right-arrow"),
@@ -546,7 +547,6 @@ var	testim = document.getElementById("testim"),
    vidDefer[i].setAttribute('src',vidDefer[i].getAttribute('data-src'));
    } } }
 
-window.onload = function() {
     init();
     $("#datetimepicker").datetimepicker({
      timepicker:false,
