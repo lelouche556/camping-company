@@ -211,7 +211,7 @@
             </div>
 
             <div class="col-4">
-                <iframe class="image-box__image" width="966" height="543" src="" data-src="https://www.youtube.com/embed/OiZFBOo63Jg" allowfullscreen></iframe>
+                <div class="youtube-player image-box__image" data-id="OiZFBOo63Jg"></div>
                 <h6 class="timestamps--2">
                     <span class="timestamps__date">30</span>
                     <span class="timestamps__month">Dec</span>
@@ -524,9 +524,39 @@
     </footer>
 
 <script>
-window.onload = function() {
-    var	testim = document.getElementById("testim"),
-    testimDots = Array.prototype.slice.call(document.getElementById("testim-dots").children),
+document.addEventListener("DOMContentLoaded",
+        function() {
+            var div, n,
+                v = document.getElementsByClassName("youtube-player");
+            for (n = 0; n < v.length; n++) {
+                div = document.createElement("div");
+                div.setAttribute("data-id", v[n].dataset.id);
+                div.innerHTML = labnolThumb(v[n].dataset.id);
+                div.onclick = labnolIframe;
+                v[n].appendChild(div);
+            }
+        });
+
+    function labnolThumb(id) {
+        var thumb = '<img src="https://i.ytimg.com/vi/ID/hqdefault.jpg">',
+            play = '<div class="play"></div>';
+        return thumb.replace("ID", id) + play;
+    }
+
+    function labnolIframe() {
+        var iframe = document.createElement("iframe");
+        var embed = "https://www.youtube.com/embed/ID";
+        iframe.setAttribute("src", embed.replace("ID", this.dataset.id));
+        iframe.setAttribute("frameborder", "0");
+        iframe.setAttribute("allowfullscreen", "1");
+        this.parentNode.replaceChild(iframe, this);
+    }
+
+</script>
+
+<script>
+var	testim = document.getElementById("testim"),
+		testimDots = Array.prototype.slice.call(document.getElementById("testim-dots").children),
     testimContent = Array.prototype.slice.call(document.getElementById("testim-content").children),
     testimLeftArrow = document.getElementById("left-arrow"),
     testimRightArrow = document.getElementById("right-arrow"),
@@ -540,11 +570,7 @@ window.onload = function() {
 		ignoreTouch = 30;
 ;
 
-var vidDefer = document.getElementsByTagName('iframe');
-   for (var i=0; i<vidDefer.length; i++) {
-   if(vidDefer[i].getAttribute('data-src')) {
-   vidDefer[i].setAttribute('src',vidDefer[i].getAttribute('data-src'));
-   } }
+window.onload = function() {
     $("#datetimepicker").datetimepicker({
      timepicker:false,
      format:'Y-m-d',
