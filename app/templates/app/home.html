@@ -523,17 +523,7 @@
       </div>
     </footer>
 
-<script defer>
-   function init() {
-   var vidDefer = document.getElementsByTagName('iframe');
-   for (var i=0; i<vidDefer.length; i++) {
-   if(vidDefer[i].getAttribute('data-src')) {
-   vidDefer[i].setAttribute('src',vidDefer[i].getAttribute('data-src'));
-   } } }
-   window.onload = init();
-</script>
-
-<script defer>
+<script>
 var	testim = document.getElementById("testim"),
 		testimDots = Array.prototype.slice.call(document.getElementById("testim-dots").children),
     testimContent = Array.prototype.slice.call(document.getElementById("testim-content").children),
@@ -549,7 +539,15 @@ var	testim = document.getElementById("testim"),
 		ignoreTouch = 30;
 ;
 
+   function init() {
+   var vidDefer = document.getElementsByTagName('iframe');
+   for (var i=0; i<vidDefer.length; i++) {
+   if(vidDefer[i].getAttribute('data-src')) {
+   vidDefer[i].setAttribute('src',vidDefer[i].getAttribute('data-src'));
+   } } }
+
 window.onload = function() {
+    init();
     $("#datetimepicker").datetimepicker({
      timepicker:false,
      format:'Y-m-d',
