@@ -15,7 +15,7 @@ class Destination(models.Model):
     distance = models.IntegerField()
     hours = models.IntegerField()
     accommodation = models.CharField(max_length=64)
-    important_to_know = models.CharField(max_length=128)
+    important_to_know = models.TextField()
     note = models.CharField(max_length=128)
     night_time_temperature_summer = models.CharField(max_length=64)
     night_time_temperature_winter = models.CharField(max_length=64)
