@@ -46,7 +46,7 @@
       <span class="cards__text">Off &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cycling &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Campfire &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;toilet </span>
       <span class="cards__text">Roading</span>
       <br>
-                  <p>Important To know: {{destination.important_to_know}}</p>
+                  <p>Important To know: {{destination.important_to_know|safe}}</p>
          {% if user.is_authenticated %}
          <p><a href="{{destination.map_loc}}">Google Maps Location</a>&nbsp;&nbsp;&nbsp;Contact Number: {{detail.phone}}</p>
          {% else %}
