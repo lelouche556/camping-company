@@ -193,6 +193,7 @@
 </form>
 </div>
 <br>
+<script defer src="{% static 'js/razorpay.js' %}"></script>
 <script>
   window.onload = function(){
   let duration = localStorage.getItem("duration")
@@ -343,7 +344,7 @@ function updateQuantity(quantityInput)
     "currency": "INR",
     "name": "Camping co",
     "description": "Overlanding expedition booked",
-    "image": "{% static 'images/favicon/apple-icon-72x72.png' %}",
+    "image": "{% static 'images/favi/apple-icon-72x72.png' %}",
     "handler": function (response){
             var end_point = {% url 'pay:pay' %}
             var end = end_point + "success/";//success/faliure
