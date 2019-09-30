@@ -40,9 +40,9 @@
       <div class="heador__form-box">
           <form class="form-inline" action="{% url 'vehicle:vehicles' %}" method="GET" autocomplete="off">
               <div class="row no-gutters">
-                  <div class="col-md-3">
+                  <div class="col-6 col-sm-3">
                       <div class="form-group">
-                      <input class="form__input" type="text" class="form-control email" name="place" list="places" placeholder="Places">
+                      <input class="form__input" type="text" class="form-control" name="place" list="places" placeholder="Places">
                       <datalist id="places">
                         <option value="Meghalaya">
                         <option value="Assam">
@@ -53,13 +53,13 @@
                   </div>
                   </div>
           
-                  <div class="col-md-3">
+                  <div class="col-6 col-sm-3">
                       <div class="form-group">
                           <input class="form__input" type="text" name="tripDay" class="form-control date" id="datetimepicker" placeholder="DD/MM/YYYY">
                       </div>
                   </div>
           
-                  <div class="col-md-3">
+                  <div class="col-6 col-sm-3">
                       <div class="form-group">
                   <input class="form__input" type="text" list="Duration" name="Duration" class="form-control" id="list" placeholder="Days">
                   <datalist id="Duration">
@@ -73,7 +73,7 @@
                   </datalist>
                 </div>
                   </div>
-                  <div class="col-md-3">
+                  <div class="col-6 col-sm-3">
                     <button class="form__button" type="submit" class="btn">Submit</button>
                   </div>
               </div>
@@ -87,7 +87,7 @@
       </div>
     </header>
 
-    <section class="section-features container">
+    <section class="section-features">
       <div class="heading-secondary centered">
         <h2 class="heading-secondary__text">Company</h2>
         <div class="borders-bottom"></div>
@@ -103,7 +103,7 @@
         <h2 class="heading-secondary__text">The products</h2>
         <div class="borders-bottom"></div>
       </div>
-      <div class="row">
+      <div class="contain row">
         <div class="col-4">
             <a class="products__image" href="{% url 'vehicle:vehicle' %}"><img src="{% static 'images/main_v2/SSS04380.jpg' %}" class="image-box__image" alt="Photo 1">
             <p class="image-box__text">Campers</p></a>
@@ -122,11 +122,11 @@
     </section>
     <section class="section-card">
         <div class="card col-9">
-          <div class="container heading-secondary">
+          <div class="heading-secondary">
             <h2 class="heading-secondary__text">The Process</h2>
             <div class="borders-bottom"></div>
             <div class="margin-bottom">
-                  <div class="row container">
+                  <div class="row">
                     <div class="col-4">
                         <img src="{% static 'images/main_v2/journey.png' %}" class="process__image" alt="Photo 1">
                         <span class="tertiary-text__heading">The Journey</span>
@@ -194,11 +194,11 @@
                 </div>
               </div>
     </section>
-    <section class="section-blog">
+    <section class="section-blog contain">
         <div class="heading-secondary">
             <h2 class="heading-secondary__text">Latest blog/vlog</h2>
             <div class="borders-bottom"></div>
-            <div class="container">
+            <div class="">
            <div class="row">
             <div class="col-4">
                 <img src="{% static 'images/main_v2/c.jpg' %}" class="image-box__image" alt="Photo 1">
@@ -464,7 +464,7 @@
             </div>
     </section>
 
-    <footer class="footer container">
+    <footer class="footer">
       <div class="row">
         <div class="col-4">
             <div>
