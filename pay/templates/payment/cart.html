@@ -282,16 +282,29 @@ function recalculateCart()
 
   /* Update totals display */
   $('.totals-value').fadeOut(fadeTime, function() {
+
     $('#cart-subtotal').html(subtotal.toFixed(2));
     $('#cart-tax').html(tax.toFixed(2));
     $('#cart-shipping').html(shipping.toFixed(2));
     $('#cart-total').html(total.toFixed(2));
+    $('#cart-payable').html(total.toFixed(2));
+
     if($("#coupon-text").html() == "You got 20% discount"){
-      $('#cart-payable').html((pretotal-(pretotal*.2)).toFixed(2));
-    } else if ($("#coupon-text").html() == "You got 10% discount"){
-    $('#cart-payable').html((pretotal-(pretotal*.1)).toFixed(2));
-      } else {
-        $('#cart-payable').html(pretotal.toFixed(2));
+      $('#cart-total').html((total-(total*.2)).toFixed(2));
+      $('#cart-payable').html((total-(total*.2)).toFixed(2));
+    }
+
+    else if ($("#coupon-text").html() == "You got 10% discount"){
+      $('#cart-total').html((total-(total*.1)).toFixed(2));
+      $('#cart-payable').html((total-(total*.1)).toFixed(2));
+    }
+    else if ($("#coupon-text").html() == "You got 25% discount"){
+      $('#cart-total').html((total-(total*.25)).toFixed(2));
+      $('#cart-payable').html((total-(total*.25)).toFixed(2));
+
+      }
+        else {
+          $('#cart-payable').html(total.toFixed(2));
       }
     if(total == 0){
       $('.checkout').fadeOut(fadeTime);
@@ -345,7 +358,7 @@ function updateQuantity(quantityInput)
         couponCode(.25);
 
        } else {
-          alert("Wrong code");
+          alert("Invalid code");
        }
 });
 
