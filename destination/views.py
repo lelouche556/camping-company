@@ -11,7 +11,7 @@ import os
 def destination(request):
     list1 = []
     maps = os.environ.get("maps")
-    places = Map.objects.all()
+    places = Map.objects.all().order_by("pk")
     if request.is_ajax():
         place = request.POST.get("place")
         region = Region.objects.filter(name__icontains=place)
