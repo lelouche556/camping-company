@@ -266,7 +266,7 @@
    <div class="">
       <div class="row">
          <div class="col-md-3">
-            <h4 class="description__style">Climate and Temperature</h4description__style>
+            <h4 class="description__style">Climate and Temperature</h4>
          </div>
          <div class="col-md-8 text-style details">
             <p>Suitable for: All Seasons</p>
@@ -285,8 +285,104 @@
             </div>
          </div>
       </div>
-    <br>
-    <br>
+      <hr>
       </div>
+   {% if destination.place == "" %}
+   <div class="heador__form-box">{% csrf_token %}
+      <br>
+        <form class="form" action="{% url 'vehicle:vehicles' %}" method="get" autocomplete="off">
+          <input class="form__input" type="text" name="tripDay" id="datetimepicker" placeholder="DD/MM/YY">
+          <input class="form__input" type="text" list="Duration" name="Duration" placeholder="Days">
+           <datalist id="Duration">
+          <option value="1">
+          <option value="2">
+          <option value="3">
+          <option value="4">
+          <option value="5">
+          <option value="10">
+          <option value="30">
+        </datalist>
+            <button id="rzp-button1" class="form__button">Book</button>
+        </form>
+      </div>
+   <br>
+   <br>
 </div>
+<script defer src="{% static 'js/razorpay.js' %}"></script>
+{% endif %}
+<br>
+<script>
+window.onload = function(){
+    $("#datetimepicker").datetimepicker({
+     timepicker:false,
+     format:'Y-m-d',
+     minDate:0,
+     });
+   var options = {
+       "currency": "INR",
+       "name": "Camping co",
+       "description": "Overlanding expedition booked",
+       "image": "{% static 'images/favi/apple-icon-72x72.png' %}",
+       "handler": function (response){
+               var end_point = {% url 'pay:pay' %}
+               var end = end_point + "success/";//success/faliure
+               var t = $("input[name=csrfmiddlewaretoken]").val();
+               data = {
+                 "txnid": response.razorpay_payment_id,
+                 "duration": localStorage.getItem("duration"),
+                 "check_in": localStorage.getItem("check_in"),
+                 "car_name": localStorage.getItem("car_name"),
+                 "car_type": localStorage.getItem("car_type"),
+                 "csrfmiddlewaretoken": t
+               }
+               $.ajax({
+                 data: data,
+                 url: end,
+                 method: "POST",
+                 success: function(data){
+                   localStorage.clear();
+                   window.location.href = end;
+                 },
+                 error: function(error){
+                     console.log(error)
+                 }
+             })
+       },
+       "prefill": {
+       },
+       "notes": {
+           "address": "note value"
+       },
+       "theme": {
+           "color": "#1ab188"
+       }
+   };
+
+ document.getElementById('rzp-button1').onclick = function(e){
+    e.preventDefault();
+        var paymentMethodEndpoint = "{% url 'destination:destination_detail_page' slug=destination.slug %}"
+        var t = $("input[name=csrfmiddlewaretoken]").val();
+        var data = {
+            "some": "Yo",
+            'csrfmiddlewaretoken': t
+        }
+      $.ajax({
+            data: data,
+            url: paymentMethodEndpoint,
+            method: "POST",
+            success: function(data){
+            options.amount = (data.amount) * 100
+            options.prefill.email = data.email
+            options.prefill.name = data.name
+            options.key = data.razor_id
+            var rzp1 = new Razorpay(options);
+            rzp1.open();
+            },
+            error: function(error){
+                console.log(error)
+            }
+        })
+        }
+}
+</script>
 {% endblock %}

@@ -46,6 +46,20 @@ def destination_detail_page(request, slug):
                "detail": detail,
                "place": place
                }
+
+    if request.method == "POST":
+        print(request.POST.get("some"))
+
+        return JsonResponse({"amount": 100, "email": "kanishk.tanwar7@gmail.com",
+                             "name": "kanishk",
+                             "razor_id": "rzp_test_jhx8CJoTQCL3Eh"
+                             })
+
+    if request.is_ajax():
+        return JsonResponse({"amount": 100, "email": "kanishk.tanwar7@gmail.com",
+                             "name": "kanishk",
+                             "razor_id": "rzp_test_jhx8CJoTQCL3Eh"
+                             })
     return render(request, "destination/detail.html", context)
 
 
