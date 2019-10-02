@@ -155,15 +155,15 @@
       <img src="">
     </div>
     <div class="product-details">
-      <div class="product-title">Shillong one way transfer</div>
+      <div class="product-title">Shillong one way transfer(CampingCo operates from Guwahati,Assam)</div>
       <p class="product-description"></p>
     </div>
     <div class="product-price">1500</div>
     <div class="product-quantity">
-      <input type="number" value="0" min="0" max="1">
+      <input type="number" value="0" min="0" max="2">
     </div>
 
-    <div class="product-line-price">0</div>
+    <div id="shillong" class="product-line-price">0</div>
   </div>
 
   <hr>
@@ -177,13 +177,13 @@
     </div>
     <div class="product-price">750</div>
     <div class="product-quantity">
-      <input type="number" value="0" min="0" max="1">
+      <input type="number" value="0" min="0" max="2">
     </div>
 
-    <div class="product-line-price">0</div>
+    <div id="airport" class="product-line-price">0</div>
   </div>
 
-
+<hr>
   <div id="coupon-text" style="margin-left: 20%;">
   <label for="coupon-code">Coupon code</label>
       <input style="max-width: 20%;" id="coupon-code" type="text">
@@ -231,9 +231,10 @@
 <script>
   window.onload = function(){
   function couponCode(a){
+        pretotal = pretotal - parseFloat($("#shillong").text()) - parseFloat($("#airport").text())
         coupon = pretotal*(a);
         var iine = "You got " + 100*a.toString() + "% discount";
-        totals = totals-(pretotal*a);
+        totals = totals - (pretotal*a) + parseFloat($("#shillong").text()) + parseFloat($("#airport").text());
         $("#coupon-text").html(iine);
         $('#cart-discount').html(-(pretotal*a).toFixed(2));
         $('#cart-payable').html((totals).toFixed(2));
