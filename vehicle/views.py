@@ -12,7 +12,7 @@ from datetime import date
 def single_car_book(name,now,check_in,check_out):
     definition = Definition.objects.filter(car_type=name)
     for _ in definition:
-        book = Book.objects.filter(definition=_,check_in_date__gte=now)
+        book = Book.objects.filter(definition=_, check_in_date__gte=now)
         if book.count() == 0:
             return _
         for b in book:
@@ -23,17 +23,15 @@ def single_car_book(name,now,check_in,check_out):
             else:
                 return {}
 
+
 def vehicles(request):
     list1 = []
     now = date.today()
-    d0 = request.GET.get("tripDay").replace("-", "")
+    try:
+        d0 = request.GET.get("tripDay").replace("-", "")
+    except:
+        return redirect("app:home")
     duration = request.GET.get("Duration")
-    if d0 is '':
-        messages.warning(request, "Please fill the date")
-        return redirect("app:home")
-    if duration is '':
-        messages.warning(request, "Please fill the Duration")
-        return redirect("app:home")
     check_in = datetime.datetime.strptime(d0, "%Y%m%d").date()
     check_out = check_in + datetime.timedelta(int(duration))
 
@@ -43,7 +41,7 @@ def vehicles(request):
 
     definition = Definition.objects.filter(car_type="xenon_soft")
     for _ in definition:
-        book = Book.objects.filter(definition=_,check_in_date__gte=now)
+        book = Book.objects.filter(definition=_, check_in_date__gte=now)
         if book.count() == 0:
             xenon_soft = _
             break
@@ -60,9 +58,9 @@ def vehicles(request):
             break
         list1 = []
 
-    thar = single_car_book(name="thar",now=now,check_in=check_in,check_out=check_out)
-    xenon_hard = single_car_book(name="xenon_hard",now=now,check_in=check_in,check_out=check_out)
-    caravan = single_car_book(name="caravan",now=now,check_in=check_in,check_out=check_out)
+    thar = single_car_book(name="thar", now=now, check_in=check_in, check_out=check_out)
+    xenon_hard = single_car_book(name="xenon_hard", now=now, check_in=check_in,check_out=check_out)
+    caravan = single_car_book(name="caravan", now=now, check_in=check_in, check_out=check_out)
     data = {
         "thar": thar,
         "xenon_soft": xenon_soft,

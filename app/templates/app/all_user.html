@@ -12,6 +12,14 @@
 <br/>
     <h1 class="my-5" style="text-align: center;">All User</h1>
 <div class="container">
+    <form action="{% url 'app:all_user' %}" method="POST">{% csrf_token %}
+            <div class="form-group">
+                <label for="usr">Email:</label>
+                <input type="text" class="form-control" id="usr" name="email">
+                <br>
+                <input class="btn btn-secondary" type="submit" value="Filter user">
+            </div>
+    </form>
 <table class="table table-striped table-bordered equipment" style="width:100%">
         <thead>
             <tr>
@@ -40,3 +48,9 @@
     <br>
 </div>
 {% endblock %}
+
+<script>
+    window.onload = function(){
+        window.location.reload;
+    }
+</script>

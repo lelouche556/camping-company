@@ -287,52 +287,186 @@
       </div>
       <hr>
       </div>
-   {% if destination.place == "" %}
-   <div class="heador__form-box">{% csrf_token %}
-      <br>
-        <form class="form" action="{% url 'vehicle:vehicles' %}" method="get" autocomplete="off">
-          <input class="form__input" type="text" name="tripDay" id="datetimepicker" placeholder="DD/MM/YY">
-          <input class="form__input" type="text" list="Duration" name="Duration" placeholder="Days">
-           <datalist id="Duration">
-          <option value="1">
-          <option value="2">
-          <option value="3">
-          <option value="4">
-          <option value="5">
-          <option value="10">
-          <option value="30">
-        </datalist>
-            <button id="rzp-button1" class="form__button">Book</button>
-        </form>
-      </div>
-   <br>
-   <br>
-</div>
+    {% if destination.place == "CampingCo Nongkhnum" %}
+      <form class="book" action="{% url 'destination:destination_detail_page' slug=destination.slug %}" method="GET" autocomplete="off">
+         {% csrf_token %}
+          <div class="book__heading">
+                <p class="book__heading--text">Select camping dates</p>
+                <p class="book__heading--cross">&#10005;</p>
+          </div>
+          <div class="row mb-4">
+              <div class="col-6">
+                  <div class="check-in">
+                      <p class="check-in__text">Check in</p>
+                      <input id="datetimepicker" placeholder="DD/MM/YYYY" name="tripDay"required class="check-in__date" type="text">
+                  </div>
+              </div>
+              <div class="col-6">
+                  <div class="days">
+                    <p class="days__text">Days</p>
+                    <input class="days__date" min="0" name="Duration" type="number" required>
+                  </div>
+              </div>
+          </div>
+
+          <div class="book__description my-1 container">
+              <div class="row">
+                  <p class="col-3">Type</p>
+                  <p class="col-3">Price</p>
+                  <p class="col-3">QTY</p>
+                <p class="col-3">Total price</p>
+              </div>
+
+          </div>
+          <div class="container">
+              <div class="row">
+              <div class="col-3">
+                  <p>Roof top tent</p>
+              </div>
+              <div class="col-3">
+                  <p>500</p>
+              </div>
+              <div class="col-3">
+                  <input id="roof" class="quantity" type="number" min="0" placeholder="0" required>
+              </div>
+              <div class="col-3">
+                  <p class="price--1">Rs 0</p>
+              </div>
+          </div>
+             <div class="row">
+              <div class="col-3">
+                  <p>Caravan</p>
+              </div>
+              <div class="col-3">
+                  <p>750</p>
+              </div>
+              <div class="col-3">
+                  <input id="caravan" class="quantity" type="number" min="0" placeholder="0" required>
+              </div>
+                 <div class="col-3">
+                  <p class="price--2">Rs 0</p>
+              </div>
+          </div>
+              <div class="row">
+              <div class="col-3">
+                  <p>Ground tent</p>
+              </div>
+              <div class="col-3">
+                  <p>350</p>
+              </div>
+              <div class="col-3">
+                  <input id="ground" class="quantity" type="number" min="0" placeholder="0" required>
+              </div>
+                  <div class="col-3">
+                  <p class="price--3">Rs 0</p>
+              </div>
+          </div>
+
+              <div class="row">
+              <div class="col-3">
+                  <p>IGST</p>
+              </div>
+              <div class="col-3">
+
+              </div>
+              <div class="col-3">
+
+              </div>
+                  <div class="col-3">
+                  <p class="price--4">Rs 0</p>
+              </div>
+          </div>
+
+            <div class="row">
+              <div class="col-3">
+                  <p>Convenience charges</p>
+              </div>
+              <div class="col-3">
+
+              </div>
+              <div class="col-3">
+
+              </div>
+                  <div class="col-3">
+                  <p class="price--5">Rs 0</p>
+              </div>
+          </div>
+          </div>
+            <button id="rzp-button1" type="button" class="form__button">BOOK</button>
+      </form>
 <script defer src="{% static 'js/razorpay.js' %}"></script>
 {% endif %}
-<br>
+</div>
 <script>
 window.onload = function(){
+    var rooftop = 0, ground = 0, caravan = 0,igst = 0, convenience = 0;
+
+    //hiding book
+    $(".book__heading--cross").click(function(){
+       $(".book").css("position","static")
+       $(".book").css({'transform' : 'translate(' + 0 +', ' + 0 + ')'});
+    });
+    // fucntion to change total amount
+    $("#roof").change(function(){
+       rooftop = $(this).val() * 500
+       var temp = ground + rooftop + caravan;
+       igst = temp * .18;
+       convenience = temp * .024;
+
+       var str = 'Rs ' + rooftop
+       var str2 = 'Rs ' + igst
+       var str3 = 'Rs' + convenience
+       $(".price--1").text(str)
+       $(".price--4").text(str2)
+       $(".price--5").text(str3)
+    });
+
+    $("#caravan").change(function(){
+       caravan = $(this).val() * 750
+       var temp = ground + rooftop + caravan;
+       igst = temp * .18;
+       convenience = temp * .024;
+
+       var str = 'Rs ' + caravan
+       var str2 = 'Rs ' + igst
+       var str3 = 'Rs' + convenience
+       $(".price--2").text(str)
+       $(".price--4").text(str2)
+       $(".price--5").text(str3)
+    });
+
+
+    $("#ground").change(function(){
+       ground = $(this).val() * 350
+       var temp = ground + rooftop + caravan;
+       igst = temp * .18;
+       convenience = temp * .024;
+
+       var str = 'Rs ' + ground
+       var str2 = 'Rs ' + igst
+       var str3 = 'Rs' + convenience
+       $(".price--3").text(str)
+       $(".price--4").text(str2)
+       $(".price--5").text(str3)
+    });
+
     $("#datetimepicker").datetimepicker({
      timepicker:false,
      format:'Y-m-d',
      minDate:0,
      });
+
    var options = {
        "currency": "INR",
        "name": "Camping co",
        "description": "Overlanding expedition booked",
        "image": "{% static 'images/favi/apple-icon-72x72.png' %}",
        "handler": function (response){
-               var end_point = {% url 'pay:pay' %}
+               var end_point = {% url 'destination:destinations' %}
                var end = end_point + "success/";//success/faliure
                var t = $("input[name=csrfmiddlewaretoken]").val();
                data = {
                  "txnid": response.razorpay_payment_id,
-                 "duration": localStorage.getItem("duration"),
-                 "check_in": localStorage.getItem("check_in"),
-                 "car_name": localStorage.getItem("car_name"),
-                 "car_type": localStorage.getItem("car_type"),
                  "csrfmiddlewaretoken": t
                }
                $.ajax({
@@ -340,8 +474,7 @@ window.onload = function(){
                  url: end,
                  method: "POST",
                  success: function(data){
-                   localStorage.clear();
-                   window.location.href = end;
+                 window.location.href = end;
                  },
                  error: function(error){
                      console.log(error)
@@ -362,9 +495,13 @@ window.onload = function(){
     e.preventDefault();
         var paymentMethodEndpoint = "{% url 'destination:destination_detail_page' slug=destination.slug %}"
         var t = $("input[name=csrfmiddlewaretoken]").val();
-        var data = {
-            "some": "Yo",
-            'csrfmiddlewaretoken': t
+        data = {
+         "csrfmiddlewaretoken": t,
+         "Rooftop": rooftop,
+         "Ground": ground,
+         "Caravan": caravan,
+         "date": $("input[name=tripDay]").val(),
+         "number": $("input[name=Duration]").val(),
         }
       $.ajax({
             data: data,

@@ -7,14 +7,14 @@
 {% endblock %}
 
 {% block meta %}
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-135121423-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+<!--<script async src="https://www.googletagmanager.com/gtag/js?id=UA-135121423-1"></script>-->
+<!--<script>-->
+<!--  window.dataLayer = window.dataLayer || [];-->
+<!--  function gtag(){dataLayer.push(arguments);}-->
+<!--  gtag('js', new Date());-->
 
-  gtag('config', 'UA-135121423-1');
-</script>
+<!--  gtag('config', 'UA-135121423-1');-->
+<!--</script>-->
 <meta name="google-site-verification" content="0qAFuqCoEEY9a88e70sNYjLzPmyrAhP8yE1pjmtHjeo" />
 <meta name="description" content="Explore unique destinations, communities, and culture in Northeast India and Bhutan with Camping Co.’s pioneering self-drive overland travel form">
 <meta name="keywords" content="camping, camping company, camping co , nature tourism, overlanding, northeast tourism,northeast, car rental , guwahati , meghalaya tourism, car rental, rooftop tent">
@@ -42,7 +42,7 @@
               <div class="row no-gutters">
                   <div class="col-6 col-sm-3">
                       <div class="form-group">
-                      <input class="form__input" type="text" class="form-control" name="place" list="places" placeholder="Places">
+                      <input class="form__input" type="text" class="form-control" name="place" list="places" placeholder="Places" required>
                       <datalist id="places">
                         <option value="Meghalaya">
                         <option value="Assam">
@@ -55,13 +55,13 @@
           
                   <div class="col-6 col-sm-3">
                       <div class="form-group">
-                          <input class="form__input" type="text" name="tripDay" class="form-control date" id="datetimepicker" placeholder="DD/MM/YYYY">
+                          <input class="form__input" type="text" name="tripDay" class="form-control date" id="datetimepicker" placeholder="DD/MM/YYYY" required>
                       </div>
                   </div>
           
                   <div class="col-6 col-sm-3">
                       <div class="form-group">
-                  <input class="form__input" type="text" list="Duration" name="Duration" class="form-control" id="list" placeholder="Days">
+                  <input class="form__input" type="text" list="Duration" name="Duration" class="form-control" id="list" placeholder="Days" required>
                   <datalist id="Duration">
                     <option value="1">
                     <option value="2">
@@ -151,22 +151,24 @@
     </section>
     <section class="section-numbers">
     <div class="card col-11">
+     <div class="heading-secondary">
+    <h2 class="heading-secondary__text">Media speak</h2>
+    <div class="borders-bottom"></div>
+     </div>
       <div class="row">
         <div class="col-3">
-          <div class="card__numbers">
-          <div class="card__expedition">
-            <p class="card__number">300</p>
-            <p class="card__text">Overlanding Expediton</p>
+          <div class="">
+          <div class="image">
+              <a href="https://www.vogue.in/culture-and-living/content/unique-airbnb-stays-in-india-international-holiday-moveable-properties"><img class="image__container" src="{% static 'images/main_v2/vogue.png' %}"></a>
           </div>
           </div>
         </div>
 
 
         <div class="col-3">
-            <div class="card__numbers">
-                <div class="card__distance">
-                    <p class="card__number">210,000</p>
-                    <p class="card__text">Distance travelled</p>
+            <div class="image">
+                <div class="image--2">
+                    <a href="https://www.responsibletourismindia.com/stay/309"><img class="image__container" src="{% static 'images/main_v2/responsibility.png' %}"></a>
                   </div>
             </div>
           </div>
@@ -174,20 +176,18 @@
 
 
           <div class="col-3">
-              <div class="card__numbers">
-                  <div class="card__overlanding">
-                      <p class="card__number">30</p>
-                      <p class="card__text">Overlanding location discovered</p>
+              <div class="">
+                  <div class="image">
+                      <a href="http://theguwahatitimes.info/2019/06/12/overlanding-through-north-east-india-in-cars-with-rooftop-tents/"><img class="image__container" src="{% static 'images/main_v2/guwahatitimes.png' %}"></a>
                     </div>
               </div>
             </div>
 
 
             <div class="col-3">
-                <div class="card__numbers">
-                  <div class="card__bonfire">
-                      <p class="card__number">1,100</p>
-                      <p class="card__text">Bonfire built</p>
+                <div class="">
+                    <div class="image">
+                      <a href="http://www.assamtribune.com/scripts/sp.asp?id=2018/dec2718/BigPage11.jpg"><img class="image__container image--4" src="{% static 'images/main_v2/tribune.gif' %}"></a>
                     </div>
               </div>
               </div>
@@ -211,13 +211,13 @@
             </div>
 
             <div class="col-4">
-                <div class="youtube-player image-box__image" data-id="OiZFBOo63Jg"></div>
+                <div class="youtube-player image-box__image" data-id="sK6TfpqllKk"></div>
                 <h6 class="timestamps--2">
-                    <span class="timestamps__date">30</span>
-                    <span class="timestamps__month">Dec</span>
+                    <span class="timestamps__date">29</span>
+                    <span class="timestamps__month">Sep</span>
                 </h6> 
-                <span class="tertiary-text__heading">3 Guys adventure</span>
-                <span class="tertiary-text__description">Fresh morning with strong winds blowing through trees welcome you as you step out...</span>
+                <span class="tertiary-text__heading">Overland Meghalaya</span>
+                <span class="tertiary-text__description">Camping Co. is aligning the world of responsible and rural tourism...</span>
             </div>
 
             <div class="col-4">
@@ -233,7 +233,6 @@
                 
             </div>
         </div>
-            </div>
             <br>
             <div class="blog-button-box">
                 <a href="{% url 'blog:all_blog' %}" class="blog-button-box__button">view more</a>
@@ -247,13 +246,6 @@
                 <span id="left-arrow" class="arrow left fa fa-chevron-left "></span>
                 <ul id="testim-dots" class="dots" style="visibility: hidden;">
                     <li class="dot active"></li>
-                    <li class="dot"></li>
-                    <li class="dot"></li>
-                    <li class="dot"></li>
-                    <li class="dot"></li>
-                    <li class="dot"></li>
-                    <li class="dot"></li>
-                    <li class="dot"></li>
                     <li class="dot"></li>
                     <li class="dot"></li>
                     <li class="dot"></li>
@@ -312,18 +304,6 @@
                        <p>Great way to explore and experience a place. Friendly and well informed host. Comfortable vehicle on all terrain.</p>
                     </div>
                     <div>
-                       <div class="img"><img src="https://s3.ap-south-1.amazonaws.com/camping-company/media/Reviewers/jocelyn.webp" alt=""></div>
-                       <h2>Jocelyn
-                          <br>
-                          <span class="fa fa-star checked"></span>
-                          <span class="fa fa-star checked"></span>
-                          <span class="fa fa-star checked"></span>
-                          <span class="fa fa-star checked"></span>
-                          <span class="fa fa-star checked"></span>
-                       </h2>
-                       <p>Harsh has got this amazing Roof Top Tent on his SUV, it takes care of both, your travel as well as your stay. All you have to do is give him your dates and he chalks out your route allowing you to maximise on your time while arranging the best night stops. A must-do is a night halt or two at Black Bridge Resort where you will get to meet and interact with Lana. Another halt organised is at Sa-i-Mika Resort, you can spend the entire day in the cafe. The tent suffices just nicely to keep you warm and cozy. BBQ equipped - what more does one need?</p>
-                    </div>
-                    <div>
                        <div class="img"><img src="https://s3.ap-south-1.amazonaws.com/camping-company/media/Reviewers/ira.webp" alt=""></div>
                        <h2>Ira
                           <br>
@@ -346,79 +326,6 @@
                           <span class="fa fa-star checked"></span>
                        </h2>
                        <p>This was so far the best experience of my life and words can't do justice. One must take this trip to truly understand what we felt. All thanks to harsh for being a wonderful host and friend.</p>
-                    </div>
-                    <div>
-                       <div class="img"><img src="https://s3.ap-south-1.amazonaws.com/camping-company/media/Reviewers/varun.webp" alt=""></div>
-                       <h2>Varun
-                          <br>
-                          <span class="fa fa-star checked"></span>
-                          <span class="fa fa-star checked"></span>
-                          <span class="fa fa-star checked"></span>
-                          <span class="fa fa-star checked"></span>
-                          <span class="fa fa-star checked"></span>
-                       </h2>
-                       <p>To experience closeness of nature and the freshness around you opting in for the car-roof-tent was our best choice. The comfort it provided throughout the journey was just so amazing. Thank You the company company for making the trip and our anniversary so memorable. The idea of Car-roof is just apt for people who are crazy for adventure and want to be always close to nature. And the best thing which I should mention is the super co-ordination of Mr. Harsh with us. His support and contacts helped us a lot. Cheers !! ***** Varun</p>
-                    </div>
-                    <div>
-                       <div class="img"><img src="https://s3.ap-south-1.amazonaws.com/camping-company/media/Reviewers/shamsul.webp" alt=""></div>
-                       <h2>Shamsul
-                          <br>
-                          <span class="fa fa-star checked"></span>
-                          <span class="fa fa-star checked"></span>
-                          <span class="fa fa-star checked"></span>
-                          <span class="fa fa-star checked"></span>
-                          <span class="fa fa-star checked"></span>
-                       </h2>
-                       <p>I would say it was one of the finest office getway we have done. The hosts are fantastic people and their idea of life is quite amazing. Harsh's place is in my opinion the best way to explore North east India. I would advice everyone to come prepared to live on your own. Listen carefully to all key advice and lovely routes Harsh and Heena have to offer. People in Assam & Meghalaya are super friendly & generous, always ask for help and they will love to hang around with you and make life easier. Please do not litter!! Hope this is helpful.</p>
-                    </div>
-                    <div>
-                       <div class="img"><img src="https://s3.ap-south-1.amazonaws.com/camping-company/media/Reviewers/shantanu.webp" alt=""></div>
-                       <h2>Shantanu
-                          <br>
-                          <span class="fa fa-star checked"></span>
-                          <span class="fa fa-star checked"></span>
-                          <span class="fa fa-star checked"></span>
-                          <span class="fa fa-star checked"></span>
-                          <span class="fa fa-star checked"></span>
-                       </h2>
-                       <p>It was one of the most memorable vacations of my life. Everything was just perfect, from the local tips that Harsh and Heena gave to car handling to a) how easy it was to set up the tent and b) how comfortable it was! The fact that our hosts were constantly checking on us when we were travelling was really re-assuring as it sometimes got confusing being out there in the wild! I would recommend following their itinerary tips rather than going for the obvious places and you will have a trip which you will remember for a lifetime!</p>
-                    </div>
-                    <div>
-                       <div class="img"><img src="https://s3.ap-south-1.amazonaws.com/camping-company/media/Reviewers/jui.webp" alt=""></div>
-                       <h2>Jui
-                          <br>
-                          <span class="fa fa-star checked"></span>
-                          <span class="fa fa-star checked"></span>
-                          <span class="fa fa-star checked"></span>
-                          <span class="fa fa-star checked"></span>
-                          <span class="fa fa-star checked"></span>
-                       </h2>
-                       <p>If you like adventure and being close to the nature then go for this camping vacation with Harsh’s beast camping van with a exotic tent to sleep in. Harsh is an avid traveler and was best at his hosting tips throughout the trip. He knows the places to the T . He drew the whole iternary for me as per my preferences . The camping nights were super easy and sleek as a first timer and that’s what made the whole trip fun. One of my best experiences to cherish for life.</p>
-                    </div>
-                    <div>
-                       <div class="img"><img src="https://s3.ap-south-1.amazonaws.com/camping-company/media/Reviewers/hattie.webp" alt=""></div>
-                       <h2>Hattie
-                          <br>
-                          <span class="fa fa-star checked"></span>
-                          <span class="fa fa-star checked"></span>
-                          <span class="fa fa-star checked"></span>
-                          <span class="fa fa-star checked"></span>
-                          <span class="fa fa-star checked"></span>
-                       </h2>
-                       <p>We had the most amazing trip using Harsh's Mahindra Thar driving around Meghalaya. One of the most fun and different trips we have ever been on. Harsh met us before with the car and made sure we were comfortable with how everything, including setting up the tent, worked. He designed an itinerary for us around the best spots in Meghalaya which was perfect and we were able to be quite flexible with this when we wanted to stay somewhere longer. All the places recommended to stay were ideal for what we needed, with great food and very friendly people! Black Bridge Resort was our favourite. Harsh was helpful and quick to respond throughout the trip, which made us feel very relaxed. Definitely recommend - the best and most flexible way to see the North East!</p>
-                    </div>
-           
-                    <div>
-                       <div class="img"><img src="https://s3.ap-south-1.amazonaws.com/camping-company/media/Reviewers/samir.jpg" alt=""></div>
-                       <h2>Samir
-                          <br>
-                          <span class="fa fa-star checked"></span>
-                          <span class="fa fa-star checked"></span>
-                          <span class="fa fa-star checked"></span>
-                          <span class="fa fa-star checked"></span>
-                          <span class="fa fa-star checked"></span>
-                       </h2>
-                       <p>We were looking for a unique experience to celebrate our silver jubilee wedding anniversary and we are so glad we came across Harsh & Heena's camping-co listing of overlanding experience on airbnb. We were thrilled to know about having this unique experience in India. Heena understood our occasion and provided couple of itinerary. All the camping grounds and meeting the hosts - sharing each other's journey - homely food - it was just perfect. Heena and Harsh were always reachable on any query/question/tip we needed even during our trip. While this was our first trip with camping-co's overlanding experience, it certainly won't be our last. Highly recommended for adventurous people.</p>
                     </div>
            
                     <div>
@@ -484,7 +391,7 @@
                     <span class="footer-text__follow">Follow Us:
                     <a href="https://www.facebook.com/thecampingco"><i class="fab fa-facebook-f"></i></a>
                     <a href="https://www.instagram.com/camping_co"><i class="fab fa-instagram"></i></a>
-                  <i class="fab fa-twitter"></i>
+                    <a href="https://www.youtube.com/channel/UC6mvUrWd2m4KbokMSALM0Hw"><i class="fab fa-youtube"></i></a>
                 </span>
                 <br><br><br>
                 <hr>
@@ -495,16 +402,16 @@
               <strong><span class="footer-text__heading">Contact Us</span></strong>
               <br><br>
               <span class="footer-text__description">Talk to our experts? +91-6913332761 or Drop us a line, We promise to get back to you in 24 hours.</span>
-              <form class="footer__form">
+              <form class="footer__form" method="POST" action="{% url 'app:findus' %}">
                 <br>
-                <input type="text" placeholder="name" class="footer-text__input">
-                <input type="email" placeholder="email" class="footer-text__input">
-                <input type="text" placeholder="phone" class="footer-text__input">
-                <input type="text" placeholder="city" class="footer-text__input">
-                <textarea class="footer-text__area" name="" id="" cols="40" rows="10" placeholder="Enter Your Message Here..."></textarea>
+                <input type="text" placeholder="name" name="name" class="footer-text__input">
+                <input type="email" placeholder="email" name="email" class="footer-text__input">
+                <input type="text" placeholder="phone" name="phone" class="footer-text__input">
+                <input type="text" placeholder="city" name="city" class="footer-text__input">
+                <textarea class="footer-text__area" name="message" id="" cols="40" rows="10" placeholder="Enter Your Message Here..."></textarea>
                 <div class="footer-button-box">
                   <br>
-                    <a href="#" class="footer-button-box__button">Submit</a>
+                    <button class="footer-button-box__button">Submit</button>
                 </div>
               </form>
               <br>

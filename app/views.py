@@ -6,6 +6,7 @@ from customer.models import Customer
 from trip.models import Trip
 from django.contrib import messages
 from django.http import JsonResponse
+from vehicle.models import Book
 from django.utils import timezone
 
 from app.utils import *
@@ -23,6 +24,10 @@ def about(request):
 
 def all_user(request):
     users = User.objects.all()
+    if request.method == "POST":
+        email = request.POST.get("email")
+        user = User.objects.filter(email=email)
+        return render(request, "app/all_user.html", {"users": user})
     return render(request, "app/all_user.html", {"users": users})
 
 
@@ -30,6 +35,7 @@ def detail_user(request, pk):
     user = User.objects.get(pk=pk)
     try:
         customer = Customer.objects.get(user=user)
+        book = Book.objects.get(user=user)
     except:
         return render(request, "app/user_detail.html")
 
@@ -38,7 +44,7 @@ def detail_user(request, pk):
         Customer.objects.filter(user=user).update(
             lead_status=lead_status)
         return JsonResponse({"data": lead_status})
-    return render(request, "app/user_detail.html", {"customer": customer})
+    return render(request, "app/user_detail.html", {"customer": customer, "book": book})
 
 
 def terms_condition(request):

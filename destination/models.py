@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 from django.db.models.signals import pre_save
 
 # Create your models here.
@@ -66,9 +67,27 @@ class Detail(models.Model):
     check_out = models.CharField(max_length=64)
     phone = models.BigIntegerField(null=True, blank=True)
     cancellation_policy = models.CharField(max_length=64)
+    booked = models.BooleanField(default=False)
 
     def __str__(self):
         return self.destination.place
+
+
+class Booking(models.Model):
+    txnid = models.CharField(max_length=128, blank=True, null=True)
+    destination = models.ForeignKey(Detail, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    caravan = models.IntegerField()
+    rooftop = models.IntegerField()
+    ground = models.IntegerField()
+    days = models.IntegerField()
+    date = models.DateField(null=True, blank=True)
+    amount = models.FloatField()
+    igst = models.FloatField(blank=True, null=True)
+    convenient = models.FloatField(blank=True, null=True)
+
+    def __str__(self):
+        return self.txnid
 
 
 class Activity(models.Model):

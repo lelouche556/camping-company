@@ -25,12 +25,12 @@ def message_to_company(name, email, subject, message, phone):
               })
 
 
-def invoice_message(email1,email2,
-                    txnid,now,name,
-                    car,person,campkit
-                    ,gas,solar,torch,
-                    table,igst,convenient,
-                    total,duration, chair,
+def invoice_message(email1, email2,
+                    txnid, now, name,
+                    car, person, campkit
+                    , gas, solar, torch,
+                    table, igst, convenient,
+                    total, duration, chair,
                     count, coupon):
     if duration >= 4:
         camp_cost = 2000
@@ -46,11 +46,24 @@ def invoice_message(email1,email2,
               })
 
 
+def invoice_message_camp(email1, email2, total, ground,
+                         txnid, now, name, caravan, duration,
+                         count,igst, convenient,rooftop):
+    return requests.post(
+        os.environ.get("MAILGUN_URL"),
+        auth=("api", os.environ.get("MAILGUN_API_KEY")),
+        data={"from": os.environ.get("MAILGUN_FROM"),
+              "to": [email2],
+              "subject": "Invoice",
+              "html": '''<div class="invoice-box" style="max-width: 800px; height:130vh; margin: auto; padding: 30px; border: 1px solid #eee; box-shadow: 0 0 10px rgba(0, 0, 0, .15); font-size: 16px; line-height: 24px; font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; color: #555;"><table cellpadding="0" cellspacing="0" style="width: 100%; line-height: inherit; text-align: left;" width="100%" align="left"><tr class="top"><td colspan="2" style="padding: 5px; vertical-align: top;" valign="top"><table style="width: 100%; line-height: inherit; text-align: left;" width="100%" align="left"><tr><td class="title" style="padding: 5px; vertical-align: top; padding-bottom: 20px; font-size: 45px; line-height: 45px; color: #333;" valign="top"><p>Camping Co</p></td><td style="padding: 5px; vertical-align: top; text-align: right; padding-bottom: 20px;" valign="top" align="right"> Invoice #: ''' + now.replace("-","") + str(count) + '''<br> Created: ''' + now + '''<br></td></tr></table></td></tr><tr class="information"><td colspan="2" style="padding: 5px; vertical-align: top;" valign="top"><table style="width: 100%; line-height: inherit; text-align: left;" width="100%" align="left"><tr><td style="padding: 5px; vertical-align: top; padding-bottom: 40px;" valign="top"> H&H Overland Expedition India Pvt Ltd.<br> Nabajyoti Nagar<br> Guwahati,assam</td><td style="padding: 5px; vertical-align: top; text-align: right; padding-bottom: 40px;" valign="top" align="right">''' + name + '''<br> ''' + email1 + '''</td></tr></table></td></tr><tr class="heading"><td style="padding: 5px; vertical-align: top; background: #eee; border-bottom: 1px solid #ddd; font-weight: bold;" valign="top"> Payment Method </td><td style="padding: 5px; vertical-align: top; text-align: right; background: #eee; border-bottom: 1px solid #ddd; font-weight: bold;" valign="top" align="right"> Online Transaction # </td></tr><tr class="details"><td style="padding: 5px; vertical-align: top; padding-bottom: 20px;" valign="top"> Online </td><td style="padding: 5px; vertical-align: top; text-align: right; padding-bottom: 20px;" valign="top" align="right"> ''' + txnid + '''</td></tr><tr class="heading"><td style="padding: 5px; vertical-align: top; background: #eee; border-bottom: 1px solid #ddd; font-weight: bold;" valign="top"> Item </td><td style="padding: 5px; vertical-align: top; text-align: right; background: #eee; border-bottom: 1px solid #ddd; font-weight: bold;" valign="top" align="right"> Price </td></tr><tr class="item"><td style="padding: 5px; vertical-align: top; border-bottom: 1px solid #eee;" valign="top"> Caravan</td><td style="padding: 5px; vertical-align: top; text-align: right; border-bottom: 1px solid #eee;" valign="top" align="right"> ''' + str(caravan) + ''' </td></tr><tr class="item"><td style="padding: 5px; vertical-align: top; border-bottom: 1px solid #eee;" valign="top"> Ground tent </td><td style="padding: 5px; vertical-align: top; text-align: right; border-bottom: 1px solid #eee;" valign="top" align="right"> ''' + str(ground) + '''</td></tr><tr class="item"><td style="padding: 5px; vertical-align: top; border-bottom: 1px solid #eee;" valign="top"> Rooftop tent </td><td style="padding: 5px; vertical-align: top; text-align: right; border-bottom: 1px solid #eee;" valign="top" align="right"> ''' + str(rooftop) + '''</td></tr></td></tr><tr class="item"><td style="padding: 5px; vertical-align: top; border-bottom: 1px solid #eee;" valign="top"> Duration </td><td style="padding: 5px; vertical-align: top; text-align: right; border-bottom: 1px solid #eee;" valign="top" align="right"> ''' + str(duration) + '''</td></tr><tr class="item"><td style="padding: 5px; vertical-align: top; border-bottom: 1px solid #eee;" valign="top"> IGST (18%) </td><td style="padding: 5px; vertical-align: top; text-align: right; border-bottom: 1px solid #eee;" valign="top" align="right"> ''' + str(round(igst, 2)) + ''' </td></tr><tr class="item"><td style="padding: 5px; vertical-align: top; border-bottom: 1px solid #eee;" valign="top"> Convenience charge (2%) </td><td style="padding: 5px; vertical-align: top; text-align: right; border-bottom: 1px solid #eee;" valign="top" align="right"> ''' + str(round(convenient, 2)) + ''' </td></tr><tr class="total"><td style="padding: 5px; vertical-align: top;" valign="top"></td><td style="padding: 5px; vertical-align: top; text-align: right; border-top: 2px solid #eee; font-weight: bold;" valign="top" align="right"> Total: INR ''' + str(total) + ''' </td></tr></table></div><br><br><br><br>'''
+              })
+
+
 def password_reset(name, email, subject, link):
     return requests.post(
-        "https://api.mailgun.net/v3/mg.camping-co.com/messages",
-        auth=("api", "key-fa551982ea0d815e919fed09568c7abe"),
-        data={"from": "Camping Company postmaster@mg.camping-co.com",
+        os.environ.get("MAILGUN_URL"),
+        auth=("api", os.environ.get("MAILGUN_API_KEY")),
+        data={"from": os.environ.get("MAILGUN_FROM"),
               "to": email,
               "subject": subject,
               "html": '''<p>Dear ''' + name + ''',</p><br><br><p>You have requested password change for your user id ''' + email + '''Now <a href=''' + link + '''>Click here</a> To reset your password</p><p>If you have not requested to change your password you can safely ignore this message</p><br><br><br><p>Regards,</p><img src='https://s3.ap-south-1.amazonaws.com/camping-company/images/favicon/apple-icon-32x32.png' %}'><p>Camping co</p><p style='color: #1ab188'>This is automated generated mail do not reply</p>'''
