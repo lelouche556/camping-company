@@ -196,13 +196,8 @@
     </div>
 
     <div class="totals-item">
-      <label>Discount</label>
+      <label>Discount Applied</label>
       <div class="totals-value" id="cart-discount">0</div>
-    </div>
-
-    <div class="totals-item">
-      <label>Amount Payable</label>
-      <div class="totals-value" id="cart-payable"></div>
     </div>
 
   </div>
@@ -215,14 +210,13 @@
 <script>
   window.onload = function(){
   function couponCode(a){
-        pretotal = pretotal - parseFloat($("#shillong").text()) - parseFloat($("#airport").text())
-        coupon = pretotal*(a);
+        coupon = ({{price}} * a).toFixed(2);
+        $("#cart-discount").html(-coupon)
+        pri = ({{price}} - coupon) * parseInt(duration);
+        $(".product-line-price")[1].textContent = pri;
         var iine = "You got " + 100*a.toString() + "% discount";
-        totals = totals - (pretotal*a) + parseFloat($("#shillong").text()) + parseFloat($("#airport").text());
         $("#coupon-text").html(iine);
-        $('#cart-discount').html(-(pretotal*a).toFixed(2));
-        $('#cart-payable').html((totals).toFixed(2));
-        $('#cart-total').html((totals).toFixed(2));
+        recalculateCart()
         x = $("input")
         for (let y of x){
 	        y.disabled = true
@@ -237,7 +231,7 @@
   var shippingRate = .024;
   var fadeTime = 300;
   var coupon = 0;
-  var pretotal = 0;
+  var pri = {{price}} * parseInt(duration);
 
 if (duration >= 4){
 $('.product-price')[3].textContent = 2000
@@ -253,8 +247,7 @@ if(localStorage.getItem("car_type") === "thar"){
     document.getElementById("quant").disabled = true
     }
 
-var pri = {{price}} * parseInt(duration);
-pretotal = pri;
+
 $('#car-price').html(pri)
 
 var tax = pri * taxRate;
@@ -297,7 +290,6 @@ function recalculateCart()
   totals = total
   taxs = tax
   shippings = shipping
-  pretotal = subtotal
 
   /* Update totals display */
   $('.totals-value').fadeOut(fadeTime, function() {
@@ -305,26 +297,9 @@ function recalculateCart()
     $('#cart-subtotal').html(subtotal.toFixed(2));
     $('#cart-tax').html(tax.toFixed(2));
     $('#cart-shipping').html(shipping.toFixed(2));
-    $('#cart-total').html(total.toFixed(2));
+    $('#cart-total').html((total).toFixed(2));
     $('#cart-payable').html(total.toFixed(2));
 
-    if($("#coupon-text").html() == "You got 20% discount"){
-      $('#cart-total').html((total-(total*.2)).toFixed(2));
-      $('#cart-payable').html((total-(total*.2)).toFixed(2));
-    }
-
-    else if ($("#coupon-text").html() == "You got 10% discount"){
-      $('#cart-total').html((total-(total*.1)).toFixed(2));
-      $('#cart-payable').html((total-(total*.1)).toFixed(2));
-    }
-    else if ($("#coupon-text").html() == "You got 25% discount"){
-      $('#cart-total').html((total-(total*.25)).toFixed(2));
-      $('#cart-payable').html((total-(total*.25)).toFixed(2));
-
-      }
-        else {
-          $('#cart-payable').html(total.toFixed(2));
-      }
     if(total == 0){
       $('.checkout').fadeOut(fadeTime);
     }else{
