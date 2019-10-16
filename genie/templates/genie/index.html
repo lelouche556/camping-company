@@ -1,0 +1,67 @@
+  <!DOCTYPE html>
+  <html>
+<head>
+
+      <meta http-equiv="content-type" content="text/html;charset =UTF-8">
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial--scale=1">
+      <meta name="description" content="">
+      <meta name="author" content="">
+
+        <title> Images Upload</title>
+      </head>
+
+
+<!---  Car images --->
+  <form action="{% url 'genie:create' %}" method="post">
+    {% csrf_token %}
+    <label for="front"> Front view </label>
+<input type="file" name="pic" accept="image/*">
+   <input type="submit"><br><br><br><br>
+
+   <label for="rear"> Rear view </label>
+<input type="file" name="image" accept="image/*">
+  <input type="submit"><br><br><br><br>
+
+  <label for="left"> Left side view </label>
+<input type="file" name="leftside" accept="image/*">
+ <input type="submit"><br><br><br><br>
+
+ <label for="right"> Right view </label>
+<input type="file" name="rightside" accept="image/*">
+<input type="submit"><br><br><br><br>
+
+<!---  Vehicle Cleanliness  --->
+
+<label for="tent_interior"> Tent Interior </label>
+<input type="file" name="inside" accept="image/*">
+<input type="submit"><br><br><br><br>
+
+<label for="tent_exterior"> Tent Exterior </label>
+<input type="file" name="outside" accept="image/*">
+<input type="submit"><br><br><br><br>
+
+<label for="inside_car"> Car Interior </label>
+<input type="file" name="interior" accept="image/*">
+<input type="submit"><br><br><br><br>
+
+<label for="outside_car"> Car Exterior </label>
+<input type="file" name="exterior" accept="image/*">
+<input type="submit"><br><br><br><br>
+
+<!---   Customer  Photo ID  --->
+<label for="Front_id"> Photo ID Front </label>
+<input type="file" name="front" accept="image/*">
+<input type="submit"><br><br><br><br>
+
+<label for="Back_id"> Photo ID  Back </label>
+<input type="file" name="exterior" accept="image/*">
+<input type="submit"><br><br><br><br>
+
+
+
+</form>
+
+     </body>
+
+  </html>
